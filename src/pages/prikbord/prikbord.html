@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Prikbord</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding-top padding-left padding-right>
+
+  <ion-list no-lines>
+    <ion-item *ngFor="let item of items; let last = last" [attr.margin-bottom]="last ? null : ''">
+
+      <div>
+        <span>{{item.auteur}}</span>
+        <span float-right>{{item.moment}}</span>
+      </div>
+
+      <div padding-top text-wrap>{{item.berichttekst}}</div>
+
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

@@ -28,3 +28,12 @@
 .toolbar-background-md {
   background: color($colors, light)
 }
+
+.item-md p {
+  color: black;
+}
+
+ion-item.item-md {
+  background: white;
+  border-radius: 8px;
+}
