@@ -14,3 +14,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+// achtergronden: donker-oranje
+.content-md,
+.item-md {
+  background: color($colors, dark)
+}
+
+// dialoogvensters, headers: licht-oranje
+.menu-inner .content-md,
+.menu-inner .item-md,
+.toolbar-background-md {
+  background: color($colors, light)
+}
