@@ -10,14 +10,16 @@
 <ion-content padding-top padding-left padding-right>
 
   <ion-list no-lines>
-    <ion-item *ngFor="let item of items; let last = last" [attr.margin-bottom]="last ? null : ''">
+    <ion-item *ngFor="let item of items | async; let last = last" [attr.margin-bottom]="last ? null : ''">
 
       <div>
-        <span>{{item.auteur}}</span>
-        <span float-right>{{item.moment}}</span>
+        <span class="auteur">{{item.auteur}}</span>
+        <span class="tijdstip" float-right>{{item.tijdstip | date}}</span>
       </div>
 
-      <div padding-top text-wrap>{{item.berichttekst}}</div>
+      <div padding-top text-wrap>
+        <div class="berichtregel" *ngFor="let regel of item.berichttekst">{{regel}}</div>
+      </div>
 
     </ion-item>
   </ion-list>

@@ -1,17 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
-import {Prikbordbericht} from "./prikbordbericht";
+import {Bericht} from "./bericht";
+import * as moment from 'moment';
 
 @Injectable()
 export class PrikbordProvider {
 
-  constructor(private http: Http) {
+  private readonly parser = new DOMParser();
+
+  constructor(private http: HttpClient) {
   }
 
-  // haalBerichtenOp() : Observable<Prikbordbericht> {
-  //
-  // }
+  haalBerichtenOp() : Observable<any> {
+    return this.http
+      .get('/loopgroep/index.php/prikbord', {responseType: 'text'})
+      .map(html => {
+        let doc = this.parser.parseFromString(html, 'text/html');
+        let elts = doc.evaluate('//div[@class="easy_frame"]', doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+        let berichten : Bericht[] = [];
+        let node : Node;
+        while (node = elts.iterateNext()) {
+          berichten.push(PrikbordProvider.toBericht(doc, node))
+        }
+        return berichten.reverse();
+      })
+  }
+
+  private static toBericht(doc: Document, node: Node) : Bericht {
+    let auteur = doc.evaluate('.//*[@class="easy_big"]', node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent.trim();
+    let tijdstip = moment(doc.evaluate('.//*[@class="easy_small"]', node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent.trim(), "dddd DD MMMM YYYY HH:mm");
+    let childNodes = doc.evaluate('.//*[@class="easy_content"]', node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.childNodes;
+    let berichttekst : string[] = [];
+    let lineBreaks = 0;
+    for (let i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].nodeType === Node.TEXT_NODE) {
+          if (lineBreaks > 1 && berichttekst.length) {
+            berichttekst.push('');
+          }
+          berichttekst.push(childNodes[i].textContent.trim());
+          lineBreaks = 0;
+        } else {
+          lineBreaks++;
+        }
+    }
+    return {
+      auteur: auteur,
+      tijdstip: tijdstip,
+      berichttekst: berichttekst
+    }
+  }
 
 }

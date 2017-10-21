@@ -1,3 +1,16 @@
 page-prikbord {
 
+  div {
+    font-size: 17px;
+  }
+
+  .auteur, .tijdstip {
+    font-size: smaller;
+    font-weight: bold;
+  }
+
+  .berichtregel {
+    min-height: 19px
+  }
+
 }
