@@ -1,5 +1,5 @@
 {
-  "name": "myApp",
+  "name": "loopgroepgroningen-ionic",
   "app_id": "8f3be698",
   "type": "ionic-angular",
   "integrations": {
@@ -7,7 +7,7 @@
   },
   "proxies": [
     {
-      "path": "/loopgroep",
+      "path": "/proxy",
       "proxyUrl": "http://www.loopgroepgroningen.nl/"
     }
   ]

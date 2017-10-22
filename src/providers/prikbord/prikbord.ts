@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 import {Observable} from "rxjs/Observable";
 import {Bericht} from "./bericht";
 import * as moment from 'moment';
@@ -15,7 +17,17 @@ export class PrikbordProvider {
 
   haalBerichtenOp() : Observable<any> {
     return this.http
-      .get('/loopgroep/index.php/prikbord', {responseType: 'text'})
+      .get(`http://www.loopgroepgroningen.nl/index.php/prikbord`, {responseType: 'text'})
+      .catch(error => {
+          if (PrikbordProvider.isCorsError(error)) {
+            return this.http
+              .get('/proxy/index.php/prikbord',  {responseType: 'text'})
+              .catch(() => Observable.of(''));
+          } else {
+            return Observable.of('');
+          }
+        }
+      )
       .map(html => {
         let doc = this.parser.parseFromString(html, 'text/html');
         let elts = doc.evaluate('//div[@class="easy_frame"]', doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
@@ -26,6 +38,10 @@ export class PrikbordProvider {
         }
         return berichten.reverse();
       })
+  }
+
+  private static isCorsError(response: HttpErrorResponse) {
+    return response.status === 0;
   }
 
   private static toBericht(doc: Document, node: Node) : Bericht {
