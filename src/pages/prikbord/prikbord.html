@@ -3,14 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Prikbord</ion-title>
+    <ion-title class="dialog">Prikbord</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding-top padding-left padding-right>
+<ion-content class="background" padding-top padding-left padding-right>
 
   <ion-list no-lines>
-    <ion-item *ngFor="let item of items | async; let last = last" [attr.margin-bottom]="last ? null : ''">
+    <ion-item class="item" *ngFor="let item of items | async; let last = last" [attr.margin-bottom]="last ? null : ''">
 
       <div>
         <span class="auteur">{{item.auteur}}</span>

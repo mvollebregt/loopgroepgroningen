@@ -17,23 +17,20 @@
 
 
 // achtergronden: donker-oranje
-.content-md,
-.item-md {
+.background {
   background: color($colors, dark)
 }
 
 // dialoogvensters, headers: licht-oranje
-.menu-inner .content-md,
-.menu-inner .item-md,
-.toolbar-background-md {
-  background: color($colors, light)
+.dialog {
+  background: yellow; //color($colors, light)
 }
 
-.item-md p {
+.item p {
   color: black;
 }
 
-ion-item.item-md {
+.item {
   background: white;
   border-radius: 8px;
 }

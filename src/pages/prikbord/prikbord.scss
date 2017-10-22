@@ -1,5 +1,16 @@
 page-prikbord {
 
+  //ion-content,
+  .content-md,
+  .item-md {
+    background: color($colors, dark)
+  }
+
+  ion-item.item-md {
+    background: white;
+    border-radius: 8px;
+  }
+
   div {
     font-size: 17px;
   }
