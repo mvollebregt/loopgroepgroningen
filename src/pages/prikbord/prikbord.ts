@@ -1,15 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import {Bericht} from "../../providers/prikbord/bericht";
-import {PrikbordProvider} from "../../providers/prikbord/prikbord";
+import {Bericht} from "./shared/bericht";
+import {PrikbordClient} from "./shared/prikbord.client";
 import {Observable} from "rxjs/Observable";
-
-/**
- * Generated class for the PrikbordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {PrikbordService} from "./shared/prikbord.service";
 
 @IonicPage()
 @Component({
@@ -20,10 +14,11 @@ export class PrikbordPage implements OnInit {
 
   items: Observable<Bericht[]>;
 
-  constructor(private prikbord: PrikbordProvider) {
+  constructor(private prikbordService: PrikbordService) {
   }
 
   ngOnInit() {
-    this.items = this.prikbord.haalBerichtenOp();
+    this.items = this.prikbordService.getBerichten();
+    this.prikbordService.synchroniseer();
   }
 }

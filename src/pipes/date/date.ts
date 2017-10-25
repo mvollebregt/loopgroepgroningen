@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Moment} from "moment";
+import * as moment from 'Moment';
 
 @Pipe({
   name: 'date'
 })
 export class DatePipe implements PipeTransform {
 
-  transform(date: Moment) {
-    return date.format("ddd D MMM YYYY - HH:mm").replace(/\./g, '')
+  transform(date: string) {
+    return moment(date).format("ddd D MMM YYYY - HH:mm").replace(/\./g, '')
   }
 }
