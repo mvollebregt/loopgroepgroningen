@@ -1,27 +1,3 @@
 page-prikbord {
 
-  //ion-content,
-  .content-md,
-  .item-md {
-    background: color($colors, dark)
-  }
-
-  ion-item.item-md {
-    background: white;
-    border-radius: 8px;
-  }
-
-  div {
-    font-size: 17px;
-  }
-
-  .auteur, .tijdstip {
-    font-size: smaller;
-    font-weight: bold;
-  }
-
-  .berichtregel {
-    min-height: 19px
-  }
-
 }

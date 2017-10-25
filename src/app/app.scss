@@ -15,22 +15,52 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@import "../theme/variables";
 
-// achtergronden: donker-oranje
-.background {
-  background: color($colors, dark)
+// Het menu krijgt dezelfde kleur als de toolbar
+.menu-inner {
+  .header, .content, .item {
+    background: $toolbar-background;
+  }
 }
 
-// dialoogvensters, headers: licht-oranje
-.dialog {
-  background: yellow; //color($colors, light)
+// Lijsten met tekstballonnen
+.list.balloons {
+
+  margin-left: $content-margin;
+  margin-right: $content-margin;
+
+  .item {
+    // Items krijgen afgeronde hoeken
+    border-radius: 8px;
+    margin-top: $content-margin;
+
+    .item-title {
+      // Titeltjes zijn kleiner en vet, met een marge eronder
+      font-size: smaller;
+      font-weight: bold;
+      margin-bottom: $content-margin;
+    }
+
+    .item-content {
+      // content moet geword-wrapt
+      white-space: normal;
+
+      div:empty:before {
+        // lege divs krijgen hoogte van één regel
+        content: "\200b"; // unicode zero width space character
+      }
+    }
+
+    .item-inner {
+      // Geen lijnen tussen de items
+      border-width: 0;
+    }
+
+  }
 }
 
-.item p {
-  color: black;
-}
-
-.item {
-  background: white;
-  border-radius: 8px;
+// In ios krijgt de balloon-list 16px margin, net als in md en wp
+.list-ios.balloons {
+  margin-bottom: $content-margin;
 }

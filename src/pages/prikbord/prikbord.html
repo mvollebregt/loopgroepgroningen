@@ -3,26 +3,25 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="dialog">Prikbord</ion-title>
+    <ion-title>Prikbord</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="background" padding-top padding-left padding-right>
+<ion-content>
 
-  <ion-list no-lines>
-    <ion-item class="item" *ngFor="let item of items | async; let last = last" [attr.margin-bottom]="last ? null : ''">
+  <ion-list class="balloons">
+    <ion-item *ngFor="let item of items | async">
 
-      <div>
-        <span class="auteur">{{item.auteur}}</span>
-        <span class="tijdstip" float-right>{{item.tijdstip | date}}</span>
+      <div class="item-title">
+        <span>{{item.auteur}}</span>
+        <span float-right>{{item.tijdstip | date}}</span>
       </div>
 
-      <div padding-top text-wrap>
-        <div class="berichtregel" *ngFor="let regel of item.berichttekst">{{regel}}</div>
+      <div class="item-content">
+        <div *ngFor="let regel of item.berichttekst">{{regel}}</div>
       </div>
 
     </ion-item>
   </ion-list>
-
 
 </ion-content>
