@@ -18,7 +18,8 @@ export class PrikbordService {
     if (this.berichten.getValue().length === 0) {
       // haal de berichten uit de opslag als we dat nog niet gedaan hebben
       this.storage.get(PrikbordService.key).then(berichten => {
-        if (berichten) {
+        // berichten alleen zetten als niet in de tussentijd al gesynchroniseerd is
+        if (berichten && this.berichten.getValue().length === 0) {
           this.berichten.next(berichten);
         }
       })
@@ -27,18 +28,22 @@ export class PrikbordService {
   }
 
   synchroniseer(): void {
-    this.prikbordClient.haalBerichtenOp().subscribe(resultaat => {
-      // check of er nieuwe berichten zijn bijgekomen
-      let opgeslagen = this.berichten.getValue();
-      let nieuwste = opgeslagen.length > 0 ? opgeslagen[opgeslagen.length - 1] : null;
-      let aantalNieuwe = resultaat.findIndex(bericht => PrikbordService.equal(bericht, nieuwste));
-      aantalNieuwe = aantalNieuwe != -1 ? aantalNieuwe : resultaat.length;
-      if (aantalNieuwe !== 0) {
-        // Er zijn nieuwe berichten bij gekomen. Sla deze op en stuur ze naar observers.
-        opgeslagen.push(...resultaat.slice(0, aantalNieuwe).reverse()); // oud naar nieuw
-        this.storage.set(PrikbordService.key, opgeslagen);
-        this.berichten.next(opgeslagen);
-      }
+    // haal de opgeslagen berichten uit de opslag
+    this.storage.get(PrikbordService.key).then(opgeslagen => {
+      // haal de meest recente berichten op van het prikbord
+      this.prikbordClient.haalBerichtenOp().subscribe(resultaat => {
+        // check of er nieuwe berichten zijn bijgekomen
+        opgeslagen = opgeslagen || [];
+        let nieuwste = opgeslagen.length > 0 ? opgeslagen[opgeslagen.length - 1] : null;
+        let aantalNieuwe = resultaat.findIndex(bericht => PrikbordService.equal(bericht, nieuwste));
+        aantalNieuwe = aantalNieuwe != -1 ? aantalNieuwe : resultaat.length;
+        if (aantalNieuwe !== 0) {
+          // Er zijn nieuwe berichten bij gekomen. Sla deze op en stuur ze naar observers.
+          opgeslagen.push(...resultaat.slice(0, aantalNieuwe).reverse()); // oud naar nieuw
+          this.storage.set(PrikbordService.key, opgeslagen);
+          this.berichten.next(opgeslagen);
+        }
+      })
     });
   }
 
