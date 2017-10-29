@@ -25,3 +25,12 @@
   </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar style="height: auto; padding-bottom: 4px;">
+    <ion-textarea #textarea
+                  (input)="resize(textarea)"
+                  placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord.">
+    </ion-textarea>
+  </ion-toolbar>
+</ion-footer>

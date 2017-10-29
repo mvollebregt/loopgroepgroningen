@@ -34,6 +34,11 @@
     // Items krijgen afgeronde hoeken
     border-radius: 8px;
     margin-top: $content-margin;
+    padding-left: 8px;
+
+    .label {
+      margin-right: 0;
+    }
 
     .item-title {
       // Titeltjes zijn kleiner en vet, met een marge eronder
@@ -57,6 +62,34 @@
       border-width: 0;
     }
 
+  }
+}
+
+ion-textarea {
+  background-color: white;
+  border-radius: 8px;
+  border: $hairlines-width solid #d1d3d6;
+  textarea.text-input {
+    margin: 8px 4px 8px 4px;
+    border: none;
+    font-size: 16px;
+  }
+  textarea.text-input.text-input-ios {
+    font-size: 17px;
+  }
+  textarea.text-input.text-input-wp {
+    width: 100%;
+    padding: 0;
+    line-height: 22px;
+  }
+  textarea.text-input::-moz-placeholder {
+    font-size: 14px;
+  }
+  textarea.text-input:-ms-input-placeholder {
+    font-size: 14px;
+  }
+  textarea.text-input::-webkit-input-placeholder {
+    font-size: 14px;
   }
 }
 
