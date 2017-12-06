@@ -24,21 +24,24 @@
     </ion-item>
   </ion-list>
 
-  <ion-toolbar *ngIf="editing" style="height: auto; padding-bottom: 4px;">
+  <!--style="height: auto; padding-bottom: 4px;"-->
+  <!--<ion-toolbar >-->
+  <!--<div style="height: auto; padding-bottom: 4px; background-color: #faf4ed">-->
     <ion-textarea #textarea
                   (input)="resize(textarea)"
-                  (blur)="stopEditing()"
                   placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord.">
+      <!--(blur)="stopEditing()"-->
     </ion-textarea>
-  </ion-toolbar>
+  <!--</div>-->
+  <!--</ion-toolbar>-->
 
 </ion-content>
 
-<ion-footer *ngIf="!editing">
-  <ion-toolbar style="height: auto; padding-bottom: 4px;">
-    <ion-textarea readonly="true"
-                  (click)="startEditing()"
-                  placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord.">
-    </ion-textarea>
-  </ion-toolbar>
-</ion-footer>
+<!--<ion-footer *ngIf="!editing">-->
+  <!--<ion-toolbar style="height: auto; padding-bottom: 4px;">-->
+    <!--<ion-textarea readonly="true"-->
+                  <!--(click)="startEditing()"-->
+                  <!--placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord.">-->
+    <!--</ion-textarea>-->
+  <!--</ion-toolbar>-->
+<!--</ion-footer>-->

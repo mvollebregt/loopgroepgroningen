@@ -33,38 +33,24 @@ export class PrikbordPage implements OnInit {
     });
   }
 
-  startEditing() {
-    this.editing = true;
-    this.content.resize();
-    this.changeDetector.detectChanges();
-    this.textInput.setFocus();
-  }
-
-  stopEditing() {
-    this.editing = false;
-    this.content.resize();
-    setTimeout(() => this.content.scrollToBottom(0));
-  }
+  // startEditing() {
+  //   this.editing = true;
+  //   this.content.resize();
+  //   this.changeDetector.detectChanges();
+  //   this.textInput.setFocus();
+  // }
+  //
+  // stopEditing() {
+  //   this.editing = false;
+  //   this.content.resize();
+  //   setTimeout(() => this.content.scrollToBottom(0));
+  // }
 
   resize(input: TextInput): void {
-    // setTimeout(() => {
-    //   let textArea = input.getNativeElement().querySelector('textInput');
-    //   textArea.style.overflow = "hidden";
-    //   textArea.style.height = "auto";
-    //   textArea.style.height = Math.min(textArea.scrollHeight, 165) + "px";
-    //   if (this.contentHeight === -1) {
-    //     this.contentHeight = this.content.contentHeight;
-    //   }
-    //   this.content.resize();
-    //   let scrollTopBefore = this.content.getContentDimensions().scrollTop;
-    //   setTimeout(() => {
-    //     let newHeight = this.content.contentHeight;
-    //     let scrollTop = this.content.getContentDimensions().scrollTop;
-    //     if (scrollTop === scrollTopBefore) {
-    //       this.content.scrollTo(0, scrollTop - newHeight + this.contentHeight, 0);
-    //     }
-    //     this.contentHeight = newHeight;
-    //   });
-    // });
+    let textArea = input.getNativeElement().querySelector('textarea');
+    textArea.style.overflow = "hidden";
+    textArea.style.height = "auto";
+    textArea.style.height = Math.min(textArea.scrollHeight, 165) + "px";
+    this.content.scrollToBottom(0);
   }
 }
