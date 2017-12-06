@@ -24,11 +24,22 @@
   }
 }
 
+.dialog {
+  height: auto;
+  padding: 4px;
+  background-color: $toolbar-background
+}
+
 // Lijsten met tekstballonnen
 .list.balloons {
 
-  margin-left: $content-margin;
-  margin-right: $content-margin;
+  background-color: color($colors, dark);
+  padding: $content-padding;
+  margin: 0;
+
+  .item:first-child {
+    margin-top: 0;
+  }
 
   .item {
     // Items krijgen afgeronde hoeken
@@ -91,9 +102,4 @@ ion-textarea {
   textarea.text-input::-webkit-input-placeholder {
     font-size: 14px;
   }
-}
-
-// In ios krijgt de balloon-list 16px margin, net als in md en wp
-.list-ios.balloons {
-  margin-bottom: $content-margin;
 }
