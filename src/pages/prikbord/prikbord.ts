@@ -12,13 +12,11 @@ import {PrikbordService} from "../../core/prikbord.service";
 export class PrikbordPage implements OnInit {
 
   items: Observable<Bericht[]>;
-  editing = false;
 
   @ViewChild(Content) private content: Content;
   @ViewChild('textarea') private textInput: TextInput;
 
   private initialized = false;
-  private contentHeight = -1;
 
   constructor(private prikbordService: PrikbordService, private changeDetector: ChangeDetectorRef) {
   }
@@ -32,19 +30,6 @@ export class PrikbordPage implements OnInit {
       });
     });
   }
-
-  // startEditing() {
-  //   this.editing = true;
-  //   this.content.resize();
-  //   this.changeDetector.detectChanges();
-  //   this.textInput.setFocus();
-  // }
-  //
-  // stopEditing() {
-  //   this.editing = false;
-  //   this.content.resize();
-  //   setTimeout(() => this.content.scrollToBottom(0));
-  // }
 
   resize(input: TextInput): void {
     let textArea = input.getNativeElement().querySelector('textarea');
