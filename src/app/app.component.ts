@@ -8,7 +8,6 @@ import {ListPage} from '../pages/list/list';
 import * as moment from 'moment';
 import {PrikbordPage} from "../pages/prikbord/prikbord";
 import {PrikbordService} from "../core/prikbord.service";
-import {AgendaPage} from "../pages/agenda/agenda";
 
 @Component({
   templateUrl: 'app.html'

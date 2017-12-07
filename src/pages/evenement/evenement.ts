@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {EvenementPage} from "../evenement/evenement";
 
 /**
- * Generated class for the AgendaPage page.
+ * Generated class for the EvenementPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,16 @@ import {EvenementPage} from "../evenement/evenement";
 
 @IonicPage()
 @Component({
-  selector: 'page-agenda',
-  templateUrl: 'agenda.html',
+  selector: 'page-evenement',
+  templateUrl: 'evenement.html',
 })
-export class AgendaPage {
+export class EvenementPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AgendaPage');
-  }
-
-  gaNaarEvenement() {
-    this.navCtrl.push('EvenementPage');
+    console.log('ionViewDidLoad EvenementPage');
   }
 
 }
