@@ -8,6 +8,7 @@ import {ListPage} from '../pages/list/list';
 import * as moment from 'moment';
 import {PrikbordPage} from "../pages/prikbord/prikbord";
 import {PrikbordService} from "../core/prikbord.service";
+import {AgendaPage} from "../pages/agenda/agenda";
 
 @Component({
   templateUrl: 'app.html'
@@ -18,8 +19,10 @@ export class MyApp {
 
   rootPage: any = 'PrikbordPage';
 
+  // TODO: lazy loading
   pages = [
-    {title: 'Prikbord', component: PrikbordPage},
+    {title: 'Prikbord', component: 'PrikbordPage'},
+    {title: 'Agenda', component: 'AgendaPage'},
     {title: 'Home', component: HomePage},
     {title: 'List', component: ListPage}
   ];
