@@ -22,6 +22,7 @@ export class MyApp {
   pages = [
     {title: 'Prikbord', component: 'PrikbordPage'},
     {title: 'Agenda', component: 'AgendaPage'},
+    {title: 'Ledenlijst', component: 'LedenlijstPage'},
     {title: 'Home', component: HomePage},
     {title: 'List', component: ListPage}
   ];
