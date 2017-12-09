@@ -3,7 +3,7 @@
     <name short="Loopgroep">Loopgroep Groningen</name>
     <description>Loopgroep Groningen</description>
     <author email="mi.vollebregt@gmail.com" href="http://www.github.com/mvollebregt">Michel Vollebregt</author>
-    <content original-src="index.html" src="http://192.168.178.13:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />

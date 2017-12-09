@@ -76,6 +76,42 @@
   }
 }
 
+.item.balloons {
+  // Items krijgen afgeronde hoeken
+  border-radius: 8px;
+  margin-top: $content-margin;
+  padding-left: 8px;
+
+  .label {
+    margin-right: 0;
+  }
+
+  .item-title {
+    // Titeltjes zijn kleiner en vet, met een marge eronder
+    font-size: smaller;
+    font-weight: bold;
+    margin-bottom: $content-margin;
+  }
+
+  .item-content {
+    // content moet geword-wrapt
+    white-space: normal;
+
+    div:empty:before {
+      // lege divs krijgen hoogte van één regel
+      content: "\200b"; // unicode zero width space character
+    }
+  }
+
+  .item-inner {
+    // Geen lijnen tussen de items
+    border-width: 0;
+  }
+
+}
+
+
+
 ion-textarea {
   background-color: white;
   border-radius: 8px;
