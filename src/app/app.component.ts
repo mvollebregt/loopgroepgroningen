@@ -2,12 +2,9 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-
-import {HomePage} from '../pages/home/home';
-import {ListPage} from '../pages/list/list';
-import * as moment from 'moment';
 import {PrikbordPage} from "../pages/prikbord/prikbord";
 import {PrikbordService} from "../core/prikbord.service";
+import * as moment from 'moment';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,13 +15,11 @@ export class MyApp {
 
   rootPage: any = 'PrikbordPage';
 
-  // TODO: lazy loading
   pages = [
     {title: 'Prikbord', component: 'PrikbordPage'},
+    {title: 'Trainingsschema', component: 'TrainingsschemaPage'},
     {title: 'Agenda', component: 'AgendaPage'},
     {title: 'Ledenlijst', component: 'LedenlijstPage'},
-    {title: 'Home', component: HomePage},
-    {title: 'List', component: ListPage}
   ];
 
   constructor(private platform: Platform,
