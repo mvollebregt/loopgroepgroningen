@@ -69,12 +69,22 @@
   font-size: 1.7rem;
 }
 
+.dialog {
+  height: auto;
+  background-color: $toolbar-background
+}
 
-//.dialog {
-//  height: auto;
-//  padding: 4px;
-//  background-color: $toolbar-background
-//}
+.ios .dialog {
+  margin: 12px;
+}
+
+.md .dialog {
+  margin: 10px;
+}
+
+.wp .dialog {
+  margin: 8px;
+}
 
 ion-textarea {
   background-color: $list-background-color;
@@ -84,11 +94,11 @@ ion-textarea {
   textarea.text-input {
     margin: 8px 4px 8px 4px;
     border: none;
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 
   textarea.text-input.text-input-ios {
-    font-size: 17px;
+    font-size: 1.7rem;
   }
 
   textarea.text-input.text-input-wp {
