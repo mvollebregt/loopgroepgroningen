@@ -1,10 +1,26 @@
 <ion-header>
+
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Trainingsschema</ion-title>
   </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="icons">
+      <ion-segment-button value="A">
+        A
+      </ion-segment-button>
+      <ion-segment-button value="B">
+        B
+      </ion-segment-button>
+      <ion-segment-button value="C">
+        C
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
