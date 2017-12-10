@@ -16,10 +16,10 @@ export class MyApp {
   rootPage: any = 'PrikbordPage';
 
   pages = [
-    {title: 'Prikbord', component: 'PrikbordPage'},
-    {title: 'Agenda', component: 'AgendaPage'},
-    {title: 'Trainingsschema', component: 'TrainingsschemaPage'},
-    {title: 'Ledenlijst', component: 'LedenlijstPage'},
+    {title: 'Prikbord', component: 'PrikbordPage', icon: 'chatbubbles'},
+    {title: 'Agenda', component: 'AgendaPage', icon: 'calendar'},
+    {title: 'Trainingsschema', component: 'TrainingsschemaPage', icon: 'grid'},
+    {title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'},
   ];
 
   constructor(private platform: Platform,
