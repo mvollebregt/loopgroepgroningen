@@ -18,8 +18,7 @@ export class TrainingsschemaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TrainingsschemaPage');
+  gaNaarEvenement() {
+    this.navCtrl.push('EvenementPage');
   }
-
 }
