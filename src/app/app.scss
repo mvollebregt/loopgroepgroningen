@@ -28,6 +28,8 @@
 
 .main-content {
   background: $background-color;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 .list-header {
@@ -40,15 +42,33 @@
   border-top: 0;
 }
 
+.list {
+  margin-bottom: 0;
+}
+
 .multi-line {
   white-space: normal;
 }
 
+.card {
+  border-radius: 8px;
+}
+
+.card-header,
 .item-block h2 {
   // Titeltjes zijn kleiner en vet, met een marge eronder
-  font-size: smaller;
+  font-size: 14px;
   font-weight: bold;
 }
+
+.card-content {
+  font-size: 1.6rem;
+}
+
+.card-content-ios {
+  font-size: 1.7rem;
+}
+
 
 //.dialog {
 //  height: auto;
@@ -89,87 +109,3 @@ ion-textarea {
     font-size: 14px;
   }
 }
-
-
-
-
-//// Lijsten met tekstballonnen
-.list.balloons {
-
-  background-color: color($colors, dark);
-  padding: $content-padding;
-  margin: 0;
-
-  .item:first-child {
-    margin-top: 0;
-  }
-
-  .item {
-    // Items krijgen afgeronde hoeken
-    border-radius: 8px;
-    margin-top: $content-margin;
-    padding-left: 8px;
-
-    .label {
-      margin-right: 0;
-    }
-
-    h2 {
-    //  // Titeltjes zijn kleiner en vet, met een marge eronder
-    //  font-size: smaller;
-    //  font-weight: bold;
-      margin-bottom: $content-margin;
-    }
-
-    .item-content {
-      // content moet geword-wrapt
-      white-space: normal;
-
-      div:empty:before {
-        // lege divs krijgen hoogte van één regel
-        content: "\200b"; // unicode zero width space character
-      }
-    }
-
-    .item-inner {
-      // Geen lijnen tussen de items
-      border-width: 0;
-    }
-
-  }
-}
-
-.item.balloons {
-  // Items krijgen afgeronde hoeken
-  border-radius: 8px;
-  margin-top: $content-margin;
-  padding-left: 8px;
-
-  .label {
-    margin-right: 0;
-  }
-
-  h2 {
-    // Titeltjes zijn kleiner en vet, met een marge eronder
-    font-size: smaller;
-    font-weight: bold;
-    margin-bottom: $content-margin;
-  }
-
-  .item-content {
-    // content moet geword-wrapt
-    white-space: normal;
-
-    div:empty:before {
-      // lege divs krijgen hoogte van één regel
-      content: "\200b"; // unicode zero width space character
-    }
-  }
-
-  .item-inner {
-    // Geen lijnen tussen de items
-    border-width: 0;
-  }
-
-}
-

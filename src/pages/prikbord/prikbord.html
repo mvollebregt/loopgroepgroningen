@@ -9,20 +9,22 @@
 
 <ion-content class="main-content-wrapper">
 
-  <ion-list class="balloons">
-    <ion-item *ngFor="let item of items | async">
+  <div class="main-content">
 
-      <h2>
+    <ion-card *ngFor="let item of items | async">
+
+      <ion-card-header>
         <span>{{item.auteur}}</span>
         <span float-right>{{item.tijdstip | date}}</span>
-      </h2>
+      </ion-card-header>
 
-      <div class="multi-line">
+      <ion-card-content>
         <div *ngFor="let regel of item.berichttekst">{{regel}}</div>
-      </div>
+      </ion-card-content>
 
-    </ion-item>
-  </ion-list>
+    </ion-card>
+  
+  </div>
 
   <div>
     <ion-textarea #textarea
