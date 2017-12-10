@@ -30,6 +30,16 @@
   background: $background-color;
 }
 
+.list-header {
+  background-color: transparent;
+}
+
+.list-header-md {
+  margin-bottom: 0;
+  color: black;
+  border-top: 0;
+}
+
 .multi-line {
   white-space: normal;
 }

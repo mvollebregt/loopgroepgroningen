@@ -17,8 +17,8 @@ export class MyApp {
 
   pages = [
     {title: 'Prikbord', component: 'PrikbordPage'},
-    {title: 'Trainingsschema', component: 'TrainingsschemaPage'},
     {title: 'Agenda', component: 'AgendaPage'},
+    {title: 'Trainingsschema', component: 'TrainingsschemaPage'},
     {title: 'Ledenlijst', component: 'LedenlijstPage'},
   ];
 
