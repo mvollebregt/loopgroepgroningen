@@ -7,19 +7,21 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="main-content-wrapper">
 
-  <ion-list style="background-color: #ff811a;">
+  <div class="main-content">
+
+  <ion-list>
 
     <ion-list-header>
       Evenement
     </ion-list-header>
 
-    <ion-item style="background-color: white">
+    <ion-item>
       31 december 2017, 12:00 - 14:00
     </ion-item>
 
-    <ion-item style="background-color: white">
+    <ion-item>
       <ion-label>Ik doe mee</ion-label>
       <ion-toggle></ion-toggle>
     </ion-item>
@@ -28,15 +30,15 @@
       Deelnemers
     </ion-list-header>
 
-    <button ion-item style="background-color: white">
+    <button ion-item>
       Jantina Loperina
     </button>
 
-    <button ion-item style="background-color: white">
+    <button ion-item>
       Janus Lopinus
     </button>
 
-    <button ion-item style="background-color: white">
+    <button ion-item>
       Harry Hardloper
     </button>
 
@@ -60,15 +62,12 @@
     </ion-item>
   </ion-list>
 
-  <div class="dialog">
-    <ion-textarea #textarea
-                  (input)="resize(textarea)"
-                  placeholder="Typ hier je reactie.">
-    </ion-textarea>
-  </div>
-
   <!-- https://ionicframework.com/docs/components/#cards -->
 
+  </div>
 
+  <ion-textarea #textarea
+                placeholder="Typ hier je reactie.">
+  </ion-textarea>
 
 </ion-content>

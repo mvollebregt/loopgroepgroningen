@@ -31,6 +31,7 @@ export class PrikbordPage implements OnInit {
     });
   }
 
+  // TODO: hier een attribute directive van maken
   resize(input: TextInput): void {
     let textArea = input.getNativeElement().querySelector('textarea');
     textArea.style.overflow = "hidden";

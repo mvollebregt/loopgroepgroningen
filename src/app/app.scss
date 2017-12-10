@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,23 +12,67 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 @import "../theme/variables";
 
 // Het menu krijgt dezelfde kleur als de toolbar
 .menu-inner {
-  .header, .content, .item {
+  //.header, .content, .item {
+  .content, .item {
     background: $toolbar-background;
   }
 }
 
-.dialog {
-  height: auto;
-  padding: 4px;
-  background-color: $toolbar-background
+.main-content-wrapper {
+  background: $toolbar-background;
 }
 
-// Lijsten met tekstballonnen
+.main-content {
+  background: $background-color;
+}
+
+//.dialog {
+//  height: auto;
+//  padding: 4px;
+//  background-color: $toolbar-background
+//}
+
+ion-textarea {
+  background-color: $list-background-color;
+  border-radius: 8px;
+  border: $hairlines-width solid $border-color;
+
+  textarea.text-input {
+    margin: 8px 4px 8px 4px;
+    border: none;
+    font-size: 16px;
+  }
+
+  textarea.text-input.text-input-ios {
+    font-size: 17px;
+  }
+
+  textarea.text-input.text-input-wp {
+    width: 100%;
+    padding: 0;
+    line-height: 22px;
+  }
+
+  textarea.text-input::-moz-placeholder {
+    font-size: 14px;
+  }
+
+  textarea.text-input:-ms-input-placeholder {
+    font-size: 14px;
+  }
+
+  textarea.text-input::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+}
+
+
+
+//// Lijsten met tekstballonnen
 .list.balloons {
 
   background-color: color($colors, dark);
@@ -110,32 +152,3 @@
 
 }
 
-
-
-ion-textarea {
-  background-color: white;
-  border-radius: 8px;
-  border: $hairlines-width solid #d1d3d6;
-  textarea.text-input {
-    margin: 8px 4px 8px 4px;
-    border: none;
-    font-size: 16px;
-  }
-  textarea.text-input.text-input-ios {
-    font-size: 17px;
-  }
-  textarea.text-input.text-input-wp {
-    width: 100%;
-    padding: 0;
-    line-height: 22px;
-  }
-  textarea.text-input::-moz-placeholder {
-    font-size: 14px;
-  }
-  textarea.text-input:-ms-input-placeholder {
-    font-size: 14px;
-  }
-  textarea.text-input::-webkit-input-placeholder {
-    font-size: 14px;
-  }
-}
