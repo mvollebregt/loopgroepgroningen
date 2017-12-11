@@ -16,7 +16,7 @@ export class MyApp {
   rootPage: any = 'PrikbordPage';
 
   pages = [
-    {title: 'Prikbord', component: 'PrikbordPage', icon: 'chatbubbles'},
+    {title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'},
     {title: 'Agenda', component: 'AgendaPage', icon: 'calendar'},
     {title: 'Trainingsschema', component: 'TrainingsschemaPage', icon: 'grid'},
     {title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'},
