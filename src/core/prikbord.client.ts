@@ -1,22 +1,22 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import {Observable} from "rxjs/Observable";
 import {Bericht} from "./bericht";
 import * as moment from 'moment';
+import {HTTP, HTTPResponse} from "@ionic-native/http";
 
 @Injectable()
 export class PrikbordClient {
 
   private readonly parser = new DOMParser();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HTTP) {
   }
 
   // haalt berichten op: de nieuwste eerst
-  haalBerichtenOp(): Observable<Bericht[]> {
+  haalBerichtenOp(): Promise<Bericht[]> {
     return this.get('index.php/prikbord', '//div[@class="easy_frame"]', PrikbordClient.toBericht);
   }
 
@@ -44,21 +44,21 @@ export class PrikbordClient {
     }
   }
 
-  private get<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Observable<any> {
+  private get<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Promise<any> {
     return this.http
-      .get(`http://www.loopgroepgroningen.nl/${relativeUrl}`, {responseType: 'text'})
-      .catch(error => {
-          if (PrikbordClient.isCorsError(error)) {
-            return this.http
-              .get(`/proxy/${relativeUrl}`, {responseType: 'text'})
-              .catch(() => Observable.of(''));
-          } else {
-            return Observable.of('');
-          }
-        }
-      )
-      .map(html => {
-          let doc = this.parser.parseFromString(html, 'text/html');
+      .get(`http://www.loopgroepgroningen.nl/${relativeUrl}`, {responseType: 'text'}, {})
+      // .catch(error => {
+      //     if (PrikbordClient.isCorsError(error)) {
+      //       return this.http
+      //         .get(`/proxy/${relativeUrl}`, {responseType: 'text'})
+      //         .catch(() => Observable.of(''));
+      //     } else {
+      //       return Observable.of('');
+      //     }
+      //   }
+      // )
+      .then(html => {
+          let doc = this.parser.parseFromString(html.data, 'text/html');
           let elts = doc.evaluate(xpath, doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
           let objects: T[] = [];
           let node: Node;
@@ -70,7 +70,7 @@ export class PrikbordClient {
       );
   }
 
-  private static isCorsError(response: HttpErrorResponse) {
-    return response.status === 0;
-  }
+  // private static isCorsError(response: HttpErrorResponse) {
+  //   return response.status === 0;
+  // }
 }

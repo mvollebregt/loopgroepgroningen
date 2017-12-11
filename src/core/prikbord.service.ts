@@ -31,7 +31,7 @@ export class PrikbordService {
     // haal de opgeslagen berichten uit de opslag
     this.storage.get(PrikbordService.key).then(opgeslagen => {
       // haal de meest recente berichten op van het prikbord
-      this.prikbordClient.haalBerichtenOp().subscribe(resultaat => {
+      this.prikbordClient.haalBerichtenOp().then(resultaat => {
         // check of er nieuwe berichten zijn bijgekomen
         opgeslagen = opgeslagen || [];
         let nieuwste = opgeslagen.length > 0 ? opgeslagen[opgeslagen.length - 1] : null;
