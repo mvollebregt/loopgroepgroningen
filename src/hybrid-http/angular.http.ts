@@ -12,6 +12,21 @@ export class AngularHttp implements AbstractHttp {
 
   get(relativeUrl: string): Observable<string> {
     return this.http.get(`/proxy/${relativeUrl}`, {responseType: 'text'});
+    // .catch(error => {
+    //     if (PrikbordClient.isCorsError(error)) {
+    //       return this.http
+    //         .get(`/proxy/${relativeUrl}`, {responseType: 'text'})
+    //         .catch(() => Observable.of(''));
+    //     } else {
+    //       return Observable.of('');
+    //     }
+    //   }
+    // )
+
   }
+
+  // private static isCorsError(response: HttpErrorResponse) {
+  //   return response.status === 0;
+  // }
 
 }

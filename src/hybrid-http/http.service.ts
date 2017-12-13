@@ -1,7 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HTTP} from "@ionic-native/http";
 import {Platform} from "ionic-angular";
-import {HttpClient} from "@angular/common/http";
 import {AbstractHttp} from "./abstract.http";
 import {CordovaHttp} from "./cordova.http";
 import {Observable} from "rxjs/Observable";
@@ -21,17 +19,6 @@ export class HttpService {
   public get<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Observable<any> {
     return this.http
       .get(relativeUrl)
-      // .catch(error => {
-      //     if (PrikbordClient.isCorsError(error)) {
-      //       return this.http
-      //         .get(`/proxy/${relativeUrl}`, {responseType: 'text'})
-      //         .catch(() => Observable.of(''));
-      //     } else {
-      //       return Observable.of('');
-      //     }
-      //   }
-      // )
-      .do(console.log)
       .map(data => {
           let doc = this.parser.parseFromString(data, 'text/html');
           let elts = doc.evaluate(xpath, doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
@@ -45,8 +32,11 @@ export class HttpService {
       );
   }
 
-  // private static isCorsError(response: HttpErrorResponse) {
-  //   return response.status === 0;
-  // }
+  public getFormInputs(relativeUrl: string, formSelector: string): any {
+    return this.get(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParam);
+  }
 
+  private static toParam(doc: Document, node: Node): [string, string] {
+    return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
+  }
 }
