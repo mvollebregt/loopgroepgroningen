@@ -7,8 +7,8 @@
   },
   "proxies": [
     {
-      "path": "/proxy",
-      "proxyUrl": "http://www.loopgroepgroningen.nl/"
+      "path": "/index.php",
+      "proxyUrl": "http://www.loopgroepgroningen.nl/index.php"
     }
   ]
 }

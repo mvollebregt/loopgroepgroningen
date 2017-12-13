@@ -11,7 +11,7 @@ export class AngularHttp implements AbstractHttp {
   }
 
   get(relativeUrl: string): Observable<string> {
-    return this.http.get(`/proxy/${relativeUrl}`, {responseType: 'text'});
+    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'});
     // .catch(error => {
     //     if (PrikbordClient.isCorsError(error)) {
     //       return this.http
@@ -24,6 +24,15 @@ export class AngularHttp implements AbstractHttp {
     // )
 
   }
+
+  post(relativeUrl: string, formObject: string): Observable<string> {
+    return this.http.post(this.urlFor(relativeUrl), formObject, {responseType: 'text'});
+  }
+
+  private urlFor(relativeUrl: string): string {
+    return relativeUrl;
+  }
+
 
   // private static isCorsError(response: HttpErrorResponse) {
   //   return response.status === 0;

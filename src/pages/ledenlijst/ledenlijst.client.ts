@@ -10,8 +10,13 @@ export class LedenlijstClient {
   }
 
   haalLedenOp(): Observable<any> {
-    return this.httpService.getFormInputs('index.php/loopgroep-groningen-ledeninfo','@id=\'login-form\'');
-
+    return this.httpService.post(
+      'index.php/loopgroep-groningen-ledeninfo',
+      '@id=\'login-form\'',
+      {
+        username: '',
+        password: ''
+      });
     //
     //     , {
     //     username: '',

@@ -17,4 +17,8 @@ export class CordovaHttp implements AbstractHttp {
     return Observable.fromPromise(this.http.get(`http://www.loopgroepgroningen.nl/${relativeUrl}`, {}, {})).pluck('data');
   }
 
+  post(relativeUrl: string, formObject: string): Observable<string> {
+    throw new Error("Method not implemented.");
+  }
+
 }
