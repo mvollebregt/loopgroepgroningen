@@ -8,7 +8,7 @@ export class LoginService {
   constructor(private httpService: HttpService) {
   }
 
-  login() : Observable<void> {
+  login(): Observable<void> {
     return this.httpService
       .post(
         'index.php/loopgroep-groningen-ledeninfo',
@@ -16,8 +16,7 @@ export class LoginService {
         {
           username: '',
           password: ''
-        },
-        formData => formData.get('task') && formData.get('task') === "user.login"
+        }, formData => formData['task'] === "user.login"
       )
   }
 }

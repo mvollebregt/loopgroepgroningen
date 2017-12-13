@@ -33,33 +33,39 @@ export class HttpService {
       );
   }
 
-  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formData: FormData) => boolean): Observable<any> {
+  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
     return this
       .getFormInputs(relativeUrl, formSelector)
-      .switchMap(formData => {
-        if (guard && !guard(formData)) {
+      .switchMap(source => {
+        if (guard && !guard(source)) {
           return Observable.of('');
         } else {
-          for (const property in params) {
-            if (params.hasOwnProperty(property)) {
-              formData.set(property, params[property]);
-            }
-          }
+          let formData = new FormData();
+          this.copyToFormData(source, formData);
+          this.copyToFormData(params, formData);
           return this.http.post(relativeUrl, formData);
         }
       });
   }
 
-  private getFormInputs(relativeUrl: string, formSelector: string): Observable<FormData> {
+  private getFormInputs(relativeUrl: string, formSelector: string): Observable<any> {
     return this
       .get(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParam)
       .map(keyValuePairs => {
-        const formData = new FormData();
+        const formObject = {};
         for (let keyValuePair of keyValuePairs) {
-          formData.set(keyValuePair[0], keyValuePair[1]);
+          formObject[keyValuePair[0]] = keyValuePair[1];
         }
-        return formData;
+        return formObject;
       });
+  }
+
+  private copyToFormData(params: any, formData: FormData) {
+    for (const property in params) {
+      if (params.hasOwnProperty(property)) {
+        formData.append(property, params[property]);
+      }
+    }
   }
 
   private static toParam(doc: Document, node: Node): [string, string] {
