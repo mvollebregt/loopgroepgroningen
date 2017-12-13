@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Platform} from "ionic-angular";
-import {AbstractHttp} from "./abstract.http";
+import {AbstractHttp} from "./abstract-http";
 import {CordovaHttp} from "./cordova.http";
 import {Observable} from "rxjs/Observable";
-import {AngularHttp} from "./angular.http";
+import {AngularHttp} from "./angular-http";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
@@ -33,20 +33,24 @@ export class HttpService {
       );
   }
 
-  public post(relativeUrl: string, formSelector: string, params: any): Observable<any> {
+  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formData: FormData) => boolean): Observable<any> {
     return this
       .getFormInputs(relativeUrl, formSelector)
       .switchMap(formData => {
-        for (const property in params) {
-          if (params.hasOwnProperty(property)) {
-            formData.set(property, params[property]);
+        if (guard && !guard(formData)) {
+          return Observable.of('');
+        } else {
+          for (const property in params) {
+            if (params.hasOwnProperty(property)) {
+              formData.set(property, params[property]);
+            }
           }
+          return this.http.post(relativeUrl, formData);
         }
-        return this.http.post(relativeUrl, Object.assign(formData, params));
       });
   }
 
-  public getFormInputs(relativeUrl: string, formSelector: string): Observable<FormData> {
+  private getFormInputs(relativeUrl: string, formSelector: string): Observable<FormData> {
     return this
       .get(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParam)
       .map(keyValuePairs => {

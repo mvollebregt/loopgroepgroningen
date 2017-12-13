@@ -1,4 +1,4 @@
-import {AbstractHttp} from "./abstract.http";
+import {AbstractHttp} from "./abstract-http";
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
@@ -25,8 +25,8 @@ export class AngularHttp implements AbstractHttp {
 
   }
 
-  post(relativeUrl: string, formObject: string): Observable<string> {
-    return this.http.post(this.urlFor(relativeUrl), formObject, {responseType: 'text'});
+  post(relativeUrl: string, body: FormData): Observable<string> {
+    return this.http.post(this.urlFor(relativeUrl), body, {responseType: 'text'});
   }
 
   private urlFor(relativeUrl: string): string {

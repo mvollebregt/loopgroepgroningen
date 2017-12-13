@@ -1,4 +1,4 @@
-import {AbstractHttp} from "./abstract.http";
+import {AbstractHttp} from "./abstract-http";
 import {Observable} from "rxjs/Observable";
 import {HTTP, HTTPResponse} from "@ionic-native/http";
 import 'rxjs/add/observable/fromPromise';
@@ -17,7 +17,7 @@ export class CordovaHttp implements AbstractHttp {
     return Observable.fromPromise(this.http.get(`http://www.loopgroepgroningen.nl/${relativeUrl}`, {}, {})).pluck('data');
   }
 
-  post(relativeUrl: string, formObject: string): Observable<string> {
+  post(relativeUrl: string, body: FormData): Observable<string> {
     throw new Error("Method not implemented.");
   }
 
