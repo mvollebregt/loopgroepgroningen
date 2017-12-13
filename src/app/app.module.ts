@@ -29,7 +29,6 @@ import {HTTP} from "@ionic-native/http";
   providers: [
     StatusBar,
     SplashScreen,
-    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

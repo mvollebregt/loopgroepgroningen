@@ -6,18 +6,17 @@ import {Observable} from "rxjs/Observable";
 import {Bericht} from "./bericht";
 import * as moment from 'moment';
 import {HTTP, HTTPResponse} from "@ionic-native/http";
+import {HttpService} from "../hybrid-http/http.service";
 
 @Injectable()
 export class PrikbordClient {
 
-  private readonly parser = new DOMParser();
-
-  constructor(private http: HTTP) {
+    constructor(private httpService: HttpService) {
   }
 
   // haalt berichten op: de nieuwste eerst
-  haalBerichtenOp(): Promise<Bericht[]> {
-    return this.get('index.php/prikbord', '//div[@class="easy_frame"]', PrikbordClient.toBericht);
+  haalBerichtenOp(): Observable<Bericht[]> {
+    return this.httpService.get('index.php/prikbord', '//div[@class="easy_frame"]', PrikbordClient.toBericht);
   }
 
   private static toBericht(doc: Document, node: Node): Bericht {
@@ -43,34 +42,4 @@ export class PrikbordClient {
       berichttekst: berichttekst
     }
   }
-
-  private get<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Promise<any> {
-    return this.http
-      .get(`http://www.loopgroepgroningen.nl/${relativeUrl}`, {responseType: 'text'}, {})
-      // .catch(error => {
-      //     if (PrikbordClient.isCorsError(error)) {
-      //       return this.http
-      //         .get(`/proxy/${relativeUrl}`, {responseType: 'text'})
-      //         .catch(() => Observable.of(''));
-      //     } else {
-      //       return Observable.of('');
-      //     }
-      //   }
-      // )
-      .then(html => {
-          let doc = this.parser.parseFromString(html.data, 'text/html');
-          let elts = doc.evaluate(xpath, doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-          let objects: T[] = [];
-          let node: Node;
-          while (node = elts.iterateNext()) {
-            objects.push(mapToObject(doc, node));
-          }
-          return objects;
-        }
-      );
-  }
-
-  // private static isCorsError(response: HttpErrorResponse) {
-  //   return response.status === 0;
-  // }
 }

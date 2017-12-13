@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ActionSheetController, IonicPage} from 'ionic-angular';
+import {LedenlijstClient} from "./ledenlijst.client";
 
 /**
  * Generated class for the LedenlijstPage page.
@@ -15,7 +16,8 @@ import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-
 })
 export class LedenlijstPage {
 
-  constructor(public actionSheetCtrl: ActionSheetController) {
+  constructor(public actionSheetCtrl: ActionSheetController, private ledenlijstClient: LedenlijstClient) {
+    this.ledenlijstClient.haalLedenOp().subscribe(console.log);
   }
 
   presentActionSheet() {
