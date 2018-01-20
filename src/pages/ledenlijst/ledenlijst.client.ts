@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpService} from "../../hybrid-http/http.service";
+import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
 import {LoginService} from "../../core/login.service";
 

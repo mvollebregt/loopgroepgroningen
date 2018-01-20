@@ -5,8 +5,7 @@ import 'rxjs/add/observable/of';
 import {Observable} from "rxjs/Observable";
 import {Bericht} from "./bericht";
 import * as moment from 'moment';
-import {HTTP, HTTPResponse} from "@ionic-native/http";
-import {HttpService} from "../hybrid-http/http.service";
+import {HttpService} from "./http.service";
 
 @Injectable()
 export class PrikbordClient {
