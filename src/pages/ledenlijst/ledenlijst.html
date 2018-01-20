@@ -16,56 +16,11 @@
   <ion-list>
 
     <ion-list-header>
-      A
+      A-Z
     </ion-list-header>
 
-    <ion-item (click)="presentActionSheet()">
-      Anton Lopert
-    </ion-item>
-
-    <ion-item (click)="presentActionSheet()">
-      Aart Beentjes
-    </ion-item>
-
-    <ion-list-header>
-      B
-    </ion-list-header>
-
-    <ion-item (click)="presentActionSheet()">
-      Bart Voet
-    </ion-item>
-    <ion-item (click)="presentActionSheet()">
-      Bennie Buiten
-    </ion-item>
-
-    <ion-list-header>
-      C
-    </ion-list-header>
-
-    <ion-item (click)="presentActionSheet()">
-      Christa Tights
-    </ion-item>
-
-    <ion-list-header>
-      J
-    </ion-list-header>
-
-    <ion-item (click)="presentActionSheet()">
-      Jantina Loperina
-    </ion-item>
-
-    <ion-list-header>
-      M
-    </ion-list-header>
-
-    <ion-item (click)="presentActionSheet()">
-      Marcel Meurvoet
-    </ion-item>
-    <ion-item (click)="presentActionSheet()">
-      Maaike Transpirator
-    </ion-item>
-    <ion-item (click)="presentActionSheet()">
-      Menno Voets
+    <ion-item *ngFor="let item of items | async" (click)="presentActionSheet(item)">
+      {{item.naam}}
     </ion-item>
 
   </ion-list>

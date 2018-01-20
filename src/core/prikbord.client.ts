@@ -15,7 +15,7 @@ export class PrikbordClient {
 
   // haalt berichten op: de nieuwste eerst
   haalBerichtenOp(): Observable<Bericht[]> {
-    return this.httpService.get('index.php/prikbord', '//div[@class="easy_frame"]', PrikbordClient.toBericht);
+    return this.httpService.getXPath('index.php/prikbord', '//div[@class="easy_frame"]', PrikbordClient.toBericht);
   }
 
   private static toBericht(doc: Document, node: Node): Bericht {

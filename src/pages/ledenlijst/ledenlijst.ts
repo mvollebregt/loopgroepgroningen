@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActionSheetController, IonicPage} from 'ionic-angular';
 import {LedenlijstClient} from "./ledenlijst.client";
+import {Observable} from 'rxjs/Observable';
+import {Contact} from './contact';
 
 /**
  * Generated class for the LedenlijstPage page.
@@ -14,24 +16,29 @@ import {LedenlijstClient} from "./ledenlijst.client";
   selector: 'page-ledenlijst',
   templateUrl: 'ledenlijst.html',
 })
-export class LedenlijstPage {
+export class LedenlijstPage implements OnInit {
+
+  items: Observable<Contact[]>;
 
   constructor(public actionSheetCtrl: ActionSheetController, private ledenlijstClient: LedenlijstClient) {
-    this.ledenlijstClient.haalLedenOp().subscribe(console.log);
   }
 
-  presentActionSheet() {
+  ngOnInit() {
+    this.items = this.ledenlijstClient.haalLedenOp();
+  }
+
+  presentActionSheet(item: Contact) {
     let actionSheet = this.actionSheetCtrl.create({
       // title: 'Kees Beentjes',
       buttons: [
         {
-          text: 'Mail kees@beentjes.net',
+          text: `Mail ${item.email || item.naam}`,
           handler: () => {
             console.log('Archive clicked');
           }
         },
         {
-          text: 'Bel 06-12345678',
+          text: `Bel ${item.mobiel || item.telefoon}`,
           handler: () => {
             console.log('Destructive clicked');
           }

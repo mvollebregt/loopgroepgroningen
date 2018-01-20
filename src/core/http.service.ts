@@ -16,7 +16,8 @@ export class HttpService {
     this.baseUrl = platform.is('cordova') ? 'http://www.loopgroepgroningen.nl/' : '';
   }
 
-  public get<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Observable<any> {
+  // TODO: gebruik get met css selector hieronder
+  public getXPath<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Observable<any> {
     return this.http
       .get(this.baseUrl + relativeUrl, {responseType: 'text'})
       .map(data => {
@@ -32,7 +33,23 @@ export class HttpService {
       );
   }
 
-  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
+  public get<T>(relativeUrl: string, selector: string, mapToObject: (node: Element) => T): Observable<any> {
+    return this.http
+      .get(this.baseUrl + relativeUrl, {responseType: 'text'})
+      .map(data => {
+          let doc = this.parser.parseFromString(data, 'text/html');
+          let elts :NodeListOf<Element> = doc.querySelectorAll(selector);
+          let objects: T[] = [];
+          for (let i=0; i < elts.length; i++) {
+            objects.push(mapToObject(elts.item(i)))
+          }
+          return objects;
+        }
+      );
+  }
+
+  // TODO: gebruik post met CSS selector
+  public postXpath(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
     return this
       .getFormInputs(relativeUrl, formSelector)
       .switchMap(source => {
@@ -47,9 +64,10 @@ export class HttpService {
       });
   }
 
+  // TODO: gebruik post met CSS selector
   private getFormInputs(relativeUrl: string, formSelector: string): Observable<any> {
     return this
-      .get(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParam)
+      .getXPath(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParam)
       .map(keyValuePairs => {
         const formObject = {};
         for (let keyValuePair of keyValuePairs) {
