@@ -15,13 +15,17 @@
 
   <ion-list>
 
-    <ion-list-header>
-      A-Z
-    </ion-list-header>
+    <ng-template ngFor let-sectie [ngForOf]="items | async">
 
-    <ion-item *ngFor="let item of items | async" (click)="presentActionSheet(item)">
-      {{item.naam}}
-    </ion-item>
+      <ion-list-header>
+        {{sectie.titel}}
+      </ion-list-header>
+
+      <ion-item *ngFor="let contact of sectie.inhoud" (click)="presentActionSheet(contact)">
+        {{contact.naam}}
+      </ion-item>
+
+    </ng-template>
 
   </ion-list>
 

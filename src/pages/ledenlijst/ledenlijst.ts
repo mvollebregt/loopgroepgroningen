@@ -3,6 +3,7 @@ import {ActionSheetController, IonicPage} from 'ionic-angular';
 import {LedenlijstClient} from "./ledenlijst.client";
 import {Observable} from 'rxjs/Observable';
 import {Contact} from './contact';
+import {Sectie} from './sectie';
 
 /**
  * Generated class for the LedenlijstPage page.
@@ -18,13 +19,30 @@ import {Contact} from './contact';
 })
 export class LedenlijstPage implements OnInit {
 
-  items: Observable<Contact[]>;
+  items: Observable<Sectie<Contact>[]>;
 
   constructor(public actionSheetCtrl: ActionSheetController, private ledenlijstClient: LedenlijstClient) {
   }
 
   ngOnInit() {
-    this.items = this.ledenlijstClient.haalLedenOp();
+    this.items = this.ledenlijstClient.haalLedenOp().map(contacten => {
+      // TODO: onderstaande wegabstraheren in service?
+      let secties: Sectie<Contact>[] = [];
+      let huidigeSectie: Sectie<Contact>;
+      for (let contact of contacten) {
+        const titel = contact.naam[0].toUpperCase();
+        if (huidigeSectie && huidigeSectie.titel === titel) {
+          huidigeSectie.inhoud.push(contact);
+        } else {
+          huidigeSectie = {
+            titel: titel,
+            inhoud: [contact]
+          };
+          secties.push(huidigeSectie);
+        }
+      }
+      return secties;
+    });
   }
 
   presentActionSheet(item: Contact) {
