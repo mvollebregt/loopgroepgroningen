@@ -14,19 +14,18 @@ export class LedenlijstClient {
     return this.loginService
       .login()
       .switchMap(() =>
-        this.httpService.get(
+        this.httpService.post(
           'index.php/loopgroep-groningen-ledeninfo/loopgroep-groningen-ledenlijst',
-          '.contact-category li',
-          LedenlijstClient.toContact
-        )
-      );
+          '#adminForm',
+          {limit: 0}
+        ).map(data => this.httpService.extract(data, '.contact-category li', LedenlijstClient.toContact)));
   }
 
   private static toContact(elt: Element) {
     const content = elt.querySelectorAll('div');
     const title = content.item(0).querySelectorAll(".list-title a");
     const body = content.item(1);
-    let contact : Contact = {
+    let contact: Contact = {
       naam: title.item(0).textContent.trim(),
       email: null // title.item(1).textContent.trim()
     };

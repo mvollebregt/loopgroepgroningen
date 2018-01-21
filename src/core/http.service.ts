@@ -36,20 +36,36 @@ export class HttpService {
   public get<T>(relativeUrl: string, selector: string, mapToObject: (node: Element) => T): Observable<any> {
     return this.http
       .get(this.baseUrl + relativeUrl, {responseType: 'text'})
-      .map(data => {
-          let doc = this.parser.parseFromString(data, 'text/html');
-          let elts :NodeListOf<Element> = doc.querySelectorAll(selector);
-          let objects: T[] = [];
-          for (let i=0; i < elts.length; i++) {
-            objects.push(mapToObject(elts.item(i)))
-          }
-          return objects;
-        }
-      );
+      .map(data => this.extract<T>(data, selector, mapToObject));
+  }
+
+  public extract<T>(html: string, selector: string, mapToObject: (node: Element) => T): T[] {
+    let doc = this.parser.parseFromString(html, 'text/html');
+    let elements :NodeListOf<Element> = doc.querySelectorAll(selector);
+    let objects: T[] = [];
+    for (let i=0; i < elements.length; i++) {
+      objects.push(mapToObject(elements.item(i)))
+    }
+    return objects;
   }
 
   // TODO: gebruik post met CSS selector
   public postXpath(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
+    return this
+      .getFormInputsXpath(relativeUrl, formSelector)
+      .switchMap(source => {
+        if (guard && !guard(source)) {
+          return Observable.of('');
+        } else {
+          let formData = new FormData();
+          this.copyToFormData(source, formData);
+          this.copyToFormData(params, formData);
+          return this.http.post(this.baseUrl + relativeUrl, formData, {responseType: 'text'});
+        }
+      });
+  }
+
+  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
     return this
       .getFormInputs(relativeUrl, formSelector)
       .switchMap(source => {
@@ -65,9 +81,21 @@ export class HttpService {
   }
 
   // TODO: gebruik post met CSS selector
+  private getFormInputsXpath(relativeUrl: string, formSelector: string): Observable<any> {
+    return this
+      .getXPath(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParamXpath)
+      .map(keyValuePairs => {
+        const formObject = {};
+        for (let keyValuePair of keyValuePairs) {
+          formObject[keyValuePair[0]] = keyValuePair[1];
+        }
+        return formObject;
+      });
+  }
+
   private getFormInputs(relativeUrl: string, formSelector: string): Observable<any> {
     return this
-      .getXPath(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParam)
+      .get(relativeUrl, `${formSelector} input`, HttpService.toParam)
       .map(keyValuePairs => {
         const formObject = {};
         for (let keyValuePair of keyValuePairs) {
@@ -85,7 +113,11 @@ export class HttpService {
     }
   }
 
-  private static toParam(doc: Document, node: Node): [string, string] {
+  private static toParamXpath(doc: Document, node: Node): [string, string] {
+    return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
+  }
+
+  private static toParam(node: Element): [string, string] {
     return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
   }
 }
