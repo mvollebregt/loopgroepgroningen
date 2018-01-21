@@ -18,7 +18,7 @@ export class LedenlijstClient {
           'index.php/loopgroep-groningen-ledeninfo/loopgroep-groningen-ledenlijst',
           '#adminForm',
           {limit: 0}
-        ).map(data => this.httpService.extract(data, '.contact-category li', LedenlijstClient.toContact)));
+        ).map(this.httpService.extract('.contact-category li', LedenlijstClient.toContact)));
   }
 
   private static toContact(elt: Element) {

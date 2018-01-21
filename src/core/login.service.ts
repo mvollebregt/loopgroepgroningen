@@ -17,6 +17,6 @@ export class LoginService {
           username: '',
           password: ''
         }, formData => formData['task'] === "user.login"
-      )
+      ).map(()=>{});
   }
 }

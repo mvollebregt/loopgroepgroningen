@@ -16,23 +16,11 @@ export class HttpService {
     this.baseUrl = platform.is('cordova') ? 'http://www.loopgroepgroningen.nl/' : '';
   }
 
-  public get<T>(relativeUrl: string, selector: string, mapToObject: (node: Element) => T): Observable<any> {
-    return this.http
-      .get(this.baseUrl + relativeUrl, {responseType: 'text'})
-      .map(data => this.extract<T>(data, selector, mapToObject));
+  public get<T>(relativeUrl: string): Observable<string> {
+    return this.http.get(this.baseUrl + relativeUrl, {responseType: 'text'});
   }
 
-  public extract<T>(html: string, selector: string, mapToObject: (node: Element) => T): T[] {
-    let doc = this.parser.parseFromString(html, 'text/html');
-    let elements :NodeListOf<Element> = doc.querySelectorAll(selector);
-    let objects: T[] = [];
-    for (let i=0; i < elements.length; i++) {
-      objects.push(mapToObject(elements.item(i)))
-    }
-    return objects;
-  }
-
-  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
+  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<string> {
     return this
       .getFormInputs(relativeUrl, formSelector)
       .switchMap(source => {
@@ -40,16 +28,29 @@ export class HttpService {
           return Observable.of('');
         } else {
           let formData = new FormData();
-          HttpService.copyToFormData(source, formData);
-          HttpService.copyToFormData(params, formData);
+          copyToFormData(source, formData);
+          copyToFormData(params, formData);
           return this.http.post(this.baseUrl + relativeUrl, formData, {responseType: 'text'});
         }
       });
   }
 
+  public extract<T>(selector: string, mapToObject: (node: Element) => T): (html: string) => T[] {
+    return (html: string) => {
+      let doc = this.parser.parseFromString(html, 'text/html');
+      let elements: NodeListOf<Element> = doc.querySelectorAll(selector);
+      let objects: T[] = [];
+      for (let i = 0; i < elements.length; i++) {
+        objects.push(mapToObject(elements.item(i)))
+      }
+      return objects;
+    }
+  }
+
   private getFormInputs(relativeUrl: string, formSelector: string): Observable<any> {
     return this
-      .get(relativeUrl, `${formSelector} input`, HttpService.toParam)
+      .get(relativeUrl)
+      .map(this.extract(`${formSelector} input`, toParam))
       .map(keyValuePairs => {
         const formObject = {};
         for (let keyValuePair of keyValuePairs) {
@@ -58,16 +59,17 @@ export class HttpService {
         return formObject;
       });
   }
+}
 
-  private static copyToFormData(params: any, formData: FormData) {
-    for (const property in params) {
-      if (params.hasOwnProperty(property)) {
-        formData.append(property, params[property]);
-      }
+function copyToFormData(params: any, formData: FormData) {
+  for (const property in params) {
+    if (params.hasOwnProperty(property)) {
+      formData.append(property, params[property]);
     }
   }
-
-  private static toParam(node: Element): [string, string] {
-    return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
-  }
 }
+
+function toParam(node: Element): [string, string] {
+  return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
+}
+
