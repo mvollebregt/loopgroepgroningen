@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { AgendaPage } from './agenda';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {AgendaPage} from './agenda';
+import {AgendaClient} from './agenda.client';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,9 @@ import { AgendaPage } from './agenda';
   ],
   imports: [
     IonicPageModule.forChild(AgendaPage),
+  ],
+  providers: [
+    AgendaClient
   ],
   entryComponents: [
     AgendaPage

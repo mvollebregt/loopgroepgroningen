@@ -9,7 +9,6 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {CoreModule} from "../core/core.module";
-import {HTTP} from "@ionic-native/http";
 
 @NgModule({
   declarations: [

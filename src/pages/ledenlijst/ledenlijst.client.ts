@@ -10,7 +10,7 @@ export class LedenlijstClient {
   constructor(private httpService: HttpService, private loginService: LoginService) {
   }
 
-  haalLedenOp(): Observable<any> {
+  haalLedenOp(): Observable<Contact[]> {
     return this.loginService
       .login()
       .switchMap(() =>
