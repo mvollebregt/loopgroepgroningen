@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Sylvesterloop Glimmen</ion-title>
+    <ion-title>{{evenement.naam}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,32 +14,33 @@
     <ion-list>
 
       <ion-list-header>
-        Evenement
+        {{evenement.categorie}}
       </ion-list-header>
 
-      <ion-item>
-        31 december 2017, 12:00 - 14:00
+      <ion-item *ngIf="datumweergave?.length < 2; else meerdaags">
+        {{datumweergave && datumweergave[0]}}
       </ion-item>
+
+      <ng-template #meerdaags>
+        <ion-item>
+          Start: <span item-end>{{datumweergave[0]}}</span>
+        </ion-item>
+        <ion-item>
+          Einde: <span item-end>{{datumweergave[1]}}</span>
+        </ion-item>
+      </ng-template>
 
       <ion-item>
         <ion-label>Ik doe mee</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle [checked]="evenement.deelname"></ion-toggle>
       </ion-item>
 
       <ion-list-header>
         Deelnemers
       </ion-list-header>
 
-      <button ion-item>
-        Jantina Loperina
-      </button>
-
-      <button ion-item>
-        Janus Lopinus
-      </button>
-
-      <button ion-item>
-        Harry Hardloper
+      <button ion-item *ngFor="let deelnemer of evenement.deelnemers">
+        {{deelnemer}}
       </button>
 
       <ion-list-header style="border-bottom:0">

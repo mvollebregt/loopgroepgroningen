@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { EvenementPage } from './evenement';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {EvenementPage} from './evenement';
+import {EvenementdetailClient} from './evenementdetail.client';
 
 @NgModule({
   declarations: [
@@ -9,5 +10,8 @@ import { EvenementPage } from './evenement';
   imports: [
     IonicPageModule.forChild(EvenementPage),
   ],
+  providers: [
+    EvenementdetailClient
+  ]
 })
 export class EvenementPageModule {}

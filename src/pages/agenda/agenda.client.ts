@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
-import {Evenement} from '../../core/evenement';
+import {Evenement} from './evenement';
 import * as moment from 'moment';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class AgendaClient {
       start: AgendaClient.toISOString(alleDatums.item(0), alleTijden.item(0)),
       einde: AgendaClient.toISOString(alleDatums.item(alleDatums.length - 1), alleTijden.item(alleTijden.length - 1)),
       naam: link.textContent.trim(),
-      link: link.getAttribute('href')
+      url: link.getAttribute('href')
     };
   }
 

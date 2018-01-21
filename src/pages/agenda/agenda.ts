@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController} from 'ionic-angular';
 import {EvenementPage} from "../evenement/evenement";
 import {AgendaClient} from './agenda.client';
-import {Evenement} from '../../core/evenement';
+import {Evenement} from './evenement';
 import {Observable} from 'rxjs/Observable';
 import * as moment from 'moment';
 import {Sectie} from '../../core/sectie';
@@ -24,7 +24,7 @@ export class AgendaPage implements OnInit {
 
   evenementen: Observable<Sectie<Evenement>[]>;
 
-  constructor(private agendaClient: AgendaClient, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private agendaClient: AgendaClient, private navCtrl: NavController) {
   }
 
   ngOnInit() {
@@ -36,8 +36,8 @@ export class AgendaPage implements OnInit {
     return moment(datumTijd).format('dd D');
   }
 
-  gaNaarEvenement() {
-    this.navCtrl.push('EvenementPage');
+  gaNaarEvenement(evenement: Evenement) {
+    this.navCtrl.push('EvenementPage',{url: evenement.url});
   }
 
 }

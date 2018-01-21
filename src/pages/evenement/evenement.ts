@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {EvenementdetailClient} from './evenementdetail.client';
+import {Evenementdetail} from './evenementdetail';
+import * as moment from 'moment';
 
 /**
  * Generated class for the EvenementPage page.
@@ -13,13 +16,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-evenement',
   templateUrl: 'evenement.html',
 })
-export class EvenementPage {
+export class EvenementPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  evenement: Evenementdetail = <Evenementdetail>{};
+  datumweergave: string[];
+
+  constructor(private evenementdetailClient: EvenementdetailClient, private navCtrl: NavController, private navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EvenementPage');
+  ngOnInit() {
+    this.evenementdetailClient.haalEvenementOp(this.navParams.get('url'))
+      .subscribe(evenement => {
+        this.evenement = evenement;
+        this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
+      })
   }
+}
 
+function formatteerDatumtijd(start: string, einde: string): string[] {
+  const startdatum = moment(start).format('dd D MMM YYYY');
+  const starttijd = moment(start).format('H:mm');
+  const einddatum = moment(einde).format('dd D MMM YYYY');
+  const eindtijd = moment(einde).format('H:mm');
+  if (startdatum === einddatum) {
+    return [`${startdatum}, ${starttijd} - ${eindtijd}`];
+  } else {
+    return [
+      `${startdatum}, ${starttijd}`,
+      `${einddatum}, ${eindtijd}`];
+  }
 }

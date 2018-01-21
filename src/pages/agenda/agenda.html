@@ -17,7 +17,7 @@
         {{sectie.titel}}
       </ion-list-header>
 
-      <button *ngFor="let evenement of sectie.inhoud" ion-item (click)="gaNaarEvenement()">
+      <button *ngFor="let evenement of sectie.inhoud" ion-item (click)="gaNaarEvenement(evenement)">
         <h2 item-start>{{korteWeergave(evenement.start)}}</h2>
         {{evenement.naam}}
       </button>
