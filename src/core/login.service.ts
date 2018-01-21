@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpService} from "../hybrid-http/http.service";
+import {HttpService} from "./http.service";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
@@ -12,7 +12,7 @@ export class LoginService {
     return this.httpService
       .post(
         'index.php/loopgroep-groningen-ledeninfo',
-        '@id=\'login-form\'',
+        '#login-form',
         {
           username: '',
           password: ''

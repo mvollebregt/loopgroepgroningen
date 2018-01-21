@@ -15,13 +15,13 @@ export class PrikbordClient {
 
   // haalt berichten op: de nieuwste eerst
   haalBerichtenOp(): Observable<Bericht[]> {
-    return this.httpService.getXPath('index.php/prikbord', '//div[@class="easy_frame"]', PrikbordClient.toBericht);
+    return this.httpService.get('index.php/prikbord', 'div.easy_frame', PrikbordClient.toBericht);
   }
 
-  private static toBericht(doc: Document, node: Node): Bericht {
-    let auteur = doc.evaluate('.//*[@class="easy_big"]', node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent.trim();
-    let tijdstip = moment(doc.evaluate('.//*[@class="easy_small"]', node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent.trim(), "dddd DD MMMM YYYY HH:mm");
-    let childNodes = doc.evaluate('.//*[@class="easy_content"]', node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.childNodes;
+  private static toBericht(node: Element): Bericht {
+    let auteur = node.querySelector('.easy_big').textContent.trim();
+    let tijdstip = moment(node.querySelector('.easy_small').textContent.trim(), "dddd DD MMMM YYYY HH:mm");
+    let childNodes = node.querySelector('.easy_content').childNodes;
     let berichttekst: string[] = [];
     let lineBreaks = 0;
     for (let i = 0; i < childNodes.length; i++) {

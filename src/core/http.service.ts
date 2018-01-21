@@ -16,23 +16,6 @@ export class HttpService {
     this.baseUrl = platform.is('cordova') ? 'http://www.loopgroepgroningen.nl/' : '';
   }
 
-  // TODO: gebruik get met css selector hieronder
-  public getXPath<T>(relativeUrl: string, xpath: string, mapToObject: (doc: Document, node: Node) => T): Observable<any> {
-    return this.http
-      .get(this.baseUrl + relativeUrl, {responseType: 'text'})
-      .map(data => {
-          let doc = this.parser.parseFromString(data, 'text/html');
-          let elts = doc.evaluate(xpath, doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-          let objects: T[] = [];
-          let node: Node;
-          while (node = elts.iterateNext()) {
-            objects.push(mapToObject(doc, node));
-          }
-          return objects;
-        }
-      );
-  }
-
   public get<T>(relativeUrl: string, selector: string, mapToObject: (node: Element) => T): Observable<any> {
     return this.http
       .get(this.baseUrl + relativeUrl, {responseType: 'text'})
@@ -49,22 +32,6 @@ export class HttpService {
     return objects;
   }
 
-  // TODO: gebruik post met CSS selector
-  public postXpath(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
-    return this
-      .getFormInputsXpath(relativeUrl, formSelector)
-      .switchMap(source => {
-        if (guard && !guard(source)) {
-          return Observable.of('');
-        } else {
-          let formData = new FormData();
-          this.copyToFormData(source, formData);
-          this.copyToFormData(params, formData);
-          return this.http.post(this.baseUrl + relativeUrl, formData, {responseType: 'text'});
-        }
-      });
-  }
-
   public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<any> {
     return this
       .getFormInputs(relativeUrl, formSelector)
@@ -73,23 +40,10 @@ export class HttpService {
           return Observable.of('');
         } else {
           let formData = new FormData();
-          this.copyToFormData(source, formData);
-          this.copyToFormData(params, formData);
+          HttpService.copyToFormData(source, formData);
+          HttpService.copyToFormData(params, formData);
           return this.http.post(this.baseUrl + relativeUrl, formData, {responseType: 'text'});
         }
-      });
-  }
-
-  // TODO: gebruik post met CSS selector
-  private getFormInputsXpath(relativeUrl: string, formSelector: string): Observable<any> {
-    return this
-      .getXPath(relativeUrl, `//form[${formSelector}]//input`, HttpService.toParamXpath)
-      .map(keyValuePairs => {
-        const formObject = {};
-        for (let keyValuePair of keyValuePairs) {
-          formObject[keyValuePair[0]] = keyValuePair[1];
-        }
-        return formObject;
       });
   }
 
@@ -105,16 +59,12 @@ export class HttpService {
       });
   }
 
-  private copyToFormData(params: any, formData: FormData) {
+  private static copyToFormData(params: any, formData: FormData) {
     for (const property in params) {
       if (params.hasOwnProperty(property)) {
         formData.append(property, params[property]);
       }
     }
-  }
-
-  private static toParamXpath(doc: Document, node: Node): [string, string] {
-    return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
   }
 
   private static toParam(node: Element): [string, string] {
