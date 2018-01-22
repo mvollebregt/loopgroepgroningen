@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { TrainingsschemaPage } from './trainingsschema';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {TrainingsschemaPage} from './trainingsschema';
+import {TrainingsschemaClient} from './trainingsschema.client';
 
 @NgModule({
   declarations: [
@@ -9,5 +10,8 @@ import { TrainingsschemaPage } from './trainingsschema';
   imports: [
     IonicPageModule.forChild(TrainingsschemaPage),
   ],
+  providers: [
+    TrainingsschemaClient
+  ]
 })
 export class TrainingsschemaPageModule {}

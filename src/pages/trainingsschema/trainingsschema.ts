@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
+import {TrainingsschemaClient} from './trainingsschema.client';
+import {Trainingsschema} from './trainingsschema.domain';
+import {Observable} from 'rxjs/Observable';
 
 /**
  * Generated class for the TrainingsschemaPage page.
@@ -13,9 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-trainingsschema',
   templateUrl: 'trainingsschema.html',
 })
-export class TrainingsschemaPage {
+export class TrainingsschemaPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  trainingsschema: Observable<Trainingsschema>;
+
+  constructor(private trainingsschemaClient: TrainingsschemaClient, private navCtrl: NavController) {
+  }
+
+  ngOnInit() {
+    this.trainingsschema = this.trainingsschemaClient.haalTrainingsschemaOp();
   }
 
   gaNaarEvenement() {

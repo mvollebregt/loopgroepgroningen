@@ -27,70 +27,26 @@
 
   <ion-list>
 
-    <ion-list-header>
-      Omvang
-    </ion-list-header>
+    <ng-template ngFor let-sectie [ngForOf]="(trainingsschema | async)?.C">
 
-    <button ion-item (click)="gaNaarEvenement()">
-      <ion-icon name="trophy" item-start></ion-icon>
-      <h2>Zaterdag 16 dec</h2>
-      Peize  Ameland Adventurerun
-    </button>
+      <ion-list-header>
+        {{sectie.titel}}
+      </ion-list-header>
 
-    <ion-item>
-      <ion-icon item-start></ion-icon>
-      <h2>Eigen 3e training</h2>
-      Duurloop 70 min (na 10 en 30 min 5
-    </ion-item>
+      <!--<button ion-item (click)="gaNaarEvenement()">-->
+      <!--<ion-icon name="trophy" item-start></ion-icon>-->
+      <!--<h2>Zaterdag 16 dec</h2>-->
+      <!--Peize  Ameland Adventurerun-->
+      <!--</button>-->
 
-    <ion-list-header>
-      Intensief
-    </ion-list-header>
+      <ion-item *ngFor="let training of sectie.inhoud">
+        <ion-icon item-start></ion-icon>
+        <h2>{{training.datum || 'Eigen 3e training'}}</h2>
+        <div class="multi-line">{{training.omschrijving}}</div>
+        <p>{{training.locatie}}</p>
+      </ion-item>
 
-    <ion-item>
-      <ion-icon item-start></ion-icon>
-      <h2>Woensdag 20 dec</h2>
-      <div class="multi-line">3 x (20 x 15 sec rustig 70% 30 sec snel 90%)  5 min rust</div>
-      <p>Rondom voetbalvelden</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon item-start></ion-icon>
-      <h2>Zaterdag 23 dec</h2>
-      <div class="multi-line">Kerstloop met oliebollen obstakels</div>
-      <p>Kardingegebied+heuvel</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon item-start></ion-icon>
-      <h2>Eigen 3e training</h2>
-      <div class="multi-line">8 x (4 min 75% / 4 min 85%) 2 min rust</div>
-    </ion-item>
-
-    <ion-list-header>
-      Herstel
-    </ion-list-header>
-
-    <ion-item>
-      <ion-icon item-start></ion-icon>
-      <h2>Woensdag 27 dec</h2>
-      <div class="multi-line">75 min duurloop 75%  na elke 10 min 2 min versnellen naar 80-85%</div>
-      <p>Noordwolde</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon item-start></ion-icon>
-      <h2>Zaterdag 30 dec</h2>
-      75 min duurloop 75%
-      <p>4 mijl parcours</p>
-    </ion-item>
-
-    <button ion-item (click)="gaNaarEvenement()">
-      <ion-icon name="trophy" item-start></ion-icon>
-      <h2>Eigen 3e training</h2>
-      Sylvesterloop Glimmen
-    </button>
-
+    </ng-template>
 
   </ion-list>
 
