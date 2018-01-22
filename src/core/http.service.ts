@@ -13,11 +13,11 @@ export class HttpService {
 
   constructor(platform: Platform, private http: HttpClient) {
     // Op een echt device moeten we naar de absolute URL toe. Binnen de browser maken we gebruik van een proxy.
-    this.baseUrl = platform.is('cordova') ? 'http://www.loopgroepgroningen.nl/' : '';
+    this.baseUrl = platform.url().startsWith('file:') ? 'http://www.loopgroepgroningen.nl' : '';
   }
 
-  public get<T>(relativeUrl: string): Observable<string> {
-    return this.http.get(this.baseUrl + relativeUrl, {responseType: 'text'});
+  public get(relativeUrl: string): Observable<string> {
+    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'});
   }
 
   public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<string> {
@@ -30,7 +30,7 @@ export class HttpService {
           let formData = new FormData();
           copyToFormData(source, formData);
           copyToFormData(params, formData);
-          return this.http.post(this.baseUrl + relativeUrl, formData, {responseType: 'text'});
+          return this.http.post(this.urlFor(relativeUrl), formData, {responseType: 'text'});
         }
       });
   }
@@ -45,6 +45,11 @@ export class HttpService {
       }
       return objects;
     }
+  }
+
+  private urlFor(relativeUrl: string) {
+    const separator = relativeUrl.startsWith('/') ? '' : '/';
+    return this.baseUrl + separator + relativeUrl;
   }
 
   private getFormInputs(relativeUrl: string, formSelector: string): Observable<any> {
