@@ -3,8 +3,7 @@ import {HttpService} from "./http.service";
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
-
-const CANCELED = -1;
+import {CANCELLED} from './CustomErrorHandler';
 
 interface Login {
 
@@ -79,22 +78,20 @@ export class LoginService {
   // De observable gooit een error CANCELED als de gebruiker op Annuleren drukt.
   private promptLogin() : Observable<Login> {
     const observable = new ReplaySubject<Login>();
-    this.alertController.create({
+    const alert = this.alertController.create({
       title: 'Inloggen',
       message: "Log in om alles te kunnen",
       inputs: [
         // TODO: opgeslagen dingen voorinvullen
         {name: 'username', placeholder: 'Gebruikersnaam'},
-        {name: 'password', placeholder: 'Wachtwoord'}
+        {name: 'password', placeholder: 'Wachtwoord', type: 'password'}
       ],
       buttons: [
-        // TODO: cancelled afvangen
-        {text: 'Annuleren', handler: () => { observable.error(CANCELED)}},
+        {text: 'Annuleren', handler: () => { alert.dismiss(); observable.error(CANCELLED)}},
         {text: 'Inloggen', handler: login => observable.next(login)}
       ]
-    }).present();
+    });
+    alert.present();
     return observable;
   }
-
-
 }

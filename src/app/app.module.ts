@@ -9,6 +9,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {CoreModule} from "../core/core.module";
+import {CustomErrorHandler} from '../core/CustomErrorHandler';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import {CoreModule} from "../core/core.module";
     MyApp
   ],
   providers: [
+    IonicErrorHandler,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: CustomErrorHandler}
   ]
 })
 export class AppModule {}
