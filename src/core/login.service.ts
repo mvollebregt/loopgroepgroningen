@@ -4,35 +4,22 @@ import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {CANCELLED} from './CustomErrorHandler';
-
-interface Login {
-
-  username: string;
-  password: string;
-
-}
+import {Login} from './login';
+import {WachtwoordkluisService} from './wachtwoordkluis.service';
 
 @Injectable()
 export class LoginService {
 
-  // TODO: dit verplaatsen naar secure storage
-  private opgeslagenLogin: Login;
-
-  constructor(private httpService: HttpService, private alertController: AlertController) {
+  constructor(
+    private alertController: AlertController,
+    private httpService: HttpService,
+    private wachtwoordkluisService: WachtwoordkluisService) {
   }
 
   login(): Observable<void> {
-    return this.haalOpgeslagenLoginOp()
+    return this.wachtwoordkluisService.haalLoginOp()
       .switchMap(login => this.probeerLogin(login))
       .map(() => {});
-  }
-
-  private haalOpgeslagenLoginOp(): Observable<Login> {
-    return Observable.of(this.opgeslagenLogin);
-  }
-
-  private slaLoginOp(login: Login) {
-    this.opgeslagenLogin = login;
   }
 
   private probeerLogin(login: Login): Observable<void> {
@@ -42,8 +29,8 @@ export class LoginService {
           return Observable.of(null);
         } else {
           // TODO: foutmelding tonen bij mislukte login
-          return this.promptLogin()
-            .do(login => this.slaLoginOp(login))
+          return this.promptLogin(login)
+            .do(login => this.wachtwoordkluisService.slaLoginOp(login))
             .switchMap(login => this.probeerLogin(login))
         }
       });
@@ -53,6 +40,7 @@ export class LoginService {
   // De observable geeft true terug als de gebruiker is ingelogd, en false als de inloggegevens onjuist waren.
   private submitLogin(login: Login): Observable<boolean> {
     if (!login) {
+      // TODO: TOCH proberen in te loggen?!? (of in ieder geval als we in de browser zitten)
       return Observable.of(false);
     } else {
       return this.httpService
@@ -76,15 +64,15 @@ export class LoginService {
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
   // De observable geeft een Login-object terug als de gebruiker op de inloggen-knop drukt.
   // De observable gooit een error CANCELED als de gebruiker op Annuleren drukt.
-  private promptLogin() : Observable<Login> {
+  private promptLogin(login: Login) : Observable<Login> {
     const observable = new ReplaySubject<Login>();
     const alert = this.alertController.create({
       title: 'Inloggen',
       message: "Log in om alles te kunnen",
       inputs: [
         // TODO: opgeslagen dingen voorinvullen
-        {name: 'username', placeholder: 'Gebruikersnaam'},
-        {name: 'password', placeholder: 'Wachtwoord', type: 'password'}
+        {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username: ''},
+        {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password: ''}
       ],
       buttons: [
         {text: 'Annuleren', handler: () => { alert.dismiss(); observable.error(CANCELLED)}},

@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {CoreModule} from "../core/core.module";
 import {CustomErrorHandler} from '../core/CustomErrorHandler';
+import {SecureStorage} from '@ionic-native/secure-storage';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {CustomErrorHandler} from '../core/CustomErrorHandler';
   ],
   providers: [
     IonicErrorHandler,
+    SecureStorage,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: CustomErrorHandler}
