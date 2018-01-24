@@ -23,12 +23,12 @@ export class HttpService {
   public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<string> {
     return this
       .getFormInputs(relativeUrl, formSelector)
-      .switchMap(source => {
-        if (guard && !guard(source)) {
-          return Observable.of('');
+      .switchMap(([form, source]) => {
+        if (guard && !guard(form)) {
+          return Observable.of(source);
         } else {
           let formData = new FormData();
-          copyToFormData(source, formData);
+          copyToFormData(form, formData);
           copyToFormData(params, formData);
           return this.http.post(this.urlFor(relativeUrl), formData, {responseType: 'text'});
         }
@@ -52,16 +52,16 @@ export class HttpService {
     return this.baseUrl + separator + relativeUrl;
   }
 
-  private getFormInputs(relativeUrl: string, formSelector: string): Observable<any> {
+  private getFormInputs(relativeUrl: string, formSelector: string): Observable<[any, string]> {
     return this
       .get(relativeUrl)
-      .map(this.extract(`${formSelector} input`, toParam))
-      .map(keyValuePairs => {
+      .map(result => [this.extract(`${formSelector} input`, toParam)(result), result])
+      .map(([keyValuePairs, result]) => {
         const formObject = {};
         for (let keyValuePair of keyValuePairs) {
           formObject[keyValuePair[0]] = keyValuePair[1];
         }
-        return formObject;
+        return [formObject, result];
       });
   }
 }
