@@ -31,34 +31,32 @@ export class LedenlijstPage implements OnInit {
   }
 
   presentActionSheet(item: Contact) {
-    let actionSheet = this.actionSheetCtrl.create({
-      // title: 'Kees Beentjes',
-      buttons: [
-        {
-          text: `Mail ${item.email || item.naam}`,
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        },
-        {
-          text: `Bel ${item.mobiel || item.telefoon}`,
-          handler: () => {
-            console.log('Destructive clicked');
-          }
-        },{
-          text: 'Stuur SMS',
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        },{
-          text: 'Annuleer',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
+    let buttons = [];
+    if (item.email) {
+      buttons.push({
+        text: `Mail ${item.email || item.naam}`,
+        handler: () => window.location.href= `mailto:${item.email}`
+      })
+    }
+    const telefoon = item.mobiel || item.telefoon;
+    if (telefoon) {
+      buttons.push({
+        text: `Bel ${telefoon}`,
+        handler: () => window.location.href = `tel:${telefoon}`
+      })
+    }
+    if (telefoon.startsWith('06')) {
+      buttons.push({
+        text: 'Stuur SMS',
+        handler: () => window.location.href = `sms:${item.mobiel}`
+      })
+    }
+    buttons.push({
+      text: 'Annuleer',
+      role: 'cancel'
     });
+    console.log(buttons);
+    const actionSheet = this.actionSheetCtrl.create({buttons: buttons});
     actionSheet.present();
   }
 

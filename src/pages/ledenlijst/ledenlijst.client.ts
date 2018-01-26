@@ -13,21 +13,22 @@ export class LedenlijstClient {
   haalLedenOp(): Observable<Contact[]> {
     return this.loginService
       .login()
-      .switchMap(() =>
-        this.httpService.post(
+      .switchMap(() => {
+        return this.httpService.post(
           'index.php/loopgroep-groningen-ledeninfo/loopgroep-groningen-ledenlijst',
           '#adminForm',
           {limit: 0}
-        ).map(this.httpService.extract('.contact-category li', LedenlijstClient.toContact)));
+        ).map(this.httpService.extract('.contact-category li', LedenlijstClient.toContact))});
   }
 
   private static toContact(elt: Element) {
     const content = elt.querySelectorAll('div');
-    const title = content.item(0).querySelectorAll(".list-title a");
+    const naam = content.item(0).querySelector(".list-title a");
+    const script = content.item(0).querySelector('script');
     const body = content.item(1);
     let contact: Contact = {
-      naam: title.item(0).textContent.trim(),
-      email: null // title.item(1).textContent.trim()
+      naam: naam.textContent.trim(),
+      email: LedenlijstClient.decloakEmail(script.textContent)
     };
     for (let i = 0; i < body.childNodes.length; i++) {
       const childElt = body.childNodes.item(i);
@@ -41,4 +42,32 @@ export class LedenlijstClient {
     }
     return contact;
   }
+
+  private static decloakEmail(script: string) {
+    const start = script.indexOf('var addy_text');
+    const end = script.indexOf(';document')
+    const parts = script.substring(start, end).split('\'');
+    let email = '';
+    for (let i = 1; i < parts.length; i+=2) {
+      email += LedenlijstClient.replaceAscii(parts[i]);
+    }
+    return email;
+  }
+
+  private static replaceAscii(cloaked: string) {
+    let replaced = '';
+    let ready = 0;
+    let start = cloaked.indexOf('&');
+    while (start > -1) {
+      let end = cloaked.indexOf(';', ready);
+      replaced +=
+        cloaked.substring(ready, start) +
+        String.fromCharCode(parseInt(cloaked.substring(start + 2, end)));
+      ready = end + 1;
+      start = cloaked.indexOf('&', ready);
+    }
+    replaced += cloaked.substring(ready);
+    return replaced;
+  }
+
 }

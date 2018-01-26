@@ -70,7 +70,6 @@ export class LoginService {
       title: 'Inloggen',
       message: "Log in om alles te kunnen",
       inputs: [
-        // TODO: opgeslagen dingen voorinvullen
         {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username: ''},
         {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password: ''}
       ],
