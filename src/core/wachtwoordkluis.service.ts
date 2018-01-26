@@ -20,9 +20,10 @@ export class WachtwoordkluisService {
     if (this.platform.is('cordova')) {
       return Observable.fromPromise(
         this.secureStorage.create(STORE_NAME).then(
-          storage => storage.get(LOGIN_KEY)
+          storage => storage.get(LOGIN_KEY),
         ).then(
-          login => JSON.parse(login)
+          login => JSON.parse(login),
+          () => null
         ));
     } else {
       return Observable.of(this.login);
