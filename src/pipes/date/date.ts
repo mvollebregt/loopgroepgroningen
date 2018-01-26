@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'Moment';
+import {Pipe, PipeTransform} from '@angular/core';
+import * as moment from 'moment';
 
 @Pipe({
   name: 'date'
