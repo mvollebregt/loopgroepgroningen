@@ -21,6 +21,7 @@ import {ContactoptiesService} from '../../core/contacten/contactopties.service';
 })
 export class LedenlijstPage implements OnInit {
 
+  zoekterm: string;
   items: Observable<Sectie<Contact>[]>;
 
   constructor(public contactoptiesService: ContactoptiesService, private ledenlijstClient: LedenlijstClient) {
@@ -29,6 +30,11 @@ export class LedenlijstPage implements OnInit {
   ngOnInit() {
     this.items = this.ledenlijstClient.haalLedenOp().map(
       sectioneer<Contact>(contact => contact.naam[0].toUpperCase()));
+  }
+
+  voldoetAanZoekterm(naam: string) {
+    return !this.zoekterm ||
+      naam.split(' ').find(deel => deel.toLowerCase().startsWith(this.zoekterm.toLowerCase()))
   }
 
   presentActionSheet(item: Contact) {

@@ -11,19 +11,21 @@
 
 <ion-content>
 
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar [(ngModel)]="zoekterm"></ion-searchbar>
 
   <ion-list>
 
     <ng-template ngFor let-sectie [ngForOf]="items | async">
 
-      <ion-list-header>
+      <ion-list-header *ngIf="!zoekterm">
         {{sectie.titel}}
       </ion-list-header>
 
-      <ion-item *ngFor="let contact of sectie.inhoud" (click)="presentActionSheet(contact)">
-        {{contact.naam}}
-      </ion-item>
+      <ng-container *ngFor="let contact of sectie.inhoud">
+        <ion-item *ngIf="voldoetAanZoekterm(contact.naam)" (click)="presentActionSheet(contact)">
+          {{contact.naam}}
+        </ion-item>
+      </ng-container>
 
     </ng-template>
 
