@@ -12,6 +12,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <edit-config file="*-Info.plist" mode="merge" target="NSContactsUsageDescription">
+      <string>Loopgroep Groningen heeft toegang tot het adresboek nodig om contacten te kunnen opslaan</string>
+    </edit-config>
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -92,4 +95,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
     <plugin name="cordova-plugin-secure-storage" spec="^2.6.8" />
+    <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
 </widget>
