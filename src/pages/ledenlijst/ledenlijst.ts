@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActionSheetController, IonicPage} from 'ionic-angular';
+import {IonicPage} from 'ionic-angular';
 import {LedenlijstClient} from "./ledenlijst.client";
 import {Observable} from 'rxjs/Observable';
-import {Contact} from './contact';
+import {Contact} from '../../core/contacten/contact';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
+import {ContactoptiesService} from '../../core/contacten/contactopties.service';
 
 /**
  * Generated class for the LedenlijstPage page.
@@ -22,7 +23,7 @@ export class LedenlijstPage implements OnInit {
 
   items: Observable<Sectie<Contact>[]>;
 
-  constructor(public actionSheetCtrl: ActionSheetController, private ledenlijstClient: LedenlijstClient) {
+  constructor(public contactoptiesService: ContactoptiesService, private ledenlijstClient: LedenlijstClient) {
   }
 
   ngOnInit() {
@@ -31,33 +32,6 @@ export class LedenlijstPage implements OnInit {
   }
 
   presentActionSheet(item: Contact) {
-    let buttons = [];
-    if (item.email) {
-      buttons.push({
-        text: `Mail ${item.email || item.naam}`,
-        handler: () => window.location.href= `mailto:${item.email}`
-      })
-    }
-    const telefoon = item.mobiel || item.telefoon;
-    if (telefoon) {
-      buttons.push({
-        text: `Bel ${telefoon}`,
-        handler: () => window.location.href = `tel:${telefoon}`
-      })
-    }
-    if (telefoon.startsWith('06')) {
-      buttons.push({
-        text: 'Stuur SMS',
-        handler: () => window.location.href = `sms:${item.mobiel}`
-      })
-    }
-    buttons.push({
-      text: 'Annuleer',
-      role: 'cancel'
-    });
-    console.log(buttons);
-    const actionSheet = this.actionSheetCtrl.create({buttons: buttons});
-    actionSheet.present();
+    this.contactoptiesService.presentActionSheet(item);
   }
-
 }

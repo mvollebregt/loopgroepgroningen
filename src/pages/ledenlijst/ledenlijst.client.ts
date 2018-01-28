@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
 import {LoginService} from "../../core/login.service";
-import {Contact} from './contact';
+import {Contact} from '../../core/contacten/contact';
 
 @Injectable()
 export class LedenlijstClient {
