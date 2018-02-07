@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {TrainingsschemaClient} from './trainingsschema.client';
 import {Trainingsschema} from './trainingsschema.domain';
 import {InstellingenService} from '../../core/instellingen.service';
 import 'rxjs/add/operator/pluck';
 import {Subscription} from 'rxjs/Subscription';
 import {Training} from './training';
 import * as moment from 'moment';
+import {TrainingsschemaService} from './trainingsschema.service';
 
 /**
  * Generated class for the TrainingsschemaPage page.
@@ -27,14 +27,14 @@ export class TrainingsschemaPage implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private trainingsschemaClient: TrainingsschemaClient,
+  constructor(private trainingsschemaService: TrainingsschemaService,
               private instellingenService: InstellingenService,
               private navCtrl: NavController) {
   }
 
   ngOnInit() {
     this.subscriptions.push(
-      this.trainingsschemaClient.haalTrainingsschemaOp().subscribe(trainingsschema =>
+      this.trainingsschemaService.haalTrainingsschemaOp().subscribe(trainingsschema =>
         this.trainingsschema = trainingsschema));
     this.subscriptions.push(
       this.instellingenService.getInstellingen().subscribe(instellingen => {
@@ -49,11 +49,7 @@ export class TrainingsschemaPage implements OnInit, OnDestroy {
   }
 
   kop(training: Training) {
-    if (training.datum) {
-      return moment(training.datum).format('dddd D MMM');
-    } else {
-      return 'eigen 3e training';
-    }
+    return training.titel || moment(training.datum).format('dddd D MMM');
   }
 
   kiesGroep(keuze: string) {

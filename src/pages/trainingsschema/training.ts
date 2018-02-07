@@ -1,6 +1,7 @@
 export interface Training {
 
-  datum?: string;
+  titel?: string;
+  datum: string;
   omschrijving: string;
   locatie?: string;
 
