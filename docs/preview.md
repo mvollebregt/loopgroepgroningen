@@ -1,10 +1,11 @@
 # Verwacht: de Loopgroep-groningen Android-app
 
+## Blijf op de hoogte en reageer zelf op het prikbord
 
-![prikbord](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/prikbord.png "prikbord")
-
+![prikbord](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/prikbord.png "prikbord") 
 ![menu](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/menu.png "menu")
 
-![evenement](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/evenement.png "evenement")
+## Doe mee aan evenementen en bereid je optimaal voor
 
-![schema](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/prikbord.png "schema")
+![evenement](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/evenement.png "evenement")
+![schema](https://raw.githubusercontent.com/mvollebregt/loopgroepgroningen/master/docs/schema.png "schema")
