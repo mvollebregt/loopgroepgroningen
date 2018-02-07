@@ -20,12 +20,13 @@ export class TrainingsschemaClient {
   }
 }
 
-const A: Sectie<Training>[] = [{
-  'titel': 'Week 4', 'inhoud': [
-    {'datum': '2018-01-24', 'omschrijving': 'duurloop 50 min 75%', 'locatie': 'Noorddijk'},
-    {'datum': '2018-01-27', 'omschrijving': 'duurloop 55 min 75%', 'locatie': 'Aduarderbrug'},
-    {'omschrijving': 'duurloop 30 min, 75%'}]
-},
+const A: Sectie<Training>[] = [
+  {
+    'titel': 'Week 4', 'inhoud': [
+      {'datum': '2018-01-24', 'omschrijving': 'duurloop 50 min 75%', 'locatie': 'Noorddijk'},
+      {'datum': '2018-01-27', 'omschrijving': 'duurloop 55 min 75%', 'locatie': 'Aduarderbrug'},
+      {'omschrijving': 'duurloop 30 min, 75%'}]
+  },
 
   {
     'titel': 'Week 5', 'inhoud': [
@@ -46,25 +47,21 @@ const A: Sectie<Training>[] = [{
         'locatie': 'Voetbalveld'
       },
       {'datum': '2018-02-10', 'omschrijving': 'duurloop 50 min 75% (incl 20 min 85%)', 'locatie': 'Richting Bedum'},
-      {'omschrijving': 'duurloop 40 min, 80%'}]
-  }];
+      {'omschrijving': 'duurloop 40 min, 80%'}]}
+];
 
 
-const B: Sectie<Training>[] = [{
-  'titel': 'Week 4', 'inhoud': [
-    {'datum': '2018-01-24', 'omschrijving': 'Noorddijk', 'locatie': 'duurloop 65 min 75%'},
-    {'datum': '2018-01-27', 'omschrijving': 'duurloop 65 min 75%', 'locatie': 'Aduarderbrug'},
-    {'omschrijving': 'duurloop 40 min, 75%'}]
-},
+const B: Sectie<Training>[] = [
+  { 'titel': 'Week 4', 'inhoud': [
+      {'datum': '2018-01-24', 'omschrijving': 'duurloop 60 min 75%', 'locatie': 'Noorddijk'},
+      {'datum': '2018-01-27', 'omschrijving': 'duurloop 65 min 75%', 'locatie': 'Aduarderbrug'},
+      {'omschrijving': 'duurloop 40 min, 75%'}]
+  },
 
 
   {
     'titel': 'Week 5', 'inhoud': [
-      {
-        'datum': '2018-01-31',
-        'omschrijving': 'Zilvermeer',
-        'locatie': 'duurloop 60 min 75% (incl 3 x 6 min 85%, 2 min 70% rust)'
-      },
+      {'datum': '2018-01-31', 'omschrijving': '4 x 8 min 85%, 2 min 70% rust', 'locatie': 'Zilvermeer'},
       {
         'datum': '2018-02-03',
         'omschrijving': 'duurloop 60 min 75% (incl 3 x 6 min 85%, 2 min 70% rust)',
@@ -76,26 +73,44 @@ const B: Sectie<Training>[] = [{
 
   {
     'titel': 'Week 6', 'inhoud': [
-      {'datum': '2018-02-07', 'omschrijving': 'Voetbalveld', 'locatie': 'duurloop 60 min 75% (incl 25 min 85%)'},
+      {
+        'datum': '2018-02-07',
+        'omschrijving': 'pyramydeloop 1-1-2-2-3-3-2-2-1-1, (2x met 5 min rust) 10 min uitloop',
+        'locatie': 'Voetbalveld'
+      },
       {'datum': '2018-02-10', 'omschrijving': 'duurloop 60 min 75% (incl 25 min 85%)', 'locatie': 'Richting Bedum'},
       {'omschrijving': 'duurloop 50 min, 80%'}]
-  }];
+  },
+];
 
-const C: Sectie<Training>[] = [{ 'titel': 'Week 4', 'inhoud': [
-    { 'datum': '2018-01-24', 'omschrijving': 'duurloop 75 min 75%', 'locatie': 'Noorddijk'},
-    { 'datum': '2018-01-27', 'omschrijving': 'duurloop 80 min 75%', 'locatie': 'Aduarderbrug'},
-    { 'omschrijving': 'duurloop 50 min, 75%'}]},
-
-
-
-  { 'titel': 'Week 5', 'inhoud': [
-      { 'datum': '2018-01-31', 'omschrijving': 'Zilvermeer', 'locatie': 'duurloop 75 min 75% (incl 4 x 6 min 85%, 2 min 70% rust)'},
-      { 'datum': '2018-02-03', 'omschrijving': 'duurloop 75 min 75% (incl 4 x 6 min 85%, 2 min 70% rust)', 'locatie': 'Kardinge'},
-      { 'omschrijving': 'duurloop 70 min, 75%'}]},
+const C: Sectie<Training>[] = [
+  { 'titel': 'Week 4', 'inhoud': [
+      {'datum': '2018-01-24', 'omschrijving': 'duurloop 75 min 75%', 'locatie': 'Noorddijk'},
+      {'datum': '2018-01-27', 'omschrijving': 'duurloop 80 min 75%', 'locatie': 'Aduarderbrug'},
+      {'omschrijving': 'duurloop 50 min, 75%'}]
+  },
 
 
+  {
+    'titel': 'Week 5', 'inhoud': [
+      {'datum': '2018-01-31', 'omschrijving': '5 x 8 min 85%, 2 min 70% rust', 'locatie': 'Zilvermeer'},
+      {
+        'datum': '2018-02-03',
+        'omschrijving': 'duurloop 75 min 75% (incl 4 x 6 min 85%, 2 min 70% rust)',
+        'locatie': 'Kardinge'
+      },
+      {'omschrijving': 'duurloop 70 min, 75%'}]
+  },
 
-  { 'titel': 'Week 6', 'inhoud': [
-      { 'datum': '2018-02-07', 'omschrijving': 'Voetbalveld', 'locatie': 'duurloop 70 min 75% (incl 30 min 85%)'},
-      { 'datum': '2018-02-10', 'omschrijving': 'duurloop 70 min 75% (incl 30 min 85%)', 'locatie': 'Richting Bedum'},
-      { 'omschrijving': 'duurloop 60 min, 80%'}]},];
+
+  {
+    'titel': 'Week 6', 'inhoud': [
+      {
+        'datum': '2018-02-07',
+        'omschrijving': 'pyramydeloop 1-1-2-2-3-3-2-2-1-1, (3x met 5 min rust)',
+        'locatie': 'Voetbalveld'
+      },
+      {'datum': '2018-02-10', 'omschrijving': 'duurloop 70 min 75% (incl 30 min 85%)', 'locatie': 'Richting Bedum'},
+      {'omschrijving': 'duurloop 60 min, 80%'}]
+  },
+];
