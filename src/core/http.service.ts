@@ -31,7 +31,7 @@ export class HttpService {
           let formData = new FormData();
           copyToFormData(form.inputs, formData);
           copyToFormData(params, formData);
-          return this.http.post(this.urlFor(action? action : form.action), formData, {responseType: 'text'});
+          return this.http.post(this.urlFor(action? action : form.action? form.action : relativeUrl), formData, {responseType: 'text'});
         }
       });
   }

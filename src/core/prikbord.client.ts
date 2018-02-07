@@ -28,7 +28,7 @@ export class PrikbordClient {
       .switchMap(() =>
         this.httpService.post(
         'index.php/prikbord/entry/add',
-        '@name=\'gbookForm\'',
+        'form[name=\'gbookForm\']',
         {gbtext: berichttekst})
           .map(this.httpService.extract('div.easy_frame', PrikbordClient.toBericht))
       )
