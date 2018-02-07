@@ -13,7 +13,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <edit-config file="*-Info.plist" mode="merge" target="NSContactsUsageDescription">
-      <string>Loopgroep Groningen heeft toegang tot het adresboek nodig om contacten te kunnen opslaan</string>
+        <string>Loopgroep Groningen heeft toegang tot het adresboek nodig om contacten te kunnen opslaan</string>
     </edit-config>
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />

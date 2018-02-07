@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 import {HttpClient} from '@angular/common/http';
+import {FormDetails} from './form-details';
 
 @Injectable()
 export class HttpService {
@@ -22,15 +23,15 @@ export class HttpService {
 
   public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<string> {
     return this
-      .getFormInputs(relativeUrl, formSelector)
+      .getFormDetails(relativeUrl, formSelector)
       .switchMap(([form, source]) => {
-        if (guard && !guard(form)) {
+        if (guard && !guard(form.inputs)) {
           return Observable.of(source);
         } else {
           let formData = new FormData();
-          copyToFormData(form, formData);
+          copyToFormData(form.inputs, formData);
           copyToFormData(params, formData);
-          return this.http.post(this.urlFor(relativeUrl), formData, {responseType: 'text'});
+          return this.http.post(this.urlFor(form.action), formData, {responseType: 'text'});
         }
       });
   }
@@ -48,21 +49,16 @@ export class HttpService {
   }
 
   private urlFor(relativeUrl: string) {
-    const separator = relativeUrl.startsWith('/') ? '' : '/';
-    return this.baseUrl + separator + relativeUrl;
+    const serverNameIndex = relativeUrl.indexOf('loopgroepgroningen.nl/');
+    const normalizedUrl = serverNameIndex === -1 ? relativeUrl : relativeUrl.substring(serverNameIndex + 'loopgroepgroningen.nl/'.length);
+    const separator = normalizedUrl.startsWith('/') ? '' : '/';
+    return this.baseUrl + separator + normalizedUrl;
   }
 
-  private getFormInputs(relativeUrl: string, formSelector: string): Observable<[any, string]> {
+  private getFormDetails(relativeUrl: string, formSelector: string): Observable<[FormDetails, string]> {
     return this
       .get(relativeUrl)
-      .map(result => [this.extract(`${formSelector} input`, toParam)(result), result])
-      .map(([keyValuePairs, result]) => {
-        const formObject = {};
-        for (let keyValuePair of keyValuePairs) {
-          formObject[keyValuePair[0]] = keyValuePair[1];
-        }
-        return [formObject, result];
-      });
+      .map(result => [this.extract(`${formSelector}`, toFormDetails)(result)[0], result])
   }
 }
 
@@ -74,7 +70,16 @@ function copyToFormData(params: any, formData: FormData) {
   }
 }
 
-function toParam(node: Element): [string, string] {
-  return [node.attributes['name'].value, node.attributes['value'] && node.attributes['value'].value];
+function toFormDetails(node: Element) : FormDetails {
+  const inputElements = node.querySelectorAll('input');
+  let inputValues = {};
+  for (let i = 0; i < inputElements.length; i++) {
+    const subnode = inputElements.item(i);
+    inputValues[subnode.attributes['name'].value] = subnode.attributes['value'] && subnode.attributes['value'].value;
+  }
+  return {
+    action: node.getAttribute('action'),
+    inputs: inputValues
+  }
 }
 

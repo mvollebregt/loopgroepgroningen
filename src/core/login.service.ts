@@ -50,14 +50,13 @@ export class LoginService {
           {
             username: login.username,
             password: login.password
-          }, formData => formData['task'] === "user.login"
+          }, formData => formData.hasOwnProperty('username')
         )
         .map(this.httpService.extract(
-          '#login-form input[name="task"]',
-          node => {
-            return node.getAttribute('value') !== 'user.login'
-          }))
-        .map(results => results && results[0]);
+          '#login-form input',
+          node => node.getAttribute('name')))
+        // TODO: een betere check is of er ergens op de pagina een button met de tekst 'inloggen' is
+        .map(results => results.length > 0 && results.indexOf('username') === -1);
     }
   }
 
