@@ -71,7 +71,9 @@
 
 .dialog {
   height: auto;
-  background-color: $toolbar-background
+  background-color: $toolbar-background;
+  display: flex;
+  align-items: stretch;
 }
 
 .ios .dialog {
@@ -86,6 +88,16 @@
   margin: 8px;
 }
 
+.no-margin-right,
+.dialog.no-margin-right {
+  margin-right: 0;
+}
+
+.dialog button {
+  height:auto;
+  width: 40px;
+}
+
 ion-textarea {
   background-color: $list-background-color;
   border-radius: 8px;
@@ -95,6 +107,7 @@ ion-textarea {
     margin: 8px 4px 8px 4px;
     border: none;
     font-size: 1.6rem;
+    height: 5em;
   }
 
   textarea.text-input.text-input-ios {

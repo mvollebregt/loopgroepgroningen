@@ -26,11 +26,17 @@
 
   </div>
 
-  <div class="dialog">
-    <ion-textarea #textarea
-                  (input)="resize(textarea)"
-                  placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord.">
+  <div class="dialog no-margin-right">
+
+    <ion-textarea
+      placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord."
+      style="display: inline-block">
     </ion-textarea>
+
+    <button ion-button icon-only clear>
+      <ion-icon name="send"></ion-icon>
+    </button>
+
   </div>
 
 </ion-content>

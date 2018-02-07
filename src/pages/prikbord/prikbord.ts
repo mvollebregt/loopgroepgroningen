@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Content, IonicPage, TextInput} from 'ionic-angular';
 import {Bericht} from "../../core/bericht";
 import {Observable} from "rxjs/Observable";
@@ -18,7 +18,7 @@ export class PrikbordPage implements OnInit {
 
   private initialized = false;
 
-  constructor(private prikbordService: PrikbordService, private changeDetector: ChangeDetectorRef) {
+  constructor(private prikbordService: PrikbordService) {
   }
 
   ngOnInit() {
@@ -29,14 +29,5 @@ export class PrikbordPage implements OnInit {
         this.initialized = values.length > 0;
       });
     });
-  }
-
-  // TODO: hier een attribute directive van maken
-  resize(input: TextInput): void {
-    let textArea = input.getNativeElement().querySelector('textarea');
-    textArea.style.overflow = "hidden";
-    textArea.style.height = "auto";
-    textArea.style.height = Math.min(textArea.scrollHeight, 165) + "px";
-    this.content.scrollToBottom(0);
   }
 }
