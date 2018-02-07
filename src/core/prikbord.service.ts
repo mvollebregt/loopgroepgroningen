@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {PrikbordClient} from "./prikbord.client";
 import {Storage} from '@ionic/storage';
+import 'rxjs/add/operator/finally';
 
 @Injectable()
 export class PrikbordService {
@@ -27,24 +28,34 @@ export class PrikbordService {
     return this.berichten;
   }
 
+  verstuurBericht(berichttekst: string): Observable<void> {
+    return this.prikbordClient.verstuurBericht(berichttekst)
+      .do(berichten => this.synchroniseerBerichten(berichten))
+      .map(() => null);
+  }
+
   synchroniseer(): void {
+    // haal de meest recente berichten op van het prikbord
+    this.prikbordClient.haalBerichtenOp().subscribe(resultaat => {
+      this.synchroniseerBerichten(resultaat);
+    });
+  }
+
+  private synchroniseerBerichten(berichten) {
     // haal de opgeslagen berichten uit de opslag
     this.storage.get(PrikbordService.key).then(opgeslagen => {
-      // haal de meest recente berichten op van het prikbord
-      this.prikbordClient.haalBerichtenOp().subscribe(resultaat => {
-        // check of er nieuwe berichten zijn bijgekomen
-        opgeslagen = opgeslagen || [];
-        let nieuwste = opgeslagen.length > 0 ? opgeslagen[opgeslagen.length - 1] : null;
-        let aantalNieuwe = resultaat.findIndex(bericht => PrikbordService.equal(bericht, nieuwste));
-        aantalNieuwe = aantalNieuwe != -1 ? aantalNieuwe : resultaat.length;
-        if (aantalNieuwe !== 0) {
-          // Er zijn nieuwe berichten bij gekomen. Sla deze op en stuur ze naar observers.
-          opgeslagen.push(...resultaat.slice(0, aantalNieuwe).reverse()); // oud naar nieuw
-          this.storage.set(PrikbordService.key, opgeslagen);
-          this.berichten.next(opgeslagen);
-        }
-      })
-    });
+      // check of er nieuwe berichten zijn bijgekomen
+      opgeslagen = opgeslagen || [];
+      let nieuwste = opgeslagen.length > 0 ? opgeslagen[opgeslagen.length - 1] : null;
+      let aantalNieuwe = berichten.findIndex(bericht => PrikbordService.equal(bericht, nieuwste));
+      aantalNieuwe = aantalNieuwe != -1 ? aantalNieuwe : berichten.length;
+      if (aantalNieuwe !== 0) {
+        // Er zijn nieuwe berichten bij gekomen. Sla deze op en stuur ze naar observers.
+        opgeslagen.push(...berichten.slice(0, aantalNieuwe).reverse()); // oud naar nieuw
+        this.storage.set(PrikbordService.key, opgeslagen);
+        this.berichten.next(opgeslagen);
+      }
+    })
   }
 
   private static equal(links: Bericht, rechts: Bericht) {

@@ -12,6 +12,8 @@ import {PrikbordService} from "../../core/prikbord.service";
 export class PrikbordPage implements OnInit {
 
   items: Observable<Bericht[]>;
+  reactie: string;
+  aanHetVersturen = false;
 
   @ViewChild(Content) private content: Content;
   @ViewChild('textarea') private textInput: TextInput;
@@ -30,4 +32,14 @@ export class PrikbordPage implements OnInit {
       });
     });
   }
+
+  verstuurBericht() {
+    this.aanHetVersturen = true;
+    this.prikbordService.verstuurBericht(this.reactie)
+      .finally(() => this.aanHetVersturen = null)
+      .subscribe(() => {
+        this.reactie = '';
+      });
+  }
+
 }
