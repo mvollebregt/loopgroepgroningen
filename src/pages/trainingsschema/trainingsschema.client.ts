@@ -5,7 +5,7 @@ import {Trainingsschema} from './trainingsschema.domain';
 import {HttpClient} from '@angular/common/http';
 import {Platform} from 'ionic-angular';
 
-const trainingsschemaUrl = '/mvollebregt/loopgroepgroningen-ionic/master/rest/trainingsschema.json';
+const trainingsschemaUrl = '/mvollebregt/loopgroepgroningen/master/rest/trainingsschema.json';
 
 @Injectable()
 export class TrainingsschemaClient {
