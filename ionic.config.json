@@ -9,6 +9,10 @@
     {
       "path": "/index.php",
       "proxyUrl": "http://www.loopgroepgroningen.nl/index.php"
+    },
+    {
+      "path": "/mvollebregt",
+      "proxyUrl": "https://raw.githubusercontent.com/mvollebregt"
     }
   ]
 }
