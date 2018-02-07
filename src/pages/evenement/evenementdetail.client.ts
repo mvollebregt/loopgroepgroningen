@@ -44,7 +44,8 @@ export class EvenementdetailClient {
       deelnemers.push(deelnemerElementen.item(i).textContent.trim());
     }
 
-    const deelname = elt.querySelector('.register form').textContent.toLowerCase().indexOf('uitschrijven') > -1;
+    const registrerenMogelijk = elt.querySelector('.register form');
+    const deelname = registrerenMogelijk && registrerenMogelijk.textContent.toLowerCase().indexOf('uitschrijven') > -1;
 
     return {
       start: start,

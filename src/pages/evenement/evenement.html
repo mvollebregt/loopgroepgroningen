@@ -30,12 +30,12 @@
         </ion-item>
       </ng-template>
 
-      <ion-item>
+      <ion-item *ngIf="evenement.deelname !== null">
         <ion-label>Ik doe mee</ion-label>
         <ion-toggle [checked]="evenement.deelname" (click)="toggleDeelname()"></ion-toggle>
       </ion-item>
 
-      <ion-list-header>
+      <ion-list-header *ngIf="evenement.deelnemers?.length">
         Deelnemers
       </ion-list-header>
 
