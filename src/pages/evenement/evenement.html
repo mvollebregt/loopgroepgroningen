@@ -80,7 +80,7 @@
                   placeholder="Typ hier je reactie.">
     </ion-textarea>
 
-    <button ion-button icon-only clear [disabled]="!reactie" (click)="verstuurBericht()">
+    <button ion-button icon-only clear [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">
       <ion-icon name="send"></ion-icon>
     </button>
 

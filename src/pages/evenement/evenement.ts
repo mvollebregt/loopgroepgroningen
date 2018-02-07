@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {EvenementdetailClient} from './evenementdetail.client';
 import {Evenementdetail} from './evenementdetail';
+import 'rxjs/add/operator/finally';
 import * as moment from 'moment';
 
 /**
@@ -21,6 +22,7 @@ export class EvenementPage implements OnInit {
   evenement: Evenementdetail = <Evenementdetail>{};
   datumweergave: string[];
   reactie: string;
+  aanHetVersturen = false;
 
   constructor(private evenementdetailClient: EvenementdetailClient, private navCtrl: NavController, private navParams: NavParams) {
   }
@@ -36,7 +38,9 @@ export class EvenementPage implements OnInit {
   }
 
   verstuurBericht() {
+    this.aanHetVersturen = true;
     this.evenementdetailClient.verstuurBericht(this.navParams.get('url'), this.reactie)
+      .finally(() => this.aanHetVersturen = null)
       .subscribe(evenement => {
         this.toonEvenement(evenement);
         this.reactie = '';
