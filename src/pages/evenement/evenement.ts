@@ -26,10 +26,17 @@ export class EvenementPage implements OnInit {
 
   ngOnInit() {
     this.evenementdetailClient.haalEvenementOp(this.navParams.get('url'))
-      .subscribe(evenement => {
-        this.evenement = evenement;
-        this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
-      })
+      .subscribe(evenement => this.toonEvenement(evenement));
+  }
+
+  toggleDeelname() {
+    this.evenementdetailClient.schrijfIn(this.navParams.get('url'), !this.evenement.deelname)
+      .subscribe(evenement => this.toonEvenement(evenement));
+  }
+
+  private toonEvenement(evenement: Evenementdetail) {
+    this.evenement = evenement;
+    this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
   }
 }
 

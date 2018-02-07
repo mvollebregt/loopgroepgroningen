@@ -21,6 +21,16 @@ export class EvenementdetailClient {
       );
   }
 
+  schrijfIn(eventPage: string, inschrijven: boolean) : Observable<Evenementdetail> {
+    return this.loginService
+      .login()
+      .switchMap(() =>
+        this.httpService.post(eventPage, '.register form', {'reg_check': inschrijven})
+          .map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail))
+          .map(array => array[0])
+      )
+  }
+
   private static toEvenementdetail(elt: Element) : Evenementdetail {
     const start = elt.querySelector('[itemprop="startDate"]').getAttribute('content');
     const einde = elt.querySelector('[itemprop="endDate"]').getAttribute('content');
@@ -34,7 +44,7 @@ export class EvenementdetailClient {
       deelnemers.push(deelnemerElementen.item(i).textContent.trim());
     }
 
-    const deelname = true; //elt.querySelector('.register form [name="reg_check"]').getAttribute('value');
+    const deelname = elt.querySelector('.register form').textContent.toLowerCase().indexOf('uitschrijven') > -1;
 
     return {
       start: start,
