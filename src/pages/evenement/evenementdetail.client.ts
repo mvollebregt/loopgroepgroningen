@@ -4,6 +4,8 @@ import {Observable} from "rxjs/Observable";
 import {LoginService} from "../../core/login.service";
 import {Evenementdetail} from './evenementdetail';
 import {toParagraaf} from '../../core/to-paragraaf';
+import {Bericht} from '../../core/bericht';
+import * as moment from 'moment';
 
 @Injectable()
 export class EvenementdetailClient {
@@ -57,6 +59,17 @@ export class EvenementdetailClient {
       deelnemers.push(deelnemerElementen.item(i).textContent.trim());
     }
 
+    const reactieElementen = elt.querySelectorAll('.comment-box');
+    let reacties: Bericht[] = [];
+    for (let i = reactieElementen.length - 1; i >= 0; i--) {
+      const element = reactieElementen.item(i);
+      reacties.push({
+        auteur: element.querySelector('.comment-author').textContent,
+        tijdstip: moment(element.querySelector('.comment-date').textContent, 'DD-MM-YYYY HH:mm').toISOString(),
+        berichttekst: toParagraaf(element.querySelector('.comment-body'))
+      })
+    }
+
     const registrerenMogelijk = elt.querySelector('.register form');
     const deelname = registrerenMogelijk && registrerenMogelijk.textContent.toLowerCase().indexOf('uitschrijven') > -1;
 
@@ -67,7 +80,8 @@ export class EvenementdetailClient {
       categorie: categorie,
       omschrijving: omschrijving,
       deelname: deelname,
-      deelnemers: deelnemers
+      deelnemers: deelnemers,
+      reacties: reacties
     };
   }
 }

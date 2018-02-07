@@ -1,3 +1,5 @@
+import {Bericht} from '../../core/bericht';
+
 export interface Evenementdetail {
 
   start: string;
@@ -7,5 +9,6 @@ export interface Evenementdetail {
   omschrijving: string[];
   deelname: boolean;
   deelnemers: string[];
+  reacties: Bericht[];
 
 }

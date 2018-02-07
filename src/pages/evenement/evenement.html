@@ -52,22 +52,21 @@
         {{deelnemer}}
       </button>
 
-      <ion-list-header style="border-bottom:0">
+      <ion-list-header style="border-bottom:0" *ngIf="evenement.reacties?.length">
         Reacties
       </ion-list-header>
     </ion-list>
 
 
-    <ion-card>
+    <ion-card *ngFor="let reactie of evenement.reacties">
 
       <ion-card-header>
-        <span>JantinaL</span>
-        <span float-right>zo 12 dec 2017 - 17:45</span>
+        <span>{{reactie.auteur}}</span>
+        <span float-right>{{reactie.tijdstip | date }}</span>
       </ion-card-header>
 
       <ion-card-content>
-        <div>Ik wil wel rijden hoor.</div>
-        <div>Wie rijdt er mee?</div>
+        <div *ngFor="let regel of reactie.berichttekst" style="min-height: 1em;">{{regel}}</div>
       </ion-card-content>
 
     </ion-card>
