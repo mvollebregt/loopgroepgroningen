@@ -35,7 +35,7 @@
 
       <ion-item *ngFor="let training of sectie.inhoud">
         <ion-icon item-start></ion-icon>
-        <h2>{{training.datum || 'Eigen 3e training'}}</h2>
+        <h2>{{kop(training)}}</h2>
         <div class="multi-line">{{training.omschrijving}}</div>
         <p>{{training.locatie}}</p>
       </ion-item>

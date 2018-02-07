@@ -5,6 +5,8 @@ import {Trainingsschema} from './trainingsschema.domain';
 import {InstellingenService} from '../../core/instellingen.service';
 import 'rxjs/add/operator/pluck';
 import {Subscription} from 'rxjs/Subscription';
+import {Training} from './training';
+import * as moment from 'moment';
 
 /**
  * Generated class for the TrainingsschemaPage page.
@@ -43,6 +45,14 @@ export class TrainingsschemaPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     for (let subscription of this.subscriptions) {
       subscription.unsubscribe();
+    }
+  }
+
+  kop(training: Training) {
+    if (training.datum) {
+      return moment(training.datum).format('dddd D MMM');
+    } else {
+      return 'eigen 3e training';
     }
   }
 
