@@ -5,6 +5,7 @@
     </button>
     <ion-title>{{evenement.naam}}</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content class="main-content-wrapper">
@@ -33,6 +34,14 @@
       <ion-item *ngIf="evenement.deelname !== null">
         <ion-label>Ik doe mee</ion-label>
         <ion-toggle [checked]="evenement.deelname" (click)="toggleDeelname()"></ion-toggle>
+      </ion-item>
+
+      <ion-list-header *ngIf="evenement.omschrijving?.length">
+        Omschrijving
+      </ion-list-header>
+
+      <ion-item *ngIf="evenement.omschrijving?.length">
+        <div *ngFor="let regel of evenement.omschrijving" style="min-height: 1em;">{{regel}}</div>
       </ion-item>
 
       <ion-list-header *ngIf="evenement.deelnemers?.length">

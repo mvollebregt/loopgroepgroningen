@@ -6,11 +6,12 @@ export function toParagraaf(element: Element): string[]{
     let paragraaf: string[] = [];
     let lineBreaks = 0;
     for (let i = 0; i < childNodes.length; i++) {
-      if (childNodes[i].nodeType === Node.TEXT_NODE) {
+      const textContent = childNodes[i].textContent.trim();
+      if (textContent.length) {
         if (lineBreaks > 1 && paragraaf.length) {
           paragraaf.push('');
         }
-        paragraaf.push(childNodes[i].textContent.trim());
+        paragraaf.push(textContent);
         lineBreaks = 0;
       } else {
         lineBreaks++;
