@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {TrainingsschemaClient} from './trainingsschema.client';
 import {Trainingsschema} from './trainingsschema.domain';
-import {Observable} from 'rxjs/Observable';
+import {InstellingenService} from '../../core/instellingen.service';
+import 'rxjs/add/operator/pluck';
+import {Subscription} from 'rxjs/Subscription';
 
 /**
  * Generated class for the TrainingsschemaPage page.
@@ -16,15 +18,36 @@ import {Observable} from 'rxjs/Observable';
   selector: 'page-trainingsschema',
   templateUrl: 'trainingsschema.html',
 })
-export class TrainingsschemaPage implements OnInit {
+export class TrainingsschemaPage implements OnInit, OnDestroy {
 
-  trainingsschema: Observable<Trainingsschema>;
+  trainingsschema: Trainingsschema;
+  groep: String;
 
-  constructor(private trainingsschemaClient: TrainingsschemaClient, private navCtrl: NavController) {
+  private subscriptions: Subscription[] = [];
+
+  constructor(private trainingsschemaClient: TrainingsschemaClient,
+              private instellingenService: InstellingenService,
+              private navCtrl: NavController) {
   }
 
   ngOnInit() {
-    this.trainingsschema = this.trainingsschemaClient.haalTrainingsschemaOp();
+    this.subscriptions.push(
+      this.trainingsschemaClient.haalTrainingsschemaOp().subscribe(trainingsschema =>
+        this.trainingsschema = trainingsschema));
+    this.subscriptions.push(
+      this.instellingenService.getInstellingen().subscribe(instellingen => {
+          this.groep = (instellingen && instellingen.groep) || 'A';
+        }));
+  }
+
+  ngOnDestroy() {
+    for (let subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
+  }
+
+  kiesGroep(keuze: string) {
+    this.instellingenService.setInstellingen({groep: keuze});
   }
 
   gaNaarEvenement() {

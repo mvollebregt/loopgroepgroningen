@@ -8,15 +8,9 @@
   </ion-navbar>
 
   <ion-toolbar>
-    <ion-segment ngModel="C">
-      <ion-segment-button value="A">
-        A
-      </ion-segment-button>
-      <ion-segment-button value="B">
-        B
-      </ion-segment-button>
-      <ion-segment-button value="C">
-        C
+    <ion-segment [ngModel]="groep">
+      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (click)="kiesGroep(keuze)">
+        {{ keuze }}
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -27,7 +21,7 @@
 
   <ion-list>
 
-    <ng-template ngFor let-sectie [ngForOf]="(trainingsschema | async)?.C">
+    <ng-template ngFor let-sectie [ngForOf]="trainingsschema && trainingsschema[groep]">
 
       <ion-list-header>
         {{sectie.titel}}

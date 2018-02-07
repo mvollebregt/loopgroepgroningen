@@ -6,12 +6,14 @@ import {HttpService} from './http.service';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
 import {ContactoptiesService} from './contacten/contactopties.service';
 import {Contacts} from '@ionic-native/contacts';
+import {InstellingenService} from './instellingen.service';
 
 @NgModule({
   providers: [
     ContactoptiesService,
     Contacts,
     HttpService,
+    InstellingenService,
     LoginService,
     PrikbordService,
     PrikbordClient,
