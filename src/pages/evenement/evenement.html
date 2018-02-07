@@ -48,9 +48,10 @@
         Deelnemers
       </ion-list-header>
 
-      <button ion-item *ngFor="let deelnemer of evenement.deelnemers">
+      <!--<button ion-item *ngFor="let deelnemer of evenement.deelnemers">-->
+      <ion-item *ngFor="let deelnemer of evenement.deelnemers">
         {{deelnemer}}
-      </button>
+      </ion-item>
 
       <ion-list-header style="border-bottom:0" *ngIf="evenement.reacties?.length">
         Reacties

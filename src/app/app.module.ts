@@ -20,7 +20,9 @@ import {SecureStorage} from '@ionic-native/secure-storage';
     BrowserModule,
     CoreModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
