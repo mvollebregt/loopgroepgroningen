@@ -50,7 +50,8 @@ export class LoginService {
           {
             username: login.username,
             password: login.password
-          }, formData => formData.hasOwnProperty('username')
+          }, null,
+            formData => formData.hasOwnProperty('username')
         )
         .map(this.httpService.extract(
           '#login-form input',

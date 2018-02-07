@@ -20,6 +20,7 @@ export class EvenementPage implements OnInit {
 
   evenement: Evenementdetail = <Evenementdetail>{};
   datumweergave: string[];
+  reactie: string;
 
   constructor(private evenementdetailClient: EvenementdetailClient, private navCtrl: NavController, private navParams: NavParams) {
   }
@@ -32,6 +33,14 @@ export class EvenementPage implements OnInit {
   toggleDeelname() {
     this.evenementdetailClient.schrijfIn(this.navParams.get('url'), !this.evenement.deelname)
       .subscribe(evenement => this.toonEvenement(evenement));
+  }
+
+  verstuurBericht() {
+    this.evenementdetailClient.verstuurBericht(this.navParams.get('url'), this.reactie)
+      .subscribe(evenement => {
+        this.toonEvenement(evenement);
+        this.reactie = '';
+      });
   }
 
   private toonEvenement(evenement: Evenementdetail) {

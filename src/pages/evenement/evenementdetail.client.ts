@@ -31,6 +31,19 @@ export class EvenementdetailClient {
       )
   }
 
+  verstuurBericht(eventPage: string, reactie: string) : Observable<Evenementdetail> {
+    return this.loginService
+      .login()
+      .switchMap(() =>
+        this.httpService.post(eventPage, '#comments-form', {
+          'comment': reactie,
+          'jtxf': 'JCommentsAddComment'
+        }, 'index.php/component/jcomments/'))
+      .switchMap(() =>
+          this.haalEvenementOp(eventPage)
+      )
+  }
+
   private static toEvenementdetail(elt: Element) : Evenementdetail {
     const start = elt.querySelector('[itemprop="startDate"]').getAttribute('content');
     const einde = elt.querySelector('[itemprop="endDate"]').getAttribute('content');

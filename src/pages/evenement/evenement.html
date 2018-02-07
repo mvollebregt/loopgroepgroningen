@@ -76,11 +76,11 @@
 
   <div class="dialog no-margin-right">
 
-    <ion-textarea #textarea
+    <ion-textarea #textarea [(ngModel)]="reactie"
                   placeholder="Typ hier je reactie.">
     </ion-textarea>
 
-    <button ion-button icon-only clear>
+    <button ion-button icon-only clear [disabled]="!reactie" (click)="verstuurBericht()">
       <ion-icon name="send"></ion-icon>
     </button>
 

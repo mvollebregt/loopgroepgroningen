@@ -21,7 +21,7 @@ export class HttpService {
     return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'});
   }
 
-  public post(relativeUrl: string, formSelector: string, params: any, guard?: (formObject: any) => boolean): Observable<string> {
+  public post(relativeUrl: string, formSelector: string, params: any, action?: string, guard?: (formObject: any) => boolean): Observable<string> {
     return this
       .getFormDetails(relativeUrl, formSelector)
       .switchMap(([form, source]) => {
@@ -31,7 +31,7 @@ export class HttpService {
           let formData = new FormData();
           copyToFormData(form.inputs, formData);
           copyToFormData(params, formData);
-          return this.http.post(this.urlFor(form.action), formData, {responseType: 'text'});
+          return this.http.post(this.urlFor(action? action : form.action), formData, {responseType: 'text'});
         }
       });
   }
