@@ -1,43 +1,51 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {LoginService} from '../../core/login.service';
 import {Login} from '../../core/login';
-
-/**
- * Generated class for the WelkomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {CANCELLED} from '../../core/CustomErrorHandler';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 @IonicPage()
 @Component({
   selector: 'page-welkom',
   templateUrl: 'welkom.html',
 })
-export class WelkomPage {
+export class WelkomPage implements OnInit {
 
+  observable: ReplaySubject<Login>;
   login = <Login>{};
   fout = false;
 
   constructor(private navCtrl: NavController, private loginService: LoginService) {
   }
 
-  inloggen() {
-    this.loginService.submitLogin(this.login).subscribe(success => {
-        if (success) {
-          // naar home screen
-          this.navCtrl.setRoot('PrikbordPage');
+  ngOnInit() {
+    this.loginService.login(() => this.promptLogin())
+      .catch(error => {
+        if (error == CANCELLED) {
+          return Observable.of(null);
         } else {
-          // foutmelding tonen
+          // TODO: dit werkt niet op deze plek! (zie loginservice)
           this.fout = true;
+          return Observable.throw(error);
         }
-      }
-    )
+      })
+      .subscribe(() => this.navCtrl.setRoot('PrikbordPage')
+    );
+  }
+
+  promptLogin(): Observable<Login> {
+    this.observable = new ReplaySubject<Login>();
+    return this.observable;
+  }
+
+  inloggen() {
+    this.observable.next(this.login);
   }
 
   annuleren() {
-    // naar home screen
-    this.navCtrl.setRoot('PrikbordPage');
+    this.observable.error(CANCELLED);
   }
 }

@@ -16,9 +16,9 @@ export class LoginService {
     private wachtwoordkluisService: WachtwoordkluisService) {
   }
 
-  login(): Observable<void> {
+  login(promptLogin: (login) => Observable<Login> = this.promptLogin): Observable<void> {
     return this.wachtwoordkluisService.haalLoginOp()
-      .switchMap(login => this.probeerLogin(login))
+      .switchMap(login => this.probeerLogin(login, promptLogin))
       .map(() => {});
   }
 
@@ -28,23 +28,23 @@ export class LoginService {
       .map(login => !!login);
   }
 
-  private probeerLogin(login: Login): Observable<void> {
+  private probeerLogin(login: Login, promptLogin: (login) => Observable<Login>): Observable<void> {
     return this.submitLogin(login)
       .switchMap(success => {
         if (success) {
           return Observable.of(null);
         } else {
           // TODO: foutmelding tonen bij mislukte login
-          return this.promptLogin(login)
+          return promptLogin(login)
             .do(login => this.wachtwoordkluisService.slaLoginOp(login))
-            .switchMap(login => this.probeerLogin(login))
+            .switchMap(login => this.probeerLogin(login, promptLogin))
         }
       });
   }
 
   // Submit de login naar de website.
   // De observable geeft true terug als de gebruiker is ingelogd, en false als de inloggegevens onjuist waren.
-  submitLogin(login: Login): Observable<boolean> {
+  private submitLogin(login: Login): Observable<boolean> {
     if (!login) {
       // TODO: TOCH proberen in te loggen?!? (of in ieder geval als we in de browser zitten)
       return Observable.of(false);
