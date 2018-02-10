@@ -22,6 +22,12 @@ export class LoginService {
       .map(() => {});
   }
 
+  // Geeft terug of er ooit al een keer een gebruikersnaam/wachtwoord zijn opgeslagen.
+  heeftLogin(): Observable<boolean> {
+    return this.wachtwoordkluisService.haalLoginOp()
+      .map(login => !!login);
+  }
+
   private probeerLogin(login: Login): Observable<void> {
     return this.submitLogin(login)
       .switchMap(success => {
@@ -38,7 +44,7 @@ export class LoginService {
 
   // Submit de login naar de website.
   // De observable geeft true terug als de gebruiker is ingelogd, en false als de inloggegevens onjuist waren.
-  private submitLogin(login: Login): Observable<boolean> {
+  submitLogin(login: Login): Observable<boolean> {
     if (!login) {
       // TODO: TOCH proberen in te loggen?!? (of in ieder geval als we in de browser zitten)
       return Observable.of(false);

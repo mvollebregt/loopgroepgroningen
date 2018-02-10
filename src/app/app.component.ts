@@ -2,9 +2,9 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {PrikbordPage} from "../pages/prikbord/prikbord";
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
+import {LoginService} from '../core/login.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +13,7 @@ export class MyApp {
 
   @ViewChild(Nav) private nav: Nav;
 
-  rootPage: any = 'PrikbordPage';
+  rootPage: string;
 
   pages = [
     {title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'},
@@ -22,7 +22,8 @@ export class MyApp {
     {title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'},
   ];
 
-  constructor(private platform: Platform,
+  constructor(private loginService: LoginService,
+              private platform: Platform,
               private prikbordService: PrikbordService,
               private splashScreen: SplashScreen,
               private statusBar: StatusBar) {
@@ -37,10 +38,14 @@ export class MyApp {
   }
 
   private onPlatformReady(): void {
-    this.statusBar.styleDefault();
-    this.splashScreen.hide();
     moment.locale('nl');
     this.prikbordService.synchroniseer();
+    this.loginService.heeftLogin().subscribe(heeftLogin => {
+        this.rootPage = heeftLogin ? 'PrikbordPage' : 'WelkomPage'
+      }
+    );
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
   }
 
   private onPlatformResume(): void {

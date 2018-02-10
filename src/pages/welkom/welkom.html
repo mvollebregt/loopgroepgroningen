@@ -1,0 +1,22 @@
+<ion-content class="main-content-wrapper">
+
+  <img src="assets/volledig-logo.png" class="welkom-logo">
+
+  <form (submit)="inloggen()">
+    <div class="welkom-tekst">Welkom bij Loopgroep Groningen</div>
+    <div class="welkom-fout" *ngIf="fout">Onjuiste inloggegevens. Probeer opnieuw.</div>
+    <ion-input type="text" placeholder="Gebruikersnaam" name="gebruikersnaam" [(ngModel)]="login.username"></ion-input>
+    <ion-input type="password" placeholder="Wachtwoord" name="wachtwoord" [(ngModel)]="login.password"></ion-input>
+
+    <ion-buttons>
+      <input type="button" ion-button outline (tap)="annuleren()" value="Annuleren">
+      <input type="submit" ion-button value="Inloggen">
+    </ion-buttons>
+  </form>
+
+  <div class="welkom-toelichting">
+    Als lid van Loopgroep Groningen heb je een gebruikersnaam en wachtwoord ontvangen. Geen lid? Kijk op
+    www.loopgroepgroningen.nl voor meer informatie.
+  </div>
+
+</ion-content>
