@@ -17,13 +17,13 @@ export class WelkomPage implements OnInit {
 
   observable: Subject<Login>;
   login = <Login>{};
-  fout: string;
+  meldingen: string[];
 
   constructor(private navCtrl: NavController, private loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.loginService.login((login, melding) => this.promptLogin(login, melding))
+    this.loginService.login((login, meldingen) => this.promptLogin(login, meldingen))
       .catch(error => {
         if (error == CANCELLED) {
           return Observable.of(null);
@@ -36,9 +36,9 @@ export class WelkomPage implements OnInit {
     );
   }
 
-  promptLogin(login: Login = null, melding: string = null): Observable<Login> {
+  promptLogin(login: Login = null, meldingen: string[] = null): Observable<Login> {
     this.observable = new ReplaySubject<Login>();
-    this.fout = melding;
+    this.meldingen = meldingen;
     return this.observable;
   }
 

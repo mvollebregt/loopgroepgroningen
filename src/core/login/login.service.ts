@@ -23,7 +23,7 @@ export class LoginService {
    * Wanneer het inloggen is gelukt, wordt de Observable beeindigd. Als de gebruiker heeft geannuleerd komt er een
    * Observable.error(CANCELLED) terug.
    */
-  login(promptLogin: (login: Login, melding: string) => Observable<Login> = this.promptLogin): Observable<void> {
+  login(promptLogin: (login: Login, meldingen: string[]) => Observable<Login> = (login, meldingen) => this.promptLogin(login, meldingen)): Observable<void> {
     return this.wachtwoordkluisService.haalLoginOp()
       .switchMap(login => this.probeerLogin(login, promptLogin))
       .map(() => {});
@@ -35,25 +35,25 @@ export class LoginService {
       .map(login => !!login);
   }
 
-  private probeerLogin(login: Login, promptLogin: (login: Login, melding: string) => Observable<Login>, melding: string = ''): Observable<void> {
+  private probeerLogin(login: Login, promptLogin: (login: Login, meldingen: string[]) => Observable<Login>): Observable<void> {
     return this.submitLogin(login)
-      .switchMap(success => {
-        if (success) {
+      .switchMap(meldingen => {
+        if (!meldingen) {
           return Observable.of(null);
         } else {
-          return promptLogin(login, melding)
+          return promptLogin(login, meldingen)
             .do(login => this.wachtwoordkluisService.slaLoginOp(login))
-            .switchMap(login => this.probeerLogin(login, promptLogin,'Mislukt. Probeer opnieuw.'))
+            .switchMap(login => this.probeerLogin(login, promptLogin))
         }
       });
   }
 
   // Submit de login naar de website.
   // De observable geeft true terug als de gebruiker is ingelogd, en false als de inloggegevens onjuist waren.
-  private submitLogin(login: Login): Observable<boolean> {
+  private submitLogin(login: Login): Observable<string[]> {
     if (!login) {
       // TODO: TOCH proberen in te loggen?!? (of in ieder geval als we in de browser zitten)
-      return Observable.of(false);
+      return Observable.of(['Je bent nog niet ingelogd']);
     } else {
       return this.httpService
         .post(
@@ -65,22 +65,38 @@ export class LoginService {
           }, null,
             formData => formData.hasOwnProperty('username')
         )
-        .map(this.httpService.extract(
-          '#login-form input',
-          node => node.getAttribute('name')))
-        // TODO: een betere check is of er ergens op de pagina een button met de tekst 'inloggen' is
-        .map(results => results.length > 0 && results.indexOf('username') === -1);
+        .map(response => this.checkInlogFoutmeldingen(response));
     }
+  }
+
+  private checkInlogFoutmeldingen(response: string): string[] {
+    // is er nog ergens een inlogbutton?
+    let meldingen;
+    const buttons = this.httpService.extract('button', node => node.textContent)(response);
+    let loggedIn = true;
+    for (let button of buttons) {
+      if (button.toLowerCase().indexOf('inloggen') > -1) {
+        loggedIn = false;
+      }
+    }
+    if (!loggedIn) {
+      // zoek naar meldingen op de pagina zelf
+      meldingen = this.httpService.extract('.warning li', node => node.textContent.trim())(response);
+      if (meldingen.length === 0) {
+        meldingen = ['Het inloggen is mislukt.'];
+      }
+    }
+    return meldingen;
   }
 
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
   // De observable geeft een Login-object terug als de gebruiker op de inloggen-knop drukt.
   // De observable gooit een error CANCELED als de gebruiker op Annuleren drukt.
-  private promptLogin(login: Login, melding: string) : Observable<Login> {
+  private promptLogin(login: Login, meldingen: string[]) : Observable<Login> {
     const observable = new ReplaySubject<Login>();
     const alert = this.alertController.create({
       title: 'Inloggen',
-      message: melding || "Log in om alles te kunnen",
+      message: meldingen.join('<br/>'),
       inputs: [
         {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username: ''},
         {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password: ''}
