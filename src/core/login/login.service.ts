@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
-import {HttpService} from "./http.service";
+import {HttpService} from "../http.service";
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {CANCELLED} from './CustomErrorHandler';
+import {CANCELLED} from '../CustomErrorHandler';
 import {Login} from './login';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
 
@@ -16,7 +16,14 @@ export class LoginService {
     private wachtwoordkluisService: WachtwoordkluisService) {
   }
 
-  login(promptLogin: (login) => Observable<Login> = this.promptLogin): Observable<void> {
+  /**
+   * Probeer in te loggen met de gegevens die zijn opgeslagen in de wachtwoordkluis.
+   * Indien dat mislukt, wordt promptLogin aangeroepen om een nieuwe login te vragen en daarna volgt een nieuwe
+   * inlogpoging, net zolang totdat de inlogpoging lukt, of totdat de gebruiker het inloggen annuleert.
+   * Wanneer het inloggen is gelukt, wordt de Observable beeindigd. Als de gebruiker heeft geannuleerd komt er een
+   * Observable.error(CANCELLED) terug.
+   */
+  login(promptLogin: (login: Login, melding: string) => Observable<Login> = this.promptLogin): Observable<void> {
     return this.wachtwoordkluisService.haalLoginOp()
       .switchMap(login => this.probeerLogin(login, promptLogin))
       .map(() => {});
@@ -28,16 +35,15 @@ export class LoginService {
       .map(login => !!login);
   }
 
-  private probeerLogin(login: Login, promptLogin: (login) => Observable<Login>): Observable<void> {
+  private probeerLogin(login: Login, promptLogin: (login: Login, melding: string) => Observable<Login>, melding: string = ''): Observable<void> {
     return this.submitLogin(login)
       .switchMap(success => {
         if (success) {
           return Observable.of(null);
         } else {
-          // TODO: foutmelding tonen bij mislukte login
-          return promptLogin(login)
+          return promptLogin(login, melding)
             .do(login => this.wachtwoordkluisService.slaLoginOp(login))
-            .switchMap(login => this.probeerLogin(login, promptLogin))
+            .switchMap(login => this.probeerLogin(login, promptLogin,'Mislukt. Probeer opnieuw.'))
         }
       });
   }
@@ -70,11 +76,11 @@ export class LoginService {
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
   // De observable geeft een Login-object terug als de gebruiker op de inloggen-knop drukt.
   // De observable gooit een error CANCELED als de gebruiker op Annuleren drukt.
-  private promptLogin(login: Login) : Observable<Login> {
+  private promptLogin(login: Login, melding: string) : Observable<Login> {
     const observable = new ReplaySubject<Login>();
     const alert = this.alertController.create({
       title: 'Inloggen',
-      message: "Log in om alles te kunnen",
+      message: melding || "Log in om alles te kunnen",
       inputs: [
         {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username: ''},
         {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password: ''}

@@ -7,7 +7,7 @@ import {Bericht} from "./bericht";
 import * as moment from 'moment';
 import {HttpService} from "./http.service";
 import {toParagraaf} from './to-paragraaf';
-import {LoginService} from './login.service';
+import {LoginService} from './login/login.service';
 
 @Injectable()
 export class PrikbordClient {

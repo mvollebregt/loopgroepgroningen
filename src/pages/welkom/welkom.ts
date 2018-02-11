@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {LoginService} from '../../core/login.service';
-import {Login} from '../../core/login';
+import {LoginService} from '../../core/login/login.service';
+import {Login} from '../../core/login/login';
 import {CANCELLED} from '../../core/CustomErrorHandler';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+import {Subject} from 'rxjs/Subject';
 
 @IonicPage()
 @Component({
@@ -14,21 +15,20 @@ import 'rxjs/add/observable/throw';
 })
 export class WelkomPage implements OnInit {
 
-  observable: ReplaySubject<Login>;
+  observable: Subject<Login>;
   login = <Login>{};
-  fout = false;
+  fout: string;
 
   constructor(private navCtrl: NavController, private loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.loginService.login(() => this.promptLogin())
+    this.loginService.login((login, melding) => this.promptLogin(login, melding))
       .catch(error => {
         if (error == CANCELLED) {
           return Observable.of(null);
         } else {
-          // TODO: dit werkt niet op deze plek! (zie loginservice)
-          this.fout = true;
+          // this.fout = true;
           return Observable.throw(error);
         }
       })
@@ -36,8 +36,9 @@ export class WelkomPage implements OnInit {
     );
   }
 
-  promptLogin(): Observable<Login> {
+  promptLogin(login: Login = null, melding: string = null): Observable<Login> {
     this.observable = new ReplaySubject<Login>();
+    this.fout = melding;
     return this.observable;
   }
 

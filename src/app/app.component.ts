@@ -4,7 +4,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
-import {LoginService} from '../core/login.service';
+import {LoginService} from '../core/login/login.service';
 
 @Component({
   templateUrl: 'app.html'

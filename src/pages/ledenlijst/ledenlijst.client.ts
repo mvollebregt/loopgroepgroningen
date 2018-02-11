@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
-import {LoginService} from "../../core/login.service";
+import {LoginService} from "../../core/login/login.service";
 import {Contact} from '../../core/contacten/contact';
 
 @Injectable()
@@ -45,7 +45,7 @@ export class LedenlijstClient {
 
   private static decloakEmail(script: string) {
     const start = script.indexOf('var addy_text');
-    const end = script.indexOf(';document')
+    const end = script.indexOf(';document');
     const parts = script.substring(start, end).split('\'');
     let email = '';
     for (let i = 1; i < parts.length; i+=2) {

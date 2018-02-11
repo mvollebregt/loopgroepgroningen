@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {LoginService} from "../../core/login.service";
+import {LoginService} from "../../core/login/login.service";
 import {Trainingsschema} from './trainingsschema.domain';
 import {HttpClient} from '@angular/common/http';
 import {Platform} from 'ionic-angular';
