@@ -23,9 +23,9 @@ export class LoginService {
    * Wanneer het inloggen is gelukt, wordt de Observable beeindigd. Als de gebruiker heeft geannuleerd komt er een
    * Observable.error(CANCELLED) terug.
    */
-  login(promptLogin: (login: Login, meldingen: string[]) => Observable<Login> = (login, meldingen) => this.promptLogin(login, meldingen)): Observable<void> {
+  login(): Observable<void> {
     return this.wachtwoordkluisService.haalLoginOp()
-      .switchMap(login => this.probeerLogin(login, promptLogin));
+      .switchMap(login => this.probeerLogin(login));
   }
 
   // Geeft terug of er ooit al een keer een gebruikersnaam/wachtwoord zijn opgeslagen.
@@ -50,15 +50,15 @@ export class LoginService {
       .map(response => this.checkInlogFoutmeldingen(response));
   }
 
-  private probeerLogin(login: Login, promptLogin: (login: Login, meldingen: string[]) => Observable<Login>): Observable<void> {
+  private probeerLogin(login: Login): Observable<void> {
     return this.submitLogin(login)
       .switchMap(meldingen => {
         if (!meldingen) {
           return Observable.of(null);
         } else {
-          return promptLogin(login, meldingen)
+          return this.promptLogin(login, meldingen)
             .do(login => this.wachtwoordkluisService.slaLoginOp(login))
-            .switchMap(login => this.probeerLogin(login, promptLogin))
+            .switchMap(login => this.probeerLogin(login))
         }
       });
   }
