@@ -25,14 +25,29 @@ export class LoginService {
    */
   login(promptLogin: (login: Login, meldingen: string[]) => Observable<Login> = (login, meldingen) => this.promptLogin(login, meldingen)): Observable<void> {
     return this.wachtwoordkluisService.haalLoginOp()
-      .switchMap(login => this.probeerLogin(login, promptLogin))
-      .map(() => {});
+      .switchMap(login => this.probeerLogin(login, promptLogin));
   }
 
   // Geeft terug of er ooit al een keer een gebruikersnaam/wachtwoord zijn opgeslagen.
   heeftLogin(): Observable<boolean> {
     return this.wachtwoordkluisService.haalLoginOp()
       .map(login => !!login);
+  }
+
+  // Submit de login naar de website.
+  // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
+  submitLogin(login: Login): Observable<string[]> {
+    return this.httpService
+      .post(
+        'index.php/loopgroep-groningen-ledeninfo',
+        '#login-form',
+        {
+          username: (login && login.username) || '',
+          password: (login && login.password) || ''
+        }, null,
+        formData => formData.hasOwnProperty('username') // TODO: zelfde check als bij checkInlogFoutmeldingen
+      )
+      .map(response => this.checkInlogFoutmeldingen(response));
   }
 
   private probeerLogin(login: Login, promptLogin: (login: Login, meldingen: string[]) => Observable<Login>): Observable<void> {
@@ -48,31 +63,11 @@ export class LoginService {
       });
   }
 
-  // Submit de login naar de website.
-  // De observable geeft true terug als de gebruiker is ingelogd, en false als de inloggegevens onjuist waren.
-  private submitLogin(login: Login): Observable<string[]> {
-    if (!login) {
-      // TODO: TOCH proberen in te loggen?!? (of in ieder geval als we in de browser zitten)
-      return Observable.of(['Je bent nog niet ingelogd']);
-    } else {
-      return this.httpService
-        .post(
-          'index.php/loopgroep-groningen-ledeninfo',
-          '#login-form',
-          {
-            username: login.username,
-            password: login.password
-          }, null,
-            formData => formData.hasOwnProperty('username')
-        )
-        .map(response => this.checkInlogFoutmeldingen(response));
-    }
-  }
-
   private checkInlogFoutmeldingen(response: string): string[] {
     // is er nog ergens een inlogbutton?
     let meldingen;
     const buttons = this.httpService.extract('button', node => node.textContent)(response);
+    // TODO: input type=submit komt ook voor!
     let loggedIn = true;
     for (let button of buttons) {
       if (button.toLowerCase().indexOf('inloggen') > -1) {
