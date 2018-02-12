@@ -37,6 +37,7 @@ export class LoginService {
   // Submit de login naar de website.
   // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
   submitLogin(login: Login): Observable<string[]> {
+    // TODO: iets van visuele feedback geven dat de login aan de gang is
     return this.httpService
       .post(
         'index.php/loopgroep-groningen-ledeninfo',

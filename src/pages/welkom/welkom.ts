@@ -4,6 +4,7 @@ import {LoginService} from '../../core/login/login.service';
 import {Login} from '../../core/login/login';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+import {WachtwoordkluisService} from '../../core/login/wachtwoordkluis.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +16,14 @@ export class WelkomPage {
   login = <Login>{};
   meldingen: string[];
 
-  constructor(private navCtrl: NavController, private loginService: LoginService) {
+  constructor(
+    private loginService: LoginService,
+    private navCtrl: NavController,
+    private wachtwoordkluis: WachtwoordkluisService) {
   }
 
   inloggen() {
-    // TODO: ook opslaan in wachtwoordkluis (maar waar?)
+    this.wachtwoordkluis.slaLoginOp(this.login);
     this.loginService.submitLogin(this.login)
       .catch(error => Observable.of([error]))
       .subscribe(meldingen => {

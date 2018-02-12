@@ -23,6 +23,7 @@ export class PrikbordPage implements OnInit {
   constructor(private prikbordService: PrikbordService) {
   }
 
+  // TODO: altijd naar de bottom scrollen
   ngOnInit() {
     this.items = this.prikbordService.getBerichten();
     this.items.subscribe(values => {
