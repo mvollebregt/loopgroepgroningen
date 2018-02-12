@@ -6,6 +6,7 @@ import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {CANCELLED} from '../CustomErrorHandler';
 import {Login} from './login';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
+import {InstellingenService} from '../instellingen/instellingen.service';
 
 @Injectable()
 export class LoginService {
@@ -13,6 +14,7 @@ export class LoginService {
   constructor(
     private alertController: AlertController,
     private httpService: HttpService,
+    private instellingenService: InstellingenService,
     private wachtwoordkluisService: WachtwoordkluisService) {
   }
 
@@ -26,12 +28,6 @@ export class LoginService {
   login(): Observable<void> {
     return this.wachtwoordkluisService.haalLoginOp()
       .switchMap(login => this.probeerLogin(login));
-  }
-
-  // Geeft terug of er ooit al een keer een gebruikersnaam/wachtwoord zijn opgeslagen.
-  heeftLogin(): Observable<boolean> {
-    return this.wachtwoordkluisService.haalLoginOp()
-      .map(login => !!login);
   }
 
   // Submit de login naar de website.
@@ -48,7 +44,12 @@ export class LoginService {
         }, null,
         formData => formData.hasOwnProperty('username') // TODO: zelfde check als bij checkInlogFoutmeldingen
       )
-      .map(response => this.checkInlogFoutmeldingen(response));
+      .map(response => this.checkInlogFoutmeldingen(response))
+      .do(meldingen => {
+        if (!meldingen) {
+          this.instellingenService.setInstellingen({ingelogd: true})
+        }
+      });
   }
 
   private probeerLogin(login: Login): Observable<void> {

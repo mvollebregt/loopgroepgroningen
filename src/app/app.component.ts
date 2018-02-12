@@ -4,7 +4,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
-import {LoginService} from '../core/login/login.service';
+import {InstellingenService} from '../core/instellingen/instellingen.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +22,7 @@ export class MyApp {
     {title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'},
   ];
 
-  constructor(private loginService: LoginService,
+  constructor(private instellingenService: InstellingenService,
               private platform: Platform,
               private prikbordService: PrikbordService,
               private splashScreen: SplashScreen,
@@ -40,8 +40,9 @@ export class MyApp {
   private onPlatformReady(): void {
     moment.locale('nl');
     this.prikbordService.synchroniseer();
-    this.loginService.heeftLogin().subscribe(heeftLogin => {
-        this.rootPage = heeftLogin ? 'PrikbordPage' : 'WelkomPage'
+    this.instellingenService.getInstellingen()
+      .subscribe(instellingen => {
+        this.rootPage = instellingen.ingelogd ? 'PrikbordPage' : 'WelkomPage'
       }
     );
     this.statusBar.styleDefault();

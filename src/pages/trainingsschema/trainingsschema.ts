@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {Trainingsschema} from './trainingsschema.domain';
-import {InstellingenService} from '../../core/instellingen.service';
+import {InstellingenService} from '../../core/instellingen/instellingen.service';
 import 'rxjs/add/operator/pluck';
 import {Subscription} from 'rxjs/Subscription';
 import {Training} from './training';

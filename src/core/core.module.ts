@@ -6,7 +6,7 @@ import {HttpService} from './http.service';
 import {WachtwoordkluisService} from './login/wachtwoordkluis.service';
 import {ContactoptiesService} from './contacten/contactopties.service';
 import {Contacts} from '@ionic-native/contacts';
-import {InstellingenService} from './instellingen.service';
+import {InstellingenService} from './instellingen/instellingen.service';
 
 @NgModule({
   providers: [
