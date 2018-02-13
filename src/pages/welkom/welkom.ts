@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController} from 'ionic-angular';
 import {LoginService} from '../../core/login/login.service';
 import {Login} from '../../core/login/login';
 import {Observable} from 'rxjs/Observable';
@@ -17,10 +17,14 @@ export class WelkomPage {
   meldingen: string[];
 
   constructor(
+    private alertController: AlertController,
     private loginService: LoginService,
     private navCtrl: NavController,
     private wachtwoordkluis: WachtwoordkluisService) {
   }
+
+  // TODO: invoervelden gebruikersnaam/wachtwoord verspringen bij onFocus (kun je representeren in Safari)
+  // TODO: testen of submit-knoppen ook zichtbaar blijven boven toetsenbord bij oud (klein) model iPhone
 
   inloggen() {
     this.wachtwoordkluis.slaLoginOp(this.login);
@@ -37,5 +41,11 @@ export class WelkomPage {
 
   annuleren() {
     this.navCtrl.setRoot('PrikbordPage');
+    this.alertController.create({
+      title: 'Niet ingelogd',
+      message: `Omdat je niet bent ingelogd, kun je alleen het prikbord en de agenda bekijken. Voor volledige toegang 
+      ga je naar 'Inloggen' in het menu.`,
+      buttons: ['OK']
+    }).present();
   }
 }

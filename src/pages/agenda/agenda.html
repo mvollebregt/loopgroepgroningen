@@ -17,10 +17,23 @@
         {{sectie.titel}}
       </ion-list-header>
 
-      <button *ngFor="let evenement of sectie.inhoud" ion-item (click)="gaNaarEvenement(evenement)">
-        <h2 item-start>{{korteWeergave(evenement.start)}}</h2>
-        {{evenement.naam}}
-      </button>
+      <ng-template [ngIf]="ingelogd | async" [ngIfElse]="nietIngelogd">
+
+        <button *ngFor="let evenement of sectie.inhoud" ion-item (click)="gaNaarEvenement(evenement)">
+          <h2 item-start>{{korteWeergave(evenement.start)}}</h2>
+          {{evenement.naam}}
+        </button>
+
+      </ng-template>
+
+      <ng-template #nietIngelogd>
+
+        <ion-item *ngFor="let evenement of sectie.inhoud">
+          <h2 item-start>{{korteWeergave(evenement.start)}}</h2>
+          {{evenement.naam}}
+        </ion-item>
+
+      </ng-template>
 
     </ng-template>
 

@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import * as moment from 'moment';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
+import {InstellingenService} from '../../core/instellingen/instellingen.service';
 
 /**
  * Generated class for the AgendaPage page.
@@ -23,11 +24,16 @@ import {sectioneer} from '../../core/sectioneer';
 export class AgendaPage implements OnInit {
 
   evenementen: Observable<Sectie<Evenement>[]>;
+  ingelogd: Observable<boolean>;
 
-  constructor(private agendaClient: AgendaClient, private navCtrl: NavController) {
+  constructor(
+    private agendaClient: AgendaClient,
+    private instellingenService: InstellingenService,
+    private navCtrl: NavController) {
   }
 
   ngOnInit() {
+    this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
     this.evenementen = this.agendaClient.haalEvenementenOp()
       .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')));
   }

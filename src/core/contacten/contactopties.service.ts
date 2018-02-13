@@ -83,12 +83,12 @@ export class ContactoptiesService {
       () => this.alertController.create({
         title: 'Opgeslagen',
         message: `${item.naam} is toegevoegd aan je adresboek.`,
-        buttons: ['Ok']
+        buttons: ['OK']
       }).present(),
       (error: any) => this.alertController.create({
         title: 'Fout',
         message: `${item.naam} kon niet worden toegevoegd.`,
-        buttons: ['Ok']
+        buttons: ['OK']
       }).present()
     );
   }

@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
 import {InstellingenService} from '../core/instellingen/instellingen.service';
+import {WelkomPage} from '../pages/welkom/welkom';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,13 +15,7 @@ export class MyApp {
   @ViewChild(Nav) private nav: Nav;
 
   rootPage: string;
-
-  pages = [
-    {title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'},
-    {title: 'Agenda', component: 'AgendaPage', icon: 'calendar'},
-    {title: 'Trainingsschema', component: 'TrainingsschemaPage', icon: 'grid'},
-    {title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'},
-  ];
+  pages = [];
 
   constructor(private instellingenService: InstellingenService,
               private platform: Platform,
@@ -39,6 +34,8 @@ export class MyApp {
 
   private onPlatformReady(): void {
     moment.locale('nl');
+    this.instellingenService.getInstellingen().subscribe(instellingen =>
+      this.ingelogdGewijzigd(instellingen.ingelogd));
     this.prikbordService.synchroniseer();
     this.instellingenService.getInstellingen()
       .subscribe(instellingen => {
@@ -51,5 +48,17 @@ export class MyApp {
 
   private onPlatformResume(): void {
     this.prikbordService.synchroniseer();
+  }
+
+  private ingelogdGewijzigd(ingelogd: boolean) {
+    this.pages = [];
+    this.pages.push({title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'});
+    this.pages.push({title: 'Agenda', component: 'AgendaPage', icon: 'calendar'});
+    if (ingelogd) {
+      this.pages.push({title: 'Trainingsschema', component: 'TrainingsschemaPage', icon: 'grid'});
+      this.pages.push({title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'});
+    } else {
+      this.pages.push({title: 'Inloggen', component: 'WelkomPage', icon: 'log-in'});
+    }
   }
 }

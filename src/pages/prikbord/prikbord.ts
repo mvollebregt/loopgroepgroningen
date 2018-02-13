@@ -3,6 +3,7 @@ import {Content, IonicPage, TextInput} from 'ionic-angular';
 import {Bericht} from "../../core/bericht";
 import {Observable} from "rxjs/Observable";
 import {PrikbordService} from "../../core/prikbord.service";
+import {InstellingenService} from '../../core/instellingen/instellingen.service';
 
 @IonicPage()
 @Component({
@@ -12,6 +13,7 @@ import {PrikbordService} from "../../core/prikbord.service";
 export class PrikbordPage implements OnInit {
 
   items: Observable<Bericht[]>;
+  ingelogd: Observable<boolean>;
   reactie: string;
   aanHetVersturen = false;
 
@@ -20,11 +22,12 @@ export class PrikbordPage implements OnInit {
 
   private initialized = false;
 
-  constructor(private prikbordService: PrikbordService) {
+  constructor(private instellingenService: InstellingenService, private prikbordService: PrikbordService) {
   }
 
   // TODO: altijd naar de bottom scrollen
   ngOnInit() {
+    this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
     this.items = this.prikbordService.getBerichten();
     this.items.subscribe(values => {
       setTimeout(() => {
