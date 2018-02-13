@@ -18,7 +18,8 @@ export class HttpService {
   }
 
   public get(relativeUrl: string): Observable<string> {
-    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'});
+    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'})
+      .do(response => this.checkMeldingen(response));
   }
 
   public post(relativeUrl: string, formSelector: string, params: any, action?: string, guard?: (formObject: any) => boolean): Observable<string> {
@@ -33,7 +34,8 @@ export class HttpService {
           copyToFormData(params, formData);
           return this.http.post(this.urlFor(action? action : form.action? form.action : relativeUrl), formData, {responseType: 'text'});
         }
-      });
+      })
+      .do(response => this.checkMeldingen(response));
   }
 
   public extract<T>(selector: string, mapToObject: (node: Element) => T): (html: string) => T[] {
@@ -53,6 +55,13 @@ export class HttpService {
     const normalizedUrl = serverNameIndex === -1 ? relativeUrl : relativeUrl.substring(serverNameIndex + 'loopgroepgroningen.nl/'.length);
     const separator = normalizedUrl.startsWith('/') ? '' : '/';
     return this.baseUrl + separator + normalizedUrl;
+  }
+
+  private checkMeldingen(response: string) : void {
+    let meldingen = this.extract('#system-message-container li', node => node.textContent.trim())(response);
+    if (meldingen.length > 0) {
+      throw meldingen;
+    }
   }
 
   private getFormDetails(relativeUrl: string, formSelector: string): Observable<[FormDetails, string]> {

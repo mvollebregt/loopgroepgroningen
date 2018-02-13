@@ -73,17 +73,7 @@ export class LoginService {
       }
     }
     if (!loggedIn) {
-      // zoek naar meldingen op de pagina zelf
-      this.checkMeldingen(response);
-      // als deze nog niet gethrowd heeft doen we dat alsnog
       throw ['Het inloggen is mislukt.'];
-    }
-  }
-
-  private checkMeldingen(response: string) : void {
-    let meldingen = this.httpService.extract('#system-message-container li', node => node.textContent.trim())(response);
-    if (meldingen.length > 0) {
-      throw meldingen;
     }
   }
 
