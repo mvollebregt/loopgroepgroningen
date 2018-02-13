@@ -32,7 +32,7 @@ export class LoginService {
 
   // Submit de login naar de website.
   // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
-  submitLogin(login: Login): Observable<string[]> {
+  submitLogin(login: Login): Observable<void> {
     // TODO: iets van visuele feedback geven dat de login aan de gang is
     return this.httpService
       .post(
@@ -44,30 +44,26 @@ export class LoginService {
         }, null,
         formData => formData.hasOwnProperty('username') // TODO: zelfde check als bij checkInlogFoutmeldingen
       )
-      .map(response => this.checkInlogFoutmeldingen(response))
+      .do(response => this.checkInlogFoutmeldingen(response))
       .do(meldingen => {
         if (!meldingen) {
           this.instellingenService.setInstellingen({ingelogd: true})
         }
-      });
+      })
+      .map(() => null);
   }
 
   private probeerLogin(login: Login): Observable<void> {
     return this.submitLogin(login)
-      .switchMap(meldingen => {
-        if (!meldingen) {
-          return Observable.of(null);
-        } else {
-          return this.promptLogin(login, meldingen)
-            .do(login => this.wachtwoordkluisService.slaLoginOp(login))
-            .switchMap(login => this.probeerLogin(login))
-        }
+      .catch(meldingen => {
+        return this.promptLogin(login, meldingen)
+          .do(login => this.wachtwoordkluisService.slaLoginOp(login))
+          .switchMap(login => this.probeerLogin(login));
       });
   }
 
-  private checkInlogFoutmeldingen(response: string): string[] {
+  private checkInlogFoutmeldingen(response: string): void {
     // is er nog ergens een inlogbutton?
-    let meldingen;
     const buttons = this.httpService.extract('button', node => node.textContent)(response);
     // TODO: input type=submit komt ook voor!
     let loggedIn = true;
@@ -78,12 +74,17 @@ export class LoginService {
     }
     if (!loggedIn) {
       // zoek naar meldingen op de pagina zelf
-      meldingen = this.httpService.extract('.warning li', node => node.textContent.trim())(response);
-      if (meldingen.length === 0) {
-        meldingen = ['Het inloggen is mislukt.'];
-      }
+      this.checkMeldingen(response);
+      // als deze nog niet gethrowd heeft doen we dat alsnog
+      throw ['Het inloggen is mislukt.'];
     }
-    return meldingen;
+  }
+
+  private checkMeldingen(response: string) : void {
+    let meldingen = this.httpService.extract('#system-message-container li', node => node.textContent.trim())(response);
+    if (meldingen.length > 0) {
+      throw meldingen;
+    }
   }
 
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
