@@ -23,7 +23,6 @@ export class WelkomPage {
     private wachtwoordkluis: WachtwoordkluisService) {
   }
 
-  // TODO: invoervelden gebruikersnaam/wachtwoord verspringen bij onFocus (kun je representeren in Safari)
   // TODO: testen of submit-knoppen ook zichtbaar blijven boven toetsenbord bij oud (klein) model iPhone
 
   inloggen() {
