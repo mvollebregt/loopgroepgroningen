@@ -3,7 +3,7 @@ import {HttpService} from "../http.service";
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {CANCELLED} from '../CustomErrorHandler';
+import {CANCELLED, foutweergave} from '../CustomErrorHandler';
 import {Login} from './login';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
 import {InstellingenService} from '../instellingen/instellingen.service';
@@ -94,7 +94,7 @@ export class LoginService {
     const observable = new ReplaySubject<Login>();
     const alert = this.alertController.create({
       title: 'Inloggen',
-      message: meldingen.join('<br/>'),
+      message: foutweergave(meldingen),
       inputs: [
         {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username: ''},
         {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password: ''}
