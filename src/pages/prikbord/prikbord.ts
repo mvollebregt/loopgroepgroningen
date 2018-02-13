@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Content, IonicPage, TextInput} from 'ionic-angular';
 import {Bericht} from "../../core/bericht";
 import {Observable} from "rxjs/Observable";
@@ -10,7 +10,7 @@ import {InstellingenService} from '../../core/instellingen/instellingen.service'
   selector: 'page-prikbord',
   templateUrl: 'prikbord.html',
 })
-export class PrikbordPage implements OnInit {
+export class PrikbordPage {
 
   items: Observable<Bericht[]>;
   ingelogd: Observable<boolean>;
@@ -20,21 +20,21 @@ export class PrikbordPage implements OnInit {
   @ViewChild(Content) private content: Content;
   @ViewChild('textarea') private textInput: TextInput;
 
-  private initialized = false;
-
   constructor(private instellingenService: InstellingenService, private prikbordService: PrikbordService) {
   }
 
-  // TODO: altijd naar de bottom scrollen
-  ngOnInit() {
+  ionViewDidLoad() {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
     this.items = this.prikbordService.getBerichten();
-    this.items.subscribe(values => {
+    this.items.subscribe(() => {
       setTimeout(() => {
-        this.content.scrollToBottom(this.initialized ? 300 : 0);
-        this.initialized = values.length > 0;
+        this.content.scrollToBottom(300);
       });
     });
+  }
+
+  ionViewDidEnter() {
+    this.content.scrollToBottom(0);
   }
 
   verstuurBericht() {
