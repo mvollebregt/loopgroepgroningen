@@ -24,6 +24,7 @@ export class TrainingsschemaPage implements OnInit, OnDestroy {
 
   trainingsschema: Trainingsschema;
   groep: String;
+  spinning = true;
 
   private subscriptions: Subscription[] = [];
 
@@ -34,8 +35,9 @@ export class TrainingsschemaPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.trainingsschemaService.haalTrainingsschemaOp().subscribe(trainingsschema =>
-        this.trainingsschema = trainingsschema));
+      this.trainingsschemaService.haalTrainingsschemaOp()
+        .do(() => this.spinning = false)
+        .subscribe(trainingsschema => this.trainingsschema = trainingsschema));
     this.subscriptions.push(
       this.instellingenService.getInstellingen().subscribe(instellingen => {
           this.groep = (instellingen && instellingen.groep) || 'A';

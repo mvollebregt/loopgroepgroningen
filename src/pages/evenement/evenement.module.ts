@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
 import {EvenementPage} from './evenement';
 import {EvenementdetailClient} from './evenementdetail.client';
-import {PipesModule} from '../../pipes/pipes.module';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import {PipesModule} from '../../pipes/pipes.module';
   ],
   imports: [
     IonicPageModule.forChild(EvenementPage),
-    PipesModule
+    SharedModule
   ],
   providers: [
     EvenementdetailClient

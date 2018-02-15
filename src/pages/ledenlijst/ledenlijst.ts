@@ -23,13 +23,15 @@ export class LedenlijstPage implements OnInit {
 
   zoekterm: string;
   items: Observable<Sectie<Contact>[]>;
+  spinning = true;
 
   constructor(public contactoptiesService: ContactoptiesService, private ledenlijstClient: LedenlijstClient) {
   }
 
   ngOnInit() {
     this.items = this.ledenlijstClient.haalLedenOp().map(
-      sectioneer<Contact>(contact => contact.naam[0].toUpperCase()));
+      sectioneer<Contact>(contact => contact.naam[0].toUpperCase()))
+      .do(() => this.spinning = false);
   }
 
   voldoetAanZoekterm(naam: string) {

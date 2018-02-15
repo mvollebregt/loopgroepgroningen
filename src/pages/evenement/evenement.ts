@@ -23,12 +23,14 @@ export class EvenementPage implements OnInit {
   datumweergave: string[];
   reactie: string;
   aanHetVersturen = false;
+  spinning = true;
 
   constructor(private evenementdetailClient: EvenementdetailClient, private navCtrl: NavController, private navParams: NavParams) {
   }
 
   ngOnInit() {
     this.evenementdetailClient.haalEvenementOp(this.navParams.get('url'))
+      .do(() => this.spinning = false)
       .subscribe(evenement => this.toonEvenement(evenement));
   }
 

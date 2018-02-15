@@ -25,6 +25,7 @@ export class AgendaPage implements OnInit {
 
   evenementen: Observable<Sectie<Evenement>[]>;
   ingelogd: Observable<boolean>;
+  spinning = true;
 
   constructor(
     private agendaClient: AgendaClient,
@@ -35,7 +36,8 @@ export class AgendaPage implements OnInit {
   ngOnInit() {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
     this.evenementen = this.agendaClient.haalEvenementenOp()
-      .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')));
+      .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')))
+      .do(() => this.spinning = false);
   }
 
   korteWeergave(datumTijd: string) {

@@ -3,6 +3,7 @@ import {IonicPageModule} from 'ionic-angular';
 import {TrainingsschemaPage} from './trainingsschema';
 import {TrainingsschemaClient} from './trainingsschema.client';
 import {TrainingsschemaService} from './trainingsschema.service';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import {TrainingsschemaService} from './trainingsschema.service';
   ],
   imports: [
     IonicPageModule.forChild(TrainingsschemaPage),
+    SharedModule
   ],
   providers: [
     TrainingsschemaClient,

@@ -9,6 +9,8 @@
 
 </ion-header>
 
+<lg-spinner *ngIf="spinning"></lg-spinner>
+
 <ion-content>
 
   <ion-searchbar [(ngModel)]="zoekterm"></ion-searchbar>
