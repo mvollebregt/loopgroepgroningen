@@ -45,11 +45,7 @@ export class LoginService {
         formData => formData.hasOwnProperty('username') // TODO: zelfde check als bij checkInlogFoutmeldingen
       )
       .do(response => this.checkInlogFoutmeldingen(response))
-      .do(meldingen => {
-        if (!meldingen) {
-          this.instellingenService.setInstellingen({ingelogd: true})
-        }
-      })
+      .do(() => this.instellingenService.setInstellingen({ingelogd: true}))
       .map(() => null);
   }
 
