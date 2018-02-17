@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {AgendaClient} from './agenda.client';
 import {Evenement} from './evenement';
@@ -13,7 +13,7 @@ import {InstellingenService} from '../../core/instellingen/instellingen.service'
   selector: 'page-agenda',
   templateUrl: 'agenda.html',
 })
-export class AgendaPage implements OnInit {
+export class AgendaPage {
 
   evenementen: Observable<Sectie<Evenement>[]>;
   ingelogd: Observable<boolean>;
@@ -25,7 +25,7 @@ export class AgendaPage implements OnInit {
     private navCtrl: NavController) {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
     this.evenementen = this.agendaClient.haalEvenementenOp()
       .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')))

@@ -1,46 +1,44 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {Trainingsschema} from './trainingsschema.domain';
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
 import 'rxjs/add/operator/pluck';
-import {Subscription} from 'rxjs/Subscription';
 import {Training} from './training';
 import * as moment from 'moment';
 import {TrainingsschemaService} from './trainingsschema.service';
+import {Subject} from 'rxjs/Subject';
 
 @IonicPage()
 @Component({
   selector: 'page-trainingsschema',
   templateUrl: 'trainingsschema.html',
 })
-export class TrainingsschemaPage implements OnInit, OnDestroy {
+export class TrainingsschemaPage {
 
+  destroy = new Subject<boolean>();
   trainingsschema: Trainingsschema;
   groep: String;
   spinning = true;
-
-  private subscriptions: Subscription[] = [];
 
   constructor(private trainingsschemaService: TrainingsschemaService,
               private instellingenService: InstellingenService,
               private navCtrl: NavController) {
   }
 
-  ngOnInit() {
-    this.subscriptions.push(
-      this.trainingsschemaService.haalTrainingsschemaOp()
-        .do(() => this.spinning = false)
-        .subscribe(trainingsschema => this.trainingsschema = trainingsschema));
-    this.subscriptions.push(
-      this.instellingenService.getInstellingen().subscribe(instellingen => {
-          this.groep = (instellingen && instellingen.groep) || 'A';
-        }));
+  ionViewWillEnter() {
+    this.trainingsschemaService.haalTrainingsschemaOp()
+      .takeUntil(this.destroy)
+      .do(() => this.spinning = false)
+      .subscribe(trainingsschema => this.trainingsschema = trainingsschema);
+    this.instellingenService.getInstellingen()
+      .takeUntil(this.destroy)
+      .subscribe(instellingen => {
+        this.groep = (instellingen && instellingen.groep) || 'A';
+      });
   }
 
-  ngOnDestroy() {
-    for (let subscription of this.subscriptions) {
-      subscription.unsubscribe();
-    }
+  ionViewWillLeave() {
+    this.destroy.next(true);
   }
 
   kop(training: Training) {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavParams} from 'ionic-angular';
 import {EvenementdetailClient} from './evenementdetail.client';
 import {Evenementdetail} from './evenementdetail';
@@ -10,7 +10,7 @@ import * as moment from 'moment';
   selector: 'page-evenement',
   templateUrl: 'evenement.html',
 })
-export class EvenementPage implements OnInit {
+export class EvenementPage {
 
   evenement: Evenementdetail = <Evenementdetail>{};
   datumweergave: string[];
@@ -23,7 +23,7 @@ export class EvenementPage implements OnInit {
     private navParams: NavParams) {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.evenementdetailClient.haalEvenementOp(this.navParams.get('url'))
       .do(() => this.spinning = false)
       .subscribe(evenement => this.toonEvenement(evenement));

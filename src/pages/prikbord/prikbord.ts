@@ -4,6 +4,7 @@ import {Bericht} from "../../core/bericht";
 import {Observable} from "rxjs/Observable";
 import {PrikbordService} from "../../core/prikbord.service";
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
+import {Subject} from 'rxjs/Subject';
 
 @IonicPage()
 @Component({
@@ -12,10 +13,12 @@ import {InstellingenService} from '../../core/instellingen/instellingen.service'
 })
 export class PrikbordPage {
 
+  destroy = new Subject<boolean>();
   items: Observable<Bericht[]>;
   ingelogd: Observable<boolean>;
   reactie: string;
   aanHetVersturen = false;
+  itemsGeladen = false;
 
   @ViewChild(Content) private content: Content;
 
@@ -24,18 +27,19 @@ export class PrikbordPage {
 
   // TODO: verstuurknop duidelijker stylen (groot blauw vlak als actief) -> en ook bij evenement bericht posten
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
-    this.items = this.prikbordService.getBerichten();
+    this.items = this.prikbordService.getBerichten().takeUntil(this.destroy);
     this.items.subscribe(() => {
       setTimeout(() => {
-        this.content.scrollToBottom(300);
+        this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+        this.itemsGeladen = true;
       });
     });
   }
 
-  ionViewDidEnter() {
-    this.content.scrollToBottom(0);
+  ionViewWillLeave() {
+    this.destroy.next(true);
   }
 
   verstuurBericht() {

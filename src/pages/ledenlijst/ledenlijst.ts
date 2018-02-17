@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {LedenlijstClient} from "./ledenlijst.client";
 import {Observable} from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import {ContactoptiesService} from '../../core/contacten/contactopties.service';
   selector: 'page-ledenlijst',
   templateUrl: 'ledenlijst.html',
 })
-export class LedenlijstPage implements OnInit {
+export class LedenlijstPage {
 
   zoekterm: string;
   items: Observable<Sectie<Contact>[]>;
@@ -21,7 +21,7 @@ export class LedenlijstPage implements OnInit {
   constructor(public contactoptiesService: ContactoptiesService, private ledenlijstClient: LedenlijstClient) {
   }
 
-  ngOnInit() {
+  ionViewDidLoad() {
     this.items = this.ledenlijstClient.haalLedenOp().map(
       sectioneer<Contact>(contact => contact.naam[0].toUpperCase()))
       .do(() => this.spinning = false);

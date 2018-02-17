@@ -1,26 +1,29 @@
 import {Injectable} from "@angular/core";
 import {Bericht} from "./bericht";
 import {Observable} from "rxjs/Observable";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {PrikbordClient} from "./prikbord.client";
 import {Storage} from '@ionic/storage';
 import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/take';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class PrikbordService {
 
   private static readonly key = 'prikbord';
-  private berichten = new BehaviorSubject<Bericht[]>([]);
+  private berichten = new ReplaySubject<Bericht[]>(1);
+  private berichtenNogLeeg = true;
 
   constructor(private storage: Storage, private prikbordClient: PrikbordClient) {
+    this.berichten.take(1).subscribe(() => this.berichtenNogLeeg = false);
   }
 
   getBerichten(): Observable<Bericht[]> {
-    if (this.berichten.getValue().length === 0) {
+    if (this.berichtenNogLeeg) {
       // haal de berichten uit de opslag als we dat nog niet gedaan hebben
       this.storage.get(PrikbordService.key).then(berichten => {
         // berichten alleen zetten als niet in de tussentijd al gesynchroniseerd is
-        if (berichten && this.berichten.getValue().length === 0) {
+        if (berichten && this.berichtenNogLeeg) {
           this.berichten.next(berichten);
         }
       })
