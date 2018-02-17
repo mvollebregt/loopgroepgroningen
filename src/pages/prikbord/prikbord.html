@@ -5,20 +5,17 @@
     </button>
     <ion-title>Prikbord</ion-title>
   </ion-navbar>
-</ion-header>
 
-<ion-spinner style="position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto; z-index: 1000"></ion-spinner>
+  <div *ngIf="items && !items.length" class="info-message">
+    Het prikbord kon niet worden geladen.
+  </div>
+</ion-header>
 
 <ion-content class="main-content-wrapper">
 
   <div class="main-content">
 
-    <ion-card *ngFor="let item of items | async">
+    <ion-card *ngFor="let item of items">
 
       <ion-card-header>
         <span>{{item.auteur}}</span>

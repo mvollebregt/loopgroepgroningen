@@ -52,7 +52,7 @@ export class PrikbordService {
       let nieuwste = opgeslagen.length > 0 ? opgeslagen[opgeslagen.length - 1] : null;
       let aantalNieuwe = berichten.findIndex(bericht => PrikbordService.equal(bericht, nieuwste));
       aantalNieuwe = aantalNieuwe != -1 ? aantalNieuwe : berichten.length;
-      if (aantalNieuwe !== 0) {
+      if (aantalNieuwe !== 0 || !opgeslagen.length) {
         // Er zijn nieuwe berichten bij gekomen. Sla deze op en stuur ze naar observers.
         opgeslagen.push(...berichten.slice(0, aantalNieuwe).reverse()); // oud naar nieuw
         this.storage.set(PrikbordService.key, opgeslagen);

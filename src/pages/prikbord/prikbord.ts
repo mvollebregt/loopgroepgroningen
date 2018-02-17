@@ -14,7 +14,7 @@ import {Subject} from 'rxjs/Subject';
 export class PrikbordPage {
 
   destroy = new Subject<boolean>();
-  items: Observable<Bericht[]>;
+  items: Bericht[];
   ingelogd: Observable<boolean>;
   reactie: string;
   aanHetVersturen = false;
@@ -29,12 +29,14 @@ export class PrikbordPage {
 
   ionViewWillEnter() {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
-    this.items = this.prikbordService.getBerichten().takeUntil(this.destroy);
-    this.items.subscribe(() => {
-      setTimeout(() => {
-        this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
-        this.itemsGeladen = true;
-      });
+    this.prikbordService.getBerichten()
+      .takeUntil(this.destroy)
+      .subscribe(items => {
+        this.items = items;
+        setTimeout(() => {
+          this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+          this.itemsGeladen = true;
+        });
     });
   }
 

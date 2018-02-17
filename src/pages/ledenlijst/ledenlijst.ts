@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {LedenlijstClient} from "./ledenlijst.client";
-import {Observable} from 'rxjs/Observable';
 import {Contact} from '../../core/contacten/contact';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
@@ -15,16 +14,19 @@ import {ContactoptiesService} from '../../core/contacten/contactopties.service';
 export class LedenlijstPage {
 
   zoekterm: string;
-  items: Observable<Sectie<Contact>[]>;
+  items: Sectie<Contact>[];
   spinning = true;
 
   constructor(public contactoptiesService: ContactoptiesService, private ledenlijstClient: LedenlijstClient) {
   }
 
   ionViewDidLoad() {
-    this.items = this.ledenlijstClient.haalLedenOp().map(
-      sectioneer<Contact>(contact => contact.naam[0].toUpperCase()))
-      .do(() => this.spinning = false);
+    this.ledenlijstClient.haalLedenOp()
+      .map(sectioneer<Contact>(contact => contact.naam[0].toUpperCase()))
+      .subscribe(items => {
+        this.items = items;
+        this.spinning = false;
+      });
   }
 
   voldoetAanZoekterm(naam: string) {
