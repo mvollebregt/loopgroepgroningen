@@ -24,7 +24,7 @@
       </ion-list-header>
 
       <ng-container *ngFor="let contact of sectie.inhoud">
-        <ion-item *ngIf="voldoetAanZoekterm(contact.naam)" (click)="presentActionSheet(contact)">
+        <ion-item *ngIf="voldoetAanZoekterm(contact.naam)" (tap)="presentActionSheet(contact)">
           {{contact.naam}}
         </ion-item>
       </ng-container>

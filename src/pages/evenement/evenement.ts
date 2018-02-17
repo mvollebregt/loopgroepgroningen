@@ -1,16 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavParams} from 'ionic-angular';
 import {EvenementdetailClient} from './evenementdetail.client';
 import {Evenementdetail} from './evenementdetail';
 import 'rxjs/add/operator/finally';
 import * as moment from 'moment';
-
-/**
- * Generated class for the EvenementPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,7 +18,9 @@ export class EvenementPage implements OnInit {
   aanHetVersturen = false;
   spinning = true;
 
-  constructor(private evenementdetailClient: EvenementdetailClient, private navCtrl: NavController, private navParams: NavParams) {
+  constructor(
+    private evenementdetailClient: EvenementdetailClient,
+    private navParams: NavParams) {
   }
 
   ngOnInit() {
@@ -38,6 +33,8 @@ export class EvenementPage implements OnInit {
     this.evenementdetailClient.schrijfIn(this.navParams.get('url'), !this.evenement.deelname)
       .subscribe(evenement => this.toonEvenement(evenement));
   }
+
+  // TODO: tijdens versturen button disablen ofzoiets dergelijks
 
   verstuurBericht() {
     this.aanHetVersturen = true;

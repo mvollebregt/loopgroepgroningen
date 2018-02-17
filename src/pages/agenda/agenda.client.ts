@@ -11,7 +11,6 @@ export class AgendaClient {
   }
 
   haalEvenementenOp(): Observable<Evenement[]> {
-    // TODO: evenementen automatisch samen ophalen met prikbord?
     return this.httpService.get('index.php/prikbord').map(
       this.httpService.extract('li.jemmod', AgendaClient.toEvenement)
     )

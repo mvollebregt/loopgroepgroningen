@@ -7,13 +7,6 @@ import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
 import {ContactoptiesService} from '../../core/contacten/contactopties.service';
 
-/**
- * Generated class for the LedenlijstPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-ledenlijst',

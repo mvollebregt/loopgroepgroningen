@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Content, IonicPage, TextInput} from 'ionic-angular';
+import {Content, IonicPage} from 'ionic-angular';
 import {Bericht} from "../../core/bericht";
 import {Observable} from "rxjs/Observable";
 import {PrikbordService} from "../../core/prikbord.service";
@@ -18,7 +18,6 @@ export class PrikbordPage {
   aanHetVersturen = false;
 
   @ViewChild(Content) private content: Content;
-  @ViewChild('textarea') private textInput: TextInput;
 
   constructor(private instellingenService: InstellingenService, private prikbordService: PrikbordService) {
   }

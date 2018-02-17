@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {EvenementPage} from "../evenement/evenement";
 import {AgendaClient} from './agenda.client';
 import {Evenement} from './evenement';
 import {Observable} from 'rxjs/Observable';
@@ -8,13 +7,6 @@ import * as moment from 'moment';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
-
-/**
- * Generated class for the AgendaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

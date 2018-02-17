@@ -35,7 +35,7 @@
 
       <ion-item *ngIf="evenement.deelname !== null">
         <ion-label>Ik doe mee</ion-label>
-        <ion-toggle [checked]="evenement.deelname" (click)="toggleDeelname()"></ion-toggle>
+        <ion-toggle [checked]="evenement.deelname" (tap)="toggleDeelname()"></ion-toggle>
       </ion-item>
 
       <ion-list-header *ngIf="evenement.omschrijving?.length">
@@ -82,7 +82,7 @@
                   placeholder="Typ hier je reactie.">
     </ion-textarea>
 
-    <button ion-button icon-only clear [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">
+    <button ion-button icon-only clear [disabled]="aanHetVersturen || !reactie" (tap)="verstuurBericht()">
       <ion-icon name="send"></ion-icon>
     </button>
 

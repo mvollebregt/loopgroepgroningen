@@ -9,7 +9,7 @@
 
   <ion-toolbar>
     <ion-segment [ngModel]="groep">
-      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (click)="kiesGroep(keuze)">
+      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (tap)="kiesGroep(keuze)">
         {{ keuze }}
       </ion-segment-button>
     </ion-segment>
@@ -29,7 +29,7 @@
         {{sectie.titel}}
       </ion-list-header>
 
-      <!--<button ion-item (click)="gaNaarEvenement()">-->
+      <!--<button ion-item (tap)="gaNaarEvenement()">-->
       <!--<ion-icon name="trophy" item-start></ion-icon>-->
       <!--<h2>Zaterdag 16 dec</h2>-->
       <!--Peize  Ameland Adventurerun-->

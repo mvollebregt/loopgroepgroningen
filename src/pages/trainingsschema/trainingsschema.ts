@@ -8,13 +8,6 @@ import {Training} from './training';
 import * as moment from 'moment';
 import {TrainingsschemaService} from './trainingsschema.service';
 
-/**
- * Generated class for the TrainingsschemaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-trainingsschema',

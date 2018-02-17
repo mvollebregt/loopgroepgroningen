@@ -21,7 +21,7 @@
 
       <ng-template [ngIf]="ingelogd | async" [ngIfElse]="nietIngelogd">
 
-        <button *ngFor="let evenement of sectie.inhoud" ion-item (click)="gaNaarEvenement(evenement)">
+        <button *ngFor="let evenement of sectie.inhoud" ion-item (tap)="gaNaarEvenement(evenement)">
           <h2 item-start>{{korteWeergave(evenement.start)}}</h2>
           {{evenement.naam}}
         </button>
