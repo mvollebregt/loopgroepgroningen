@@ -15,6 +15,10 @@
     </ion-segment>
   </ion-toolbar>
 
+  <div *ngIf="trainingsschema && groep && !trainingsschema[groep].length" class="info-message">
+    Er staan geen trainingen op het schema.
+  </div>
+
 </ion-header>
 
 <lg-spinner *ngIf="spinning"></lg-spinner>
@@ -23,7 +27,7 @@
 
   <ion-list>
 
-    <ng-template ngFor let-sectie [ngForOf]="trainingsschema && trainingsschema[groep]">
+    <ng-template ngFor let-sectie [ngForOf]="trainingsschema && groep && trainingsschema[groep]">
 
       <ion-list-header>
         {{sectie.titel}}

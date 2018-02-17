@@ -5,6 +5,11 @@
     </button>
     <ion-title>Agenda</ion-title>
   </ion-navbar>
+
+  <div *ngIf="evenementen && !evenementen.length" class="info-message">
+    Er staan geen evenementen op de agenda.
+  </div>
+
 </ion-header>
 
 <lg-spinner *ngIf="spinning"></lg-spinner>
@@ -13,7 +18,7 @@
 
   <ion-list>
 
-    <ng-template ngFor let-sectie [ngForOf]="evenementen | async">
+    <ng-template ngFor let-sectie [ngForOf]="evenementen">
 
       <ion-list-header>
         {{sectie.titel}}

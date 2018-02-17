@@ -15,7 +15,7 @@ import {InstellingenService} from '../../core/instellingen/instellingen.service'
 })
 export class AgendaPage {
 
-  evenementen: Observable<Sectie<Evenement>[]>;
+  evenementen: Sectie<Evenement>[];
   ingelogd: Observable<boolean>;
   spinning = true;
 
@@ -27,9 +27,10 @@ export class AgendaPage {
 
   ionViewWillEnter() {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
-    this.evenementen = this.agendaClient.haalEvenementenOp()
+    this.agendaClient.haalEvenementenOp()
       .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')))
-      .do(() => this.spinning = false);
+      .do(() => this.spinning = false)
+      .subscribe(resultaat => this.evenementen = resultaat);
   }
 
   korteWeergave(datumTijd: string) {

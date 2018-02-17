@@ -23,8 +23,6 @@ export class WelkomPage {
     private wachtwoordkluis: WachtwoordkluisService) {
   }
 
-  // TODO: testen of submit-knoppen ook zichtbaar blijven boven toetsenbord bij oud (klein) model iPhone
-
   inloggen() {
     this.wachtwoordkluis.slaLoginOp(this.login);
     this.loginService.submitLogin(this.login)
