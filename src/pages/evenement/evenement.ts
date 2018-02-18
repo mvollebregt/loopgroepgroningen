@@ -15,6 +15,7 @@ export class EvenementPage {
   evenement: Evenementdetail = <Evenementdetail>{};
   datumweergave: string[];
   reactie: string;
+  aanHetAanmelden = false;
   aanHetVersturen = false;
   spinning = true;
 
@@ -25,16 +26,21 @@ export class EvenementPage {
 
   ionViewWillEnter() {
     this.evenementdetailClient.haalEvenementOp(this.navParams.get('url'))
+    // TODO: spinning ook op false zetten bij fout
       .do(() => this.spinning = false)
       .subscribe(evenement => this.toonEvenement(evenement));
   }
 
   toggleDeelname() {
-    this.evenementdetailClient.schrijfIn(this.navParams.get('url'), !this.evenement.deelname)
-      .subscribe(evenement => this.toonEvenement(evenement));
+    if (this.evenement) {
+      this.aanHetAanmelden = true;
+      this.evenementdetailClient.schrijfIn(this.navParams.get('url'), !this.evenement.deelname)
+        .subscribe(evenement => {
+          this.aanHetAanmelden = false;
+          this.toonEvenement(evenement)
+        });
+    }
   }
-
-  // TODO: tijdens versturen button disablen ofzoiets dergelijks
 
   verstuurBericht() {
     this.aanHetVersturen = true;

@@ -23,8 +23,10 @@ export class LedenlijstPage {
   ionViewDidLoad() {
     this.ledenlijstClient.haalLedenOp()
       .map(sectioneer<Contact>(contact => contact.naam[0].toUpperCase()))
+      // TODO: spinning ook op false zetten bij fout
       .subscribe(items => {
         this.items = items;
+        // TODO: spinning ook op false zetten bij fout
         this.spinning = false;
       });
   }

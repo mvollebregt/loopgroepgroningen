@@ -29,6 +29,7 @@ export class AgendaPage {
     this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
     this.agendaClient.haalEvenementenOp()
       .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')))
+      // TODO: spinning ook op false zetten bij fout
       .do(() => this.spinning = false)
       .subscribe(resultaat => this.evenementen = resultaat);
   }

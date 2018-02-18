@@ -28,6 +28,7 @@ export class TrainingsschemaPage {
   ionViewWillEnter() {
     this.trainingsschemaService.haalTrainingsschemaOp()
       .takeUntil(this.destroy)
+      // TODO: spinning ook op false zetten bij fout
       .do(() => this.spinning = false)
       .subscribe(trainingsschema => this.trainingsschema = trainingsschema);
     this.instellingenService.getInstellingen()

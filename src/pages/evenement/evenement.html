@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{evenement.naam}}</ion-title>
+    <ion-title>{{evenement?.naam}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +17,7 @@
     <ion-list>
 
       <ion-list-header>
-        {{evenement.categorie}}
+        {{evenement?.categorie}}
       </ion-list-header>
 
       <ion-item *ngIf="datumweergave?.length < 2; else meerdaags">
@@ -33,35 +33,35 @@
         </ion-item>
       </ng-template>
 
-      <ion-item *ngIf="evenement.deelname !== null">
+      <ion-item *ngIf="evenement?.deelname !== null">
         <ion-label>Ik doe mee</ion-label>
-        <ion-toggle [checked]="evenement.deelname" (tap)="toggleDeelname()"></ion-toggle>
+        <ion-toggle [checked]="evenement?.deelname" [disabled]="aanHetAanmelden" (tap)="toggleDeelname()"></ion-toggle>
       </ion-item>
 
-      <ion-list-header *ngIf="evenement.omschrijving?.length">
+      <ion-list-header *ngIf="evenement?.omschrijving?.length">
         Omschrijving
       </ion-list-header>
 
-      <ion-item *ngIf="evenement.omschrijving?.length">
-        <div *ngFor="let regel of evenement.omschrijving" style="min-height: 1em;">{{regel}}</div>
+      <ion-item *ngIf="evenement?.omschrijving?.length">
+        <div *ngFor="let regel of evenement?.omschrijving" style="min-height: 1em;">{{regel}}</div>
       </ion-item>
 
-      <ion-list-header *ngIf="evenement.deelnemers?.length">
+      <ion-list-header *ngIf="evenement?.deelnemers?.length">
         Deelnemers
       </ion-list-header>
 
-      <!--<button ion-item *ngFor="let deelnemer of evenement.deelnemers">-->
-      <ion-item *ngFor="let deelnemer of evenement.deelnemers">
+      <!--<button ion-item *ngFor="let deelnemer of evenement?.deelnemers">-->
+      <ion-item *ngFor="let deelnemer of evenement?.deelnemers">
         {{deelnemer}}
       </ion-item>
 
-      <ion-list-header style="border-bottom:0" *ngIf="evenement.reacties?.length">
+      <ion-list-header style="border-bottom:0" *ngIf="evenement?.reacties?.length">
         Reacties
       </ion-list-header>
     </ion-list>
 
 
-    <ion-card *ngFor="let reactie of evenement.reacties">
+    <ion-card *ngFor="let reactie of evenement?.reacties">
 
       <ion-card-header>
         <span>{{reactie.auteur}}</span>

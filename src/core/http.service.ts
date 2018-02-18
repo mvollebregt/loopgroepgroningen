@@ -58,7 +58,8 @@ export class HttpService {
   }
 
   private checkMeldingen(response: string) : void {
-    let meldingen = this.extract('#system-message-container li', node => node.textContent.trim())(response);
+    // TODO: warnings worden nu behandeld als fout. Moeten we nog (iets anders) doen met info-meldingen?
+    let meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim())(response);
     if (meldingen.length > 0) {
       throw meldingen;
     }
