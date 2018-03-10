@@ -43,7 +43,7 @@
       </ion-list-header>
 
       <ion-item *ngIf="evenement?.omschrijving?.length">
-        <div *ngFor="let regel of evenement?.omschrijving" style="min-height: 1em;">{{regel}}</div>
+        <div *ngFor="let regel of evenement?.omschrijving" style="min-height: 1em;" text-wrap>{{regel}}</div>
       </ion-item>
 
       <ion-list-header *ngIf="evenement?.deelnemers?.length">

@@ -60,14 +60,14 @@ export class EvenementPage {
 
 function formatteerDatumtijd(start: string, einde: string): string[] {
   const startdatum = moment(start).format('dd D MMM YYYY');
-  const starttijd = moment(start).format('H:mm');
+  const starttijd = start.indexOf(':') < 0 ? null : moment(start).format('H:mm');
   const einddatum = moment(einde).format('dd D MMM YYYY');
-  const eindtijd = moment(einde).format('H:mm');
+  const eindtijd = einde.indexOf(':') < 0 ? null : moment(einde).format('H:mm');
   if (startdatum === einddatum) {
-    return [`${startdatum}, ${starttijd} - ${eindtijd}`];
+    return [startdatum + (starttijd ? `, ${starttijd}` : '') + (eindtijd ? ` - ${eindtijd}` : '')];
   } else {
     return [
-      `${startdatum}, ${starttijd}`,
-      `${einddatum}, ${eindtijd}`];
+      startdatum + (starttijd ? `, ${starttijd}` : ''),
+      einddatum + (eindtijd ? ` ${eindtijd}` : '')];
   }
 }

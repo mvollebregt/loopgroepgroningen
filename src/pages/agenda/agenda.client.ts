@@ -29,6 +29,12 @@ export class AgendaClient {
   }
 
   private static toISOString(datum: Element, tijd: Element): string {
-    return moment(`${datum.textContent.trim()} ${tijd.textContent.trim()}`, "DD MMM YYYY HH:mm").toISOString();
+    if (!datum || !datum.textContent) {
+      return null;
+    } else if (!tijd || !tijd.textContent) {
+      return moment(datum.textContent.trim(), "DD MMM YYYY HH:mm").toISOString();
+    } else {
+      return moment(`${datum.textContent.trim()} ${tijd.textContent.trim()}`, "DD MMM YYYY HH:mm").toISOString();
+    }
   }
 }
