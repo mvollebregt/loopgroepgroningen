@@ -3,6 +3,7 @@ import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
 import {Evenement} from './evenement';
 import * as moment from 'moment';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class AgendaClient {
@@ -11,8 +12,8 @@ export class AgendaClient {
   }
 
   haalEvenementenOp(): Observable<Evenement[]> {
-    return this.httpService.get('index.php/prikbord').map(
-      this.httpService.extract('li.jemmod', AgendaClient.toEvenement)
+    return this.httpService.get('index.php/prikbord').pipe(
+      map(this.httpService.extract('li.jemmod', AgendaClient.toEvenement))
     )
   }
 

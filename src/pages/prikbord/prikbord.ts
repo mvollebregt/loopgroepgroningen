@@ -5,6 +5,8 @@ import {Observable} from "rxjs/Observable";
 import {PrikbordService} from "../../core/prikbord.service";
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
 import {Subject} from 'rxjs/Subject';
+import {finalize, map, takeUntil} from 'rxjs/operators';
+import {Instellingen} from '../../core/instellingen/instellingen';
 
 @IonicPage()
 @Component({
@@ -28,15 +30,19 @@ export class PrikbordPage {
   // TODO: verstuurknop duidelijker stylen (groot blauw vlak als actief) -> en ook bij evenement bericht posten
 
   ionViewWillEnter() {
-    this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
-    this.prikbordService.getBerichten()
-      .takeUntil(this.destroy)
-      .subscribe(items => {
-        this.items = items;
-        setTimeout(() => {
-          this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
-          this.itemsGeladen = true;
-        });
+
+    this.ingelogd = this.instellingenService.getInstellingen().pipe(
+      map((instellingen: Instellingen) => instellingen.ingelogd)
+    );
+
+    this.prikbordService.getBerichten().pipe(
+      takeUntil(this.destroy)
+    ).subscribe((items: Bericht[]) => {
+      this.items = items;
+      setTimeout(() => {
+        this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+        this.itemsGeladen = true;
+      });
     });
   }
 
@@ -46,11 +52,11 @@ export class PrikbordPage {
 
   verstuurBericht() {
     this.aanHetVersturen = true;
-    this.prikbordService.verstuurBericht(this.reactie)
-      .finally(() => this.aanHetVersturen = null)
-      .subscribe(() => {
-        this.reactie = '';
-      });
+    this.prikbordService.verstuurBericht(this.reactie).pipe(
+      finalize(() => this.aanHetVersturen = null)
+    ).subscribe(() => {
+      this.reactie = '';
+    });
   }
 
 }

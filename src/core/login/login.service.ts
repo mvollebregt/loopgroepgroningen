@@ -7,15 +7,15 @@ import {CANCELLED, foutweergave} from '../CustomErrorHandler';
 import {Login} from './login';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
 import {InstellingenService} from '../instellingen/instellingen.service';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
 
-  constructor(
-    private alertController: AlertController,
-    private httpService: HttpService,
-    private instellingenService: InstellingenService,
-    private wachtwoordkluisService: WachtwoordkluisService) {
+  constructor(private alertController: AlertController,
+              private httpService: HttpService,
+              private instellingenService: InstellingenService,
+              private wachtwoordkluisService: WachtwoordkluisService) {
   }
 
   /**
@@ -25,14 +25,14 @@ export class LoginService {
    * Wanneer het inloggen is gelukt, wordt de Observable beeindigd. Als de gebruiker heeft geannuleerd komt er een
    * Observable.error(CANCELLED) terug.
    */
-  login(): Observable<void> {
-    return this.wachtwoordkluisService.haalLoginOp()
-      .switchMap(login => this.probeerLogin(login));
+  login(): Observable<{}> {
+    return this.wachtwoordkluisService.haalLoginOp().pipe(
+      switchMap((login: Login) => this.probeerLogin(login)));
   }
 
   // Submit de login naar de website.
   // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
-  submitLogin(login: Login): Observable<void> {
+  submitLogin(login: Login): Observable<{}> {
     // TODO: iets van visuele feedback geven dat de login aan de gang is
     return this.httpService
       .post(
@@ -43,19 +43,20 @@ export class LoginService {
           password: (login && login.password) || ''
         }, null,
         formData => formData.hasOwnProperty('username') // TODO: zelfde check als bij checkInlogFoutmeldingen
-      )
-      .do(response => this.checkInlogFoutmeldingen(response))
-      .do(() => this.instellingenService.setInstellingen({ingelogd: true}))
-      .map(() => null);
+      ).pipe(
+        tap((response: string) => this.checkInlogFoutmeldingen(response)),
+        tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
+        map(() => null)
+      );
   }
 
-  private probeerLogin(login: Login): Observable<void> {
-    return this.submitLogin(login)
-      .catch(meldingen => {
-        return this.promptLogin(login, meldingen)
-          .do(login => this.wachtwoordkluisService.slaLoginOp(login))
-          .switchMap(login => this.probeerLogin(login));
-      });
+  private probeerLogin(login: Login): Observable<{}> {
+    return this.submitLogin(login).pipe(
+      catchError(meldingen => {
+        return this.promptLogin(login, meldingen).pipe(
+          tap((login: Login) => this.wachtwoordkluisService.slaLoginOp(login)),
+          switchMap((login: Login) => this.probeerLogin(login)));
+      }));
   }
 
   private checkInlogFoutmeldingen(response: string): void {
@@ -76,17 +77,22 @@ export class LoginService {
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
   // De observable geeft een Login-object terug als de gebruiker op de inloggen-knop drukt.
   // De observable gooit een error CANCELED als de gebruiker op Annuleren drukt.
-  private promptLogin(login: Login, meldingen: string[]) : Observable<Login> {
+  private promptLogin(login: Login, meldingen: string[]): Observable<Login> {
     const observable = new ReplaySubject<Login>();
     const alert = this.alertController.create({
       title: 'Inloggen',
       message: foutweergave(meldingen),
       inputs: [
-        {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username: ''},
-        {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password: ''}
+        {name: 'username', placeholder: 'Gebruikersnaam', value: login ? login.username : ''},
+        {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: login ? login.password : ''}
       ],
       buttons: [
-        {text: 'Annuleren', handler: () => { alert.dismiss(); observable.error(CANCELLED)}},
+        {
+          text: 'Annuleren', handler: () => {
+            alert.dismiss();
+            observable.error(CANCELLED)
+          }
+        },
         {text: 'Inloggen', handler: login => observable.next(login)}
       ]
     });

@@ -3,9 +3,8 @@ import {Bericht} from "./bericht";
 import {Observable} from "rxjs/Observable";
 import {PrikbordClient} from "./prikbord.client";
 import {Storage} from '@ionic/storage';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/take';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {map, take, tap} from 'rxjs/operators';
 
 @Injectable()
 export class PrikbordService {
@@ -15,7 +14,9 @@ export class PrikbordService {
   private berichtenNogLeeg = true;
 
   constructor(private storage: Storage, private prikbordClient: PrikbordClient) {
-    this.berichten.take(1).subscribe(() => this.berichtenNogLeeg = false);
+    this.berichten.pipe(
+      take(1)
+    ).subscribe(() => this.berichtenNogLeeg = false);
   }
 
   getBerichten(): Observable<Bericht[]> {
@@ -31,10 +32,11 @@ export class PrikbordService {
     return this.berichten;
   }
 
-  verstuurBericht(berichttekst: string): Observable<void> {
-    return this.prikbordClient.verstuurBericht(berichttekst)
-      .do(berichten => this.synchroniseerBerichten(berichten))
-      .map(() => null);
+  verstuurBericht(berichttekst: string): Observable<{}> {
+    return this.prikbordClient.verstuurBericht(berichttekst).pipe(
+        tap(berichten => this.synchroniseerBerichten(berichten)),
+        map(() => null)
+      );
   }
 
   synchroniseer(): void {

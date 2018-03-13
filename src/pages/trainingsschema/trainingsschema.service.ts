@@ -5,6 +5,7 @@ import {Trainingsschema} from './trainingsschema.domain';
 import {Sectie} from '../../core/sectie';
 import {Training} from './training';
 import * as moment from 'moment';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class TrainingsschemaService {
@@ -12,12 +13,13 @@ export class TrainingsschemaService {
   constructor(private trainingsschemaClient: TrainingsschemaClient) {}
 
   haalTrainingsschemaOp(): Observable<Trainingsschema> {
-    return this.trainingsschemaClient.haalTrainingsschemaOp().map(trainingsschema => ({
+    return this.trainingsschemaClient.haalTrainingsschemaOp().pipe(
+      map((trainingsschema: Trainingsschema) => ({
         A: filterToekomst(trainingsschema.A),
         B: filterToekomst(trainingsschema.B),
         C: filterToekomst(trainingsschema.C)
       })
-    )
+    ))
   }
 
 }

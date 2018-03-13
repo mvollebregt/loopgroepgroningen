@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Platform} from "ionic-angular";
 import {Observable} from "rxjs/Observable";
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/switchMap';
 import {HttpClient} from '@angular/common/http';
 import {FormDetails} from './form-details';
+import {map, switchMap, tap} from 'rxjs/operators';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class HttpService {
@@ -18,24 +18,26 @@ export class HttpService {
   }
 
   public get(relativeUrl: string): Observable<string> {
-    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'})
-      .do(response => this.checkMeldingen(response));
+    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'}).pipe(
+      tap((response: string) => this.checkMeldingen(response))
+    );
   }
 
   public post(relativeUrl: string, formSelector: string, params: any, action?: string, guard?: (formObject: any) => boolean): Observable<string> {
     return this
-      .getFormDetails(relativeUrl, formSelector)
-      .switchMap(([form, source]) => {
-        if (guard && !guard(form.inputs)) {
-          return Observable.of(source);
-        } else {
-          let formData = new FormData();
-          copyToFormData(form.inputs, formData);
-          copyToFormData(params, formData);
-          return this.http.post(this.urlFor(action? action : form.action? form.action : relativeUrl), formData, {responseType: 'text'});
-        }
-      })
-      .do(response => this.checkMeldingen(response));
+      .getFormDetails(relativeUrl, formSelector).pipe(
+        switchMap(([form, source]) => {
+          if (guard && !guard(form.inputs)) {
+            return of(source);
+          } else {
+            let formData = new FormData();
+            copyToFormData(form.inputs, formData);
+            copyToFormData(params, formData);
+            return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {responseType: 'text'});
+          }
+        }),
+        tap((response: string) => this.checkMeldingen(response))
+      );
   }
 
   public extract<T>(selector: string, mapToObject: (node: Element) => T): (html: string) => T[] {
@@ -57,7 +59,7 @@ export class HttpService {
     return this.baseUrl + separator + normalizedUrl;
   }
 
-  private checkMeldingen(response: string) : void {
+  private checkMeldingen(response: string): void {
     // TODO: warnings worden nu behandeld als fout. Moeten we nog (iets anders) doen met info-meldingen?
     let meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim())(response);
     if (meldingen.length > 0) {
@@ -66,9 +68,11 @@ export class HttpService {
   }
 
   private getFormDetails(relativeUrl: string, formSelector: string): Observable<[FormDetails, string]> {
-    return this
-      .get(relativeUrl)
-      .map(result => [this.extract(`${formSelector}`, toFormDetails)(result)[0], result])
+    return this.get(relativeUrl).pipe(
+        map((result: string) =>
+          <[FormDetails, string]> [this.extract(`${formSelector}`, toFormDetails)(result)[0], result]
+        )
+      )
   }
 }
 
@@ -80,7 +84,7 @@ function copyToFormData(params: any, formData: FormData) {
   }
 }
 
-function toFormDetails(node: Element) : FormDetails {
+function toFormDetails(node: Element): FormDetails {
   const inputElements = node.querySelectorAll('input');
   let inputValues = {};
   for (let i = 0; i < inputElements.length; i++) {

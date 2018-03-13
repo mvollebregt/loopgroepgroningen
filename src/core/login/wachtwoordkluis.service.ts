@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {SecureStorage} from '@ionic-native/secure-storage';
 import {Observable} from 'rxjs/Observable';
 import {Login} from './login';
-import 'rxjs/add/observable/fromPromise'
 import {Platform} from 'ionic-angular';
+import {fromPromise} from 'rxjs/observable/fromPromise';
+import {of} from 'rxjs/observable/of';
 
 const STORE_NAME = 'loopgroep-groningen';
 const LOGIN_KEY = 'login';
@@ -18,7 +19,7 @@ export class WachtwoordkluisService {
 
   haalLoginOp(): Observable<Login>{
     if (this.platform.is('cordova')) {
-      return Observable.fromPromise(
+      return fromPromise(
         this.secureStorage.create(STORE_NAME).then(
           storage => storage.get(LOGIN_KEY),
         ).then(
@@ -26,7 +27,7 @@ export class WachtwoordkluisService {
           () => null
         ));
     } else {
-      return Observable.of(this.login);
+      return of(this.login);
     }
   }
 

@@ -6,6 +6,7 @@ import {Evenementdetail} from './evenementdetail';
 import {toParagraaf} from '../../core/to-paragraaf';
 import {Bericht} from '../../core/bericht';
 import * as moment from 'moment';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class EvenementdetailClient {
@@ -14,39 +15,37 @@ export class EvenementdetailClient {
   }
 
   haalEvenementOp(url: string): Observable<Evenementdetail> {
+    return this.loginService.login().pipe(
+      switchMap(() =>
+        this.httpService.get(url).pipe(
+          map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail)),
+          map(array => array[0])
+        )));
+  }
+
+  schrijfIn(eventPage: string, inschrijven: boolean): Observable<Evenementdetail> {
+    return this.loginService.login().pipe(
+      switchMap(() =>
+        this.httpService.post(eventPage, '.register form', {'reg_check': inschrijven}).pipe(
+          map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail)),
+          map(array => array[0]))
+      ));
+  }
+
+  verstuurBericht(eventPage: string, reactie: string): Observable<Evenementdetail> {
     return this.loginService
-      .login()
-      .switchMap(() =>
-        this.httpService.get(url)
-          .map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail))
-          .map(array => array[0])
+      .login().pipe(
+        switchMap(() => this.httpService.post(eventPage, '#comments-form', {
+          'comment': reactie,
+          'jtxf': 'JCommentsAddComment'
+        }, 'index.php/component/jcomments/')),
+        switchMap(() =>
+          this.haalEvenementOp(eventPage)
+        )
       );
   }
 
-  schrijfIn(eventPage: string, inschrijven: boolean) : Observable<Evenementdetail> {
-    return this.loginService
-      .login()
-      .switchMap(() =>
-        this.httpService.post(eventPage, '.register form', {'reg_check': inschrijven})
-          .map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail))
-          .map(array => array[0])
-      )
-  }
-
-  verstuurBericht(eventPage: string, reactie: string) : Observable<Evenementdetail> {
-    return this.loginService
-      .login()
-      .switchMap(() =>
-        this.httpService.post(eventPage, '#comments-form', {
-          'comment': reactie,
-          'jtxf': 'JCommentsAddComment'
-        }, 'index.php/component/jcomments/'))
-      .switchMap(() =>
-          this.haalEvenementOp(eventPage)
-      )
-  }
-
-  private static toEvenementdetail(elt: Element) : Evenementdetail {
+  private static toEvenementdetail(elt: Element): Evenementdetail {
     const start = elt.querySelector('[itemprop="startDate"]').getAttribute('content');
     const einde = elt.querySelector('[itemprop="endDate"]').getAttribute('content');
     const naam = elt.querySelector('[itemprop="name"]').textContent.trim();

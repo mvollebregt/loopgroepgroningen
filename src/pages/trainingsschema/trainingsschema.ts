@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {Trainingsschema} from './trainingsschema.domain';
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
-import 'rxjs/add/operator/pluck';
 import {Training} from './training';
 import * as moment from 'moment';
 import {TrainingsschemaService} from './trainingsschema.service';
 import {Subject} from 'rxjs/Subject';
+import {takeUntil, tap} from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -26,11 +26,11 @@ export class TrainingsschemaPage {
   }
 
   ionViewWillEnter() {
-    this.trainingsschemaService.haalTrainingsschemaOp()
-      .takeUntil(this.destroy)
+    this.trainingsschemaService.haalTrainingsschemaOp().pipe(
+      takeUntil(this.destroy),
       // TODO: spinning ook op false zetten bij fout
-      .do(() => this.spinning = false)
-      .subscribe(trainingsschema => this.trainingsschema = trainingsschema);
+      tap(() => this.spinning = false)
+    ).subscribe((trainingsschema : Trainingsschema) => this.trainingsschema = trainingsschema);
     this.instellingenService.getInstellingen()
       .takeUntil(this.destroy)
       .subscribe(instellingen => {

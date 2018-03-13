@@ -3,6 +3,7 @@ import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
 import {LoginService} from "../../core/login/login.service";
 import {Contact} from '../../core/contacten/contact';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class LedenlijstClient {
@@ -11,14 +12,16 @@ export class LedenlijstClient {
   }
 
   haalLedenOp(): Observable<Contact[]> {
-    return this.loginService
-      .login()
-      .switchMap(() => {
+    return this.loginService.login().pipe(
+      switchMap(() => {
         return this.httpService.post(
           'index.php/loopgroep-groningen-ledeninfo/loopgroep-groningen-ledenlijst',
           '#adminForm',
           {limit: 0}
-        ).map(this.httpService.extract('.contact-category li', LedenlijstClient.toContact))});
+        ).pipe(
+          map(this.httpService.extract('.contact-category li', LedenlijstClient.toContact))
+        )
+      }));
   }
 
   private static toContact(elt: Element) {

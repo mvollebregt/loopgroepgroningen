@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Storage} from '@ionic/storage';
-import 'rxjs/add/operator/map';
 import {Instellingen} from './instellingen';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 

@@ -4,6 +4,7 @@ import {LoginService} from "../../core/login/login.service";
 import {Trainingsschema} from './trainingsschema.domain';
 import {HttpClient} from '@angular/common/http';
 import {Platform} from 'ionic-angular';
+import {switchMap} from 'rxjs/operators';
 
 const trainingsschemaUrl = '/mvollebregt/loopgroepgroningen/master/rest/trainingsschema.json';
 
@@ -20,8 +21,8 @@ export class TrainingsschemaClient {
 
   haalTrainingsschemaOp(): Observable<Trainingsschema> {
     // alleen tonen als ingelogd
-    return this.loginService
-      .login()
-      .switchMap(() => this.http.get<Trainingsschema>(this.baseUrl + trainingsschemaUrl));
+    return this.loginService.login().pipe(
+      switchMap(() => this.http.get<Trainingsschema>(this.baseUrl + trainingsschemaUrl))
+    );
   }
 }

@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
+import {map, tap} from 'rxjs/operators';
+import {Instellingen} from '../../core/instellingen/instellingen';
 
 @IonicPage()
 @Component({
@@ -26,12 +28,14 @@ export class AgendaPage {
   }
 
   ionViewWillEnter() {
-    this.ingelogd = this.instellingenService.getInstellingen().map(instellingen => instellingen.ingelogd);
-    this.agendaClient.haalEvenementenOp()
-      .map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM')))
+    this.ingelogd = this.instellingenService.getInstellingen().pipe(
+      map((instellingen: Instellingen) => instellingen.ingelogd)
+    );
+    this.agendaClient.haalEvenementenOp().pipe(
+      map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM'))),
       // TODO: spinning ook op false zetten bij fout
-      .do(() => this.spinning = false)
-      .subscribe(resultaat => this.evenementen = resultaat);
+      tap(() => this.spinning = false)
+    ).subscribe((resultaat: Sectie<Evenement>[]) => this.evenementen = resultaat);
   }
 
   korteWeergave(datumTijd: string) {

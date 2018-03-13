@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavParams} from 'ionic-angular';
 import {EvenementdetailClient} from './evenementdetail.client';
 import {Evenementdetail} from './evenementdetail';
-import 'rxjs/add/operator/finally';
 import * as moment from 'moment';
+import {finalize, tap} from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -25,10 +25,10 @@ export class EvenementPage {
   }
 
   ionViewWillEnter() {
-    this.evenementdetailClient.haalEvenementOp(this.navParams.get('url'))
+    this.evenementdetailClient.haalEvenementOp(this.navParams.get('url')).pipe(
     // TODO: spinning ook op false zetten bij fout
-      .do(() => this.spinning = false)
-      .subscribe(evenement => this.toonEvenement(evenement));
+      tap(() => this.spinning = false)
+    ).subscribe((evenement: Evenementdetail) => this.toonEvenement(evenement));
   }
 
   toggleDeelname() {
@@ -44,9 +44,9 @@ export class EvenementPage {
 
   verstuurBericht() {
     this.aanHetVersturen = true;
-    this.evenementdetailClient.verstuurBericht(this.navParams.get('url'), this.reactie)
-      .finally(() => this.aanHetVersturen = null)
-      .subscribe(evenement => {
+    this.evenementdetailClient.verstuurBericht(this.navParams.get('url'), this.reactie).pipe(
+        finalize(() => this.aanHetVersturen = null)
+      ).subscribe((evenement : Evenementdetail) => {
         this.toonEvenement(evenement);
         this.reactie = '';
       });
