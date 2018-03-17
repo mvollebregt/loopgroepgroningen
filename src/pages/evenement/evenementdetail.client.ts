@@ -18,7 +18,7 @@ export class EvenementdetailClient {
     return this.loginService.login().pipe(
       switchMap(() =>
         this.httpService.get(url).pipe(
-          map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail)),
+          this.httpService.extractWithRetry('#jem', EvenementdetailClient.toEvenementdetail),
           map(array => array[0])
         )));
   }
@@ -27,7 +27,7 @@ export class EvenementdetailClient {
     return this.loginService.login().pipe(
       switchMap(() =>
         this.httpService.post(eventPage, '.register form', {'reg_check': inschrijven}).pipe(
-          map(this.httpService.extract('#jem', EvenementdetailClient.toEvenementdetail)),
+          this.httpService.extractWithRetry('#jem', EvenementdetailClient.toEvenementdetail),
           map(array => array[0]))
       ));
   }

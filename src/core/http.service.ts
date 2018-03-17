@@ -3,8 +3,8 @@ import {Platform} from "ionic-angular";
 import {Observable} from "rxjs/Observable";
 import {HttpClient} from '@angular/common/http';
 import {FormDetails} from './form-details';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
+import {map, retry, switchMap, tap} from 'rxjs/operators';
+import {pipe} from 'rxjs/Rx';
 
 @Injectable()
 export class HttpService {
@@ -23,33 +23,53 @@ export class HttpService {
     );
   }
 
-  public post(relativeUrl: string, formSelector: string, params: any, action?: string, guard?: (formObject: any) => boolean): Observable<string> {
-    return this
-      .getFormDetails(relativeUrl, formSelector).pipe(
-        switchMap(([form, source]) => {
-          if (guard && !guard(form.inputs)) {
-            return of(source);
-          } else {
-            let formData = new FormData();
-            copyToFormData(form.inputs, formData);
-            copyToFormData(params, formData);
-            return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {responseType: 'text'});
-          }
-        }),
-        tap((response: string) => this.checkMeldingen(response))
-      );
+  public post(relativeUrl: string, formSelector: string, params: any, action?: string): Observable<string> {
+    return this.get(relativeUrl).pipe(
+      this.postAfterGet(relativeUrl, formSelector, params, action)
+    );
   }
 
-  public extract<T>(selector: string, mapToObject: (node: Element) => T): (html: string) => T[] {
+  public postAfterGet(relativeUrl: string, formSelector: string, params: any, action?: string) {
+    return pipe(
+      this.extractWithRetry(formSelector, toFormDetails),
+      map(formsArray => formsArray[0]),
+      switchMap((form: FormDetails) => {
+        let formData = new FormData();
+        copyToFormData(form.inputs, formData);
+        copyToFormData(params, formData);
+        return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {responseType: 'text'});
+      }),
+      tap((response: string) => this.checkMeldingen(response))
+    );
+  }
+
+
+
+  private extract<T>(selector: string, mapToObject: (node: Element) => T): (html: string) => T[] {
     return (html: string) => {
       let doc = this.parser.parseFromString(html, 'text/html');
       let elements: NodeListOf<Element> = doc.querySelectorAll(selector);
+      if (elements.length === 0) throw 'Er ging iets mis in de communicatie met de server.';
       let objects: T[] = [];
       for (let i = 0; i < elements.length; i++) {
         objects.push(mapToObject(elements.item(i)))
       }
       return objects;
     }
+  }
+
+  public extractWithRetry<T>(selector: string, mapToObject: (node: Element) => T) {
+    return pipe(
+      map(this.extract(selector, mapToObject)),
+      retry(3) // TODO: iets geavanceerder retry-mechanisme maken?
+    );
+  }
+
+  public extractWithRetryKeepingResponse<T>(selector: string, mapToObject: (node: Element) => T) {
+    return pipe (
+      map((response: string) => [this.extract(selector, mapToObject)(response), response]),
+      retry(3)
+    )
   }
 
   private urlFor(relativeUrl: string) {
@@ -65,14 +85,6 @@ export class HttpService {
     if (meldingen.length > 0) {
       throw meldingen;
     }
-  }
-
-  private getFormDetails(relativeUrl: string, formSelector: string): Observable<[FormDetails, string]> {
-    return this.get(relativeUrl).pipe(
-        map((result: string) =>
-          <[FormDetails, string]> [this.extract(`${formSelector}`, toFormDetails)(result)[0], result]
-        )
-      )
   }
 }
 

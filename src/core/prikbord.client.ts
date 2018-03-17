@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import {HttpService} from "./http.service";
 import {toParagraaf} from './to-paragraaf';
 import {LoginService} from './login/login.service';
-import {map, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class PrikbordClient {
@@ -17,7 +17,7 @@ export class PrikbordClient {
   // haalt berichten op: de nieuwste eerst
   haalBerichtenOp(): Observable<Bericht[]> {
     return this.httpService.get('index.php/prikbord').pipe(
-      map(this.httpService.extract('div.easy_frame', PrikbordClient.toBericht))
+      this.httpService.extractWithRetry('div.easy_frame', PrikbordClient.toBericht)
     );
   }
 
@@ -29,7 +29,7 @@ export class PrikbordClient {
             'index.php/prikbord/entry/add',
             'form[name=\'gbookForm\']',
             {gbtext: berichttekst}).pipe(
-            map(this.httpService.extract('div.easy_frame', PrikbordClient.toBericht))
+            this.httpService.extractWithRetry('div.easy_frame', PrikbordClient.toBericht)
           )
         )
       )

@@ -8,6 +8,8 @@ import {Login} from './login';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
 import {InstellingenService} from '../instellingen/instellingen.service';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {pipe} from 'rxjs/Rx';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class LoginService {
@@ -33,21 +35,32 @@ export class LoginService {
   // Submit de login naar de website.
   // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
   submitLogin(login: Login): Observable<{}> {
-    // TODO: iets van visuele feedback geven dat de login aan de gang is
-    return this.httpService
-      .post(
-        'index.php/loopgroep-groningen-ledeninfo',
-        '#login-form',
-        {
-          username: (login && login.username) || '',
-          password: (login && login.password) || ''
-        }, null,
-        formData => formData.hasOwnProperty('username') // TODO: zelfde check als bij checkInlogFoutmeldingen
-      ).pipe(
-        tap((response: string) => this.checkInlogFoutmeldingen(response)),
-        tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
-        map(() => null)
-      );
+    return this.httpService.get('index.php/loopgroep-groningen-ledeninfo').pipe(
+      this.checkIngelogd(),
+      switchMap(([ingelogd, response]) => {
+        if (ingelogd) {
+          return of(null);
+        } else {
+          return of(response).pipe(
+            this.httpService.postAfterGet(
+              'index.php/loopgroep-groningen-ledeninfo',
+              '#login-form',
+              {
+                username: (login && login.username) || '',
+                password: (login && login.password) || ''
+              }),
+            this.checkIngelogd(),
+            tap(([ingelogd, ]) => {
+              if (!ingelogd) {
+                throw ['Het inloggen is mislukt.'];
+              }
+            }),
+            tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
+            map(() => null)
+          );
+        }
+      })
+    )
   }
 
   private probeerLogin(login: Login): Observable<{}> {
@@ -59,19 +72,18 @@ export class LoginService {
       }));
   }
 
-  private checkInlogFoutmeldingen(response: string): void {
-    // is er nog ergens een inlogbutton?
-    const buttons = this.httpService.extract('button', node => node.textContent)(response);
-    // TODO: input type=submit komt ook voor!
-    let loggedIn = true;
-    for (let button of buttons) {
-      if (button.toLowerCase().indexOf('inloggen') > -1) {
-        loggedIn = false;
-      }
-    }
-    if (!loggedIn) {
-      throw ['Het inloggen is mislukt.'];
-    }
+  private checkIngelogd() {
+    return pipe(
+      this.httpService.extractWithRetryKeepingResponse('button', node => node.textContent),
+      map(([buttons, response]) => {
+        let loggedIn = true;
+        for (let button of buttons) {
+          if (button.toLowerCase().indexOf('inloggen') > -1) {
+            loggedIn = false;
+          }
+        }
+        return [loggedIn, response];
+    }))
   }
 
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.

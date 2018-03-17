@@ -3,7 +3,7 @@ import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
 import {LoginService} from "../../core/login/login.service";
 import {Contact} from '../../core/contacten/contact';
-import {map, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable()
 export class LedenlijstClient {
@@ -19,7 +19,7 @@ export class LedenlijstClient {
           '#adminForm',
           {limit: 0}
         ).pipe(
-          map(this.httpService.extract('.contact-category li', LedenlijstClient.toContact))
+          this.httpService.extractWithRetry('.contact-category li', LedenlijstClient.toContact)
         )
       }));
   }
