@@ -54,12 +54,12 @@ export class LoginService {
               if (!ingelogd) {
                 throw ['Het inloggen is mislukt.'];
               }
-            }),
-            tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
-            map(() => null)
+            })
           );
         }
-      })
+      }),
+      tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
+      map(() => null)
     )
   }
 
@@ -74,11 +74,14 @@ export class LoginService {
 
   private checkIngelogd() {
     return pipe(
-      this.httpService.extractWithRetryKeepingResponse('button', node => node.textContent),
+      this.httpService.extractWithRetryKeepingResponse('button, input[type="submit"]', node => node),
       map(([buttons, response]) => {
         let loggedIn = true;
         for (let button of buttons) {
-          if (button.toLowerCase().indexOf('inloggen') > -1) {
+          const value = (<Element> button).getAttribute('value');
+          const text = (<Element> button).textContent;
+          if ((value && value.toLowerCase().indexOf('inloggen') > -1) ||
+            (text && text.toLowerCase().indexOf('inloggen') > -1)) {
             loggedIn = false;
           }
         }

@@ -45,11 +45,13 @@ export class HttpService {
 
 
 
-  private extract<T>(selector: string, mapToObject: (node: Element) => T): (html: string) => T[] {
+  private extract<T>(selector: string, mapToObject: (node: Element) => T, throwErrorIfEmpty: boolean): (html: string) => T[] {
     return (html: string) => {
       let doc = this.parser.parseFromString(html, 'text/html');
       let elements: NodeListOf<Element> = doc.querySelectorAll(selector);
-      if (elements.length === 0) throw 'Er ging iets mis in de communicatie met de server.';
+      if (throwErrorIfEmpty && elements.length === 0) {
+        throw 'Er ging iets mis in de communicatie met de server.';
+      }
       let objects: T[] = [];
       for (let i = 0; i < elements.length; i++) {
         objects.push(mapToObject(elements.item(i)))
@@ -60,14 +62,14 @@ export class HttpService {
 
   public extractWithRetry<T>(selector: string, mapToObject: (node: Element) => T) {
     return pipe(
-      map(this.extract(selector, mapToObject)),
+      map(this.extract(selector, mapToObject, true)),
       retry(3) // TODO: iets geavanceerder retry-mechanisme maken?
     );
   }
 
   public extractWithRetryKeepingResponse<T>(selector: string, mapToObject: (node: Element) => T) {
     return pipe (
-      map((response: string) => [this.extract(selector, mapToObject)(response), response]),
+      map((response: string) => [this.extract(selector, mapToObject, true)(response), response]),
       retry(3)
     )
   }
@@ -81,7 +83,7 @@ export class HttpService {
 
   private checkMeldingen(response: string): void {
     // TODO: warnings worden nu behandeld als fout. Moeten we nog (iets anders) doen met info-meldingen?
-    let meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim())(response);
+    let meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim(), false)(response);
     if (meldingen.length > 0) {
       throw meldingen;
     }

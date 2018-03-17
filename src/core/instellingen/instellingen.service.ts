@@ -7,7 +7,7 @@ import {ReplaySubject} from 'rxjs/ReplaySubject';
 @Injectable()
 export class InstellingenService {
 
-  private static readonly key = 'subject';
+  private static readonly key = 'instellingen';
   private instellingen = null;
   private subject = new ReplaySubject(1);
 
