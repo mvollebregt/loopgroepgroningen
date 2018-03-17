@@ -6,7 +6,7 @@ import {Training} from './training';
 import * as moment from 'moment';
 import {TrainingsschemaService} from './trainingsschema.service';
 import {Subject} from 'rxjs/Subject';
-import {takeUntil, tap} from 'rxjs/operators';
+import {finalize, takeUntil} from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -26,16 +26,18 @@ export class TrainingsschemaPage {
   }
 
   ionViewWillEnter() {
+
     this.trainingsschemaService.haalTrainingsschemaOp().pipe(
       takeUntil(this.destroy),
-      // TODO: spinning ook op false zetten bij fout
-      tap(() => this.spinning = false)
-    ).subscribe((trainingsschema : Trainingsschema) => this.trainingsschema = trainingsschema);
-    this.instellingenService.getInstellingen()
-      .takeUntil(this.destroy)
-      .subscribe(instellingen => {
+      finalize(() => this.spinning = false)
+    ).subscribe(trainingsschema => this.trainingsschema = trainingsschema);
+
+
+    this.instellingenService.getInstellingen().pipe(
+      takeUntil(this.destroy)
+    ).subscribe(instellingen => {
         this.groep = (instellingen && instellingen.groep) || 'A';
-      });
+    });
   }
 
   ionViewWillLeave() {

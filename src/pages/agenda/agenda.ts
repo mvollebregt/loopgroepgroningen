@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
 import {InstellingenService} from '../../core/instellingen/instellingen.service';
-import {map, tap} from 'rxjs/operators';
+import {finalize, map} from 'rxjs/operators';
 import {Instellingen} from '../../core/instellingen/instellingen';
 
 @IonicPage()
@@ -33,9 +33,8 @@ export class AgendaPage {
     );
     this.agendaClient.haalEvenementenOp().pipe(
       map(sectioneer<Evenement>(evenement => moment(evenement.start).format('MMMM'))),
-      // TODO: spinning ook op false zetten bij fout
-      tap(() => this.spinning = false)
-    ).subscribe((resultaat: Sectie<Evenement>[]) => this.evenementen = resultaat);
+      finalize(() => this.spinning = false)
+    ).subscribe(resultaat => this.evenementen = resultaat);
   }
 
   korteWeergave(datumTijd: string) {

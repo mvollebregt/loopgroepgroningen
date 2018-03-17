@@ -5,7 +5,7 @@ import {Contact} from '../../core/contacten/contact';
 import {Sectie} from '../../core/sectie';
 import {sectioneer} from '../../core/sectioneer';
 import {ContactoptiesService} from '../../core/contacten/contactopties.service';
-import {map} from 'rxjs/operators';
+import {finalize, map} from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -23,13 +23,9 @@ export class LedenlijstPage {
 
   ionViewDidLoad() {
     this.ledenlijstClient.haalLedenOp().pipe(
-      map(sectioneer<Contact>(contact => contact.naam[0].toUpperCase()))
-    ) // TODO: spinning ook op false zetten bij fout
-      .subscribe(items => {
-        this.items = items;
-        // TODO: spinning ook op false zetten bij fout
-        this.spinning = false;
-      });
+      map(sectioneer<Contact>(contact => contact.naam[0].toUpperCase())),
+      finalize(() => this.spinning = false)
+    ).subscribe(items => this.items = items);
   }
 
   voldoetAanZoekterm(naam: string) {

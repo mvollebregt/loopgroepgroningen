@@ -20,6 +20,8 @@ export class LoginService {
               private wachtwoordkluisService: WachtwoordkluisService) {
   }
 
+  // TODO: bij wachten op inloggen iets van visuele feedback geven
+
   /**
    * Probeer in te loggen met de gegevens die zijn opgeslagen in de wachtwoordkluis.
    * Indien dat mislukt, wordt promptLogin aangeroepen om een nieuwe login te vragen en daarna volgt een nieuwe

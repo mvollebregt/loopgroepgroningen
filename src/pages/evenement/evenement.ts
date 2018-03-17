@@ -3,7 +3,7 @@ import {IonicPage, NavParams} from 'ionic-angular';
 import {EvenementdetailClient} from './evenementdetail.client';
 import {Evenementdetail} from './evenementdetail';
 import * as moment from 'moment';
-import {finalize, tap} from 'rxjs/operators';
+import {finalize} from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -26,9 +26,8 @@ export class EvenementPage {
 
   ionViewWillEnter() {
     this.evenementdetailClient.haalEvenementOp(this.navParams.get('url')).pipe(
-    // TODO: spinning ook op false zetten bij fout
-      tap(() => this.spinning = false)
-    ).subscribe((evenement: Evenementdetail) => this.toonEvenement(evenement));
+      finalize(() => this.spinning = false)
+    ).subscribe(evenement => this.toonEvenement(evenement));
   }
 
   toggleDeelname() {
