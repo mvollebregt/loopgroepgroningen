@@ -38,7 +38,9 @@ export class PrikbordPage {
     ).subscribe((items: Bericht[]) => {
       this.items = items;
       setTimeout(() => {
-        this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+        if (this.content) {
+          this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+        }
         this.itemsGeladen = true;
       });
     });
