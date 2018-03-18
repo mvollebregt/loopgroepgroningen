@@ -84,7 +84,7 @@
   height: auto;
   background-color: $toolbar-background;
   display: flex;
-  align-items: stretch;
+  align-items: center;
 }
 
 .ios .dialog {
@@ -104,9 +104,15 @@
   margin-right: 0;
 }
 
-.dialog button {
-  height:auto;
+.icon-button {
+  padding: 0;
+  height: 40px;
   width: 40px;
+}
+
+.dialog button {
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 ion-textarea, ion-input {

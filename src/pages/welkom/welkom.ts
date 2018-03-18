@@ -15,6 +15,7 @@ export class WelkomPage {
 
   login = <Login>{};
   meldingen: string[];
+  aanHetInloggen = false;
 
   constructor(private alertController: AlertController,
               private loginService: LoginService,
@@ -23,16 +24,20 @@ export class WelkomPage {
   }
 
   inloggen() {
+    this.aanHetInloggen = true;
     this.wachtwoordkluis.slaLoginOp(this.login);
     this.loginService.submitLogin(this.login).pipe(
-        catchError(error => of([error]))
+      catchError(error => {
+        this.aanHetInloggen = false;
+        return of([error]);
+      })
     ).subscribe(meldingen => {
-        if (!meldingen) {
-          this.navCtrl.setRoot('PrikbordPage');
-        } else {
-          this.meldingen = <string[]> meldingen;
-        }
-      });
+      if (!meldingen) {
+        this.navCtrl.setRoot('PrikbordPage');
+      } else {
+        this.meldingen = <string[]> meldingen;
+      }
+    });
   }
 
   annuleren() {

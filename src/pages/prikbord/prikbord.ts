@@ -27,8 +27,6 @@ export class PrikbordPage {
   constructor(private instellingenService: InstellingenService, private prikbordService: PrikbordService) {
   }
 
-  // TODO: verstuurknop duidelijker stylen (groot blauw vlak als actief) -> en ook bij evenement bericht posten
-
   ionViewWillEnter() {
 
     this.ingelogd = this.instellingenService.getInstellingen().pipe(

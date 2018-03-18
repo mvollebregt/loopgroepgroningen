@@ -63,7 +63,7 @@ export class HttpService {
   public extractWithRetry<T>(selector: string, mapToObject: (node: Element) => T) {
     return pipe(
       map(this.extract(selector, mapToObject, true)),
-      retry(3) // TODO: iets geavanceerder retry-mechanisme maken?
+      retry(2) // TODO: iets geavanceerder retry-mechanisme maken?
     );
   }
 
