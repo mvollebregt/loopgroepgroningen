@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
 import {InstellingenService} from '../core/instellingen/instellingen.service';
+import {Firebase} from '@ionic-native/firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,10 @@ export class MyApp {
   rootPage: string;
   pages = [];
 
+  token = '';
+
   constructor(private instellingenService: InstellingenService,
+              private firebase: Firebase,
               private platform: Platform,
               private prikbordService: PrikbordService,
               private splashScreen: SplashScreen,
@@ -38,11 +42,18 @@ export class MyApp {
     this.prikbordService.synchroniseer();
     this.instellingenService.getInstellingen()
       .subscribe(instellingen => {
-        this.rootPage = instellingen.ingelogd ? 'PrikbordPage' : 'WelkomPage'
-      }
-    );
+          this.rootPage = instellingen.ingelogd ? 'PrikbordPage' : 'WelkomPage'
+        }
+      );
     this.statusBar.styleDefault();
     this.splashScreen.hide();
+
+
+    // this.firebase.getToken().then(token => this.token = token);
+    // if (this.platform.is('iOS')) {
+    // TODO: dit pas na het inloggen ofzo?
+    this.firebase.grantPermission();
+  // }
   }
 
   private onPlatformResume(): void {

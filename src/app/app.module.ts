@@ -11,6 +11,7 @@ import {IonicStorageModule} from "@ionic/storage";
 import {CoreModule} from "../core/core.module";
 import {CustomErrorHandler} from '../core/CustomErrorHandler';
 import {SecureStorage} from '@ionic-native/secure-storage';
+import {Firebase} from '@ionic-native/firebase';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {SecureStorage} from '@ionic-native/secure-storage';
   ],
   providers: [
     IonicErrorHandler,
+    Firebase,
     SecureStorage,
     StatusBar,
     SplashScreen,
