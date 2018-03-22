@@ -53,6 +53,7 @@ export class MyApp {
     // if (this.platform.is('iOS')) {
     // TODO: dit pas na het inloggen ofzo?
     this.firebase.grantPermission();
+    this.firebase.subscribe('loopgroep');
   // }
   }
 
