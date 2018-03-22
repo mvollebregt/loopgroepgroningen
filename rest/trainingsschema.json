@@ -1,56 +1,64 @@
 {
   "A": [
-    { "titel": "Week 4", "inhoud": [
-      { "datum": "2018-01-24", "omschrijving": "duurloop 50 min 75%", "locatie": "Noorddijk"},
-      { "datum": "2018-01-27", "omschrijving": "duurloop 55 min 75%", "locatie": "Aduarderbrug"},
-      { "titel": "eigen 3e training", "datum": "2018-01-29", "omschrijving": "duurloop 30 min, 75%"}]},
+    { "titel": "Week 12", "inhoud": [
+      { "datum": "2018-03-21", "omschrijving": "10 min 75%, 4 x (3' 80% / 3' 85%) 15 min 75%", "locatie": "Rondje voetbalveld+ Zilvermeer"},
+      { "datum": "2018-03-24", "omschrijving": "10 min 75%, 2 x (2' 80% / 8' 85%), 15 min 75%", "locatie": "4 mijl parcours"},
+      { "titel": "eigen 3e training", "datum": "2018-03-26", "omschrijving": "10 km duurloop 80%"}]},
 
-    { "titel": "Week 5", "inhoud": [
-      { "datum": "2018-01-31", "omschrijving": "3 x 8 min 85%, 2 min 70% rust", "locatie": "Zilvermeer"},
-      { "datum": "2018-02-03", "omschrijving": "duurloop 50 min 75% (incl 2 x 6 min 85%, 2 min 70% rust)", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2018-02-05", "omschrijving": "duurloop 50 min, 75%"}]},
 
-    { "titel": "Week 6", "inhoud": [
-      { "datum": "2018-02-07", "omschrijving": "pyramydeloop 1-1-2-2-3-3-2-2-1-1, 20 min uitloop", "locatie": "Voetbalveld"},
-      { "datum": "2018-02-10", "omschrijving": "duurloop 50 min 75% (incl 20 min 85%)", "locatie": "Richting Bedum"},
-      { "titel": "eigen 3e training", "datum": "2018-02-12", "omschrijving": "duurloop 40 min, 80%"}]}
+
+    { "titel": "Week 13", "inhoud": [
+      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van 2 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette)", "locatie": "Noorderplantsoen"},
+      { "titel": "eigen 3e training", "datum": "2018-04-02", "omschrijving": "Riondje 4 mijl parcours waarbij na elke km (80%) km versnellen naar 90%"}]},
+
+
+
+    { "titel": "Week 14", "inhoud": [
+      { "datum": "2018-04-04", "omschrijving": "Duurloop 50 min, na 20 min 3 x (2' 850% / 2' 80%)", "locatie": "4 mijl parcours"},
+      { "datum": "2018-04-07", "omschrijving": "Bootcamp", "locatie": "Veld Kardinge / parkeerplaats Politie"},
+      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "8 km duurloop 75%"}]}
   ],
 
   "B": [
-    { "titel": "Week 4", "inhoud": [
-      { "datum": "2018-01-24", "omschrijving": "duurloop 60 min 75%", "locatie": "Noorddijk"},
-      { "datum": "2018-01-27", "omschrijving": "duurloop 65 min 75%", "locatie": "Aduarderbrug"},
-      { "titel": "eigen 3e training", "datum": "2018-01-29", "omschrijving": "duurloop 40 min, 75%"}]},
+    { "titel": "Week 12", "inhoud": [
+      { "datum": "2018-03-21", "omschrijving": "10 min 75%, 4 x (4' 80% / 4' 85%) 15 min 75%", "locatie": "Rondje voetbalveld+ Zilvermeer"},
+      { "datum": "2018-03-24", "omschrijving": "10 min 75%, 4 x (2' 80% / 8' 85%), 15 min 75%", "locatie": "4 mijl parcours"},
+      { "titel": "eigen 3e training", "datum": "2018-03-26", "omschrijving": "12 km duurloop 80%"}]},
 
 
 
-    { "titel": "Week 5", "inhoud": [
-      { "datum": "2018-01-31", "omschrijving": "4 x 8 min 85%, 2 min 70% rust", "locatie": "Zilvermeer"},
-      { "datum": "2018-02-03", "omschrijving": "duurloop 60 min 75% (incl 3 x 6 min 85%, 2 min 70% rust)", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2018-02-05", "omschrijving": "duurloop 60 min, 75%"}]},
+    { "titel": "Week 13", "inhoud": [
+      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van 2 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette))", "locatie": "Noorderplantsoen"},
+      { "titel": "eigen 3e training", "datum": "2018-04-02", "omschrijving": "Riondje 4 mijl parcours waarbij na elke km (80%) km versnellen naar 90%"}]},
 
 
 
-    { "titel": "Week 6", "inhoud": [
-      { "datum": "2018-02-07", "omschrijving": "pyramydeloop 1-1-2-2-3-3-2-2-1-1, (2x met 5 min rust) 10 min uitloop", "locatie": "Voetbalveld"},
-      { "datum": "2018-02-10", "omschrijving": "duurloop 60 min 75% (incl 25 min 85%)", "locatie": "Richting Bedum"},
-      { "titel": "eigen 3e training", "datum": "2018-02-12", "omschrijving": "duurloop 50 min, 80%"}]}
+    { "titel": "Week 14", "inhoud": [
+      { "datum": "2018-04-04", "omschrijving": "Duurloop 60 min, na 20 min 4 x (2' 85% / 2' 80%)", "locatie": "4 mijl parcours"},
+      { "datum": "2018-04-07", "omschrijving": "Bootcamp", "locatie": "Veld Kardinge / parkeerplaats Politie"},
+      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "10 km duurloop 75%"}]}
   ],
 
   "C": [
-    { "titel": "Week 4", "inhoud": [
-      { "datum": "2018-01-24", "omschrijving": "duurloop 75 min 75%", "locatie": "Noorddijk"},
-      { "datum": "2018-01-27", "omschrijving": "duurloop 80 min 75%", "locatie": "Aduarderbrug"},
-      { "titel": "eigen 3e training", "datum": "2018-01-29", "omschrijving": "duurloop 50 min, 75%"}]},
+    { "titel": "Week 12", "inhoud": [
+      { "datum": "2018-03-21", "omschrijving": "10 min 75%, 4 x (5' 80% / 5' 85%) 15 min 75%", "locatie": "Rondje voetbalveld+ Zilvermeer"},
+      { "datum": "2018-03-24", "omschrijving": "Duurloop 15-16 km, 75-80%, inclusief 6 x ( 3' 80% 3' 85%) na 20 min", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2018-03-26", "omschrijving": "14 km duurloop 80%"}]},
 
-    { "titel": "Week 5", "inhoud": [
-      { "datum": "2018-01-31", "omschrijving": "5 x 8 min 85%, 2 min 70% rust", "locatie": "Zilvermeer"},
-      { "datum": "2018-02-03", "omschrijving": "duurloop 75 min 75% (incl 4 x 6 min 85%, 2 min 70% rust)", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2018-02-05", "omschrijving": "duurloop 70 min, 75%"}]},
 
-    { "titel": "Week 6", "inhoud": [
-      { "datum": "2018-02-07", "omschrijving": "pyramydeloop 1-1-2-2-3-3-2-2-1-1, (3x met 5 min rust)", "locatie": "Voetbalveld"},
-      { "datum": "2018-02-10", "omschrijving": "duurloop 70 min 75% (incl 30 min 85%)", "locatie": "Richting Bedum"},
-      { "titel": "eigen 3e training", "datum": "2018-02-12", "omschrijving": "duurloop 60 min, 80%"}]}
+
+    { "titel": "Week 13", "inhoud": [
+      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van 2 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette))", "locatie": "Noorderplantsoen"},
+      { "titel": "eigen 3e training", "datum": "2018-04-02", "omschrijving": "Riondje 4 mijl parcours waarbij na elke km (80%) km versnellen naar 90%"}]},
+
+
+
+    { "titel": "Week 14", "inhoud": [
+      { "datum": "2018-04-04", "omschrijving": "Duurloop 70 min, na 20 min 5 x (2' 85% / 2' 80%)", "locatie": "4 mijl parcours"},
+      { "datum": "2018-04-07", "omschrijving": "Bootcamp", "locatie": "Veld Kardinge / parkeerplaats Politie"},
+      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "12 km duurloop 75%"}]}
   ]
 }
