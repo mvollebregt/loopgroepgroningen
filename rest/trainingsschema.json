@@ -1,35 +1,42 @@
 {
   "A": [
-    { "titel": "Week 12", "inhoud": [
-      { "datum": "2018-03-21", "omschrijving": "10 min 75%, 4 x (3' 80% / 3' 85%) 15 min 75%", "locatie": "Rondje voetbalveld+ Zilvermeer"},
-      { "datum": "2018-03-24", "omschrijving": "10 min 75%, 2 x (2' 80% / 8' 85%), 15 min 75%", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-03-26", "omschrijving": "10 km duurloop 80%"}]},
-
-
-
     { "titel": "Week 13", "inhoud": [
-      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van 2 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
-      { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette)", "locatie": "Noorderplantsoen"},
+      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van  4 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette))", "locatie": "Noorderplantsoen"},
       { "titel": "eigen 3e training", "datum": "2018-04-02", "omschrijving": "Riondje 4 mijl parcours waarbij na elke km (80%) km versnellen naar 90%"}]},
 
 
 
     { "titel": "Week 14", "inhoud": [
-      { "datum": "2018-04-04", "omschrijving": "Duurloop 50 min, na 20 min 3 x (2' 850% / 2' 80%)", "locatie": "4 mijl parcours"},
+      { "datum": "2018-04-04", "omschrijving": "Duurloop 50 min, na 20 min 3 x (2' 85% / 2' 80%)", "locatie": "4 mijl parcours"},
       { "datum": "2018-04-07", "omschrijving": "Bootcamp", "locatie": "Veld Kardinge / parkeerplaats Politie"},
-      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "8 km duurloop 75%"}]}
+      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "8 km duurloop 75%"}]},
+
+
+
+    { "titel": "Week 15", "inhoud": [
+      { "datum": "2018-04-11", "omschrijving": "10 min 75%, 5 x (4' 85% / 2' 75%) 10 min 75%", "locatie": "Zuidwolde"},
+      { "datum": "2018-04-14", "omschrijving": "Duurloop 50 min, na 20 min 4 x (2' 85% / 2' 80%)", "locatie": "Richting Thesinge"},
+      { "titel": "eigen 3e training", "datum": "2018-04-16", "omschrijving": "8 km duurloop 85%"}]},
+
+
+
+    { "titel": "Week 16", "inhoud": [
+      { "datum": "2018-04-18", "omschrijving": "10 min 75%, 2 x 2 km (driehoekje) waarbij 1e km 75% en 2e 85%, 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-04-21", "omschrijving": "Techniektraining met loopladder, hekjes etc", "locatie": "Parkeerplaats Waterschap"},
+      { "titel": "eigen 3e training", "datum": "2018-04-23", "omschrijving": "8 km duurloop 80%, na elke 2e km 1 km 85%"}]},
+
+
+
+    { "titel": "Week 17", "inhoud": [
+      { "datum": "2018-04-25", "omschrijving": "10 min 75%, 2 sessies van  (10 x (15 sec 75% / 30 sec 90%)), tussen de sessies 5' 75%, 15 min 75%", "locatie": "Overkruid (Witte Lam)"},
+      { "datum": "2018-04-28", "omschrijving": "10 min 75%, 35' Kardingebult, 10 min 75%", "locatie": "Kardingebult"},
+      { "titel": "eigen 3e training", "datum": "2018-04-30", "omschrijving": "6 km duurloop 85"}]}
   ],
 
   "B": [
-    { "titel": "Week 12", "inhoud": [
-      { "datum": "2018-03-21", "omschrijving": "10 min 75%, 4 x (4' 80% / 4' 85%) 15 min 75%", "locatie": "Rondje voetbalveld+ Zilvermeer"},
-      { "datum": "2018-03-24", "omschrijving": "10 min 75%, 4 x (2' 80% / 8' 85%), 15 min 75%", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-03-26", "omschrijving": "12 km duurloop 80%"}]},
-
-
-
     { "titel": "Week 13", "inhoud": [
-      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van 2 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van  4 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
       { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette))", "locatie": "Noorderplantsoen"},
       { "titel": "eigen 3e training", "datum": "2018-04-02", "omschrijving": "Riondje 4 mijl parcours waarbij na elke km (80%) km versnellen naar 90%"}]},
 
@@ -38,19 +45,33 @@
     { "titel": "Week 14", "inhoud": [
       { "datum": "2018-04-04", "omschrijving": "Duurloop 60 min, na 20 min 4 x (2' 85% / 2' 80%)", "locatie": "4 mijl parcours"},
       { "datum": "2018-04-07", "omschrijving": "Bootcamp", "locatie": "Veld Kardinge / parkeerplaats Politie"},
-      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "10 km duurloop 75%"}]}
+      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "10 km duurloop 75%"}]},
+
+
+
+    { "titel": "Week 15", "inhoud": [
+      { "datum": "2018-04-11", "omschrijving": "10 min 75%, 5 x (6' 85% / 2' 75%) 10 min 75%", "locatie": "Zuidwolde"},
+      { "datum": "2018-04-14", "omschrijving": "Duurloop 60 min, na 20 min 5 x (2' 85% / 2' 80%)", "locatie": "Richting Thesinge"},
+      { "titel": "eigen 3e training", "datum": "2018-04-16", "omschrijving": "10 km duurloop 85%"}]},
+
+
+
+    { "titel": "Week 16", "inhoud": [
+      { "datum": "2018-04-18", "omschrijving": "10 min 75%, 3 x 2 km (driehoekje) waarbij 1e km 75% en 2e 85%, 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-04-21", "omschrijving": "Techniektraining met loopladder, hekjes etc", "locatie": "Parkeerplaats Waterschap"},
+      { "titel": "eigen 3e training", "datum": "2018-04-23", "omschrijving": "10 km duurloop 80%, na elke 2e km 1 km 85%"}]},
+
+
+
+    { "titel": "Week 17", "inhoud": [
+      { "datum": "2018-04-25", "omschrijving": "10 min 75%, 3 sessies van  (10 x (15 sec 75% / 30 sec 90%)), tussen de sessies 5' 75%, 20 min 75%", "locatie": "Overkruid (Witte Lam)"},
+      { "datum": "2018-04-28", "omschrijving": "10 min 75%, 45' Kardingebult, 10 min 75%", "locatie": "Kardingebult"},
+      { "titel": "eigen 3e training", "datum": "2018-04-30", "omschrijving": "8 km duurloop 85%"}]}
   ],
 
   "C": [
-    { "titel": "Week 12", "inhoud": [
-      { "datum": "2018-03-21", "omschrijving": "10 min 75%, 4 x (5' 80% / 5' 85%) 15 min 75%", "locatie": "Rondje voetbalveld+ Zilvermeer"},
-      { "datum": "2018-03-24", "omschrijving": "Duurloop 15-16 km, 75-80%, inclusief 6 x ( 3' 80% 3' 85%) na 20 min", "locatie": "Koningslaagte"},
-      { "titel": "eigen 3e training", "datum": "2018-03-26", "omschrijving": "14 km duurloop 80%"}]},
-
-
-
     { "titel": "Week 13", "inhoud": [
-      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van 2 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-03-28", "omschrijving": "10 min 75%, 3 sessies van  4 x ( 1' 80% / 1' 90%) tussen de sessie 5' 75%, na sessie 10 min 75%", "locatie": "Driehoekje"},
       { "datum": "2018-03-31", "omschrijving": "20 min 75%, 3 x 10 min (heuveltje / trappen / rondje vijver (estafette))", "locatie": "Noorderplantsoen"},
       { "titel": "eigen 3e training", "datum": "2018-04-02", "omschrijving": "Riondje 4 mijl parcours waarbij na elke km (80%) km versnellen naar 90%"}]},
 
@@ -59,6 +80,27 @@
     { "titel": "Week 14", "inhoud": [
       { "datum": "2018-04-04", "omschrijving": "Duurloop 70 min, na 20 min 5 x (2' 85% / 2' 80%)", "locatie": "4 mijl parcours"},
       { "datum": "2018-04-07", "omschrijving": "Bootcamp", "locatie": "Veld Kardinge / parkeerplaats Politie"},
-      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "12 km duurloop 75%"}]}
+      { "titel": "eigen 3e training", "datum": "2018-04-09", "omschrijving": "12 km duurloop 75%"}]},
+
+
+
+    { "titel": "Week 15", "inhoud": [
+      { "datum": "2018-04-11", "omschrijving": "10 min 75%, 4 x (10' 85% / 2' 75%) 10 min 75%", "locatie": "Zuidwolde"},
+      { "datum": "2018-04-14", "omschrijving": "Duurloop 70 min, na 20 min 6 x (2' 85% / 2' 80%)", "locatie": "Richting Thesinge"},
+      { "titel": "eigen 3e training", "datum": "2018-04-16", "omschrijving": "12 km duurloop 85%"}]},
+
+
+
+    { "titel": "Week 16", "inhoud": [
+      { "datum": "2018-04-18", "omschrijving": "10 min 75%, 3 x 3 km (driehoekje) waarbij 1e km 75%, 2e 80% en 3e 85%, 10 min 75%", "locatie": "Driehoekje"},
+      { "datum": "2018-04-21", "omschrijving": "Techniektraining met loopladder, hekjes etc", "locatie": "Parkeerplaats Waterschap"},
+      { "titel": "eigen 3e training", "datum": "2018-04-23", "omschrijving": "12 km duurloop 80%, na elke 2e km 1 km 85%"}]},
+
+
+
+    { "titel": "Week 17", "inhoud": [
+      { "datum": "2018-04-25", "omschrijving": "10 min 75%, 4 sessies van  (10 x (15 sec 75% / 30 sec 90%)), tussen de sessies 5' 75%, 10 min 75%", "locatie": "Overkruid (Witte Lam)"},
+      { "datum": "2018-04-28", "omschrijving": "10 min 75%, 60' Kardingebult, 10 min 75%", "locatie": "Kardingebult"},
+      { "titel": "eigen 3e training", "datum": "2018-04-30", "omschrijving": "10 km duurloop 85%"}]}
   ]
 }
