@@ -29,3 +29,6 @@ $ ~/Library/Android/sdk/platform-tools/adb install build/outputs/apk/android-arm
 $ cd ../..
 ```
 
+### Sign Android app:
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias

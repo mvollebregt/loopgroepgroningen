@@ -3,13 +3,14 @@ import {Firebase} from '@ionic-native/firebase';
 import firebase from 'firebase/app';
 import 'firebase/functions';
 import {LocalNotifications} from '@ionic-native/local-notifications';
+import {Platform} from 'ionic-angular';
 
 @Injectable()
 export class NotificatieService {
 
   private notificatiesEnabled = false;
 
-  constructor(private ionicFirebase: Firebase, private notifications: LocalNotifications) {
+  constructor(private ionicFirebase: Firebase, private notifications: LocalNotifications, private platform: Platform) {
     firebase.initializeApp({
       apiKey: 'AIzaSyB3h-f9Zn9MPDwU1xBtBnA2ETwFfpsIoV8',
       authDomain: 'loopgroep-groningen.firebaseapp.com',
@@ -21,7 +22,9 @@ export class NotificatieService {
   setNotificatiesOntvangen(enabled: boolean) {
     if (enabled !== this.notificatiesEnabled) {
       if (enabled) {
-        this.ionicFirebase.grantPermission();
+        if (this.platform.is('iOS')) {
+          this.ionicFirebase.grantPermission();
+        }
         this.ionicFirebase.subscribe('algemeen');
         this.ionicFirebase.subscribe('prikbord');
       } else {
