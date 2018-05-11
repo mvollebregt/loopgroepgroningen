@@ -5,7 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
 import {InstellingenService} from '../core/instellingen/instellingen.service';
-import {Firebase} from '@ionic-native/firebase';
+import {NotificatieService} from '../shared/notificatie.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,10 +17,8 @@ export class MyApp {
   rootPage: string;
   pages = [];
 
-  token = '';
-
   constructor(private instellingenService: InstellingenService,
-              private firebase: Firebase,
+              private notificatieService: NotificatieService,
               private platform: Platform,
               private prikbordService: PrikbordService,
               private splashScreen: SplashScreen,
@@ -37,24 +35,10 @@ export class MyApp {
 
   private onPlatformReady(): void {
     moment.locale('nl');
-    this.instellingenService.getInstellingen().subscribe(instellingen =>
-      this.ingelogdGewijzigd(instellingen.ingelogd));
+    this.instellingenService.getInstellingen().subscribe(instellingen => this.ingelogdGewijzigd(instellingen.ingelogd));
     this.prikbordService.synchroniseer();
-    this.instellingenService.getInstellingen()
-      .subscribe(instellingen => {
-          this.rootPage = instellingen.ingelogd ? 'PrikbordPage' : 'WelkomPage'
-        }
-      );
     this.statusBar.styleDefault();
     this.splashScreen.hide();
-
-
-    // this.firebase.getToken().then(token => this.token = token);
-    // if (this.platform.is('iOS')) {
-    // TODO: dit pas na het inloggen ofzo?
-    this.firebase.grantPermission();
-    this.firebase.subscribe('loopgroep');
-  // }
   }
 
   private onPlatformResume(): void {
@@ -62,6 +46,12 @@ export class MyApp {
   }
 
   private ingelogdGewijzigd(ingelogd: boolean) {
+    this.rootPage = ingelogd ? 'PrikbordPage' : 'WelkomPage';
+    this.toonMenuOpties(ingelogd);
+    this.notificatieService.setNotificatiesOntvangen(ingelogd);
+  }
+
+  private toonMenuOpties(ingelogd: boolean) {
     this.pages = [];
     this.pages.push({title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'});
     this.pages.push({title: 'Agenda', component: 'AgendaPage', icon: 'calendar'});

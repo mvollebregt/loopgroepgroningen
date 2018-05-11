@@ -7,6 +7,7 @@ import {InstellingenService} from '../../core/instellingen/instellingen.service'
 import {Subject} from 'rxjs/Subject';
 import {finalize, map, takeUntil} from 'rxjs/operators';
 import {Instellingen} from '../../core/instellingen/instellingen';
+import {NotificatieService} from '../../shared/notificatie.service';
 
 @IonicPage()
 @Component({
@@ -24,7 +25,10 @@ export class PrikbordPage {
 
   @ViewChild(Content) private content: Content;
 
-  constructor(private instellingenService: InstellingenService, private prikbordService: PrikbordService) {
+  constructor(
+    private instellingenService: InstellingenService,
+    private notificatieService: NotificatieService,
+    private prikbordService: PrikbordService) {
   }
 
   ionViewWillEnter() {
@@ -43,6 +47,7 @@ export class PrikbordPage {
         }
         this.itemsGeladen = true;
       });
+      this.notificatieService.resetNotificaties();
     });
   }
 
