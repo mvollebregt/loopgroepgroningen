@@ -7,6 +7,8 @@ import {WachtwoordkluisService} from './login/wachtwoordkluis.service';
 import {ContactoptiesService} from './contacten/contactopties.service';
 import {Contacts} from '@ionic-native/contacts';
 import {InstellingenService} from './instellingen/instellingen.service';
+import {NotificatieService} from './notificatie.service';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 
 @NgModule({
   providers: [
@@ -14,7 +16,9 @@ import {InstellingenService} from './instellingen/instellingen.service';
     Contacts,
     HttpService,
     InstellingenService,
+    LocalNotifications,
     LoginService,
+    NotificatieService,
     PrikbordService,
     PrikbordClient,
     WachtwoordkluisService

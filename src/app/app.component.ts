@@ -5,7 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
 import {InstellingenService} from '../core/instellingen/instellingen.service';
-import {NotificatieService} from '../shared/notificatie.service';
+import {NotificatieService} from '../core/notificatie.service';
 
 @Component({
   templateUrl: 'app.html'

@@ -7,7 +7,7 @@ import {InstellingenService} from '../../core/instellingen/instellingen.service'
 import {Subject} from 'rxjs/Subject';
 import {finalize, map, takeUntil} from 'rxjs/operators';
 import {Instellingen} from '../../core/instellingen/instellingen';
-import {NotificatieService} from '../../shared/notificatie.service';
+import {NotificatieService} from '../../core/notificatie.service';
 
 @IonicPage()
 @Component({
@@ -47,7 +47,6 @@ export class PrikbordPage {
         }
         this.itemsGeladen = true;
       });
-      this.notificatieService.resetNotificaties();
     });
   }
 
@@ -62,6 +61,10 @@ export class PrikbordPage {
     ).subscribe(() => {
       this.reactie = '';
     });
+  }
+
+  testNotificatie() {
+    this.notificatieService.testNotificatie();
   }
 
 }

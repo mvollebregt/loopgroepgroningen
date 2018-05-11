@@ -5,6 +5,7 @@ import {PrikbordClient} from "./prikbord.client";
 import {Storage} from '@ionic/storage';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {map, take, tap} from 'rxjs/operators';
+import {NotificatieService} from './notificatie.service';
 
 @Injectable()
 export class PrikbordService {
@@ -13,7 +14,10 @@ export class PrikbordService {
   private berichten = new ReplaySubject<Bericht[]>(1);
   private berichtenNogLeeg = true;
 
-  constructor(private storage: Storage, private prikbordClient: PrikbordClient) {
+  constructor(
+    private storage: Storage,
+    private notificatieService: NotificatieService,
+    private prikbordClient: PrikbordClient) {
     this.berichten.pipe(
       take(1)
     ).subscribe(() => this.berichtenNogLeeg = false);
@@ -35,6 +39,7 @@ export class PrikbordService {
   verstuurBericht(berichttekst: string): Observable<{}> {
     return this.prikbordClient.verstuurBericht(berichttekst).pipe(
         tap(berichten => this.synchroniseerBerichten(berichten)),
+        tap(() => this.notificatieService.triggerNotificaties()),
         map(() => null)
       );
   }
@@ -43,6 +48,7 @@ export class PrikbordService {
     // haal de meest recente berichten op van het prikbord
     this.prikbordClient.haalBerichtenOp().subscribe(resultaat => {
       this.synchroniseerBerichten(resultaat);
+      this.notificatieService.resetNotificaties();
     });
   }
 

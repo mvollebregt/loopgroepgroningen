@@ -12,6 +12,7 @@ import {CoreModule} from "../core/core.module";
 import {CustomErrorHandler} from '../core/CustomErrorHandler';
 import {SecureStorage} from '@ionic-native/secure-storage';
 import {Firebase} from '@ionic-native/firebase';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {Firebase} from '@ionic-native/firebase';
     IonicModule.forRoot(MyApp, {
       backButtonText: ''
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    SharedModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
