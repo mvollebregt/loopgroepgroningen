@@ -6,6 +6,7 @@ import {PrikbordService} from "../core/prikbord.service";
 import * as moment from 'moment';
 import {InstellingenService} from '../core/instellingen/instellingen.service';
 import {NotificatieService} from '../core/notificatie.service';
+import {UpgradeService} from '../core/upgrade.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +23,8 @@ export class MyApp {
               private platform: Platform,
               private prikbordService: PrikbordService,
               private splashScreen: SplashScreen,
-              private statusBar: StatusBar) {
+              private statusBar: StatusBar,
+              private upgradeService: UpgradeService) {
     this.platform.ready().then(() => this.onPlatformReady());
     this.platform.resume.subscribe(() => this.onPlatformResume());
   }
@@ -34,6 +36,7 @@ export class MyApp {
   }
 
   private onPlatformReady(): void {
+    this.upgradeService.upgrade();
     moment.locale('nl');
     this.instellingenService.getInstellingen().subscribe(instellingen => this.ingelogdGewijzigd(instellingen.ingelogd));
     this.prikbordService.synchroniseer();

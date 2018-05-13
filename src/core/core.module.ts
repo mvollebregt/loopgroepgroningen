@@ -9,6 +9,7 @@ import {Contacts} from '@ionic-native/contacts';
 import {InstellingenService} from './instellingen/instellingen.service';
 import {NotificatieService} from './notificatie.service';
 import {LocalNotifications} from '@ionic-native/local-notifications';
+import {UpgradeService} from './upgrade.service';
 
 @NgModule({
   providers: [
@@ -21,6 +22,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
     NotificatieService,
     PrikbordService,
     PrikbordClient,
+    UpgradeService,
     WachtwoordkluisService
   ]
 })
