@@ -36,12 +36,13 @@ export class MyApp {
   }
 
   private onPlatformReady(): void {
-    this.upgradeService.upgrade();
     moment.locale('nl');
-    this.instellingenService.getInstellingen().subscribe(instellingen => this.ingelogdGewijzigd(instellingen.ingelogd));
     this.prikbordService.synchroniseer();
-    this.statusBar.styleDefault();
-    this.splashScreen.hide();
+    this.upgradeService.upgrade().subscribe(null, null,() => {
+      this.instellingenService.getInstellingen().subscribe(instellingen => this.ingelogdGewijzigd(instellingen.ingelogd));
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    })
   }
 
   private onPlatformResume(): void {
