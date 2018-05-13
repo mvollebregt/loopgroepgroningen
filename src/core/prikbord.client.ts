@@ -41,7 +41,7 @@ export class PrikbordClient {
     let content = node.querySelector('.easy_content');
     return {
       auteur: auteur,
-      tijdstip: tijdstip.format(),
+      tijdstip: tijdstip.format('YYYY-MM-DDTHH:mm'),
       berichttekst: toParagraaf(content)
     }
   }

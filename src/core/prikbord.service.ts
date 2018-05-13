@@ -103,7 +103,7 @@ export class PrikbordService implements OnDestroy {
   private static equal(links: Bericht, rechts: Bericht) {
     if (PrikbordService.differNull(links, rechts)
       || links.auteur !== rechts.auteur
-      || links.tijdstip !== rechts.tijdstip
+      || links.tijdstip.substring(0, 16) !== rechts.tijdstip.substring(0, 16) // skip time zone
       || PrikbordService.differNull(links.berichttekst, rechts.berichttekst)
       || links.berichttekst.length !== rechts.berichttekst.length) {
       return false;
