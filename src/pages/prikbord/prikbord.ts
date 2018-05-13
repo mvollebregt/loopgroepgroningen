@@ -42,8 +42,10 @@ export class PrikbordPage {
     ).subscribe((items: Bericht[]) => {
       this.items = items;
       setTimeout(() => {
-        if (this.content) {
+        try {
           this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+        } catch {
+          // om onduidelijke redenen geeft de regel hierboven soms een fout. dat los ik dan maar zo op.
         }
         this.itemsGeladen = true;
       });
