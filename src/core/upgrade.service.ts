@@ -7,12 +7,14 @@ import {LoginService} from './login/login.service';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {WachtwoordkluisService} from './login/wachtwoordkluis.service';
+import {Platform} from 'ionic-angular';
 
 @Injectable()
 export class UpgradeService {
 
   constructor(private instellingenService: InstellingenService,
               private loginService: LoginService,
+              private platform: Platform,
               private secureStorage: SecureStorage,
               private wachtwoordkluis: WachtwoordkluisService) {
   }
@@ -32,15 +34,19 @@ export class UpgradeService {
   }
 
   private async haalLoginOpV1(): Promise<Login> {
-    const storage = await this.getOudeSecureStorage();
-    const username = await storage.get('username');
-    const password = await storage.get('password');
-    return username && password ? {username, password} : null;
+    if (this.platform.is('cordova')) {
+      const storage = await this.getOudeSecureStorage();
+      const username = await storage.get('username');
+      const password = await storage.get('password');
+      return username && password ? {username, password} : null;
+    }
   }
 
   private async clearOudeSecureStorage() {
-    const storage = await this.getOudeSecureStorage();
-    return storage.clear();
+    if (this.platform.is('cordova')) {
+      const storage = await this.getOudeSecureStorage();
+      return storage.clear();
+    }
   }
 
   private async getOudeSecureStorage(): Promise<SecureStorageObject> {
