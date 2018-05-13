@@ -34,7 +34,7 @@ export class PrikbordPage {
   ionViewWillEnter() {
 
     this.ingelogd = this.instellingenService.getInstellingen().pipe(
-      map((instellingen: Instellingen) => instellingen.ingelogd)
+      map((instellingen: Instellingen) => instellingen.ingelogd || instellingen.demoModus)
     );
 
     this.prikbordService.getBerichten().pipe(

@@ -35,32 +35,37 @@ export class LoginService {
   // Submit de login naar de website.
   // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
   submitLogin(login: Login): Observable<{}> {
-    return this.httpService.get('index.php/loopgroep-groningen-ledeninfo').pipe(
-      this.checkIngelogd(),
-      switchMap(([ingelogd, response]) => {
-        if (ingelogd) {
-          return of(null);
-        } else {
-          return of(response).pipe(
-            this.httpService.postAfterGet(
-              'index.php/loopgroep-groningen-ledeninfo',
-              '#login-form',
-              {
-                username: (login && login.username) || '',
-                password: (login && login.password) || ''
-              }),
-            this.checkIngelogd(),
-            tap(([ingelogd, ]) => {
-              if (!ingelogd) {
-                throw ['Het inloggen is mislukt.'];
-              }
-            })
-          );
-        }
-      }),
-      tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
-      map(() => null)
-    )
+    if (login.username === 'demo' && login.password ==='veeps529)safe') {
+      this.instellingenService.setInstellingen({ingelogd: false, demoModus: true});
+      return of({});
+    } else {
+      return this.httpService.get('index.php/loopgroep-groningen-ledeninfo').pipe(
+        this.checkIngelogd(),
+        switchMap(([ingelogd, response]) => {
+          if (ingelogd) {
+            return of(null);
+          } else {
+            return of(response).pipe(
+              this.httpService.postAfterGet(
+                'index.php/loopgroep-groningen-ledeninfo',
+                '#login-form',
+                {
+                  username: (login && login.username) || '',
+                  password: (login && login.password) || ''
+                }),
+              this.checkIngelogd(),
+              tap(([ingelogd,]) => {
+                if (!ingelogd) {
+                  throw ['Het inloggen is mislukt.'];
+                }
+              })
+            );
+          }
+        }),
+        tap(() => this.instellingenService.setInstellingen({ingelogd: true})),
+        map(() => null)
+      );
+    }
   }
 
   private probeerLogin(login: Login): Observable<{}> {

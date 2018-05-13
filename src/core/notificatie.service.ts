@@ -22,7 +22,7 @@ export class NotificatieService {
   setNotificatiesOntvangen(enabled: boolean) {
     if (enabled !== this.notificatiesEnabled) {
       if (enabled) {
-        if (this.platform.is('iOS')) {
+        if (this.platform.is('ios')) {
           this.ionicFirebase.grantPermission();
         }
         this.ionicFirebase.subscribe('algemeen');

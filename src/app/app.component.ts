@@ -39,7 +39,7 @@ export class MyApp {
     moment.locale('nl');
     this.prikbordService.synchroniseer();
     this.upgradeService.upgrade().subscribe(null, null,() => {
-      this.instellingenService.getInstellingen().subscribe(instellingen => this.ingelogdGewijzigd(instellingen.ingelogd));
+      this.instellingenService.getInstellingen().subscribe(instellingen => this.ingelogdGewijzigd(instellingen.ingelogd, instellingen.demoModus));
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     })
@@ -49,8 +49,8 @@ export class MyApp {
     this.prikbordService.synchroniseer();
   }
 
-  private ingelogdGewijzigd(ingelogd: boolean) {
-    this.rootPage = ingelogd ? 'PrikbordPage' : 'WelkomPage';
+  private ingelogdGewijzigd(ingelogd: boolean, demoModus: boolean) {
+    this.rootPage = ingelogd || demoModus ? 'PrikbordPage' : 'WelkomPage';
     this.toonMenuOpties(ingelogd);
     this.notificatieService.setNotificatiesOntvangen(ingelogd);
   }
