@@ -86,7 +86,7 @@ export class PrikbordService implements OnDestroy {
 
   private zoekNieuwste(berichten: Bericht[]) {
     let index = berichten.length - 1;
-    while (index > -1 && berichten[index].auteur !== 'demo') {
+    while (index > -1 && berichten[index].auteur === 'demo') {
       index--;
     }
     return index > -1? berichten[index] : null;

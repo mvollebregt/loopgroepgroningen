@@ -37,7 +37,7 @@ export class LoginService {
   submitLogin(login: Login): Observable<{}> {
     if (login.username === 'demo' && login.password ==='veeps529)safe') {
       this.instellingenService.setInstellingen({ingelogd: false, demoModus: true});
-      return of({});
+      return of(null);
     } else {
       return this.httpService.get('index.php/loopgroep-groningen-ledeninfo').pipe(
         this.checkIngelogd(),
