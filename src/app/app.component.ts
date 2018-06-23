@@ -61,7 +61,6 @@ export class MyApp {
     this.pages.push({title: 'Agenda', component: 'AgendaPage', icon: 'calendar'});
     if (ingelogd) {
       this.pages.push({title: 'Trainingsschema', component: 'TrainingsschemaPage', icon: 'grid'});
-      this.pages.push({title: 'Ledenlijst', component: 'LedenlijstPage', icon: 'contacts'});
     } else {
       this.pages.push({title: 'Inloggen', component: 'WelkomPage', icon: 'log-in'});
     }
