@@ -35,7 +35,7 @@ export class LoginService {
   // Submit de login naar de website.
   // De observable geeft een lijst van meldingen terug als er iets is misgegaan, of null als het inloggen is gelukt.
   submitLogin(login: Login): Observable<{}> {
-    if (login.username === 'demo' && login.password ==='veeps529)safe') {
+    if (login && login.username === 'demo' && login.password ==='veeps529)safe') {
       this.instellingenService.setInstellingen({ingelogd: false, demoModus: true});
       return of(null);
     } else {

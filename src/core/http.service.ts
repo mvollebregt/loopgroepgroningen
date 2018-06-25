@@ -5,12 +5,14 @@ import {HttpClient} from '@angular/common/http';
 import {FormDetails} from './form-details';
 import {map, retry, switchMap, tap} from 'rxjs/operators';
 import {pipe} from 'rxjs/Rx';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class HttpService {
 
   private readonly baseUrl: string;
   private readonly parser = new DOMParser();
+  private cookiesAccepted = false;
 
   constructor(platform: Platform, private http: HttpClient) {
     // Op een echt device moeten we naar de absolute URL toe. Binnen de browser maken we gebruik van een proxy.
@@ -18,7 +20,8 @@ export class HttpService {
   }
 
   public get(relativeUrl: string): Observable<string> {
-    return this.http.get(this.urlFor(relativeUrl), {responseType: 'text'}).pipe(
+    return this.acceptCookies().pipe(
+      switchMap(() => this.http.get(this.urlFor(relativeUrl), {responseType: 'text', withCredentials: true})),
       tap((response: string) => this.checkMeldingen(response))
     );
   }
@@ -37,13 +40,24 @@ export class HttpService {
         let formData = new FormData();
         copyToFormData(form.inputs, formData);
         copyToFormData(params, formData);
-        return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {responseType: 'text'});
+        return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {responseType: 'text', withCredentials: true});
       }),
       tap((response: string) => this.checkMeldingen(response))
     );
   }
 
-
+  private acceptCookies(): Observable<string> {
+    if (!this.cookiesAccepted) {
+      return this.http.get(this.urlFor('index.php?option=com_ajax&plugin=eprivacy&format=raw&method=accept&consent=&country=not+detected'), {responseType: 'text', withCredentials: true}).pipe(
+        tap(response => {
+          console.log(response);
+          this.cookiesAccepted = true;
+        })
+      );
+    } else {
+      return of('');
+    }
+  }
 
   private extract<T>(selector: string, mapToObject: (node: Element) => T, throwErrorIfEmpty: boolean): (html: string) => T[] {
     return (html: string) => {
