@@ -20,18 +20,19 @@ export class NotificatieService {
   }
 
   setNotificatiesOntvangen(enabled: boolean) {
-    if (enabled !== this.notificatiesEnabled) {
-      if (enabled) {
-        if (this.platform.is('ios')) {
+    // notificaties worden in deze versie alleen nog ondersteund voor iOS
+    if (this.platform.is('ios')) {
+      if (enabled !== this.notificatiesEnabled) {
+        if (enabled) {
           this.ionicFirebase.grantPermission();
+          this.ionicFirebase.subscribe('algemeen');
+          this.ionicFirebase.subscribe('prikbord');
+        } else {
+          this.ionicFirebase.unsubscribe('algemeen');
+          this.ionicFirebase.unsubscribe('prikbord');
         }
-        this.ionicFirebase.subscribe('algemeen');
-        this.ionicFirebase.subscribe('prikbord');
-      } else {
-        this.ionicFirebase.unsubscribe('algemeen');
-        this.ionicFirebase.unsubscribe('prikbord');
+        this.notificatiesEnabled = enabled;
       }
-      this.notificatiesEnabled = enabled;
     }
   }
 
