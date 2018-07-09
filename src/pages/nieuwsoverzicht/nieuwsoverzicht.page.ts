@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import {Nieuwsbericht} from './shared/nieuwsbericht';
@@ -14,7 +14,8 @@ import {
 @IonicPage()
 @Component({
   selector: 'page-nieuws',
-  templateUrl: './nieuwsoverzicht.page.html'
+  templateUrl: './nieuwsoverzicht.page.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NieuwsoverzichtPage implements OnInit {
 
