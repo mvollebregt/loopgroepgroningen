@@ -58,7 +58,7 @@ export class MyApp {
   private toonMenuOpties(ingelogd: boolean) {
     this.pages = [];
     if (ingelogd) {
-      this.pages.push({title: 'Nieuws', component: 'NieuwsoverzichtPage', icon: 'paper'});
+      this.pages.push({title: 'Laatste nieuws', component: 'NieuwsoverzichtPage', icon: 'paper'});
     }
     this.pages.push({title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'});
     this.pages.push({title: 'Agenda', component: 'AgendaPage', icon: 'calendar'});

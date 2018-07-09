@@ -1,5 +1,6 @@
 import {
   _getNieuwsberichten,
+  _getNieuwsberichtenError,
   _getNieuwsberichtenLoaded,
   _getNieuwsberichtenLoading,
   nieuwsberichtenReducer,
@@ -19,3 +20,4 @@ const getNieuwsberichtenState = createSelector(getNieuwsState, (state: NieuwsSta
 export const getNieuwsberichten = createSelector(getNieuwsberichtenState, _getNieuwsberichten);
 export const getNieuwsberichtenLoaded = createSelector(getNieuwsberichtenState, _getNieuwsberichtenLoaded);
 export const getNieuwsberichtenLoading = createSelector(getNieuwsberichtenState, _getNieuwsberichtenLoading);
+export const getNieuwsberichtenError = createSelector(getNieuwsberichtenState, _getNieuwsberichtenError);

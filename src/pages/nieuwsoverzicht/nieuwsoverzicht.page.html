@@ -3,12 +3,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Nieuws</ion-title>
+    <ion-title>Laatste nieuws</ion-title>
   </ion-navbar>
 
-  <!--<div *ngIf="items && !items.length" class="info-message">-->
-    <!--Het prikbord kon niet worden geladen.-->
-  <!--</div>-->
+  <div *ngIf="error | async" class="info-message">
+    Het laatste nieuws kon niet worden geladen.
+  </div>
 </ion-header>
 
 <lg-spinner *ngIf="spinning | async"></lg-spinner>

@@ -9,12 +9,14 @@ import {
 export interface NieuwsberichtState {
   loaded: boolean;
   loading: boolean;
+  error: boolean,
   nieuwsberichten: Nieuwsbericht[];
 }
 
 const initialState: NieuwsberichtState = {
   loaded: false,
   loading: false,
+  error: false,
   nieuwsberichten: [],
 };
 
@@ -45,6 +47,7 @@ export function nieuwsberichtenReducer(
         ...state,
         loaded: false,
         loading: false,
+        error: true
       };
     }
   }
@@ -54,4 +57,5 @@ export function nieuwsberichtenReducer(
 export const _getNieuwsberichten = (state: NieuwsberichtState) => state.nieuwsberichten;
 export const _getNieuwsberichtenLoaded = (state: NieuwsberichtState) => state.loaded;
 export const _getNieuwsberichtenLoading = (state: NieuwsberichtState) => state.loading;
+export const _getNieuwsberichtenError = (state: NieuwsberichtState) => state.error;
 
