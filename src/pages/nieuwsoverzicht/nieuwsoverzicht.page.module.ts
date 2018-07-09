@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
-import {NieuwsPage} from './nieuws';
-import {NieuwslijstComponent} from './nieuwslijst/nieuwslijst.component';
+import {NieuwsoverzichtPage} from './nieuwsoverzicht.page';
+import {NieuwsberichtenLijstComponent} from './nieuwsberichten-lijst/nieuwsberichten-lijst.component';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {NieuwsberichtenEffects} from './store/nieuwsberichten.effect';
@@ -10,14 +10,14 @@ import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
-    NieuwsPage,
-    NieuwslijstComponent
+    NieuwsoverzichtPage,
+    NieuwsberichtenLijstComponent
   ],
   imports: [
-    IonicPageModule.forChild(NieuwsPage),
+    IonicPageModule.forChild(NieuwsoverzichtPage),
     SharedModule,
     StoreModule.forFeature('nieuws', nieuwsReducers),
     EffectsModule.forFeature([NieuwsberichtenEffects])
   ],
 })
-export class NieuwsPageModule {}
+export class NieuwsoverzichtPageModule {}

@@ -4,7 +4,7 @@ import {Actions, Effect} from '@ngrx/effects';
 import {of} from 'rxjs/observable/of';
 import {delay, exhaustMap} from 'rxjs/operators';
 import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
-import {Nieuwsbericht} from '../nieuwsbericht';
+import {Nieuwsbericht} from '../models/nieuwsbericht';
 
 
 const testdata: Nieuwsbericht[] = [{

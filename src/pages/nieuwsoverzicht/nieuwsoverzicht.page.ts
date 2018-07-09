@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
-import {Nieuwsbericht} from './nieuwsbericht';
+import {Nieuwsbericht} from './models/nieuwsbericht';
 import {Store} from '@ngrx/store';
 import {LoadNieuwsberichten} from './store/nieuwsberichten.action';
 import {getNieuwsberichten, getNieuwsberichtenLoading, NieuwsState} from './store/nieuws.reducers';
@@ -10,9 +10,9 @@ import {of} from 'rxjs/observable/of';
 @IonicPage()
 @Component({
   selector: 'page-nieuws',
-  templateUrl: 'nieuws.html'
+  templateUrl: './nieuwsoverzicht.page.html'
 })
-export class NieuwsPage implements OnInit {
+export class NieuwsoverzichtPage implements OnInit {
 
   nieuwsberichten: Observable<Nieuwsbericht[]>;
   spinning: Observable<boolean> = of(true);
