@@ -6,6 +6,7 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {NieuwsberichtenEffects} from './store/nieuwsberichten.effect';
 import {nieuwsReducers} from './store/nieuws.reducers';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {nieuwsReducers} from './store/nieuws.reducers';
   ],
   imports: [
     IonicPageModule.forChild(NieuwsPage),
+    SharedModule,
     StoreModule.forFeature('nieuws', nieuwsReducers),
     EffectsModule.forFeature([NieuwsberichtenEffects])
   ],

@@ -11,6 +11,8 @@
   <!--</div>-->
 </ion-header>
 
+<lg-spinner *ngIf="spinning | async"></lg-spinner>
+
 <ion-content>
 
   <lgg-nieuwslijst [nieuwsberichten]="nieuwsberichten | async"></lgg-nieuwslijst>

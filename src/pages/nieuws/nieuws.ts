@@ -4,7 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {Nieuwsbericht} from './nieuwsbericht';
 import {Store} from '@ngrx/store';
 import {LoadNieuwsberichten} from './store/nieuwsberichten.action';
-import {getNieuwsberichten, NieuwsState} from './store/nieuws.reducers';
+import {getNieuwsberichten, getNieuwsberichtenLoading, NieuwsState} from './store/nieuws.reducers';
+import {of} from 'rxjs/observable/of';
 
 @IonicPage()
 @Component({
@@ -14,11 +15,13 @@ import {getNieuwsberichten, NieuwsState} from './store/nieuws.reducers';
 export class NieuwsPage implements OnInit {
 
   nieuwsberichten: Observable<Nieuwsbericht[]>;
+  spinning: Observable<boolean> = of(true);
 
   constructor(private store: Store<NieuwsState>) {}
 
   ngOnInit() {
     this.nieuwsberichten = this.store.select(getNieuwsberichten);
+    this.spinning = this.store.select(getNieuwsberichtenLoading);
     this.store.dispatch(new LoadNieuwsberichten());
   }
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {Actions, Effect} from '@ngrx/effects';
 import {of} from 'rxjs/observable/of';
-import {exhaustMap} from 'rxjs/operators';
+import {delay, exhaustMap} from 'rxjs/operators';
 import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
 import {Nieuwsbericht} from '../nieuwsbericht';
 
@@ -30,6 +30,8 @@ export class NieuwsberichtenEffects {
   loadNieuwsberichten = this.actions
     .ofType(LOAD_NIEUWSBERICHTEN)
     .pipe(
-      exhaustMap(() => of(new LoadNieuwsberichtenSuccess(testdata)))
+      exhaustMap(() => of(new LoadNieuwsberichtenSuccess(testdata)).pipe(
+        delay(1000)
+      ))
     );
 }
