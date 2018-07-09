@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 
 import {Actions, Effect} from '@ngrx/effects';
 import {of} from 'rxjs/observable/of';
-import {delay, exhaustMap} from 'rxjs/operators';
-import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
-import {Nieuwsbericht} from '../models/nieuwsbericht';
+import {catchError, exhaustMap, map} from 'rxjs/operators';
+import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenFail, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
+import {Nieuwsbericht} from '../shared/nieuwsbericht';
+import {NieuwsClient} from '../shared/nieuws.client';
 
 
 const testdata: Nieuwsbericht[] = [{
@@ -24,14 +25,22 @@ const testdata: Nieuwsbericht[] = [{
 export class NieuwsberichtenEffects {
   constructor(
     private actions: Actions,
-  ) {}
+    private nieuwsClient: NieuwsClient
+  ) {
+  }
 
   @Effect()
   loadNieuwsberichten = this.actions
     .ofType(LOAD_NIEUWSBERICHTEN)
     .pipe(
-      exhaustMap(() => of(new LoadNieuwsberichtenSuccess(testdata)).pipe(
-        delay(1000)
-      ))
-    );
+      exhaustMap(() =>
+        this.nieuwsClient.haalNieuwsberichtenOp().pipe(
+          map(nieuwsberichten => new LoadNieuwsberichtenSuccess(nieuwsberichten)),
+          catchError(error => {
+            console.log(error);
+            return of(new LoadNieuwsberichtenFail(error));
+          })
+        )
+      ));
+
 }

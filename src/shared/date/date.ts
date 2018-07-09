@@ -6,8 +6,8 @@ import * as moment from 'moment';
 })
 export class DatePipe implements PipeTransform {
 
-  transform(date: string) {
+  transform(date: string, format = "ddd D MMM YYYY - HH:mm") {
     // substring(0, 16) -> skip time zone
-    return moment(date.substring(0, 16)).format("ddd D MMM YYYY - HH:mm").replace(/\./g, '')
+    return moment(date.substring(0, 16)).format(format).replace(/\./g, '')
   }
 }

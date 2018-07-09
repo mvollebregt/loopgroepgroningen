@@ -1,4 +1,4 @@
-import {Nieuwsbericht} from '../models/nieuwsbericht';
+import {Nieuwsbericht} from '../shared/nieuwsbericht';
 import {
   LOAD_NIEUWSBERICHTEN,
   LOAD_NIEUWSBERICHTEN_FAIL,

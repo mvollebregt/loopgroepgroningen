@@ -7,6 +7,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {NieuwsberichtenEffects} from './store/nieuwsberichten.effect';
 import {nieuwsReducers} from './store/nieuws.reducers';
 import {SharedModule} from '../../shared/shared.module';
+import {NieuwsClient} from './shared/nieuws.client';
 
 @NgModule({
   declarations: [
@@ -19,5 +20,8 @@ import {SharedModule} from '../../shared/shared.module';
     StoreModule.forFeature('nieuws', nieuwsReducers),
     EffectsModule.forFeature([NieuwsberichtenEffects])
   ],
+  providers: [
+    NieuwsClient
+  ]
 })
 export class NieuwsoverzichtPageModule {}

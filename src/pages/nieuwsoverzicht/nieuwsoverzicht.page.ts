@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
-import {Nieuwsbericht} from './models/nieuwsbericht';
+import {Nieuwsbericht} from './shared/nieuwsbericht';
 import {Store} from '@ngrx/store';
 import {LoadNieuwsberichten} from './store/nieuwsberichten.action';
 import {

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Nieuwsbericht} from '../models/nieuwsbericht';
+import {Nieuwsbericht} from '../shared/nieuwsbericht';
 
 @Component({
   selector: 'lg-nieuwsberichten-lijst',
