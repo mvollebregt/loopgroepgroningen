@@ -1,34 +1,24 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import {Nieuwsbericht} from './nieuwsbericht';
-import {of} from 'rxjs/observable/of';
-
-/**
- * Generated class for the NieuwsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Store} from '@ngrx/store';
+import {LoadNieuwsberichten} from './store/nieuwsberichten.action';
+import {getNieuwsberichten, NieuwsState} from './store/nieuws.reducers';
 
 @IonicPage()
 @Component({
   selector: 'page-nieuws',
   templateUrl: 'nieuws.html'
 })
-export class NieuwsPage {
+export class NieuwsPage implements OnInit {
 
-  nieuwsberichten: Observable<Nieuwsbericht[]> = of([{
-    titel: 'Hallo, ik ben Bianca',
-    datum: '2018-07-08',
-    plaatje: 'http://www.loopgroepgroningen.nl/images/Bianca1.jpg',
-    samenvatting: 'Hallo loopmaatjes, Ik ben Bianca en zit sinds een paar weekjes'
-  }, {
-    titel: 'Arlette blijft lekker doorwandelen ....',
-    datum: '2018-07-08',
-    plaatje: 'http://www.loopgroepgroningen.nl/images/Arlette18.jpg',
-    samenvatting: 'Hallo allemaal, Even weer een berichtje... Na mijn'
-  }]);
+  nieuwsberichten: Observable<Nieuwsbericht[]>;
 
+  constructor(private store: Store<NieuwsState>) {}
 
+  ngOnInit() {
+    this.nieuwsberichten = this.store.select(getNieuwsberichten);
+    this.store.dispatch(new LoadNieuwsberichten());
+  }
 }
