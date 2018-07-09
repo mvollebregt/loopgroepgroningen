@@ -1,0 +1,13 @@
+<ion-list>
+
+  <button ion-item *ngFor="let nieuwsbericht of nieuwsberichten">
+    <ion-thumbnail item-start>
+      <img [src]="nieuwsbericht.plaatje">
+    </ion-thumbnail>
+    <h2>{{nieuwsbericht.datum}}</h2>
+    <div>{{nieuwsbericht.titel}}</div>
+    <p>{{nieuwsbericht.samenvatting}}</p>
+  </button>
+
+</ion-list>
+

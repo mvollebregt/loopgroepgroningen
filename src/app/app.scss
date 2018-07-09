@@ -154,3 +154,7 @@ ion-textarea, ion-input {
     font-size: 14px;
   }
 }
+
+ion-label>* {
+  margin-bottom: 2px;
+}
