@@ -22,9 +22,9 @@ export class PrikbordService implements OnDestroy {
 
   constructor(
     private storage: Storage,
-    private instellingenService: InstellingenService,
     private notificatieService: NotificatieService,
-    private prikbordClient: PrikbordClient) {
+    private prikbordClient: PrikbordClient,
+    instellingenService: InstellingenService,) {
     this.berichten.pipe(
       take(1)
     ).subscribe(() => this.berichtenNogLeeg = false);
@@ -70,7 +70,7 @@ export class PrikbordService implements OnDestroy {
 
   private synchroniseerBerichten(berichten) {
     // haal de opgeslagen berichten uit de opslag
-    this.storage.get(PrikbordService.key).then( opgeslagen => {
+    this.storage.get(PrikbordService.key).then(opgeslagen => {
       // check of er nieuwe berichten zijn bijgekomen
       opgeslagen = opgeslagen || [];
       let aantalNieuwe = berichten.findIndex(bericht => PrikbordService.equal(bericht, this.zoekNieuwste(opgeslagen)));
@@ -89,7 +89,7 @@ export class PrikbordService implements OnDestroy {
     while (index > -1 && berichten[index].auteur === 'demo') {
       index--;
     }
-    return index > -1? berichten[index] : null;
+    return index > -1 ? berichten[index] : null;
   }
 
   private verstuurDemoBericht(berichttekst: string) {
