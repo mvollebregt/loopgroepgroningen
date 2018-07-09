@@ -22,9 +22,9 @@ export class PrikbordService implements OnDestroy {
 
   constructor(
     private storage: Storage,
-    private instellingenService: InstellingenService,
     private notificatieService: NotificatieService,
-    private prikbordClient: PrikbordClient) {
+    private prikbordClient: PrikbordClient,
+    instellingenService: InstellingenService) {
     this.berichten.pipe(
       take(1)
     ).subscribe(() => this.berichtenNogLeeg = false);
