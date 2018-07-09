@@ -18,10 +18,9 @@ import {storeFreeze} from 'ngrx-store-freeze';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
-// TODO: veranderen voor productie
 const environment = {
-  development: true,
-  production: false,
+  development: false,
+  production: true,
 };
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
