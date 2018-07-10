@@ -10,6 +10,8 @@ import {
   getNieuwsberichtenLoading,
   NieuwsState
 } from '../../features/nieuws/store/nieuws.reducers';
+import {combineLatest} from 'rxjs/observable/combineLatest';
+import {map} from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -29,7 +31,12 @@ export class NieuwsoverzichtPage implements OnInit {
 
   ngOnInit() {
     this.nieuwsberichten = this.store.select(getNieuwsberichten);
-    this.spinning = this.store.select(getNieuwsberichtenLoading);
+    this.spinning = combineLatest(
+      this.nieuwsberichten,
+      this.store.select(getNieuwsberichtenLoading)
+    ).pipe(
+      map(([berichten, loading]) => !berichten.length && loading)
+    );
     this.error = this.store.select(getNieuwsberichtenError);
     this.store.dispatch(new LoadNieuwsberichten());
   }
