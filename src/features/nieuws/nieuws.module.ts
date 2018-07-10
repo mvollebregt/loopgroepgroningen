@@ -7,12 +7,15 @@ import {NieuwsberichtenLijstComponent} from './nieuwsberichten-lijst/nieuwsberic
 import {NgModule} from '@angular/core';
 import {SharedModule} from '../../shared/shared.module';
 import {IonicModule} from 'ionic-angular';
+import {NieuwsberichtDetailComponent} from './nieuwsbericht-detail/nieuwsbericht-detail.component';
 
 @NgModule({
   declarations: [
+    NieuwsberichtDetailComponent,
     NieuwsberichtenLijstComponent
   ],
   exports: [
+    NieuwsberichtDetailComponent,
     NieuwsberichtenLijstComponent
   ],
   imports: [

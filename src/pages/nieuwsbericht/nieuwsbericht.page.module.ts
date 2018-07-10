@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
 import {NieuwsberichtPage} from './nieuwsbericht.page';
-import {SharedModule} from '../../shared/shared.module';
+import {NieuwsModule} from '../../features/nieuws/nieuws.module';
 
 @NgModule({
   declarations: [
-    NieuwsberichtPage,
+    NieuwsberichtPage
   ],
   imports: [
     IonicPageModule.forChild(NieuwsberichtPage),
-    SharedModule
+    NieuwsModule
   ],
 })
 export class NieuwsberichtPageModule {}
