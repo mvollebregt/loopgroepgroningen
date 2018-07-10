@@ -1,10 +1,12 @@
 <ion-list>
 
   <ion-list-header>
-    Juli 2018
+    Juli 2018 {{nieuwsberichten?.length }}
   </ion-list-header>
 
-  <button ion-item *ngFor="let nieuwsbericht of nieuwsberichten">
+  <button ion-item
+          *ngFor="let nieuwsbericht of nieuwsberichten"
+          (tap)="onTap(nieuwsbericht)">
     <ion-thumbnail item-start>
       <img [src]="nieuwsbericht.plaatje">
     </ion-thumbnail>

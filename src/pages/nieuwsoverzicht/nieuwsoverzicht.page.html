@@ -15,6 +15,9 @@
 
 <ion-content>
 
-  <lg-nieuwsberichten-lijst [nieuwsberichten]="nieuwsberichten | async"></lg-nieuwsberichten-lijst>
+  <lg-nieuwsberichten-lijst
+    [nieuwsberichten]="nieuwsberichten | async"
+    (nieuwsberichtTapped)="gaNaarNieuwsbericht($event)">
+  </lg-nieuwsberichten-lijst>
 
 </ion-content>

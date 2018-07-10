@@ -23,7 +23,7 @@ export class NieuwsClient {
     );
   }
 
-  private static toNieuwsbericht(node: Element): Nieuwsbericht {
+  private static toNieuwsbericht(node: Element, volgnummer: number): Nieuwsbericht {
     console.log(node);
     const titel = node.querySelector('.loopgroepgroningen-postheader').textContent.trim();
     let samenvatting = node.querySelector('.loopgroepgroningen-postcontent').textContent.replace('\n', ' ');
@@ -31,6 +31,7 @@ export class NieuwsClient {
     const plaatje = 'http://www.loopgroepgroningen.nl' + node.querySelector('img').getAttribute('src');
     const datum = moment(node.querySelector('strong').textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
     return {
+      volgnummer,
       titel,
       samenvatting,
       plaatje,

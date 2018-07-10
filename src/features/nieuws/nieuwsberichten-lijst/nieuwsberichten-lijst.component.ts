@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Nieuwsbericht} from '../shared/nieuwsbericht';
 
 @Component({
@@ -8,5 +8,9 @@ import {Nieuwsbericht} from '../shared/nieuwsbericht';
 export class NieuwsberichtenLijstComponent {
 
   @Input() nieuwsberichten: Nieuwsbericht[];
+  @Output() nieuwsberichtTapped = new EventEmitter<Nieuwsbericht>();
 
+  onTap(nieuwsbericht: Nieuwsbericht) {
+    this.nieuwsberichtTapped.emit(nieuwsbericht);
+  }
 }

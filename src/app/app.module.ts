@@ -19,8 +19,8 @@ import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 const environment = {
-  development: false,
-  production: true,
+  development: true,
+  production: false,
 };
 
 export const metaReducers: MetaReducer<any>[] = !environment.production
