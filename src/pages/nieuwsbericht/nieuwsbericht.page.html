@@ -9,6 +9,6 @@
 
 <ion-content>
 
-  <!--<lg-nieuwsbericht-details [nieuwsbericht]="nieuwsbericht"></lg-nieuwsbericht-details>-->
+  <lg-content [content]="(nieuwsbericht | async)?.content"></lg-content>
 
 </ion-content>
