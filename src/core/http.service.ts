@@ -59,7 +59,7 @@ export class HttpService {
     }
   }
 
-  private extract<T>(selector: string, mapToObject: (node: Element) => T, throwErrorIfEmpty: boolean): (html: string) => T[] {
+  private extract<T>(selector: string, mapToObject: (node: Element, volgnummer: number) => T, throwErrorIfEmpty: boolean): (html: string) => T[] {
     return (html: string) => {
       let doc = this.parser.parseFromString(html, 'text/html');
       let elements: NodeListOf<Element> = doc.querySelectorAll(selector);
@@ -68,13 +68,13 @@ export class HttpService {
       }
       let objects: T[] = [];
       for (let i = 0; i < elements.length; i++) {
-        objects.push(mapToObject(elements.item(i)))
+        objects.push(mapToObject(elements.item(i), i))
       }
       return objects;
     }
   }
 
-  public extractWithRetry<T>(selector: string, mapToObject: (node: Element) => T) {
+  public extractWithRetry<T>(selector: string, mapToObject: (node: Element, volgnummer: number) => T) {
     return pipe(
       map(this.extract(selector, mapToObject, true)),
       retry(2) // TODO: iets geavanceerder retry-mechanisme maken?

@@ -1,0 +1,19 @@
+<ion-list>
+
+  <ion-list-header>
+    {{ nieuwsberichten[0]?.datum | date: 'MMMM YYYY'}}
+  </ion-list-header>
+
+  <button ion-item
+          *ngFor="let nieuwsbericht of nieuwsberichten"
+          (tap)="onTap(nieuwsbericht)">
+    <ion-thumbnail item-start>
+      <img [src]="nieuwsbericht.plaatje">
+    </ion-thumbnail>
+    <h2>{{nieuwsbericht.datum | date : "D MMMM YYYY"}}</h2>
+    <div style="text-overflow: ellipsis; overflow: hidden">{{nieuwsbericht.titel}}</div>
+    <p>{{nieuwsbericht.samenvatting}}</p>
+  </button>
+
+</ion-list>
+

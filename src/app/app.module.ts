@@ -13,6 +13,19 @@ import {CustomErrorHandler} from '../core/CustomErrorHandler';
 import {SecureStorage} from '@ionic-native/secure-storage';
 import {Firebase} from '@ionic-native/firebase';
 import {SharedModule} from '../shared/shared.module';
+import {MetaReducer, StoreModule} from '@ngrx/store';
+import {storeFreeze} from 'ngrx-store-freeze';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+
+const environment = {
+  development: false,
+  production: true,
+};
+
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
 
 @NgModule({
   declarations: [
@@ -26,7 +39,10 @@ import {SharedModule} from '../shared/shared.module';
       backButtonText: ''
     }),
     IonicStorageModule.forRoot(),
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot({}, { metaReducers }),
+    EffectsModule.forRoot([]),
+    environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
   bootstrap: [IonicApp],
   entryComponents: [
