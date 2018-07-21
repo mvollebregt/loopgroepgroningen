@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {DatePipe} from './date/date';
 import {SpinnerComponent} from './spinner/spinner.component';
 import {IonicModule} from 'ionic-angular';
-import {ContentComponent} from './content/content.component';
+import {RichContentComponent} from './rich-content/rich-content.component';
 
 @NgModule({
-	declarations: [ContentComponent, DatePipe, SpinnerComponent],
+  declarations: [RichContentComponent, DatePipe, SpinnerComponent],
 	imports: [IonicModule],
-	exports: [ContentComponent, DatePipe, SpinnerComponent]
+  exports: [RichContentComponent, DatePipe, SpinnerComponent]
 })
 export class SharedModule {}

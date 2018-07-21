@@ -3,9 +3,9 @@ import {Observable} from "rxjs/Observable";
 import {Bericht} from "./bericht";
 import * as moment from 'moment';
 import {HttpService} from "./http.service";
-import {toParagraaf} from './to-paragraaf';
 import {LoginService} from './login/login.service';
 import {switchMap} from 'rxjs/operators';
+import {toParagraaf} from '../shared/rich-content/to-paragraaf';
 
 @Injectable()
 export class PrikbordClient {

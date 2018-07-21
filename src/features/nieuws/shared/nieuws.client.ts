@@ -5,7 +5,7 @@ import {Nieuwsbericht} from './nieuwsbericht';
 import {LoginService} from '../../../core/login/login.service';
 import {HttpService} from '../../../core/http.service';
 import {switchMap} from 'rxjs/operators';
-import {toParagraaf} from '../../../core/to-paragraaf';
+import {toParagraaf} from '../../../shared/rich-content/to-paragraaf';
 
 @Injectable()
 export class NieuwsClient {

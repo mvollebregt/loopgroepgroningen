@@ -3,10 +3,10 @@ import {HttpService} from "../../core/http.service";
 import {Observable} from "rxjs/Observable";
 import {LoginService} from "../../core/login/login.service";
 import {Evenementdetail} from './evenementdetail';
-import {toParagraaf} from '../../core/to-paragraaf';
 import {Bericht} from '../../core/bericht';
 import * as moment from 'moment';
 import {map, switchMap} from 'rxjs/operators';
+import {toParagraaf} from '../../shared/rich-content/to-paragraaf';
 
 @Injectable()
 export class EvenementdetailClient {
