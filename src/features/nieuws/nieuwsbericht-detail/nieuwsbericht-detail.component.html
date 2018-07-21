@@ -4,7 +4,7 @@
     {{nieuwsbericht?.datum | date : "D MMMM YYYY"}}
   </ion-list-header>
 
-  <ion-item *ngIf="nieuwsbericht?.content?.length">
+  <ion-item>
     <h2>{{nieuwsbericht?.titel}}</h2>
     <lg-rich-content [content]="nieuwsbericht?.content"></lg-rich-content>
   </ion-item>

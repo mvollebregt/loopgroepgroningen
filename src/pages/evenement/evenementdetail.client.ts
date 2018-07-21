@@ -6,7 +6,7 @@ import {Evenementdetail} from './evenementdetail';
 import {Bericht} from '../../core/bericht';
 import * as moment from 'moment';
 import {map, switchMap} from 'rxjs/operators';
-import {toParagraaf} from '../../shared/rich-content/to-paragraaf';
+import {toParagraaf} from '../../shared/rich-content/shared/to-paragraaf';
 
 @Injectable()
 export class EvenementdetailClient {

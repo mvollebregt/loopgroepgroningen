@@ -26,7 +26,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <div *ngFor="let regel of item.berichttekst" style="min-height: 1em;">{{regel}}</div>
+        <lg-poor-content [content]="item.berichttekst"></lg-poor-content>
       </ion-card-content>
 
     </ion-card>
