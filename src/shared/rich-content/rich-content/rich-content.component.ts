@@ -9,6 +9,6 @@ export class RichContentComponent {
 
   RichContentType = RichContentType;
 
-  @Input() content: RichContent;
+  @Input() content: RichContent[];
 
 }

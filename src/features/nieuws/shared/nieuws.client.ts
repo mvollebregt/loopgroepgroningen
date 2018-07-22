@@ -6,7 +6,7 @@ import {LoginService} from '../../../core/login/login.service';
 import {HttpService} from '../../../core/http.service';
 import {switchMap} from 'rxjs/operators';
 import {RichContentService} from '../../../shared/rich-content/shared/rich-content.service';
-import {Paragraaf, RichContentContainer, RichContentType} from '../../../shared/rich-content/shared/rich-content';
+import {Paragraaf, RichContentType} from '../../../shared/rich-content/shared/rich-content';
 
 @Injectable()
 export class NieuwsClient {
@@ -28,12 +28,11 @@ export class NieuwsClient {
 
   private toNieuwsbericht(node: Element, volgnummer: number): Nieuwsbericht {
     const titel = node.querySelector('.loopgroepgroningen-postheader').textContent.trim();
-    const dateAndContent = this.richContentService.extractRichContent(
-      node.querySelector('.loopgroepgroningen-article'));
-    // de eerste paragraaf is de datum, die laten we weg
-    const content = new RichContentContainer(dateAndContent.children.slice(1));
-    const samenvatting = content.children
-      .filter(child => child.type = RichContentType.PARAGRAAF)
+    const content = this.richContentService
+      .extractRichContent(node.querySelector('.loopgroepgroningen-article'))
+      .slice(1); // de eerste paragraaf is de datum, die laten we weg
+    const samenvatting = content
+      .filter(child => child.type === RichContentType.PARAGRAAF)
       .map((paragraaf: Paragraaf) => paragraaf.tekst)
       .join(' ').substring(0, 50).trim();
     const plaatje = 'http://www.loopgroepgroningen.nl' + node.querySelector('img').getAttribute('src');

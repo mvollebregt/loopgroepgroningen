@@ -5,7 +5,7 @@ export interface Nieuwsbericht {
   volgnummer: number;
   titel: string;
   datum: string;
-  content: RichContent;
+  content: RichContent[];
   plaatje: string;
   samenvatting: string;
 

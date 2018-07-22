@@ -1,5 +1,5 @@
 export enum RichContentType {
-  CONTAINER = 'container',
+  AFBEELDING = 'afbeelding',
   PARAGRAAF = 'paragraaf'
 }
 
@@ -7,10 +7,10 @@ export interface RichContent {
   type: RichContentType;
 }
 
-export class RichContentContainer implements RichContent {
-  type = RichContentType.CONTAINER;
+export class Afbeelding implements RichContent {
+  type = RichContentType.AFBEELDING;
 
-  constructor(public children: RichContent[]) {
+  constructor(public src: string) {
   }
 }
 
