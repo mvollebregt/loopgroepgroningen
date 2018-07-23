@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {RichContent, RichContentType} from '../shared/rich-content';
+import {RichContentType} from '../shared/rich-content';
+import {Paragraaf} from '../shared/paragraaf';
 
 @Component({
   selector: 'lg-rich-content',
@@ -9,6 +10,6 @@ export class RichContentComponent {
 
   RichContentType = RichContentType;
 
-  @Input() content: RichContent[];
+  @Input() paragrafen: Paragraaf[];
 
 }

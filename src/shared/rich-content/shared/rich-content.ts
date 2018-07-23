@@ -1,7 +1,6 @@
 export enum RichContentType {
   AFBEELDING = 'afbeelding',
   LINK = 'link',
-  PARAGRAAF = 'paragraaf',
   TEXT = 'text'
 }
 
@@ -20,13 +19,6 @@ export class Link implements RichContent {
   type = RichContentType.LINK;
 
   constructor(public href: string, public textContent: string) {
-  }
-}
-
-export class Paragraaf implements RichContent {
-  type = RichContentType.PARAGRAAF;
-
-  constructor(public children: RichContent[]) {
   }
 }
 
