@@ -35,7 +35,7 @@ export class NieuwsClient {
       .filter(child => child.type === RichContentType.PARAGRAAF)
       .map((paragraaf: Paragraaf) => paragraaf.tekst)
       .join(' ').substring(0, 50).trim();
-    const plaatje = 'http://www.loopgroepgroningen.nl' + node.querySelector('img').getAttribute('src');
+    const plaatje = node.querySelector('img').getAttribute('src');
     const datum = moment(node.querySelector('strong').textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
     return {
       volgnummer,

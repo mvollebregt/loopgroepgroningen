@@ -10,13 +10,15 @@ import {of} from 'rxjs/observable/of';
 @Injectable()
 export class HttpService {
 
+  static readonly backendUrl = 'http://www.loopgroepgroningen.nl';
+
   private readonly baseUrl: string;
   private readonly parser = new DOMParser();
   private cookiesAccepted = false;
 
   constructor(platform: Platform, private http: HttpClient) {
     // Op een echt device moeten we naar de absolute URL toe. Binnen de browser maken we gebruik van een proxy.
-    this.baseUrl = platform.url().startsWith('file:') ? 'http://www.loopgroepgroningen.nl' : '';
+    this.baseUrl = platform.url().startsWith('file:') ? HttpService.backendUrl : '';
   }
 
   public get(relativeUrl: string): Observable<string> {

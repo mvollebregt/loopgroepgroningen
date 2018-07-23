@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Afbeelding} from '../shared/rich-content';
+import {HttpService} from '../../../core/http.service';
 
 @Component({
   selector: 'lg-rich-content-afbeelding',
@@ -8,5 +9,7 @@ import {Afbeelding} from '../shared/rich-content';
 export class RichContentAfbeeldingComponent {
 
   @Input() content: Afbeelding;
+
+  readonly backendUrl = HttpService.backendUrl;
 
 }
