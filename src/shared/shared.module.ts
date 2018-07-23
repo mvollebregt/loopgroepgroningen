@@ -7,6 +7,7 @@ import {RichContentParagraafComponent} from './rich-content/rich-content-paragra
 import {RichContentService} from './rich-content/shared/rich-content.service';
 import {PoorContentComponent} from './rich-content/poor-content/poor-content.component';
 import {RichContentAfbeeldingComponent} from './rich-content/rich-content-afbeelding/rich-content-afbeelding.component';
+import {RichContentLinkComponent} from './rich-content/rich-content-link/rich-content-link.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {RichContentAfbeeldingComponent} from './rich-content/rich-content-afbeel
     PoorContentComponent,
     RichContentComponent,
     RichContentAfbeeldingComponent,
+    RichContentLinkComponent,
     RichContentParagraafComponent,
     SpinnerComponent],
 	imports: [IonicModule],
