@@ -13,8 +13,9 @@ export class RichContentLinkComponent {
   constructor(private browser: InAppBrowser) {
   }
 
-  openBrowser() {
+  openBrowser(event: Event) {
     this.browser.create(`${this.content.href}`, '_system', 'location=yes');
+    event.preventDefault();
   }
 
 }
