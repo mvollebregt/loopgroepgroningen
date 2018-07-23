@@ -1,7 +1,8 @@
 export enum RichContentType {
   AFBEELDING = 'afbeelding',
   LINK = 'link',
-  PARAGRAAF = 'paragraaf'
+  PARAGRAAF = 'paragraaf',
+  TEXT = 'text'
 }
 
 export interface RichContent {
@@ -19,12 +20,18 @@ export class Link implements RichContent {
   type = RichContentType.LINK;
 
   constructor(public href: string, public textContent: string) {
-    console.log(href);
   }
 }
 
 export class Paragraaf implements RichContent {
   type = RichContentType.PARAGRAAF;
+
+  constructor(public children: RichContent[]) {
+  }
+}
+
+export class PlainText implements RichContent {
+  type = RichContentType.TEXT;
 
   constructor(public tekst: string) {
   }

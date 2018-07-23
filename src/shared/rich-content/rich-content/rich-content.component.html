@@ -2,4 +2,5 @@
   <lg-rich-content-afbeelding *ngSwitchCase="RichContentType.AFBEELDING" [content]="child"></lg-rich-content-afbeelding>
   <lg-rich-content-link *ngSwitchCase="RichContentType.LINK" [content]="child"></lg-rich-content-link>
   <lg-rich-content-paragraaf *ngSwitchCase="RichContentType.PARAGRAAF" [content]="child"></lg-rich-content-paragraaf>
+  <ng-container *ngSwitchCase="RichContentType.TEXT">{{child.tekst}}</ng-container>
 </ng-container>

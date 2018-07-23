@@ -52,7 +52,6 @@ export class HttpService {
     if (!this.cookiesAccepted) {
       return this.http.get(this.urlFor('index.php?option=com_ajax&plugin=eprivacy&format=raw&method=accept&consent=&country=not+detected'), {responseType: 'text', withCredentials: true}).pipe(
         tap(response => {
-          console.log(response);
           this.cookiesAccepted = true;
         })
       );
