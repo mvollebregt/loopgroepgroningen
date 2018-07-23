@@ -35,14 +35,14 @@ export class NieuwsClient {
       .filter(child => child.type === RichContentType.PARAGRAAF)
       .map((paragraaf: Paragraaf) => paragraaf.tekst)
       .join(' ').substring(0, 50).trim();
-    const plaatje = node.querySelector('img').getAttribute('src');
+    const thumbnail = node.querySelector('img').getAttribute('src');
     const datum = moment(node.querySelector('strong').textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
     return {
       volgnummer,
       titel,
       samenvatting,
       content,
-      plaatje,
+      thumbnail,
       datum
     }
   }

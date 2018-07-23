@@ -6,7 +6,7 @@ export interface Nieuwsbericht {
   titel: string;
   datum: string;
   content: RichContent[];
-  plaatje: string;
+  thumbnail: string;
   samenvatting: string;
 
 }

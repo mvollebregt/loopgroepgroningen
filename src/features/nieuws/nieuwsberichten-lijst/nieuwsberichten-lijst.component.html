@@ -8,7 +8,7 @@
           *ngFor="let nieuwsbericht of nieuwsberichten"
           (tap)="onTap(nieuwsbericht)">
     <ion-thumbnail item-start>
-      <img src="{{backendUrl}}/{{nieuwsbericht.plaatje}}">
+      <img src="{{backendUrl}}/{{nieuwsbericht.thumbnail}}">
     </ion-thumbnail>
     <h2>{{nieuwsbericht.datum | date : "D MMMM YYYY"}}</h2>
     <div style="text-overflow: ellipsis; overflow: hidden">{{nieuwsbericht.titel}}</div>
