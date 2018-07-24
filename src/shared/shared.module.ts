@@ -2,11 +2,28 @@ import {NgModule} from '@angular/core';
 import {DatePipe} from './date/date';
 import {SpinnerComponent} from './spinner/spinner.component';
 import {IonicModule} from 'ionic-angular';
-import {ContentComponent} from './content/content.component';
+import {RichContentComponent} from './rich-content/rich-content/rich-content.component';
+import {RichContentService} from './rich-content/shared/rich-content.service';
+import {PoorContentComponent} from './rich-content/poor-content/poor-content.component';
+import {RichContentAfbeeldingComponent} from './rich-content/rich-content-afbeelding/rich-content-afbeelding.component';
+import {RichContentLinkComponent} from './rich-content/rich-content-link/rich-content-link.component';
 
 @NgModule({
-	declarations: [ContentComponent, DatePipe, SpinnerComponent],
+  declarations: [
+    DatePipe,
+    PoorContentComponent,
+    RichContentComponent,
+    RichContentAfbeeldingComponent,
+    RichContentLinkComponent,
+    SpinnerComponent],
 	imports: [IonicModule],
-	exports: [ContentComponent, DatePipe, SpinnerComponent]
+  exports: [
+    DatePipe,
+    PoorContentComponent,
+    RichContentComponent,
+    SpinnerComponent],
+  providers: [
+    RichContentService
+  ]
 })
 export class SharedModule {}
