@@ -2,13 +2,7 @@ import {RichContent} from './rich-content';
 
 export class Alinea {
 
-  content: RichContent[];
-
-  constructor(content: RichContent[] = []) {
-    this.content = content;
+  constructor(public content: RichContent[] = []) {
   }
 
-  addContent(...extraContent: RichContent[]): void {
-    this.content.push(...extraContent);
-  }
 }

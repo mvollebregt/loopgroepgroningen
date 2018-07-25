@@ -1,3 +1,5 @@
+// De bedoeling is om dit uiteindelijk overal te vervangen door de Rich Content Builder
+
 export function toParagraaf(element: Element): string[] {
   if (!element) {
     return [];
