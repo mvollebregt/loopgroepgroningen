@@ -43,7 +43,7 @@
       </ion-list-header>
 
       <ion-item *ngIf="evenement?.omschrijving?.length">
-        <lg-poor-content [content]="evenement?.omschrijving"></lg-poor-content>
+        <lg-rich-content [paragrafen]="evenement?.omschrijving"></lg-rich-content>
       </ion-item>
 
       <ion-list-header *ngIf="evenement?.deelnemers?.length">
