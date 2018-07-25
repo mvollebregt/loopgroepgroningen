@@ -6,19 +6,24 @@ import {Evenementdetail} from './evenementdetail';
 import {Bericht} from '../../core/bericht';
 import * as moment from 'moment';
 import {map, switchMap} from 'rxjs/operators';
-import {toParagraaf} from '../../shared/rich-content/shared/to-paragraaf';
+import {RichContentService} from "../../shared/rich-content/shared/rich-content.service";
+import {toParagraaf} from '../../shared/rich-content/poor-content/to-paragraaf';
 
 @Injectable()
 export class EvenementdetailClient {
 
-  constructor(private httpService: HttpService, private loginService: LoginService) {
+  constructor(
+    private httpService: HttpService,
+    private loginService: LoginService,
+    private richContentService: RichContentService
+  ) {
   }
 
   haalEvenementOp(url: string): Observable<Evenementdetail> {
     return this.loginService.login().pipe(
       switchMap(() =>
         this.httpService.get(url).pipe(
-          this.httpService.extractWithRetry('#jem', EvenementdetailClient.toEvenementdetail),
+          this.httpService.extractWithRetry('#jem', elt => this.toEvenementdetail(elt)),
           map(array => array[0])
         )));
   }
@@ -27,7 +32,7 @@ export class EvenementdetailClient {
     return this.loginService.login().pipe(
       switchMap(() =>
         this.httpService.post(eventPage, '.register form', {'reg_check': inschrijven}).pipe(
-          this.httpService.extractWithRetry('#jem', EvenementdetailClient.toEvenementdetail),
+          this.httpService.extractWithRetry('#jem', elt => this.toEvenementdetail(elt)),
           map(array => array[0]))
       ));
   }
@@ -45,12 +50,12 @@ export class EvenementdetailClient {
       );
   }
 
-  private static toEvenementdetail(elt: Element): Evenementdetail {
+  private toEvenementdetail(elt: Element): Evenementdetail {
     const start = elt.querySelector('[itemprop="startDate"]').getAttribute('content');
     const einde = elt.querySelector('[itemprop="endDate"]').getAttribute('content');
     const naam = elt.querySelector('[itemprop="name"]').textContent.trim();
     const categorie = elt.querySelector('dd.category').textContent.trim();
-    const omschrijving = toParagraaf(elt.querySelector('[itemprop="description"]'));
+    const omschrijving = this.richContentService.extractRichContent(elt.querySelector('[itemprop="description"]'));
 
     const deelnemerElementen = elt.querySelectorAll('.register li .username');
     let deelnemers: string[] = [];
@@ -73,14 +78,14 @@ export class EvenementdetailClient {
     const deelname = registrerenMogelijk && registrerenMogelijk.textContent.toLowerCase().indexOf('uitschrijven') > -1;
 
     return {
-      start: start,
-      einde: einde,
-      naam: naam,
-      categorie: categorie,
-      omschrijving: omschrijving,
-      deelname: deelname,
-      deelnemers: deelnemers,
-      reacties: reacties
+      start,
+      einde,
+      naam,
+      categorie,
+      omschrijving,
+      deelname,
+      deelnemers,
+      reacties
     };
   }
 }

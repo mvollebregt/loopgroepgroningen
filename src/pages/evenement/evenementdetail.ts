@@ -1,4 +1,5 @@
 import {Bericht} from '../../core/bericht';
+import {Paragraaf} from '../../shared/rich-content/shared/paragraaf';
 
 export interface Evenementdetail {
 
@@ -6,7 +7,7 @@ export interface Evenementdetail {
   einde: string;
   naam: string;
   categorie: string;
-  omschrijving: string[];
+  omschrijving: Paragraaf[];
   deelname: boolean;
   deelnemers: string[];
   reacties: Bericht[];
