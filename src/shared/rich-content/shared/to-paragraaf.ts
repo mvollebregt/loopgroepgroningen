@@ -1,4 +1,4 @@
-export function toParagraaf(element: Element): string[]{
+export function toParagraaf(element: Element): string[] {
   if (!element) {
     return [];
   } else {

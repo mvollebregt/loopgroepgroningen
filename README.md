@@ -32,3 +32,7 @@ $ cd ../..
 ### Sign Android app:
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias
+
+### Zipalign:
+
+~/lib/build-tools/x.x.x/zipalign -f 4 my_application.apk my_application_final.apk

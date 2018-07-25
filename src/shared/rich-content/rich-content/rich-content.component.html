@@ -1,0 +1,11 @@
+<div class="paragraaf" *ngFor="let paragraaf of paragrafen">
+  <ng-container class="alinea" *ngFor="let alinea of paragraaf.alineas">
+    <ng-container *ngFor="let child of alinea.content" [ngSwitch]="child?.type">
+      <lg-rich-content-afbeelding *ngSwitchCase="RichContentType.AFBEELDING"
+                                  [content]="child"></lg-rich-content-afbeelding>
+      <lg-rich-content-link *ngSwitchCase="RichContentType.LINK" [content]="child"></lg-rich-content-link>
+      <ng-container *ngSwitchCase="RichContentType.TEXT">{{child.tekst}}</ng-container>
+    </ng-container>
+    <br>
+  </ng-container>
+</div>

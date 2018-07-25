@@ -43,7 +43,7 @@
       </ion-list-header>
 
       <ion-item *ngIf="evenement?.omschrijving?.length">
-        <div *ngFor="let regel of evenement?.omschrijving" style="min-height: 1em;" text-wrap>{{regel}}</div>
+        <lg-poor-content [content]="evenement?.omschrijving"></lg-poor-content>
       </ion-item>
 
       <ion-list-header *ngIf="evenement?.deelnemers?.length">
@@ -69,7 +69,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <div *ngFor="let regel of reactie.berichttekst" style="min-height: 1em;">{{regel}}</div>
+        <lg-poor-content [content]="reactie.berichttekst"></lg-poor-content>
       </ion-card-content>
 
     </ion-card>

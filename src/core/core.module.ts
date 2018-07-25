@@ -10,12 +10,14 @@ import {InstellingenService} from './instellingen/instellingen.service';
 import {NotificatieService} from './notificatie.service';
 import {LocalNotifications} from '@ionic-native/local-notifications';
 import {UpgradeService} from './upgrade.service';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 @NgModule({
   providers: [
     ContactoptiesService,
     Contacts,
     HttpService,
+    InAppBrowser,
     InstellingenService,
     LocalNotifications,
     LoginService,
