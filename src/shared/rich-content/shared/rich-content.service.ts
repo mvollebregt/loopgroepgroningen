@@ -7,9 +7,13 @@ import {RichContentBuilder} from './rich-content-builder';
 export class RichContentService {
 
   extractRichContent(element: Node): Paragraaf[] {
-    const richContentBuilder = new RichContentBuilder();
-    richContentBuilder.extractRichContent([element]);
-    return richContentBuilder.build();
+    if (!element) {
+      return null;
+    } else {
+      const richContentBuilder = new RichContentBuilder();
+      richContentBuilder.extractRichContent([element]);
+      return richContentBuilder.build();
+    }
   }
 
   samenvatting(paragrafen: Paragraaf[], length: number): string {
