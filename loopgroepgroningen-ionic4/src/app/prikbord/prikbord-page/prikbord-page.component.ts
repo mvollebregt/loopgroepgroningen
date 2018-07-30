@@ -1,20 +1,16 @@
-import {Component, ViewChild} from '@angular/core';
-import {Content, IonicPage} from 'ionic-angular';
-import {Bericht} from "../../core/bericht";
-import {Observable} from "rxjs/Observable";
-import {PrikbordService} from "../../core/prikbord.service";
-import {InstellingenService} from '../../core/instellingen/instellingen.service';
-import {Subject} from 'rxjs/Subject';
-import {finalize, map, takeUntil} from 'rxjs/operators';
-import {Instellingen} from '../../core/instellingen/instellingen';
-import {NotificatieService} from '../../core/notificatie.service';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Content} from '@ionic/angular';
+import {Observable} from 'rxjs';
+import {Subject} from 'rxjs';
+import {finalize, takeUntil} from 'rxjs/operators';
+import {Bericht} from '../models/bericht';
+import {PrikbordService} from '../services/prikbord.service';
 
-@IonicPage()
 @Component({
-  selector: 'page-prikbord',
-  templateUrl: 'prikbord.html',
+    selector: 'lg-prikbord-page',
+    templateUrl: './prikbord-page.component.html'
 })
-export class PrikbordPage {
+export class PrikbordPageComponent implements OnInit, OnDestroy {
 
   destroy = new Subject<boolean>();
   items: Bericht[];
@@ -26,16 +22,15 @@ export class PrikbordPage {
   @ViewChild(Content) private content: Content;
 
   constructor(
-    private instellingenService: InstellingenService,
-    private notificatieService: NotificatieService,
+    // private instellingenService: InstellingenService,
     private prikbordService: PrikbordService) {
   }
 
-  ionViewWillEnter() {
+  ngOnInit() {
 
-    this.ingelogd = this.instellingenService.getInstellingen().pipe(
-      map((instellingen: Instellingen) => instellingen.ingelogd || instellingen.demoModus)
-    );
+    // this.ingelogd = this.instellingenService.getInstellingen().pipe(
+    //   map((instellingen: Instellingen) => instellingen.ingelogd || instellingen.demoModus)
+    // );
 
     this.prikbordService.getBerichten().pipe(
       takeUntil(this.destroy)
@@ -43,7 +38,7 @@ export class PrikbordPage {
       this.items = items;
       setTimeout(() => {
         try {
-          this.content.scrollToBottom(this.itemsGeladen ? 300 : 0);
+          this.content.getScrollElement().scrollToBottom(this.itemsGeladen ? 300 : 0);
         } catch {
           // om onduidelijke redenen geeft de regel hierboven soms een fout. dat los ik dan maar zo op.
         }
@@ -52,7 +47,7 @@ export class PrikbordPage {
     });
   }
 
-  ionViewWillLeave() {
+  ngOnDestroy() {
     this.destroy.next(true);
   }
 
@@ -64,9 +59,4 @@ export class PrikbordPage {
       this.reactie = '';
     });
   }
-
-  testNotificatie() {
-    this.notificatieService.testNotificatie();
-  }
-
 }

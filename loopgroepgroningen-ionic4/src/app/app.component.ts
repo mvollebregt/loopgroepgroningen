@@ -5,7 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 @Component({
-  selector: 'app-root',
+  selector: 'lg-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
@@ -19,6 +19,11 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'Prikbord',
+      url: '/prikbord',
+      icon: 'paper'
     }
   ];
 

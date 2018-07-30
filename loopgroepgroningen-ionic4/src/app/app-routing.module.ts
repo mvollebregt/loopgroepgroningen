@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'list/:id',
     loadChildren: './list/list.module#ListPageModule'
+  },
+  {
+    path: 'prikbord',
+    loadChildren: './prikbord/prikbord.module#PrikbordModule'
   }
 ];
 
