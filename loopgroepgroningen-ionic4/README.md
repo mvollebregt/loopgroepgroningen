@@ -9,6 +9,12 @@ $ ionic serve -l -b
 
 Zie https://capacitor.ionicframework.com/docs/getting-started/with-ionic
 
+```bash
+npm run build
+npx cap copy
+npx cap open ios
+```
+
 ### Sign Android app:
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias
