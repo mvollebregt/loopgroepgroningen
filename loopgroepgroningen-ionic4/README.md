@@ -2,32 +2,12 @@
 
 ```bash
 $ ionic serve
-$ ionic serve --lab
+$ ionic serve -l -b
 ```
 
-### Draaien/builden voor iOS:
+### Draaien/builden voor iOS / Android:
 
-```bash
-$ ionic cordova run ios -lc
-$ ionic cordova build ios --prod (--release)
-```
-
-Build openen in xcode en draaien.
-
-### Draaien op Android:
-
-Verwijder eerst een eventuele oude versie van de app van het device!
-De eerste drie commando's dienen alle drie uitgevoerd te worden omdat je anders oude versies van de app krijgt.
-
-```
-$ ionic cordova prepare
-$ ionic cordova build android --prod (--release)
-$ ionic cordova prepare
-$ cd platforms/android
-$ gradle assemble
-$ ~/Library/Android/sdk/platform-tools/adb install build/outputs/apk/android-armv7-debug.apk
-$ cd ../..
-```
+Zie https://capacitor.ionicframework.com/docs/getting-started/with-ionic
 
 ### Sign Android app:
 
