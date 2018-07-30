@@ -1,0 +1,7 @@
+{
+  "name": "loopgroepgroningen-ionic4",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
