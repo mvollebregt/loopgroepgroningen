@@ -2,11 +2,11 @@ import {Pipe, PipeTransform} from '@angular/core';
 import * as moment from 'moment';
 
 @Pipe({
-  name: 'date'
+  name: 'lgDate'
 })
-export class DatePipe implements PipeTransform {
+export class CustomDatePipe implements PipeTransform {
 
-  transform(date?: string, format = "ddd D MMM YYYY - HH:mm") {
+  transform(date: string, format: string) {
     // substring(0, 16) -> skip time zone
     return date && moment(date.substring(0, 16)).format(format).replace(/\./g, '');
   }
