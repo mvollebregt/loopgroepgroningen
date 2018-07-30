@@ -17,7 +17,13 @@
 //$toggle-md-handle-background-color-off:	#f4f4f4;
 $hairlines-width: .55px;
 
-//// Het menu krijgt dezelfde kleur als de toolbar
+// In de standaard styling van Ionic voor ios is de ruimte voor de statusbar vergeten
+.ios ion-header {
+  padding-top: 20px;
+  background-color: var(--ion-toolbar-background-color);
+}
+
+// Het menu krijgt dezelfde kleur als de toolbar
 ion-menu {
   ion-content, ion-item {
     background: var(--ion-toolbar-background-color);
