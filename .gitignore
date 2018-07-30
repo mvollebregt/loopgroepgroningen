@@ -36,3 +36,6 @@ UserInterfaceState.xcuserstate
 gen
 
 *.keystore
+
+node_modules_backup
+
