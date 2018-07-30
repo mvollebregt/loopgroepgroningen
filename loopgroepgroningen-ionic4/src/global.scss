@@ -1,164 +1,162 @@
 // http://ionicframework.com/docs/theming/
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
-@import "../theme/variables";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/colors.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
 
-// Het menu krijgt dezelfde kleur als de toolbar
-.menu-inner {
-  //.header, .content, .item {
-  .content, .item {
-    background: $toolbar-background;
+//// Eigen variabelen:
+//var(--ion-toolbar-background-color): #faf4ed;
+//$background-color: #ff811a;
+//$list-background-color: white;
+//$border-color: #d1d3d6;
+//$toggle-md-handle-background-color-off:	#f4f4f4;
+$hairlines-width: .55px;
+
+//// Het menu krijgt dezelfde kleur als de toolbar
+ion-menu {
+  ion-content, ion-item {
+    background: var(--ion-toolbar-background-color);
   }
 }
 
-.info-message {
-  background: $toolbar-background;
-  text-align: center;
-  padding-top: 12px;
-  padding-bottom: 20px;
-}
+//ion-info-message {
+//  background: var(--ion-toolbar-background-color);
+//  text-align: center;
+//  padding-top: 12px;
+//  padding-bottom: 20px;
+//}
 
 .main-content-wrapper {
-  background: $toolbar-background;
+  background: var(--ion-toolbar-background-color);
 }
 
 .main-content {
-  background: $background-color;
+  background: var(--ion-background-color);
   padding-top: 1px;
   padding-bottom: 1px;
 }
 
-.list-header {
-  background-color: transparent;
-}
+//ion-list-header {
+//  background-color: transparent;
+//}
 
-.list-header-md {
-  margin-bottom: 0;
-  color: black;
-  border-top: 0;
-}
+//ion-list-header .md {
+//  margin-bottom: 0;
+//  color: black;
+//  border-top: 0;
+//}
 
-.list {
-  margin-bottom: 0;
-}
+//ion-list {
+//  margin-bottom: 0;
+//}
 
-.multi-line {
-  white-space: normal;
-}
+//.multi-line {
+//  white-space: normal;
+//}
 
-.card {
+.ion-page ion-card {
+
+  background-color: var(--ion-item-background-color);
   border-radius: 8px;
-}
-
-.card-header,
-.item-block h2 {
-  // Titeltjes zijn kleiner en vet, met een marge eronder
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.card-content {
-  font-size: 1.6rem;
-}
-
-.card-header, .card-content {
-  padding: 12px;
-}
-
-.card-content-ios {
-  font-size: 1.7rem;
-}
-
-.dialog {
-  height: auto;
-  background-color: $toolbar-background;
-  display: flex;
-  align-items: center;
-}
-
-.ios .dialog {
-  margin: 12px;
-}
-
-.md .dialog {
+  --ion-color-contrast: var(--ion-color-contrast);
   margin: 10px;
-}
+  width: calc(100% - 20px);
 
-.wp .dialog {
-  margin: 8px;
-}
-
-.no-margin-right,
-.dialog.no-margin-right {
-  margin-right: 0;
-}
-
-.icon-button {
-  padding: 0;
-  height: 40px;
-  width: 40px;
-}
-
-.dialog button {
-  margin-left: 6px;
-  margin-right: 6px;
-}
-
-ion-textarea, ion-input {
-  background-color: $list-background-color;
-  border-radius: 8px;
-  border: $hairlines-width solid $border-color;
-
-  input.text-input {
-    margin-left: 8px;
-    padding-right: 8px;
+  ion-card-header, ion-card-content {
+    padding: 12px;
   }
 
-  textarea.text-input {
-    margin: 8px 4px 8px 4px;
-    border: none;
-    font-size: 1.6rem;
-    height: 5em;
-  }
-
-  textarea.text-input.text-input-ios {
-    font-size: 1.7rem;
-  }
-
-  textarea.text-input.text-input-wp {
-    width: 100%;
-    padding: 0;
-    line-height: 22px;
-  }
-
-  textarea.text-input::-moz-placeholder {
+  ion-card-header {
     font-size: 14px;
-  }
-
-  textarea.text-input:-ms-input-placeholder {
-    font-size: 14px;
-  }
-
-  textarea.text-input::-webkit-input-placeholder {
-    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 0;
   }
 }
 
-ion-label>* {
-  margin-bottom: 2px;
-}
+//.dialog {
+//  height: auto;
+//  background-color: var(--ion-toolbar-background-color);
+//  display: flex;
+//  align-items: center;
+//}
+//
+//.ios .dialog {
+//  margin: 12px;
+//}
+//
+//.md .dialog {
+//  margin: 10px;
+//}
+//
+//.wp .dialog {
+//  margin: 8px;
+//}
 
-img {
-  object-fit: cover;
-}
+//.no-margin-right,
+//.dialog.no-margin-right {
+//  margin-right: 0;
+//}
+
+//button ion-icon {
+//  padding: 0;
+//  height: 40px;
+//  width: 40px;
+//}
+
+//.dialog button {
+//  margin-left: 6px;
+//  margin-right: 6px;
+//}
+
+//ion-textarea, ion-input {
+//  background-color: var(--ion-item-background-color);
+//  border-radius: 8px;
+//  border: var($hairlines-width) solid var(--ion-border-color);
+//
+//  input.text-input {
+//    margin-left: 8px;
+//    padding-right: 8px;
+//  }
+//
+//  textarea.text-input {
+//    margin: 8px 4px 8px 4px;
+//    border: none;
+//    font-size: 1.6rem;
+//    height: 5em;
+//  }
+//
+//  textarea.text-input.text-input-ios {
+//    font-size: 1.7rem;
+//  }
+//
+//  textarea.text-input.text-input-wp {
+//    width: 100%;
+//    padding: 0;
+//    line-height: 22px;
+//  }
+//
+//  textarea.text-input::-moz-placeholder {
+//    font-size: 14px;
+//  }
+//
+//  textarea.text-input:-ms-input-placeholder {
+//    font-size: 14px;
+//  }
+//
+//  textarea.text-input::-webkit-input-placeholder {
+//    font-size: 14px;
+//  }
+//}
+
+//ion-label>* {
+//  margin-bottom: 2px;
+//}
+
+//img {
+//  object-fit: cover;
+//}
