@@ -23,7 +23,7 @@ export class AppComponent {
     {
       title: 'Prikbord',
       url: '/prikbord',
-      icon: 'paper'
+      icon: 'chatboxes'
     }
   ];
 
