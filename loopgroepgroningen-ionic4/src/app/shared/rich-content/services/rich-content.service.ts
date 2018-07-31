@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {PlainText, RichContentType} from './rich-content';
-import {Paragraaf} from './paragraaf';
 import {RichContentBuilder} from './rich-content-builder';
+import {Paragraaf} from '../models/paragraaf';
+import {PlainText, RichContentType} from '../models/rich-content';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class RichContentService {
 
   extractRichContent(element: Node): Paragraaf[] {
@@ -18,9 +18,9 @@ export class RichContentService {
 
   samenvatting(paragrafen: Paragraaf[], length: number): string {
     let text = '';
-    for (let paragraaf of paragrafen) {
-      for (let alinea of paragraaf.alineas) {
-        for (let content of alinea.content) {
+    for (const paragraaf of paragrafen) {
+      for (const alinea of paragraaf.alineas) {
+        for (const content of alinea.content) {
           if (content.type === RichContentType.TEXT) {
             text += (content as PlainText).tekst + ' ';
           }

@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {GesprekComponent} from './gesprek/gesprek.component';
-import {PoorContentComponent} from './poor-content/poor-content.component';
 import {SharedModule} from '../shared/shared.module';
+import {RichContentModule} from '../rich-content/rich-content.module';
 
-const privateComponents = [PoorContentComponent];
-const publicComponents = [GesprekComponent];
+const directives = [GesprekComponent];
 
 @NgModule({
   imports: [
+    RichContentModule,
     SharedModule
   ],
-  declarations: [...privateComponents, ...publicComponents],
-  exports: publicComponents
+  declarations: directives,
+  exports: directives
 })
 export class BerichtenModule {
 }

@@ -3,12 +3,13 @@ import {Observable} from 'rxjs';
 import * as moment from 'moment';
 import {HttpService} from '../../shared/backend/services/http.service';
 import {Bericht} from '../../shared/berichten/models/bericht';
-import {toParagraaf} from '../../shared/berichten/poor-content/to-paragraaf';
+import {RichContentService} from '../../shared/rich-content/services/rich-content.service';
 
 @Injectable({providedIn: 'root'})
 export class PrikbordClient {
 
   constructor(private httpService: HttpService,
+              private richContentService: RichContentService
               // private loginService: LoginService
   ) {
   }
@@ -16,7 +17,7 @@ export class PrikbordClient {
   // haalt berichten op: de nieuwste eerst
   haalBerichtenOp(): Observable<Bericht[]> {
     return this.httpService.get('index.php/prikbord').pipe(
-      this.httpService.extractWithRetry('div.easy_frame', PrikbordClient.toBericht)
+      this.httpService.extractWithRetry('div.easy_frame', html => this.toBericht(html))
     );
   }
 
@@ -35,14 +36,14 @@ export class PrikbordClient {
     return null;
   }
 
-  private static toBericht(node: Element): Bericht {
+  private toBericht(node: Element): Bericht {
     const auteur = node.querySelector('.easy_big').textContent.trim();
     const tijdstip = moment(node.querySelector('.easy_small').textContent.trim(), 'dddd DD MMMM YYYY HH:mm');
     const content = node.querySelector('.easy_content');
     return {
       auteur: auteur,
       tijdstip: tijdstip.format('YYYY-MM-DDTHH:mm'),
-      berichttekst: toParagraaf(content)
+      berichttekst: this.richContentService.extractRichContent(content)
     };
   }
 }

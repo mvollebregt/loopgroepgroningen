@@ -1,6 +1,6 @@
-import {Paragraaf} from './paragraaf';
-import {RichContent} from './rich-content';
-import {Alinea} from './alinea';
+import {Paragraaf} from '../models/paragraaf';
+import {Alinea} from '../models/alinea';
+import {RichContent} from '../models/rich-content';
 
 export class DocumentBuilder {
 
@@ -17,7 +17,7 @@ export class DocumentBuilder {
   addContent(...content: RichContent[]) {
     this.assureCurrentParagraaf();
     this.assureCurrentAlinea();
-    this.currentAlinea.content.push(...content)
+    this.currentAlinea.content.push(...content);
   }
 
   finishAlinea() {
@@ -36,12 +36,10 @@ export class DocumentBuilder {
   }
 
   addBreak() {
-    if (this.hasCurrentParagraaf()) {
-      if (this.hasCurrentAlinea()) {
-        this.finishAlinea();
-      } else {
-        this.finishParagraaf();
-      }
+    if (this.hasCurrentAlinea()) {
+      this.finishAlinea();
+    } else {
+      this.finishParagraaf();
     }
   }
 
@@ -62,7 +60,7 @@ export class DocumentBuilder {
   }
 
   private hasCurrentParagraaf(): boolean {
-    return this.currentParagraaf !== undefined && this.currentParagraaf.alineas.length > 0
+    return this.currentParagraaf !== undefined && this.currentParagraaf.alineas.length > 0;
   }
 
   private hasCurrentAlinea(): boolean {

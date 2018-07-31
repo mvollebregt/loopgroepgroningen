@@ -1,5 +1,5 @@
 import {DocumentBuilder} from './document-builder';
-import {Afbeelding, Link, PlainText, RichContent} from './rich-content';
+import {Afbeelding, Link, PlainText, RichContent} from '../models/rich-content';
 
 export class RichContentBuilder {
 
@@ -8,7 +8,7 @@ export class RichContentBuilder {
   extractRichContent(elements: NodeList | Node[]): void {
 
     for (let i = 0; i < elements.length; i++) {
-      let element = elements[i];
+      const element = elements[i];
 
       switch (element.localName) {
 
@@ -48,7 +48,7 @@ export class RichContentBuilder {
 
     this.extractRichContent(element.childNodes);
 
-    let marginBottom = (element as HTMLElement).style.marginBottom;
+    const marginBottom = (element as HTMLElement).style.marginBottom;
     const hasMargin = marginBottom !== '0px';
     if (hasMargin || this.doc.endsWithEmptyAlinea()) {
       this.doc.finishParagraaf();
