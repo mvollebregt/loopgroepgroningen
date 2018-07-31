@@ -9,6 +9,7 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import * as moment from 'moment';
+import {HttpClientModule} from '@angular/common/http';
 
 moment.locale('nl');
 
@@ -18,6 +19,7 @@ moment.locale('nl');
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [

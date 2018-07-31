@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Platform} from 'ionic-angular';
-import {Observable} from 'rxjs/Observable';
+import {Platform} from '@ionic/angular';
+import {Observable, of, pipe} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {FormDetails} from './form-details';
 import {map, retry, switchMap, tap} from 'rxjs/operators';
-import {pipe} from 'rxjs/Rx';
-import {of} from 'rxjs/observable/of';
+import {FormDetails} from '../models/form-details';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class HttpService {
 
   static readonly backendUrl = 'http://www.loopgroepgroningen.nl';
@@ -39,10 +37,13 @@ export class HttpService {
       this.extractWithRetry(formSelector, toFormDetails),
       map(formsArray => formsArray[0]),
       switchMap((form: FormDetails) => {
-        let formData = new FormData();
+        const formData = new FormData();
         copyToFormData(form.inputs, formData);
         copyToFormData(params, formData);
-        return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {responseType: 'text', withCredentials: true});
+        return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {
+          responseType: 'text',
+          withCredentials: true
+        });
       }),
       tap((response: string) => this.checkMeldingen(response))
     );
@@ -50,7 +51,11 @@ export class HttpService {
 
   private acceptCookies(): Observable<string> {
     if (!this.cookiesAccepted) {
-      return this.http.get(this.urlFor('index.php?option=com_ajax&plugin=eprivacy&format=raw&method=accept&consent=&country=not+detected'), {responseType: 'text', withCredentials: true}).pipe(
+      const cookiesForm = 'index.php?option=com_ajax&plugin=eprivacy&format=raw&method=accept&consent=&country=not+detected';
+      return this.http.get(this.urlFor(cookiesForm), {
+        responseType: 'text',
+        withCredentials: true
+      }).pipe(
         tap(response => {
           this.cookiesAccepted = true;
         })
@@ -60,19 +65,23 @@ export class HttpService {
     }
   }
 
-  private extract<T>(selector: string, mapToObject: (node: Element, volgnummer: number) => T, throwErrorIfEmpty: boolean): (html: string) => T[] {
+  private extract<T>(
+    selector: string,
+    mapToObject: (node: Element, volgnummer: number) => T,
+    throwErrorIfEmpty: boolean
+  ): (html: string) => T[] {
     return (html: string) => {
-      let doc = this.parser.parseFromString(html, 'text/html');
-      let elements: NodeListOf<Element> = doc.querySelectorAll(selector);
+      const doc = this.parser.parseFromString(html, 'text/html');
+      const elements: NodeListOf<Element> = doc.querySelectorAll(selector);
       if (throwErrorIfEmpty && elements.length === 0) {
-        throw 'Er ging iets mis in de communicatie met de server.';
+        throw new Error('Er ging iets mis in de communicatie met de server.');
       }
-      let objects: T[] = [];
+      const objects: T[] = [];
       for (let i = 0; i < elements.length; i++) {
-        objects.push(mapToObject(elements.item(i), i))
+        objects.push(mapToObject(elements.item(i), i));
       }
       return objects;
-    }
+    };
   }
 
   public extractWithRetry<T>(selector: string, mapToObject: (node: Element, volgnummer: number) => T) {
@@ -83,10 +92,10 @@ export class HttpService {
   }
 
   public extractWithRetryKeepingResponse<T>(selector: string, mapToObject: (node: Element) => T) {
-    return pipe (
+    return pipe(
       map((response: string) => [this.extract(selector, mapToObject, true)(response), response]),
       retry(3)
-    )
+    );
   }
 
   private urlFor(relativeUrl: string) {
@@ -98,7 +107,7 @@ export class HttpService {
 
   private checkMeldingen(response: string): void {
     // TODO: warnings worden nu behandeld als fout. Moeten we nog (iets anders) doen met info-meldingen?
-    let meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim(), false)(response);
+    const meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim(), false)(response);
     if (meldingen.length > 0) {
       throw meldingen;
     }
@@ -115,7 +124,7 @@ function copyToFormData(params: any, formData: FormData) {
 
 function toFormDetails(node: Element): FormDetails {
   const inputElements = node.querySelectorAll('input');
-  let inputValues = {};
+  const inputValues = {};
   for (let i = 0; i < inputElements.length; i++) {
     const subnode = inputElements.item(i);
     inputValues[subnode.attributes['name'].value] = subnode.attributes['value'] && subnode.attributes['value'].value;
@@ -123,6 +132,6 @@ function toFormDetails(node: Element): FormDetails {
   return {
     action: node.getAttribute('action'),
     inputs: inputValues
-  }
+  };
 }
 

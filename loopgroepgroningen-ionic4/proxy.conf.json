@@ -1,19 +1,9 @@
 {
-  "name": "loopgroepgroningen",
-  "app_id": "c1a9ed44",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
+  "/index.php": {
+    "target": "http://www.loopgroepgroningen.nl",
+    "changeOrigin": true
   },
-  "proxies": [
-    {
-      "path": "/index.php",
-      "proxyUrl": "http://www.loopgroepgroningen.nl/index.php",
-      "cookieRewrite": "localhost"
-    },
-    {
-      "path": "/mvollebregt",
-      "proxyUrl": "https://raw.githubusercontent.com/mvollebregt"
-    }
-  ]
+  "/mvollebregt": {
+    "target": "https://raw.githubusercontent.com"
+  }
 }

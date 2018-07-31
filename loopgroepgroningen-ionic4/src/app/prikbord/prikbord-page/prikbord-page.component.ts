@@ -44,6 +44,7 @@ export class PrikbordPageComponent implements OnInit, OnDestroy {
         this.itemsGeladen = true;
       });
     });
+    this.prikbordService.synchroniseer();
   }
 
   ngOnDestroy() {
