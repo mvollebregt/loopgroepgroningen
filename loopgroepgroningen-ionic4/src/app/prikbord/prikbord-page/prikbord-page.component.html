@@ -17,18 +17,7 @@
 
   <div class="main-content">
 
-    <ion-card *ngFor="let item of items">
-
-      <ion-card-header>
-        <span>{{item.auteur}}</span>
-        <span float-right>{{item.tijdstip | lgDate: 'ddd D MMM YYYY - HH:mm'}}</span>
-      </ion-card-header>
-
-      <ion-card-content>
-        <lg-poor-content [content]="item.berichttekst"></lg-poor-content>
-      </ion-card-content>
-
-    </ion-card>
+    <lg-gesprek [berichten]="items"></lg-gesprek>
 
   </div>
 

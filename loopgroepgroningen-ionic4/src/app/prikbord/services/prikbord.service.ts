@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Bericht} from '../models/bericht';
-import {of} from 'rxjs/internal/observable/of';
+import {Observable, of} from 'rxjs';
+import {Bericht} from '../../shared/berichten/models/bericht';
 
 @Injectable({
   providedIn: 'root'

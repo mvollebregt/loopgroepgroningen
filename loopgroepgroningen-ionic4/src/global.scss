@@ -65,24 +65,7 @@ ion-menu {
 //  white-space: normal;
 //}
 
-.ion-page ion-card {
 
-  background-color: var(--ion-item-background-color);
-  border-radius: 8px;
-  --ion-color-contrast: var(--ion-color-contrast);
-  margin: 10px;
-  width: calc(100% - 20px);
-
-  ion-card-header, ion-card-content {
-    padding: 12px;
-  }
-
-  ion-card-header {
-    font-size: 14px;
-    font-weight: bold;
-    padding-bottom: 0;
-  }
-}
 
 //.dialog {
 //  height: auto;

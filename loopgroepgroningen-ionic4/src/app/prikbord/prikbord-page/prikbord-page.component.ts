@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Content} from '@ionic/angular';
-import {Observable} from 'rxjs';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {finalize, takeUntil} from 'rxjs/operators';
-import {Bericht} from '../models/bericht';
 import {PrikbordService} from '../services/prikbord.service';
+import {Bericht} from '../../shared/berichten/models/bericht';
 
 @Component({
     selector: 'lg-prikbord-page',
