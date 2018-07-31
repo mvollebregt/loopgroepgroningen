@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {Bericht} from "./bericht";
+import {Observable} from 'rxjs/Observable';
+import {Bericht} from './bericht';
 import * as moment from 'moment';
-import {HttpService} from "./http.service";
+import {HttpService} from './http.service';
 import {LoginService} from './login/login.service';
 import {switchMap} from 'rxjs/operators';
 import {toParagraaf} from '../shared/rich-content/poor-content/to-paragraaf';

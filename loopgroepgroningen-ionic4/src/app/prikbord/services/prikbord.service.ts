@@ -1,7 +1,7 @@
-import {Injectable, OnDestroy} from "@angular/core";
-import {Bericht} from "./bericht";
-import {Observable} from "rxjs/Observable";
-import {PrikbordClient} from "./prikbord.client";
+import {Injectable, OnDestroy} from '@angular/core';
+import {Bericht} from './bericht';
+import {Observable} from 'rxjs/Observable';
+import {PrikbordClient} from './prikbord.client';
 import {Storage} from '@ionic/storage';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {map, pluck, take, takeUntil, tap} from 'rxjs/operators';

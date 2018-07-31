@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {Platform} from "ionic-angular";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {Platform} from 'ionic-angular';
+import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {FormDetails} from './form-details';
 import {map, retry, switchMap, tap} from 'rxjs/operators';
