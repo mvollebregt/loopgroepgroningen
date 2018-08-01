@@ -2,12 +2,17 @@ import {Injectable, OnDestroy} from '@angular/core';
 import {PrikbordClient} from './prikbord.client';
 import {Observable, of, ReplaySubject, Subject} from 'rxjs';
 import {Bericht} from '../../shared/berichten/models/bericht';
+import {Storage} from '@ionic/storage';
+import * as moment from 'moment';
+import {Paragraaf} from '../../shared/rich-content/models/paragraaf';
+import {Alinea} from '../../shared/rich-content/models/alinea';
+import {PlainText} from '../../shared/rich-content/models/rich-content';
 
 @Injectable({providedIn: 'root'})
 export class PrikbordService implements OnDestroy {
 
   constructor(
-    // private storage: NativeStorage,
+    private storage: Storage,
     // private notificatieService: NotificatieService,
     private prikbordClient: PrikbordClient,
     // instellingenService: InstellingenService
@@ -31,15 +36,15 @@ export class PrikbordService implements OnDestroy {
     if (PrikbordService.differNull(links, rechts)
       || links.auteur !== rechts.auteur
       || links.tijdstip.substring(0, 16) !== rechts.tijdstip.substring(0, 16) // skip time zone
-      || PrikbordService.differNull(links.berichttekst, rechts.berichttekst)
+      // || PrikbordService.differNull(links.berichttekst, rechts.berichttekst)
       || links.berichttekst.length !== rechts.berichttekst.length) {
       return false;
     } else {
-      for (let i = 0; i < links.berichttekst.length; i++) {
-        if (links.berichttekst[i] !== rechts.berichttekst[i]) {
-          return false;
-        }
-      }
+      // for (let i = 0; i < links.berichttekst.length; i++) {
+      //   if (links.berichttekst[i] !== rechts.berichttekst[i]) {
+      //     return false;
+      //   }
+      // }
     }
     return true;
   }
@@ -51,20 +56,20 @@ export class PrikbordService implements OnDestroy {
   getBerichten(): Observable<Bericht[]> {
     if (this.berichtenNogLeeg) {
       // haal de berichten uit de opslag als we dat nog niet gedaan hebben
-      // this.storage.getItem(PrikbordService.key).then(berichten => {
-      //   // berichten alleen zetten als niet in de tussentijd al gesynchroniseerd is
-      //   if (berichten && this.berichtenNogLeeg) {
-      //     this.berichten.next(berichten);
-      //   }
-      // });
+      this.storage.get(PrikbordService.key).then(berichten => {
+        // berichten alleen zetten als niet in de tussentijd al gesynchroniseerd is
+        if (berichten && this.berichtenNogLeeg) {
+          this.berichten.next(berichten);
+        }
+      });
     }
     return this.berichten;
   }
 
   verstuurBericht(berichttekst: string): Observable<{}> {
     // if (this.demoModus) {
-      this.verstuurDemoBericht(berichttekst);
-      return of({});
+    this.verstuurDemoBericht(berichttekst);
+    return of({});
     // } else {
     //   return this.prikbordClient.verstuurBericht(berichttekst).pipe(
     //     tap(berichten => this.synchroniseerBerichten(berichten)),
@@ -84,19 +89,18 @@ export class PrikbordService implements OnDestroy {
 
   private synchroniseerBerichten(berichten) {
     // haal de opgeslagen berichten uit de opslag
-    // this.storage.getItem(PrikbordService.key).then( opgeslagen => {
+    this.storage.get(PrikbordService.key).then(opgeslagen => {
       // check of er nieuwe berichten zijn bijgekomen
-    // opgeslagen = opgeslagen || [];
-    const opgeslagen = [];
+      opgeslagen = opgeslagen || [];
       let aantalNieuwe = berichten.findIndex(bericht => PrikbordService.equal(bericht, this.zoekNieuwste(opgeslagen)));
-    aantalNieuwe = aantalNieuwe !== -1 ? aantalNieuwe : berichten.length;
+      aantalNieuwe = aantalNieuwe !== -1 ? aantalNieuwe : berichten.length;
       if (aantalNieuwe !== 0 || !opgeslagen.length) {
         // Er zijn nieuwe berichten bij gekomen. Sla deze op en stuur ze naar observers.
         opgeslagen.push(...berichten.slice(0, aantalNieuwe).reverse()); // oud naar nieuw
-        // this.storage.setItem(PrikbordService.key, opgeslagen);
+        this.storage.set(PrikbordService.key, opgeslagen);
         this.berichten.next(opgeslagen);
       }
-    // });
+    });
   }
 
   private zoekNieuwste(berichten: Bericht[]) {
@@ -108,11 +112,13 @@ export class PrikbordService implements OnDestroy {
   }
 
   private verstuurDemoBericht(berichttekst: string) {
-    // this.storage.getItem(PrikbordService.key).then((opgeslagen: Bericht[]) => {
-    //   opgeslagen.push({auteur: 'demo', tijdstip: moment().toISOString(), berichttekst: [berichttekst]});
-    //   this.storage.setItem(PrikbordService.key, opgeslagen);
-    //   this.berichten.next(opgeslagen);
-    // });
+    this.storage.get(PrikbordService.key).then((opgeslagen: Bericht[]) => {
+      // TODO: berichttekst parsen als paragraaf
+      const bericht = [new Paragraaf([new Alinea([new PlainText(berichttekst)])])];
+      opgeslagen.push({auteur: 'demo', tijdstip: moment().toISOString(), berichttekst: bericht});
+      this.storage.set(PrikbordService.key, opgeslagen);
+      this.berichten.next(opgeslagen);
+    });
   }
 
   ngOnDestroy() {
