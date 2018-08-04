@@ -47,6 +47,15 @@ ion-menu {
   padding-bottom: 1px;
 }
 
+// Onderstaande zorgt ervoor dat je gewoon tekst kunt selecteren en plakken.
+// (welke idioot heeft dat uberhaupt uitgezet?)
+body {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 //ion-list-header {
 //  background-color: transparent;
 //}
