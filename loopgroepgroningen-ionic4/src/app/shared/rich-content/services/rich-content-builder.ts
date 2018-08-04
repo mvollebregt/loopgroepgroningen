@@ -3,6 +3,8 @@ import {Afbeelding, Link, PlainText, RichContent} from '../models/rich-content';
 
 export class RichContentBuilder {
 
+  // private static readonly .compile();
+
   private doc = new DocumentBuilder();
 
   extractRichContent(elements: NodeList | Node[]): void {
@@ -67,11 +69,28 @@ export class RichContentBuilder {
 
   private parseText(element: Node): RichContent[] {
     const textContent = this.textContent(element);
-    return textContent ? [new PlainText(this.textContent(element))] : [];
+    return textContent ? this.recognizeLinksInText(textContent) : [];
+  }
+
+  private recognizeLinksInText(textContent): RichContent[] {
+    const result: RichContent[] = [];
+    const linkRegEx = /\b(http:\/\/|https:\/\/|www\.)([A-za-z0-9-]+)+([@-Za-z!#-;=?])+\b/g;
+    let index = 0;
+    let match: RegExpExecArray;
+    while ((match = linkRegEx.exec(textContent)) != null) {
+      result.push(...this.plainTextIfNotEmpty(textContent.substring(index, match.index)));
+      result.push(new Link(match[0], match[0]));
+      index = match.index + match[0].length;
+    }
+    result.push(...this.plainTextIfNotEmpty(textContent.substring(index)));
+    return result;
+  }
+
+  private plainTextIfNotEmpty(text: string): PlainText[] {
+    return text ? [new PlainText(text)] : [];
   }
 
   private textContent(element: Node): string {
     return element.textContent.trim();
   }
-
 }

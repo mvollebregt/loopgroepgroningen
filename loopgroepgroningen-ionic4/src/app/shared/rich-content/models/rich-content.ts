@@ -18,7 +18,7 @@ export class Afbeelding implements RichContent {
 export class Link implements RichContent {
   type = RichContentType.LINK;
 
-  constructor(public href: string, public textContent: string) {
+  constructor(public href: string, public textContent: string = href) {
   }
 }
 
