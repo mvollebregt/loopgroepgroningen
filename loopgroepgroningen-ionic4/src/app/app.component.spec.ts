@@ -1,5 +1,5 @@
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
@@ -11,6 +11,8 @@ import {AppComponent} from './app.component';
 describe('AppComponent', () => {
 
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
@@ -28,10 +30,11 @@ describe('AppComponent', () => {
       ],
       imports: [RouterTestingModule.withRoutes([])],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
   });
 
   it('should create the app', async () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
@@ -44,24 +47,20 @@ describe('AppComponent', () => {
     expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 
-  it('should have menu labels', async () => {
-    const fixture = await TestBed.createComponent(AppComponent);
-    await fixture.detectChanges();
+  it('should have menu items', () => {
+    // als
+    fixture.detectChanges();
     const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(2);
-    expect(menuItems[0].textContent).toContain('Home');
-    expect(menuItems[1].textContent).toContain('List');
+    // dan
+    const menuItems = Array.from<Element>(app.querySelectorAll('ion-item'));
+    const menuItemsInfo = menuItems.map(menuItem => [
+      menuItem.querySelector('ion-label').textContent.trim(),
+      menuItem.getAttribute('ng-reflect-router-link')
+    ]);
+    expect(menuItemsInfo).toEqual([
+      ['Home', '/home'],
+      ['List', '/list'],
+      ['Prikbord', '/prikbord']
+    ]);
   });
-
-  it('should have urls', async () => {
-    const fixture = await TestBed.createComponent(AppComponent);
-    await fixture.detectChanges();
-    const app = fixture.nativeElement;
-    const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(2);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/list');
-  });
-
 });
