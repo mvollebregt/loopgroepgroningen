@@ -11,7 +11,7 @@ describe('RichContentBuilder', () => {
     richContentBuilder = new RichContentBuilder();
   });
 
-  it('moet links beginnend met www herkennen', () => {
+  it('moet links beginnend met www herkennen en vooraf laten gaan door http://', () => {
     // gegeven
     const dom = new DOMParser().parseFromString('ga naar www.loopgroepgroningen.nl.', 'text/html');
     // als
@@ -22,7 +22,7 @@ describe('RichContentBuilder', () => {
       new Paragraaf([
         new Alinea([
           new PlainText('ga naar '),
-          new Link('www.loopgroepgroningen.nl'),
+          new Link('http://www.loopgroepgroningen.nl', 'www.loopgroepgroningen.nl'),
           new PlainText('.')
         ])
       ])

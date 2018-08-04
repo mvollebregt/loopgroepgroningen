@@ -79,7 +79,7 @@ export class RichContentBuilder {
     let match: RegExpExecArray;
     while ((match = linkRegEx.exec(textContent)) != null) {
       result.push(...this.plainTextIfNotEmpty(textContent.substring(index, match.index)));
-      result.push(new Link(match[0], match[0]));
+      result.push(new Link(this.makeLink(match[0]), match[0]));
       index = match.index + match[0].length;
     }
     result.push(...this.plainTextIfNotEmpty(textContent.substring(index)));
@@ -88,6 +88,10 @@ export class RichContentBuilder {
 
   private plainTextIfNotEmpty(text: string): PlainText[] {
     return text ? [new PlainText(text)] : [];
+  }
+
+  private makeLink(text: string): string {
+    return text.startsWith('http') ? text : `http://${text}`;
   }
 
   private textContent(element: Node): string {
