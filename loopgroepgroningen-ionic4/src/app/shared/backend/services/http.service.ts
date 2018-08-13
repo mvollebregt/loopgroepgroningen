@@ -8,7 +8,8 @@ import {FormDetails} from '../models/form-details';
 @Injectable({providedIn: 'root'})
 export class HttpService {
 
-  static readonly backendUrl = 'http://www.loopgroepgroningen.nl';
+  // static readonly backendUrl = 'http://www.loopgroepgroningen.nl';
+  static readonly backendUrl = 'http://localhost:5000/cors-proxy-82783/us-central1/proxy?url=';
 
   private readonly baseUrl: string;
   private readonly parser = new DOMParser();
@@ -16,7 +17,8 @@ export class HttpService {
 
   constructor(platform: Platform, private http: HttpClient) {
     // Op een echt device moeten we naar de absolute URL toe. Binnen de browser maken we gebruik van een proxy.
-    this.baseUrl = platform.url().startsWith('file:') ? HttpService.backendUrl : '';
+    // this.baseUrl = platform.url().startsWith('file:') ? HttpService.backendUrl : '';
+    this.baseUrl = HttpService.backendUrl;
   }
 
   public get(relativeUrl: string): Observable<string> {
