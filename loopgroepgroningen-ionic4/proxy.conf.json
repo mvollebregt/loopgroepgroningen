@@ -1,0 +1,9 @@
+{
+  "/index.php": {
+    "target": "http://www.loopgroepgroningen.nl",
+    "changeOrigin": true
+  },
+  "/mvollebregt": {
+    "target": "https://raw.githubusercontent.com"
+  }
+}

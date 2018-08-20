@@ -1,0 +1,12 @@
+<ion-card *ngFor="let bericht of berichten">
+
+    <ion-card-header>
+        <span>{{bericht.auteur}}</span>
+        <span float-right>{{bericht.tijdstip | lgDate: 'ddd D MMM YYYY - HH:mm'}}</span>
+    </ion-card-header>
+
+    <ion-card-content>
+        <lg-rich-content [paragrafen]="bericht.berichttekst"></lg-rich-content>
+    </ion-card-content>
+
+</ion-card>

@@ -1,0 +1,160 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/colors.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+//// Eigen variabelen:
+//var(--ion-toolbar-background-color): #faf4ed;
+//$background-color: #ff811a;
+//$list-background-color: white;
+//$border-color: #d1d3d6;
+//$toggle-md-handle-background-color-off:	#f4f4f4;
+$hairlines-width: .55px;
+
+// In de standaard styling van Ionic voor ios is de ruimte voor de statusbar vergeten
+.ios ion-header {
+  padding-top: 20px;
+  background-color: var(--ion-toolbar-background-color);
+}
+
+// Het menu krijgt dezelfde kleur als de toolbar
+ion-menu {
+  ion-content, ion-item {
+    background: var(--ion-toolbar-background-color);
+  }
+}
+
+//ion-info-message {
+//  background: var(--ion-toolbar-background-color);
+//  text-align: center;
+//  padding-top: 12px;
+//  padding-bottom: 20px;
+//}
+
+.main-content-wrapper {
+  background: var(--ion-toolbar-background-color);
+}
+
+.main-content {
+  background: var(--ion-background-color);
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+// Onderstaande zorgt ervoor dat je gewoon tekst kunt selecteren en plakken.
+// (welke idioot heeft dat uberhaupt uitgezet?)
+body {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+//ion-list-header {
+//  background-color: transparent;
+//}
+
+//ion-list-header .md {
+//  margin-bottom: 0;
+//  color: black;
+//  border-top: 0;
+//}
+
+//ion-list {
+//  margin-bottom: 0;
+//}
+
+//.multi-line {
+//  white-space: normal;
+//}
+
+
+
+//.dialog {
+//  height: auto;
+//  background-color: var(--ion-toolbar-background-color);
+//  display: flex;
+//  align-items: center;
+//}
+//
+//.ios .dialog {
+//  margin: 12px;
+//}
+//
+//.md .dialog {
+//  margin: 10px;
+//}
+//
+//.wp .dialog {
+//  margin: 8px;
+//}
+
+//.no-margin-right,
+//.dialog.no-margin-right {
+//  margin-right: 0;
+//}
+
+//button ion-icon {
+//  padding: 0;
+//  height: 40px;
+//  width: 40px;
+//}
+
+//.dialog button {
+//  margin-left: 6px;
+//  margin-right: 6px;
+//}
+
+//ion-textarea, ion-input {
+//  background-color: var(--ion-item-background-color);
+//  border-radius: 8px;
+//  border: var($hairlines-width) solid var(--ion-border-color);
+//
+//  input.text-input {
+//    margin-left: 8px;
+//    padding-right: 8px;
+//  }
+//
+//  textarea.text-input {
+//    margin: 8px 4px 8px 4px;
+//    border: none;
+//    font-size: 1.6rem;
+//    height: 5em;
+//  }
+//
+//  textarea.text-input.text-input-ios {
+//    font-size: 1.7rem;
+//  }
+//
+//  textarea.text-input.text-input-wp {
+//    width: 100%;
+//    padding: 0;
+//    line-height: 22px;
+//  }
+//
+//  textarea.text-input::-moz-placeholder {
+//    font-size: 14px;
+//  }
+//
+//  textarea.text-input:-ms-input-placeholder {
+//    font-size: 14px;
+//  }
+//
+//  textarea.text-input::-webkit-input-placeholder {
+//    font-size: 14px;
+//  }
+//}
+
+//ion-label>* {
+//  margin-bottom: 2px;
+//}
+
+//img {
+//  object-fit: cover;
+//}
