@@ -1,4 +1,4 @@
-import { JSDOM, Element } from 'jsdom';
+import {Element} from 'jsdom';
 import * as moment from 'moment';
 import {extractRichContent} from '../rich-content/rich-content.service';
 import {Bericht} from '../api';

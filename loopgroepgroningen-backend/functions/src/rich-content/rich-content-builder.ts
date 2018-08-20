@@ -1,5 +1,5 @@
 import {DocumentBuilder} from './document-builder';
-import {Node, NodeList, HTMLElement} from 'jsdom';
+import {Node, NodeList} from 'jsdom';
 import {Afbeelding, Link, PlainText, RichContent} from '../api';
 
 export class RichContentBuilder {
@@ -8,8 +8,7 @@ export class RichContentBuilder {
 
   extractRichContent(elements: NodeList | Node[]): void {
 
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i];
+    for (const element of elements) {
 
       switch (element.localName) {
 
@@ -49,7 +48,7 @@ export class RichContentBuilder {
 
     this.extractRichContent(element.childNodes);
 
-    const marginBottom = (element as HTMLElement).style.marginBottom;
+    const marginBottom = element.style.marginBottom;
     const hasMargin = marginBottom !== '0px';
     if (hasMargin || this.doc.endsWithEmptyAlinea()) {
       this.doc.finishParagraaf();
@@ -75,11 +74,12 @@ export class RichContentBuilder {
     const result: RichContent[] = [];
     const linkRegEx = /\b(http:\/\/|https:\/\/|www\.)([A-za-z0-9-]+)+([@-Za-z!#-;=?])+\b/g;
     let index = 0;
-    let match: RegExpExecArray;
-    while ((match = linkRegEx.exec(textContent)) != null) {
+    let match = linkRegEx.exec(textContent);
+    while (match) {
       result.push(...this.plainTextIfNotEmpty(textContent.substring(index, match.index)));
       result.push(new Link(this.makeLink(match[0]), match[0]));
       index = match.index + match[0].length;
+      match = linkRegEx.exec(textContent);
     }
     result.push(...this.plainTextIfNotEmpty(textContent.substring(index)));
     return result;
