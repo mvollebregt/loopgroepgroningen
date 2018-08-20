@@ -1,6 +1,6 @@
-import {Paragraaf} from '../models/paragraaf';
-import {Alinea} from '../models/alinea';
-import {RichContent} from '../models/rich-content';
+import {Paragraaf} from '../api/rich-content/paragraaf';
+import {Alinea} from '../api/rich-content/alinea';
+import {RichContent} from '../api/rich-content/rich-content';
 
 export class DocumentBuilder {
 

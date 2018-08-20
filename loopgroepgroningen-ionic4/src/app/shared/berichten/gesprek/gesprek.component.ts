@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Bericht} from '../models/bericht';
+import {Bericht} from '../../../../../../loopgroepgroningen-backend/functions/src/api/bericht';
 
 @Component({
   selector: 'lg-gesprek',

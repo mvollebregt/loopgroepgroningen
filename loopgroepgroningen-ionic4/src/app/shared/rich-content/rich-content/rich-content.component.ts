@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Paragraaf} from '../models/paragraaf';
-import {RichContentType} from '../models/rich-content';
+import {Paragraaf} from '../../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/paragraaf';
+import {RichContentType} from '../../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/rich-content';
 
 @Component({
   selector: 'lg-rich-content',

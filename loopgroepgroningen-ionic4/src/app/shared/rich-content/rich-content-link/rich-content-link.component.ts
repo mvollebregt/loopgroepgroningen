@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Link} from '../models/rich-content';
+import {Link} from '../../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/rich-content';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
 
 @Component({

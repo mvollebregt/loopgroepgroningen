@@ -1,12 +1,12 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {PrikbordClient} from './prikbord.client';
 import {Observable, of, ReplaySubject, Subject} from 'rxjs';
-import {Bericht} from '../../shared/berichten/models/bericht';
 import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
-import {Paragraaf} from '../../shared/rich-content/models/paragraaf';
-import {Alinea} from '../../shared/rich-content/models/alinea';
-import {PlainText} from '../../shared/rich-content/models/rich-content';
+import {Bericht} from '../../../../../loopgroepgroningen-backend/functions/src/api/bericht';
+import {Paragraaf} from '../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/paragraaf';
+import {Alinea} from '../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/alinea';
+import {PlainText} from '../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/rich-content';
 
 @Injectable({providedIn: 'root'})
 export class PrikbordService implements OnDestroy {
