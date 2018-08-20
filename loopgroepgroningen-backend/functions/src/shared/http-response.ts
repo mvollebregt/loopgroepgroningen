@@ -1,13 +1,6 @@
 import * as WebRequest from 'web-request';
 import {Request, Response} from 'express';
 
-const allowedDomains = [
-  'http://localhost:4200',
-  'http://localhost:8080',
-  'http://localhost:8100',
-  'http://localhost:8200'
-];
-
 export function prepareResponse(eventualResponse: Response, retrievedResponse:WebRequest.Response<string>, originalRequest: Request): void {
   copyCookiesToResponse(eventualResponse, retrievedResponse);
   setCorsHeaders(eventualResponse, originalRequest);
@@ -26,9 +19,8 @@ function copyCookiesToResponse(eventualResponse: Response, response: WebRequest.
 
 function setCorsHeaders(eventualResponse: Response, originalRequest: Request): void {
   const origin = originalRequest.get('origin');
-  const allowedDomain = allowedDomains.find(domain => origin === domain);
-  if (allowedDomain) {
-    eventualResponse.header('Access-Control-Allow-Origin', allowedDomain);
+  if (origin && origin.startsWith('http://localhost')) {
+    eventualResponse.header('Access-Control-Allow-Origin', origin);
     eventualResponse.header('Access-Control-Allow-Credentials', 'true');
     eventualResponse.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
     eventualResponse.header('Access-Control-Max-Age', '1000');
