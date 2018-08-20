@@ -4,7 +4,7 @@ export interface Nieuwsbericht {
 
   volgnummer: number;
   titel: string;
-  datum: string;
+  datum?: string;
   content: Paragraaf[];
   thumbnail: string;
   samenvatting: string;

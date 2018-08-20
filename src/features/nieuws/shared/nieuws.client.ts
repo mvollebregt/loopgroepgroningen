@@ -27,12 +27,14 @@ export class NieuwsClient {
 
   private toNieuwsbericht(node: Element, volgnummer: number): Nieuwsbericht {
     const titel = node.querySelector('.loopgroepgroningen-postheader').textContent.trim();
-    const content = this.richContentService
-      .extractRichContent(node.querySelector('.loopgroepgroningen-article'))
-      .slice(1); // de eerste paragraaf is de datum, die laten we weg
+    const datumNode = node.querySelector('strong');
+    const datum = datumNode && moment(datumNode.textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
+    let content = this.richContentService
+      .extractRichContent(node.querySelector('.loopgroepgroningen-article'));
+    // als het bericht een datum heeft staat die in de eerste paragraaf, die laten we dan weg
+    content = datum ? content.slice(1) : content;
     const samenvatting = this.richContentService.samenvatting(content, 50);
     const thumbnail = node.querySelector('img').getAttribute('src');
-    const datum = moment(node.querySelector('strong').textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
     return {
       volgnummer,
       titel,
