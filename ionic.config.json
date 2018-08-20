@@ -1,10 +1,9 @@
 {
   "name": "loopgroepgroningen",
-  "app_id": "c1a9ed44",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
   },
+  "type": "ionic-angular",
   "proxies": [
     {
       "path": "/index.php",
@@ -15,5 +14,6 @@
       "path": "/mvollebregt",
       "proxyUrl": "https://raw.githubusercontent.com/mvollebregt"
     }
-  ]
+  ],
+  "pro_id": "c1a9ed44"
 }
