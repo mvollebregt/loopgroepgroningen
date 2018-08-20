@@ -1,6 +1,4 @@
-import {Paragraaf} from '../api/rich-content/paragraaf';
-import {Alinea} from '../api/rich-content/alinea';
-import {RichContent} from '../api/rich-content/rich-content';
+import {Paragraaf, Alinea, RichContent} from '../api';
 
 export class DocumentBuilder {
 

@@ -3,10 +3,7 @@ import {PrikbordClient} from './prikbord.client';
 import {Observable, of, ReplaySubject, Subject} from 'rxjs';
 import {Storage} from '@ionic/storage';
 import * as moment from 'moment';
-import {Bericht} from '../../../../../loopgroepgroningen-backend/functions/src/api/bericht';
-import {Paragraaf} from '../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/paragraaf';
-import {Alinea} from '../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/alinea';
-import {PlainText} from '../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/rich-content';
+import {Bericht, Paragraaf, Alinea, PlainText} from '../../api';
 
 @Injectable({providedIn: 'root'})
 export class PrikbordService implements OnDestroy {

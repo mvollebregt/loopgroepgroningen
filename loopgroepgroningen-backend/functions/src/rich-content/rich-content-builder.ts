@@ -1,6 +1,6 @@
 import {DocumentBuilder} from './document-builder';
 import {Node, NodeList, HTMLElement} from 'jsdom';
-import {Afbeelding, Link, PlainText, RichContent} from '../api/rich-content/rich-content';
+import {Afbeelding, Link, PlainText, RichContent} from '../api';
 
 export class RichContentBuilder {
 

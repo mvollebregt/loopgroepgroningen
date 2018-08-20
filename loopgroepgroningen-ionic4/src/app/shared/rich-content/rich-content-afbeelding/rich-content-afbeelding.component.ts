@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Afbeelding} from '../../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/rich-content';
+import {Afbeelding} from '../../../api';
 
 @Component({
   selector: 'lg-rich-content-afbeelding',

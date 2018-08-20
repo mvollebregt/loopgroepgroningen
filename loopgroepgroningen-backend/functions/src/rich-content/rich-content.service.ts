@@ -1,6 +1,6 @@
 import {RichContentBuilder} from './rich-content-builder';
 import {Node} from 'jsdom';
-import {Paragraaf} from '../api/rich-content/paragraaf';
+import {Paragraaf} from '../api';
 
 export function extractRichContent(element: Node): Paragraaf[] {
   if (!element) {

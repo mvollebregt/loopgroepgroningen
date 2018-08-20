@@ -1,10 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {GesprekComponent} from './gesprek.component';
-import {Bericht} from '../models/bericht';
 import {By} from '@angular/platform-browser';
 import {CustomDatePipe} from '../../shared/pipes/custom-date-pipe';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {Bericht} from '../../../api';
 
 describe('GesprekComponent', () => {
   let component: GesprekComponent;

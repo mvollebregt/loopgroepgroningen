@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Link} from '../../../../../../loopgroepgroningen-backend/functions/src/api/rich-content/rich-content';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
+import {Link} from '../../../api';
 
 @Component({
   selector: 'lg-rich-content-link',

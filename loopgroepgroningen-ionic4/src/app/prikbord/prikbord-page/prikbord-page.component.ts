@@ -3,7 +3,7 @@ import {Content} from '@ionic/angular';
 import {Observable, Subject} from 'rxjs';
 import {finalize, takeUntil} from 'rxjs/operators';
 import {PrikbordService} from '../services/prikbord.service';
-import {Bericht} from '../../../../../loopgroepgroningen-backend/functions/src/api/bericht';
+import {Bericht} from '../../api';
 
 @Component({
     selector: 'lg-prikbord-page',

@@ -1,4 +1,4 @@
-import {Paragraaf} from './rich-content/paragraaf';
+import {Paragraaf} from './rich-content';
 
 export interface Bericht {
 

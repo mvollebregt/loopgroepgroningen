@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../shared/backend/services/http.service';
-import {Bericht} from '../../../../../loopgroepgroningen-backend/functions/src/api/bericht';
+import {Bericht} from '../../api';
 
 @Injectable({providedIn: 'root'})
 export class PrikbordClient {
