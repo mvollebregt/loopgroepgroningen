@@ -1,5 +1,6 @@
 export interface LoginResponse {
 
-  success: boolean;
+  succes: boolean;
+  meldingen: string[];
 
 }

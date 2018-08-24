@@ -2,10 +2,10 @@ import {Element} from 'jsdom';
 import * as moment from 'moment';
 import {extractRichContent} from '../rich-content/rich-content.service';
 import {Bericht} from '../api';
-import {mapAll} from './map-all';
+import {scrapeList, Scraper} from './scrape';
 
-export function mapToBerichten(elements: Element[]): Bericht[] {
-  return mapAll(elements, element => {
+export function scrapeBerichten(): Scraper<Bericht[]> {
+  return scrapeList('div.easy_frame', element => {
     const auteur = element.querySelector('.easy_big').textContent.trim();
     const tijdstip = moment(element.querySelector('.easy_small').textContent.trim(), 'dddd DD MMMM YYYY HH:mm');
     const content = element.querySelector('.easy_content');

@@ -15,9 +15,3 @@ export function copyCookiesFromRequest(originalRequest: Request, cookieJar: Sing
     cookies.forEach(cookie => cookieJar.setCookie(cookie));
   }
 }
-
-export function scrape<T>(body: string, selector: string, mapper: (elements: Element[]) => T): T {
-  const doc = new JSDOM(body).window.document;
-  const elements = doc.querySelectorAll(selector);
-  return mapper(elements);
-}
