@@ -1,8 +1,19 @@
 import * as WebRequest from 'web-request';
+import * as moment from 'moment';
+
 
 export class SingleUseCookieJar implements WebRequest.CookieJar {
 
   private cookies: {[key: string]: string} = {};
+
+  constructor() {
+    // zet default cookie
+    // TODO: dit niet naar de client sturen?
+    const today = moment();
+    const nextYear = moment().add(1, 'year');
+    const format = 'YYYY-MM-DD';
+    this.cookies['plg_system_eprivacy'] = `${today.format(format)}x${nextYear.format(format)}`;
+  }
 
   setCookie(cookie: WebRequest.Cookie | string): void {
     const cookieString = this.isCookie(cookie) ? cookie.str : cookie;
