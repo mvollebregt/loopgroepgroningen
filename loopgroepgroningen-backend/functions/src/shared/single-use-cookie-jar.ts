@@ -12,7 +12,7 @@ export class SingleUseCookieJar implements WebRequest.CookieJar {
     const today = moment();
     const nextYear = moment().add(1, 'year');
     const format = 'YYYY-MM-DD';
-    this.cookies['plg_system_eprivacy'] = `${today.format(format)}x${nextYear.format(format)}`;
+    this.cookies['plg_system_eprivacy'] = `${today.format(format)}x${nextYear.format(format)}x`;
   }
 
   setCookie(cookie: WebRequest.Cookie | string): void {
