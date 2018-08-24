@@ -8,8 +8,8 @@ import {FormDetails} from '../models/form-details';
 @Injectable({providedIn: 'root'})
 export class HttpService {
 
-  // static readonly backendUrl = 'http://localhost:5000/loopgroep-groningen-v3/us-central1';
-  static readonly backendUrl = 'https://us-central1-loopgroep-groningen-v3.cloudfunctions.net/';
+  static readonly backendUrl = 'http://localhost:5000/loopgroep-groningen-v3/us-central1';
+  // static readonly backendUrl = 'https://us-central1-loopgroep-groningen-v3.cloudfunctions.net/';
 
   private readonly baseUrl: string;
   private readonly parser = new DOMParser();

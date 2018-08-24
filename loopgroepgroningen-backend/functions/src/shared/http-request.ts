@@ -1,5 +1,5 @@
 import {Request} from 'express';
-import {JSDOM, Element} from 'jsdom';
+import {Element, JSDOM} from 'jsdom';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 
 const baseUrl = 'http://www.loopgroepgroningen.nl/';
@@ -16,12 +16,8 @@ export function copyCookiesFromRequest(originalRequest: Request, cookieJar: Sing
   }
 }
 
-export function scrape<T>(body: string, selector: string, mapper: (elt: Element) => T): T[] {
+export function scrape<T>(body: string, selector: string, mapper: (elements: Element[]) => T): T {
   const doc = new JSDOM(body).window.document;
   const elements = doc.querySelectorAll(selector);
-  const result = [];
-  for (let i = 0; i < elements.length; i++) {
-    result.push(mapper(elements.item(i)));
-  }
-  return result;
+  return mapper(elements);
 }
