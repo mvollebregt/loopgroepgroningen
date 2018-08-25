@@ -1,8 +1,8 @@
 import {Element} from 'jsdom';
 import * as moment from 'moment';
-import {extractRichContent} from '../rich-content/rich-content.service';
 import {Bericht} from '../api';
 import {scrapeList, Scraper} from './scrape';
+import {extractRichContent} from './rich-content/extract-rich-content';
 
 export function scrapeBerichten(): Scraper<Bericht[]> {
   return scrapeList('div.easy_frame', element => {

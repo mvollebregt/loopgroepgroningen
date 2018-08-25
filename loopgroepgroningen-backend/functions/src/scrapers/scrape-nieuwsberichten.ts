@@ -1,7 +1,7 @@
 import {scrapeList} from './scrape';
 import {Nieuwsbericht} from '../api/nieuwsbericht';
 import * as moment from 'moment';
-import {extractRichContent} from '../rich-content/rich-content.service';
+import {extractRichContent} from './rich-content/extract-rich-content';
 
 export function scrapeNieuwsberichten() {
   return scrapeList<Nieuwsbericht>(

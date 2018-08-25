@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import {get, post} from './shared/http';
+import {get, post} from './http/http';
 import {Bericht, LoginRequest, LoginResponse} from './api';
 import {scrapeLoginResponse} from './scrapers/scrape-login-response';
 import {scrapeBerichten} from './scrapers/scrape-berichten';

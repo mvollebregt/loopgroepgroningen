@@ -1,4 +1,5 @@
-import {Paragraaf, Alinea, RichContent} from '../api';
+import {Alinea, Paragraaf, RichContent} from '../../api';
+
 
 export class DocumentBuilder {
 
