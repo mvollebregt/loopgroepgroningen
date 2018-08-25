@@ -10,7 +10,7 @@ import {RichContentService} from "../../shared/rich-content/shared/rich-content.
 import {toParagraaf} from '../../shared/rich-content/poor-content/to-paragraaf';
 
 @Injectable()
-export class EvenementdetailClient {
+export class ScrapeEvenementdetail {
 
   constructor(
     private httpService: HttpService,
