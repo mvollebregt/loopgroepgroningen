@@ -18,7 +18,7 @@ export function get<T>(
     copyCookiesFromRequest(originalRequest, cookieJar);
     WebRequest.get(urlFor(relativeUrl), {jar: cookieJar}).then(serverResponse => {
       const result = scrape(serverResponse.content);
-      prepareResponse(eventualResponse, serverResponse, originalRequest);
+      prepareResponse(eventualResponse, originalRequest, cookieJar);
       eventualResponse.status(200).send(result);
     }).catch(error =>
       eventualResponse.status(500).send(error)
@@ -60,7 +60,7 @@ async function doPost<I, O>(
   const serverResponse = await WebRequest.post(postUrl, {jar: cookieJar, form, followAllRedirects: true});
   const result = scrapeOutput(serverResponse.content);
 
-  prepareResponse(eventualResponse, serverResponse, originalRequest);
+  prepareResponse(eventualResponse, originalRequest, cookieJar);
   return result;
 
 }

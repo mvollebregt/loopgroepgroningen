@@ -11,7 +11,7 @@ export function urlFor(relativeUrl: string): string {
 export function copyCookiesFromRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
   const cookieHeader = originalRequest.headers['cookie'];
   if (cookieHeader) {
-    const cookies = Array.isArray(cookieHeader) ? cookieHeader : [cookieHeader];
+    const cookies = Array.isArray(cookieHeader) ? cookieHeader : cookieHeader.split(';');
     cookies.forEach(cookie => cookieJar.setCookie(cookie));
   }
 }

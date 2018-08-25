@@ -1,13 +1,13 @@
-import * as WebRequest from 'web-request';
 import {Request, Response} from 'express';
+import {SingleUseCookieJar} from './single-use-cookie-jar';
 
-export function prepareResponse(eventualResponse: Response, retrievedResponse:WebRequest.Response<string>, originalRequest: Request): void {
-  copyCookiesToResponse(eventualResponse, retrievedResponse);
+export function prepareResponse(eventualResponse: Response, originalRequest: Request, cookieJar: SingleUseCookieJar): void {
+  copyCookiesToResponse(eventualResponse, cookieJar);
   setCorsHeaders(eventualResponse, originalRequest);
 }
 
-function copyCookiesToResponse(eventualResponse: Response, response: WebRequest.Response<string>): void {
-  const originalCookies: string[] = response.headers['set-cookie'] || [];
+function copyCookiesToResponse(eventualResponse: Response, cookieJar: SingleUseCookieJar): void {
+  const originalCookies: string[] = cookieJar.getResponseCookies();
   // TODO: localhost is nu nog hard coded value
   const rewrittenCookies = originalCookies.map(cookie =>
     cookie
