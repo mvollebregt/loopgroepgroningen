@@ -1,4 +1,4 @@
-import {Paragraaf} from '../../../shared/rich-content/shared/paragraaf';
+import {Paragraaf} from './rich-content';
 
 export interface Nieuwsbericht {
 
