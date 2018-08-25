@@ -1,61 +1,22 @@
-import {Injectable} from "@angular/core";
-import {HttpService} from "../../core/http.service";
-import {Observable} from "rxjs/Observable";
-import {LoginService} from "../../core/login/login.service";
-import {Evenementdetail} from './evenementdetail';
-import {Bericht} from '../../core/bericht';
+import {scrape, Scraper} from './scrape';
+import {Evenementdetail} from '../api/evenementdetail';
+import {Bericht} from '../api';
 import * as moment from 'moment';
-import {map, switchMap} from 'rxjs/operators';
-import {RichContentService} from "../../shared/rich-content/shared/rich-content.service";
-import {toParagraaf} from '../../shared/rich-content/poor-content/to-paragraaf';
+import {extractRichContent} from '../rich-content/rich-content.service';
 
-@Injectable()
-export class ScrapeEvenementdetail {
+export function scrapeEvenementdetail(): Scraper<Evenementdetail> {
 
-  constructor(
-    private httpService: HttpService,
-    private loginService: LoginService,
-    private richContentService: RichContentService
-  ) {
-  }
+  // TODO: functie "scrapeOne" maken
+  return scrape('#jem', elements => {
 
-  haalEvenementOp(url: string): Observable<Evenementdetail> {
-    return this.loginService.login().pipe(
-      switchMap(() =>
-        this.httpService.get(url).pipe(
-          this.httpService.extractWithRetry('#jem', elt => this.toEvenementdetail(elt)),
-          map(array => array[0])
-        )));
-  }
+    const elt = elements[0];
 
-  schrijfIn(eventPage: string, inschrijven: boolean): Observable<Evenementdetail> {
-    return this.loginService.login().pipe(
-      switchMap(() =>
-        this.httpService.post(eventPage, '.register form', {'reg_check': inschrijven}).pipe(
-          this.httpService.extractWithRetry('#jem', elt => this.toEvenementdetail(elt)),
-          map(array => array[0]))
-      ));
-  }
-
-  verstuurBericht(eventPage: string, reactie: string): Observable<Evenementdetail> {
-    return this.loginService
-      .login().pipe(
-        switchMap(() => this.httpService.post(eventPage, '#comments-form', {
-          'comment': reactie,
-          'jtxf': 'JCommentsAddComment'
-        }, 'index.php/component/jcomments/')),
-        switchMap(() =>
-          this.haalEvenementOp(eventPage)
-        )
-      );
-  }
-
-  private toEvenementdetail(elt: Element): Evenementdetail {
     const start = elt.querySelector('[itemprop="startDate"]').getAttribute('content');
     const einde = elt.querySelector('[itemprop="endDate"]').getAttribute('content');
     const naam = elt.querySelector('[itemprop="name"]').textContent.trim();
     const categorie = elt.querySelector('dd.category').textContent.trim();
-    const omschrijving = this.richContentService.extractRichContent(elt.querySelector('[itemprop="description"]'));
+    const omschrijving = extractRichContent(elt.querySelector('[itemprop="description"]'));
+
 
     const deelnemerElementen = elt.querySelectorAll('.register li .username');
     let deelnemers: string[] = [];
@@ -70,7 +31,7 @@ export class ScrapeEvenementdetail {
       reacties.push({
         auteur: element.querySelector('.comment-author').textContent,
         tijdstip: moment(element.querySelector('.comment-date').textContent, 'DD-MM-YYYY HH:mm').toISOString(),
-        berichttekst: toParagraaf(element.querySelector('.comment-body'))
+        berichttekst: extractRichContent(element.querySelector('.comment-body'))
       })
     }
 
@@ -87,5 +48,5 @@ export class ScrapeEvenementdetail {
       deelnemers,
       reacties
     };
-  }
+  })
 }

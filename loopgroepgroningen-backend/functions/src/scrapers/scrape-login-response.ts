@@ -1,6 +1,7 @@
 import {LoginResponse} from '../api';
 import {Element} from 'jsdom';
-import {scrape, scrapeCombined, scrapeList, Scraper} from './scrape';
+import {scrape, scrapeCombined, Scraper} from './scrape';
+import {scrapeMeldingen} from './scrape-meldingen';
 
 export function scrapeLoginResponse(): Scraper<LoginResponse> {
   return scrapeCombined(scrapeSucces(), scrapeMeldingen(), (succes, meldingen) => ({succes, meldingen}));
@@ -19,8 +20,4 @@ function scrapeSucces(): Scraper<boolean> {
     }
     return succes;
   })
-}
-
-function scrapeMeldingen(): Scraper<string[]> {
-  return scrapeList('#system-message-container .warning li', element => element.textContent.trim());
 }

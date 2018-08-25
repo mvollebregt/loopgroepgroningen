@@ -1,5 +1,5 @@
-import {Bericht} from '../../core/bericht';
-import {Paragraaf} from '../../shared/rich-content/shared/paragraaf';
+import {Paragraaf} from './rich-content';
+import {Bericht} from './bericht';
 
 export interface Evenementdetail {
 
