@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
 import {NieuwsState} from '../store/nieuws.reducers';
 import {of} from 'rxjs/internal/observable/of';
+import {LoadNieuwsberichten} from '../store/nieuwsberichten.action';
 
 @Component({
   selector: 'lg-nieuwsoverzicht-page',
@@ -37,7 +38,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
     //   map(([berichten, loading]) => !berichten.length && loading)
     // );
     // this.error = this.store.pipe(select(getNieuwsberichtenError));
-    // this.store.dispatch(new LoadNieuwsberichten());
+    this.store.dispatch(new LoadNieuwsberichten());
   }
 
   gaNaarNieuwsbericht(nieuwsbericht: Nieuwsbericht) {

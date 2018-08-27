@@ -20,16 +20,15 @@ export class HttpService {
   }
 
   public get<T>(relativeUrl: string): Observable<T> {
-    return this.acceptCookies().pipe(
-      switchMap(() => this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true})),
-      tap((response: string) => this.checkMeldingen(response))
-    );
+    return this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true});
+    // return this.acceptCookies().pipe(
+    //   switchMap(() => this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true})),
+    //   tap((response: string) => this.checkMeldingen(response))
+    // );
   }
 
-  public post(relativeUrl: string, formSelector: string, params: any, action?: string): Observable<string> {
-    return this.get(relativeUrl).pipe(
-      this.postAfterGet(relativeUrl, formSelector, params, action)
-    );
+  public post<T>(relativeUrl: string, body: any): Observable<T> {
+    return this.http.post<T>(this.urlFor(relativeUrl), body, {withCredentials: true});
   }
 
   public postAfterGet(relativeUrl: string, formSelector: string, params: any, action?: string) {
