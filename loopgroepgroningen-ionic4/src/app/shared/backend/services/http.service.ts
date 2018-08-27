@@ -19,7 +19,7 @@ export class HttpService {
     this.baseUrl = HttpService.backendUrl;
   }
 
-  public get<T>(relativeUrl: string): Observable<T[]> {
+  public get<T>(relativeUrl: string): Observable<T> {
     return this.acceptCookies().pipe(
       switchMap(() => this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true})),
       tap((response: string) => this.checkMeldingen(response))

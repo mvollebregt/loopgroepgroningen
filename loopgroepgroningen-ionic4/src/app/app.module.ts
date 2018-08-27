@@ -12,8 +12,17 @@ import {AppRoutingModule} from './app-routing.module';
 import * as moment from 'moment';
 import {HttpClientModule} from '@angular/common/http';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
+import {environment} from '../environments/environment';
+import {MetaReducer, StoreModule} from '@ngrx/store';
+import {storeFreeze} from 'ngrx-store-freeze';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 moment.locale('nl');
+
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +32,10 @@ moment.locale('nl');
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({}, {metaReducers}),
+    EffectsModule.forRoot([]),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   providers: [
     StatusBar,

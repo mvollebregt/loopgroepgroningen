@@ -1,19 +1,21 @@
 <ion-list>
 
   <ion-list-header>
-    {{ nieuwsberichten[0]?.datum | date: 'MMMM YYYY'}}
+    {{ nieuwsberichten[0]?.datum | lgDate: 'MMMM YYYY'}}
   </ion-list-header>
 
-  <button ion-item
-          *ngFor="let nieuwsbericht of nieuwsberichten"
-          (tap)="onTap(nieuwsbericht)">
+  <ion-item
+    *ngFor="let nieuwsbericht of nieuwsberichten"
+    (click)="onTap(nieuwsbericht)">
     <ion-thumbnail item-start>
-      <img src="{{backendUrl}}{{nieuwsbericht.thumbnail}}">
+      <img src="{{nieuwsbericht.thumbnail}}">
     </ion-thumbnail>
-    <h2>{{nieuwsbericht.datum | date : "D MMMM YYYY"}}</h2>
-    <div>{{nieuwsbericht.titel}}</div>
-    <p>{{nieuwsbericht.samenvatting}}</p>
-  </button>
+    <ion-label>
+      <h2>{{nieuwsbericht.datum | lgDate : "D MMMM YYYY"}}</h2>
+      <div>{{nieuwsbericht.titel}}</div>
+      <p>{{nieuwsbericht.samenvatting}}</p>
+    </ion-label>
+  </ion-item>
 
 </ion-list>
 

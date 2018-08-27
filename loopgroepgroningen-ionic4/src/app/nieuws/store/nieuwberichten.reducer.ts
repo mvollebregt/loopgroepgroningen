@@ -1,10 +1,10 @@
-import {Nieuwsbericht} from '../shared/nieuwsbericht';
 import {
   LOAD_NIEUWSBERICHTEN,
   LOAD_NIEUWSBERICHTEN_FAIL,
   LOAD_NIEUWSBERICHTEN_SUCCESS,
   NieuwsberichtenAction
 } from './nieuwsberichten.action';
+import {Nieuwsbericht} from '../../api';
 
 export interface NieuwsberichtState {
   loaded: boolean;

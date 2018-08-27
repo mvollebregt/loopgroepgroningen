@@ -13,7 +13,7 @@ export class PrikbordClient {
 
   // haalt berichten op: de nieuwste eerst
   haalBerichtenOp(): Observable<Bericht[]> {
-    return this.httpService.get<Bericht>('prikbord');
+    return this.httpService.get<Bericht[]>('prikbord');
   }
 
   verstuurBericht(berichttekst: string): Observable<Bericht[]> {

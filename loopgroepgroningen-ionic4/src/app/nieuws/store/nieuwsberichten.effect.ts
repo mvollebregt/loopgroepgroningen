@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-
 import {Actions, Effect} from '@ngrx/effects';
-import {of} from 'rxjs/observable/of';
 import {catchError, exhaustMap, map} from 'rxjs/operators';
 import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenFail, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
-import {NieuwsClient} from '../shared/nieuws.client';
+import {NieuwsClient} from '../services/nieuws.client';
+import {of} from 'rxjs';
 
 @Injectable()
 export class NieuwsberichtenEffects {
@@ -19,8 +18,8 @@ export class NieuwsberichtenEffects {
     .ofType(LOAD_NIEUWSBERICHTEN)
     .pipe(
       exhaustMap(() =>
-        this.nieuwsClient.haalNieuwsberichtenOp().pipe(
-          map(nieuwsberichten => new LoadNieuwsberichtenSuccess(nieuwsberichten)),
+        this.nieuwsClient.getLaatsteNieuws().pipe(
+          map(({nieuws, meldingen}) => new LoadNieuwsberichtenSuccess(nieuws)),
           catchError(error => {
             console.log(error);
             return of(new LoadNieuwsberichtenFail(error));

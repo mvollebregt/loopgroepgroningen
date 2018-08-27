@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   {
+    path: 'nieuws',
+    loadChildren: './nieuws/nieuws.module#NieuwsModule'
+  },
+  {
     path: 'prikbord',
     loadChildren: './prikbord/prikbord.module#PrikbordModule'
   }

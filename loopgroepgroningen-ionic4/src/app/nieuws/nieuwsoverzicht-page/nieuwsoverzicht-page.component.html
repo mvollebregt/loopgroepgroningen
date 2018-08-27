@@ -1,17 +1,19 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Laatste nieuws</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Laatste nieuws
+    </ion-title>
+  </ion-toolbar>
 
   <div *ngIf="error | async" class="info-message">
     Het laatste nieuws kon niet worden geladen.
   </div>
 </ion-header>
 
-<lg-spinner *ngIf="spinning | async"></lg-spinner>
+<!--<lg-spinner *ngIf="spinning | async"></lg-spinner>-->
 
 <ion-content>
 

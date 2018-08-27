@@ -21,6 +21,11 @@ export class AppComponent {
       icon: 'list'
     },
     {
+      title: 'Nieuws',
+      url: '/nieuws',
+      icon: 'paper'
+    },
+    {
       title: 'Prikbord',
       url: '/prikbord',
       icon: 'chatboxes'

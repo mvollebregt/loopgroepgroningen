@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Nieuwsbericht} from '../shared/nieuwsbericht';
+import {Nieuwsbericht} from '../../api';
 
 // load nieuwsberichten
 export const LOAD_NIEUWSBERICHTEN = '[Products] Load Nieuwsberichten';
