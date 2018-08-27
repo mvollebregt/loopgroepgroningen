@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
-import {NieuwsState} from '../store/nieuws.reducers';
-import {of} from 'rxjs/internal/observable/of';
+import {getNieuwsberichten, NieuwsState} from '../store/nieuws.reducers';
 import {LoadNieuwsberichten} from '../store/nieuwsberichten.action';
 
 @Component({
@@ -13,14 +12,7 @@ import {LoadNieuwsberichten} from '../store/nieuwsberichten.action';
 })
 export class NieuwsoverzichtPageComponent implements OnInit {
 
-  nieuwsberichten: Observable<Nieuwsbericht[]> = of([{
-    volgnummer: 1,
-    titel: 'nieuwbericht',
-    datum: '2018-07-13',
-    content: [],
-    thumbnail: '',
-    samenvatting: 'de samenvatting'
-  }]);
+  nieuwsberichten: Observable<Nieuwsbericht[]>;
   spinning: Observable<boolean>;
   error: Observable<boolean>;
 
@@ -30,7 +22,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.nieuwsberichten = this.store.pipe(select(getNieuwsberichten));
+    this.nieuwsberichten = this.store.pipe(select(getNieuwsberichten));
     // this.spinning = combineLatest(
     //   this.nieuwsberichten,
     //   this.store.pipe(select(getNieuwsberichtenLoading))

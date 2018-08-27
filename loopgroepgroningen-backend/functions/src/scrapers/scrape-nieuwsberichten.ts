@@ -2,6 +2,7 @@ import {scrapeList} from './scrape';
 import {Nieuwsbericht} from '../api/nieuwsbericht';
 import * as moment from 'moment';
 import {extractRichContent} from './rich-content/extract-rich-content';
+import {urlFor} from '../http/http-request';
 
 export function scrapeNieuwsberichten() {
   return scrapeList<Nieuwsbericht>(
@@ -14,7 +15,7 @@ export function scrapeNieuwsberichten() {
       // als het bericht een datum heeft staat die in de eerste paragraaf, die laten we dan weg
       content = datum ? content.slice(1) : content;
       const samenvatting = 'TODO: samenvatting'; // TODO samenvatting(content, 50);
-      const thumbnail = element.querySelector('img').getAttribute('src');
+      const thumbnail = urlFor(element.querySelector('img').getAttribute('src'));
       return {
         volgnummer,
         titel,

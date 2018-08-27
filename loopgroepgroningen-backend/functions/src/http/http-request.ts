@@ -2,10 +2,12 @@ import {Request} from 'express';
 import {Element, JSDOM} from 'jsdom';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 
-const baseUrl = 'http://www.loopgroepgroningen.nl/';
+const baseUrl = 'http://www.loopgroepgroningen.nl';
 
 export function urlFor(relativeUrl: string): string {
-  return relativeUrl.startsWith('/') ? baseUrl + relativeUrl.substring(1) : baseUrl + relativeUrl;
+  return relativeUrl.startsWith(baseUrl) ? relativeUrl :
+    relativeUrl.startsWith('/') ? baseUrl + relativeUrl :
+      `${baseUrl}/${relativeUrl}`;
 }
 
 export function copyCookiesFromRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
