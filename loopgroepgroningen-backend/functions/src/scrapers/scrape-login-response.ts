@@ -1,9 +1,9 @@
-import {LoginResponse} from '../api';
+import {Session} from '../api';
 import {Element} from 'jsdom';
 import {scrape, scrapeCombined, Scraper} from './scrape';
 import {scrapeMeldingen} from './scrape-meldingen';
 
-export function scrapeLoginResponse(): Scraper<LoginResponse> {
+export function scrapeLoginResponse(): Scraper<Session> {
   return scrapeCombined(scrapeSucces(), scrapeMeldingen(), (succes, meldingen) => ({succes, meldingen}));
 }
 

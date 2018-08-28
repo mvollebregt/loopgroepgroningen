@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
+import {Platform} from '@ionic/angular';
+import {from, Observable, of} from 'rxjs'
+import {Credentials} from '../../../api';
 import {SecureStorage} from '@ionic-native/secure-storage';
-import {Observable} from 'rxjs/Observable';
-import {Login} from './login';
-import {Platform} from 'ionic-angular';
-import {fromPromise} from 'rxjs/observable/fromPromise';
-import {of} from 'rxjs/observable/of';
 
 const STORE_NAME = 'loopgroep-groningen';
 const LOGIN_KEY = 'login';
@@ -12,14 +10,14 @@ const LOGIN_KEY = 'login';
 @Injectable()
 export class WachtwoordkluisService {
 
-  private login: Login;
+  private login: Credentials;
 
   constructor(private secureStorage: SecureStorage, private platform: Platform) {
   }
 
-  haalLoginOp(): Observable<Login>{
+  haalLoginOp(): Observable<Credentials> {
     if (this.platform.is('cordova')) {
-      return fromPromise(
+      return from(
         this.secureStorage.create(STORE_NAME).then(
           storage => storage.get(LOGIN_KEY),
         ).then(
@@ -31,7 +29,7 @@ export class WachtwoordkluisService {
     }
   }
 
-  slaLoginOp(login: Login) {
+  slaLoginOp(login: Credentials) {
     if (this.platform.is('cordova')) {
       this.secureStorage.create(STORE_NAME).then(
         storage => storage.set(LOGIN_KEY, JSON.stringify(login)));

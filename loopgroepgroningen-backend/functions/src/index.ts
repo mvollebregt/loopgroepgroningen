@@ -1,17 +1,17 @@
 import * as functions from 'firebase-functions';
 import {get, post} from './http/http';
-import {Bericht, LoginRequest, LoginResponse} from './api';
+import {Bericht, Credentials, Nieuwsbericht, Session} from './api';
 import {scrapeLoginResponse} from './scrapers/scrape-login-response';
 import {scrapeBerichten} from './scrapers/scrape-berichten';
 import {Evenementdetail} from './api/evenementdetail';
 import {scrapeEvenementdetail} from './scrapers/scrape-evenementdetail';
 import {scrapeNieuwsberichten} from './scrapers/scrape-nieuwsberichten';
-import {Nieuwsbericht} from './api/nieuwsbericht';
 import {scrapeCombined} from './scrapers/scrape';
 import {scrapeMeldingen} from './scrapers/scrape-meldingen';
 
 export const login = functions.https.onRequest(
-  post<LoginRequest, LoginResponse>(
+  // TODO: als je login aanroept als je al ingelogd bent dan log je uit!
+  post<Credentials, Session>(
     'index.php/loopgroep-groningen-ledeninfo',
     '#login-form',
     scrapeLoginResponse())

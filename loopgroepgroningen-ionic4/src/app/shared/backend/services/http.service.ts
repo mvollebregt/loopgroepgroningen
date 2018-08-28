@@ -1,100 +1,64 @@
 import {Injectable} from '@angular/core';
-import {Platform} from '@ionic/angular';
-import {Observable, of, pipe} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {map, retry, switchMap, tap} from 'rxjs/operators';
-import {FormDetails} from '../models/form-details';
+import {catchError, filter, switchMap} from 'rxjs/operators';
+import {throwError} from 'rxjs/internal/observable/throwError';
+import {WachtwoordkluisService} from './wachtwoordkluis.service';
+import {Credentials, Session} from '../../../api';
 
 @Injectable({providedIn: 'root'})
 export class HttpService {
 
-  static readonly backendUrl = 'http://localhost:5000/loopgroep-groningen-v3/us-central1';
-  // static readonly backendUrl = 'https://us-central1-loopgroep-groningen-v3.cloudfunctions.net/';
+  private readonly baseUrl = 'http://localhost:5000/loopgroep-groningen-v3/us-central1';
 
-  private readonly baseUrl: string;
-  private readonly parser = new DOMParser();
-  private cookiesAccepted = true;
+  // private readonly baseUrl = 'https://us-central1-loopgroep-groningen-v3.cloudfunctions.net/';
 
-  constructor(platform: Platform, private http: HttpClient) {
-    this.baseUrl = HttpService.backendUrl;
+  constructor(
+    private http: HttpClient,
+    private wachtwoordkluis: WachtwoordkluisService
+  ) {
   }
 
   public get<T>(relativeUrl: string): Observable<T> {
-    return this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true});
-    // return this.acceptCookies().pipe(
-    //   switchMap(() => this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true})),
-    //   tap((response: string) => this.checkMeldingen(response))
-    // );
+    return this.http.get<T>(this.urlFor(relativeUrl), {withCredentials: true}).pipe(
+      this.unauthorizedHandlerFor(() => this.get<T>(relativeUrl)));
   }
 
   public post<T>(relativeUrl: string, body: any): Observable<T> {
-    return this.http.post<T>(this.urlFor(relativeUrl), body, {withCredentials: true});
+    return this.http.post<T>(this.urlFor(relativeUrl), body, {withCredentials: true}).pipe(
+      this.unauthorizedHandlerFor(() => this.post<T>(relativeUrl, body)));
   }
 
-  public postAfterGet(relativeUrl: string, formSelector: string, params: any, action?: string) {
-    return pipe(
-      this.extractWithRetry(formSelector, toFormDetails),
-      map(formsArray => formsArray[0]),
-      switchMap((form: FormDetails) => {
-        const formData = new FormData();
-        copyToFormData(form.inputs, formData);
-        copyToFormData(params, formData);
-        return this.http.post(this.urlFor(action ? action : form.action ? form.action : relativeUrl), formData, {
-          responseType: 'text',
-          withCredentials: true
-        });
-      }),
-      tap((response: string) => this.checkMeldingen(response))
+  private unauthorizedHandlerFor<T>(retryFunction: () => Observable<T>) {
+    return this.catchUnauthorized(() =>
+      this.verkrijgLogin().pipe(
+        switchMap(retryFunction)
+      ))
+  }
+
+  private verkrijgLogin<T>(): Observable<Credentials> {
+    return this.wachtwoordkluis.haalLoginOp().pipe(
+      switchMap(this.login),
+      this.catchUnauthorized(() => this.vraagOmLogin<T>())
     );
   }
 
-  private acceptCookies(): Observable<string> {
-    if (!this.cookiesAccepted) {
-      const cookiesForm = 'index.php?option=com_ajax&plugin=eprivacy&format=raw&method=accept&consent=&country=not+detected';
-      return this.http.get(this.urlFor(cookiesForm), {
-        responseType: 'text',
-        withCredentials: true
-      }).pipe(
-        tap(response => {
-          this.cookiesAccepted = true;
-        })
-      );
-    } else {
-      return of('');
-    }
+  private vraagOmLogin<T>(): Observable<Credentials> {
+    return this.askForLogin().pipe(
+      filter(login => !!login),
+      switchMap(this.login),
+      this.catchUnauthorized(() => this.vraagOmLogin<T>())
+    )
   }
 
-  private extract<T>(
-    selector: string,
-    mapToObject: (node: Element, volgnummer: number) => T,
-    throwErrorIfEmpty: boolean
-  ): (html: string) => T[] {
-    return (html: string) => {
-      const doc = this.parser.parseFromString(html, 'text/html');
-      const elements: NodeListOf<Element> = doc.querySelectorAll(selector);
-      if (throwErrorIfEmpty && elements.length === 0) {
-        throw new Error('Er ging iets mis in de communicatie met de server.');
+  private catchUnauthorized<T>(errorHandler: () => Observable<T>) {
+    return catchError<T, T>(error => {
+      if (error.status !== 401) {
+        return throwError(error);
+      } else {
+        return errorHandler();
       }
-      const objects: T[] = [];
-      for (let i = 0; i < elements.length; i++) {
-        objects.push(mapToObject(elements.item(i), i));
-      }
-      return objects;
-    };
-  }
-
-  public extractWithRetry<T>(selector: string, mapToObject: (node: Element, volgnummer: number) => T) {
-    return pipe(
-      map(this.extract(selector, mapToObject, true)),
-      retry(2) // TODO: iets geavanceerder retry-mechanisme maken?
-    );
-  }
-
-  public extractWithRetryKeepingResponse<T>(selector: string, mapToObject: (node: Element) => T) {
-    return pipe(
-      map((response: string) => [this.extract(selector, mapToObject, true)(response), response]),
-      retry(3)
-    );
+    })
   }
 
   private urlFor(relativeUrl: string) {
@@ -104,33 +68,12 @@ export class HttpService {
     return this.baseUrl + separator + normalizedUrl;
   }
 
-  private checkMeldingen(response: string): void {
-    // TODO: warnings worden nu behandeld als fout. Moeten we nog (iets anders) doen met info-meldingen?
-    const meldingen = this.extract('#system-message-container .warning li', node => node.textContent.trim(), false)(response);
-    if (meldingen.length > 0) {
-      throw meldingen;
-    }
+  private askForLogin(): Observable<Credentials> {
+    return null;
+  }
+
+
+  login(credentials: Credentials): Observable<Session> {
+    return this.post<Session>('session', credentials);
   }
 }
-
-function copyToFormData(params: any, formData: FormData) {
-  for (const property in params) {
-    if (params.hasOwnProperty(property)) {
-      formData.append(property, params[property]);
-    }
-  }
-}
-
-function toFormDetails(node: Element): FormDetails {
-  const inputElements = node.querySelectorAll('input');
-  const inputValues = {};
-  for (let i = 0; i < inputElements.length; i++) {
-    const subnode = inputElements.item(i);
-    inputValues[subnode.attributes['name'].value] = subnode.attributes['value'] && subnode.attributes['value'].value;
-  }
-  return {
-    action: node.getAttribute('action'),
-    inputs: inputValues
-  };
-}
-
