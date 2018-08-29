@@ -32,13 +32,13 @@ export class HttpService {
   private unauthorizedHandlerFor<T>(retryFunction: () => Observable<T>) {
     return this.catchUnauthorized(() =>
       this.verkrijgLogin().pipe(
-        switchMap(retryFunction)
+        switchMap(() => retryFunction())
       ))
   }
 
   private verkrijgLogin<T>(): Observable<Credentials> {
     return this.wachtwoordkluis.haalLoginOp().pipe(
-      switchMap(this.login),
+      switchMap(credentials => this.login(credentials)),
       this.catchUnauthorized(() => this.vraagOmLogin<T>())
     );
   }
@@ -46,7 +46,7 @@ export class HttpService {
   private vraagOmLogin<T>(): Observable<Credentials> {
     return this.askForLogin().pipe(
       filter(login => !!login),
-      switchMap(this.login),
+      switchMap(credentials => this.login(credentials)),
       this.catchUnauthorized(() => this.vraagOmLogin<T>())
     )
   }
@@ -69,11 +69,11 @@ export class HttpService {
   }
 
   private askForLogin(): Observable<Credentials> {
+    console.error('ask for login moet nog geimplementeerd worden!')
     return null;
   }
 
-
-  login(credentials: Credentials): Observable<Session> {
-    return this.post<Session>('session', credentials);
+  private login(credentials: Credentials): Observable<Session> {
+    return this.http.post<Session>(this.urlFor('session'), credentials, {withCredentials: true});
   }
 }
