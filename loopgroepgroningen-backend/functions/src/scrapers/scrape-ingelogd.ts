@@ -1,8 +1,8 @@
 import {Element} from 'jsdom';
 import {scrape, Scraper} from './scrape';
 
-function scrapeIngelogd(): Scraper<boolean> {
-  return scrape('button, [type=submit]', elements => {
+export const scrapeIngelogd: Scraper<boolean> =
+  scrape('button, [type=submit]', elements => {
     let ingelogd = true;
     for (let button of elements) {
       const value = button.getAttribute('value');
@@ -13,5 +13,4 @@ function scrapeIngelogd(): Scraper<boolean> {
       }
     }
     return ingelogd;
-  })
-}
+  });

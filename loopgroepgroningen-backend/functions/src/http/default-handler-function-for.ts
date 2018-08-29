@@ -3,6 +3,8 @@ import * as WebRequest from 'web-request';
 import {EndpointDefinition} from './model/endpoint-definition';
 import {scrapeForm} from '../scrapers/scrape-form';
 import {urlFor} from './url-for';
+import {scrapeMeldingen} from '../scrapers/scrape-meldingen';
+import {SingleUseCookieJar} from './single-use-cookie-jar';
 
 export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, O>, method: string): HandlerFunction<O> {
   switch (method.toLowerCase()) {
@@ -22,23 +24,44 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
-    const serverResponse = await WebRequest.get(urlFor(endpoint.targetUrl), {jar: cookieJar});
-    return endpoint.scraper(serverResponse.content);
+    const serverResponse = await doGet(endpoint.targetUrl, cookieJar);
+    return endpoint.scraper(serverResponse);
   }
 }
 
 function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
 
-    const inputPage = await WebRequest.get(urlFor(endpoint.targetUrl), {jar: cookieJar});
-    const {action, inputs} = scrapeForm(endpoint.formSelector)(inputPage.content);
+    const inputPage = await doGet(endpoint.targetUrl, cookieJar);
+    const {action, inputs} = scrapeForm(endpoint.formSelector)(inputPage);
 
     const postUrl = urlFor(action || endpoint.targetUrl);
     const inputMapper = endpoint.inputMapper || (x => x);
     const form = Object.assign(inputs, inputMapper(originalRequest.body));
 
-    const serverResponse = await WebRequest.post(postUrl, {jar: cookieJar, form, followAllRedirects: true});
-    return endpoint.scraper(serverResponse.content);
+    const serverResponse = await doPost(postUrl, form, cookieJar);
+    return endpoint.scraper(serverResponse);
 
+  }
+}
+
+
+async function doGet(relativeUrl: string, cookieJar: SingleUseCookieJar): Promise<string> {
+  const serverResponse = await WebRequest.get(urlFor(relativeUrl), {jar: cookieJar});
+  handleMessages(serverResponse);
+  return serverResponse.content;
+}
+
+async function doPost(relativeUrl: string, form: any, cookieJar: SingleUseCookieJar): Promise<string> {
+  const serverResponse = await WebRequest.post(relativeUrl, {jar: cookieJar, form, followAllRedirects: true});
+  handleMessages(serverResponse);
+  return serverResponse.content;
+
+}
+
+function handleMessages(serverResponse: WebRequest.Response<string>): void {
+  const meldingen = scrapeMeldingen(serverResponse.content);
+  if (meldingen.length > 0) {
+    throw {meldingen};
   }
 }

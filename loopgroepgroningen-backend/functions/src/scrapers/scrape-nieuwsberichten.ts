@@ -4,8 +4,8 @@ import * as moment from 'moment';
 import {extractRichContent} from './rich-content/extract-rich-content';
 import {urlFor} from '../http/url-for';
 
-export function scrapeNieuwsberichten() {
-  return scrapeList<Nieuwsbericht>(
+export const scrapeNieuwsberichten =
+  scrapeList<Nieuwsbericht>(
     '*[itemprop=blogPost] .loopgroepgroningen-post', (element, volgnummer) => {
 
       const titel = element.querySelector('.loopgroepgroningen-postheader').textContent.trim();
@@ -25,5 +25,4 @@ export function scrapeNieuwsberichten() {
         datum
       }
     }
-  )
-}
+  );

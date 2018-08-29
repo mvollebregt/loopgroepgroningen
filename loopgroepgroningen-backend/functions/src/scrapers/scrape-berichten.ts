@@ -4,8 +4,8 @@ import {Bericht} from '../api';
 import {scrapeList, Scraper} from './scrape';
 import {extractRichContent} from './rich-content/extract-rich-content';
 
-export function scrapeBerichten(): Scraper<Bericht[]> {
-  return scrapeList('div.easy_frame', element => {
+export const scrapeBerichten: Scraper<Bericht[]> =
+  scrapeList('div.easy_frame', element => {
     const auteur = element.querySelector('.easy_big').textContent.trim();
     const tijdstip = moment(element.querySelector('.easy_small').textContent.trim(), 'dddd DD MMMM YYYY HH:mm');
     const content = element.querySelector('.easy_content');
@@ -15,4 +15,4 @@ export function scrapeBerichten(): Scraper<Bericht[]> {
       berichttekst: extractRichContent(content)
     };
   });
-}
+

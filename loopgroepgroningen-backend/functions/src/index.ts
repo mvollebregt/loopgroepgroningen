@@ -11,27 +11,27 @@ export const session = functions.https.onRequest(
   endpoint<Credentials, Session>({
     targetUrl: 'index.php/component/users/profile',
     formSelector: '.login form',
-    scraper: scrapeSession()
+    scraper: scrapeSession
   })
 );
 
 export const laatsteNieuws = functions.https.onRequest(
   endpoint<void, Nieuwsbericht[]>({
     targetUrl: 'index.php/loopgroep-groningen-ledeninfo/laatste-nieuws',
-    scraper: scrapeNieuwsberichten()
+    scraper: scrapeNieuwsberichten
   })
 );
 
 export const prikbord = functions.https.onRequest(
   endpoint<void, Bericht[]>({
     targetUrl: 'index.php/prikbord',
-    scraper: scrapeBerichten()
+    scraper: scrapeBerichten
   })
 );
 
 export const evenementdetail = functions.https.onRequest(
   endpoint<void, Evenementdetail>({
     targetUrl: 'index.php/loopgroep-groningen-agenda/event/64-lgg-bbq',
-    scraper: scrapeEvenementdetail()
+    scraper: scrapeEvenementdetail
   })
 );

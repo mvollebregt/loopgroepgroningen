@@ -4,10 +4,10 @@ import {Bericht} from '../api';
 import * as moment from 'moment';
 import {extractRichContent} from './rich-content/extract-rich-content';
 
-export function scrapeEvenementdetail(): Scraper<Evenementdetail> {
+export const scrapeEvenementdetail: Scraper<Evenementdetail> =
 
   // TODO: functie "scrapeOne" maken
-  return scrape('#jem', elements => {
+  scrape('#jem', elements => {
 
     const elt = elements[0];
 
@@ -48,5 +48,5 @@ export function scrapeEvenementdetail(): Scraper<Evenementdetail> {
       deelnemers,
       reacties
     };
-  })
-}
+  });
+
