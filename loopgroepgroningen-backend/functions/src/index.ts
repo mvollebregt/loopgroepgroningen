@@ -11,6 +11,7 @@ export const session = functions.https.onRequest(
   endpoint<Credentials, Session>({
     targetUrl: 'index.php/component/users/profile',
     formSelector: '.login form',
+    formNotAvailableHandler: scrapeSession, // al ingelogd
     scraper: scrapeSession
   })
 );

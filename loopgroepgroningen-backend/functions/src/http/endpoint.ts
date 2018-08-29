@@ -26,7 +26,11 @@ export function endpoint<I, O>(
         eventualResponse.status(200).send(responseObject);
 
       }).catch(error => {
-        eventualResponse.status(error.status || 500).send(error);
+        const status = error.status || (error.meldingen ? 400 : 500);
+        if (status === 500) {
+          console.error(error);
+        }
+        eventualResponse.status(status).send(error);
       });
     }
   }

@@ -7,6 +7,7 @@ export interface EndpointDefinition<I, O> {
   restricted?: boolean;
   inputMapper?: (input: I) => any;
   formSelector?: string;
+  formNotAvailableHandler?: (inputPage: string) => O;
   methods?: {
     get?: HandlerFunction<O> | boolean;
     post?: HandlerFunction<O> | boolean;

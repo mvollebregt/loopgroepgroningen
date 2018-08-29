@@ -25,8 +25,7 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
-    const checkIngelogd = endpoint.restricted === true;
-    const serverResponse = await doGet(endpoint.targetUrl, checkIngelogd, cookieJar);
+    const serverResponse = await doGet(endpoint.targetUrl, endpoint.restricted, cookieJar);
     return endpoint.scraper(serverResponse);
   }
 }
@@ -34,12 +33,19 @@ function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
 function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
 
-    const inputPage = await doGet(endpoint.targetUrl, true, cookieJar);
-    const {action, inputs} = scrapeForm(endpoint.formSelector)(inputPage);
+    const inputPage = await doGet(endpoint.targetUrl, endpoint.restricted, cookieJar);
+    const initialForm = scrapeForm(endpoint.formSelector)(inputPage);
+    if (!initialForm) {
+      if (endpoint.formNotAvailableHandler) {
+        return endpoint.formNotAvailableHandler(inputPage);
+      } else {
+        throw {status: 500, meldingen: 'Formulier niet beschikbaar'};
+      }
+    }
 
-    const postUrl = urlFor(action || endpoint.targetUrl);
+    const postUrl = urlFor(initialForm.action || endpoint.targetUrl);
     const inputMapper = endpoint.inputMapper || (x => x);
-    const form = Object.assign(inputs, inputMapper(originalRequest.body));
+    const form = Object.assign(initialForm.inputs, inputMapper(originalRequest.body));
 
     const serverResponse = await doPost(postUrl, form, cookieJar);
     return endpoint.scraper(serverResponse);
@@ -56,9 +62,8 @@ async function doGet(relativeUrl: string, checkIngelogd: boolean, cookieJar: Sin
 
 async function doPost(relativeUrl: string, form: any, cookieJar: SingleUseCookieJar): Promise<string> {
   const serverResponse = await WebRequest.post(relativeUrl, {jar: cookieJar, form, followAllRedirects: true});
-  handleMessages(serverResponse);
+  handleMessages(serverResponse, true);
   return serverResponse.content;
-
 }
 
 function handleMessages(serverResponse: WebRequest.Response<string>, checkIngelogd = false) {
@@ -74,4 +79,3 @@ function handleMessages(serverResponse: WebRequest.Response<string>, checkIngelo
     throw {meldingen};
   }
 }
-
