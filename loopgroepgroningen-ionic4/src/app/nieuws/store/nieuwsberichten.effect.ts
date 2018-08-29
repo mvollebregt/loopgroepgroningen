@@ -19,7 +19,7 @@ export class NieuwsberichtenEffects {
     .pipe(
       exhaustMap(() =>
         this.nieuwsClient.getLaatsteNieuws().pipe(
-          map(({nieuws, meldingen}) => new LoadNieuwsberichtenSuccess(nieuws)),
+          map(nieuws => new LoadNieuwsberichtenSuccess(nieuws)),
           catchError(error => {
             console.log(error);
             return of(new LoadNieuwsberichtenFail(error));

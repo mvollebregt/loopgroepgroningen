@@ -12,7 +12,7 @@ export class NieuwsClient {
   ) {
   }
 
-  getLaatsteNieuws(): Observable<{ nieuws: Nieuwsbericht[], meldingen: string[] }> {
+  getLaatsteNieuws(): Observable<Nieuwsbericht[]> {
     const login: Credentials = {username: 'u', password: 'p'};
     return this.httpService.post<Session>('session', login).pipe(
       tap(console.log),
