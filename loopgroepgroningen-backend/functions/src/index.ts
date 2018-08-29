@@ -18,7 +18,8 @@ export const session = functions.https.onRequest(
 export const laatsteNieuws = functions.https.onRequest(
   endpoint<void, Nieuwsbericht[]>({
     targetUrl: 'index.php/loopgroep-groningen-ledeninfo/laatste-nieuws',
-    scraper: scrapeNieuwsberichten
+    scraper: scrapeNieuwsberichten,
+    restricted: true
   })
 );
 

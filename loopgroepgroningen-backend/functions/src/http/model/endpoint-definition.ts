@@ -4,6 +4,7 @@ import {HandlerFunction} from './handler-function';
 export interface EndpointDefinition<I, O> {
   targetUrl: string;
   scraper: Scraper<O>;
+  restricted?: boolean;
   inputMapper?: (input: I) => any;
   formSelector?: string;
   methods?: {

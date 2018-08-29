@@ -26,7 +26,7 @@ export function endpoint<I, O>(
         eventualResponse.status(200).send(responseObject);
 
       }).catch(error => {
-        eventualResponse.status(500).send(error);
+        eventualResponse.status(error.status || 500).send(error);
       });
     }
   }

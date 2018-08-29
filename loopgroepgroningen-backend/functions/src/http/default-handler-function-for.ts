@@ -5,6 +5,7 @@ import {scrapeForm} from '../scrapers/scrape-form';
 import {urlFor} from './url-for';
 import {scrapeMeldingen} from '../scrapers/scrape-meldingen';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
+import {scrapeIngelogd} from '../scrapers/scrape-ingelogd';
 
 export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, O>, method: string): HandlerFunction<O> {
   switch (method.toLowerCase()) {
@@ -24,7 +25,8 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
-    const serverResponse = await doGet(endpoint.targetUrl, cookieJar);
+    const checkIngelogd = endpoint.restricted === true;
+    const serverResponse = await doGet(endpoint.targetUrl, checkIngelogd, cookieJar);
     return endpoint.scraper(serverResponse);
   }
 }
@@ -32,7 +34,7 @@ function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
 function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
 
-    const inputPage = await doGet(endpoint.targetUrl, cookieJar);
+    const inputPage = await doGet(endpoint.targetUrl, true, cookieJar);
     const {action, inputs} = scrapeForm(endpoint.formSelector)(inputPage);
 
     const postUrl = urlFor(action || endpoint.targetUrl);
@@ -46,9 +48,9 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
 }
 
 
-async function doGet(relativeUrl: string, cookieJar: SingleUseCookieJar): Promise<string> {
+async function doGet(relativeUrl: string, checkIngelogd: boolean, cookieJar: SingleUseCookieJar): Promise<string> {
   const serverResponse = await WebRequest.get(urlFor(relativeUrl), {jar: cookieJar});
-  handleMessages(serverResponse);
+  handleMessages(serverResponse, checkIngelogd);
   return serverResponse.content;
 }
 
@@ -59,9 +61,17 @@ async function doPost(relativeUrl: string, form: any, cookieJar: SingleUseCookie
 
 }
 
-function handleMessages(serverResponse: WebRequest.Response<string>): void {
-  const meldingen = scrapeMeldingen(serverResponse.content);
+function handleMessages(serverResponse: WebRequest.Response<string>, checkIngelogd = false) {
+  const content = serverResponse.content;
+  const meldingen = scrapeMeldingen(content);
+  if (checkIngelogd) {
+    const ingelogd = scrapeIngelogd(content);
+    if (!ingelogd) {
+      throw {status: 401, meldingen: meldingen.length > 0 ? meldingen : undefined};
+    }
+  }
   if (meldingen.length > 0) {
     throw {meldingen};
   }
 }
+
