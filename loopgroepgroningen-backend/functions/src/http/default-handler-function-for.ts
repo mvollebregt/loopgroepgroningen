@@ -19,6 +19,8 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
         return post(endpoint);
       }
       break;
+    case 'options':
+      return () => Promise.resolve(null);
   }
   return null;
 }

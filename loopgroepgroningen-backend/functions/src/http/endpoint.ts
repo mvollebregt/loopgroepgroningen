@@ -30,6 +30,7 @@ export function endpoint<I, O>(
         if (status === 500) {
           console.error(error);
         }
+        prepareResponse(eventualResponse, originalRequest, cookieJar);
         eventualResponse.status(status).send(error);
       });
     }

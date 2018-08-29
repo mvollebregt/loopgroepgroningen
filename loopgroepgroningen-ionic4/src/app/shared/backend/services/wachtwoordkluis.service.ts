@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {from, Observable, of} from 'rxjs'
 import {Credentials} from '../../../api';
-import {SecureStorage} from '@ionic-native/secure-storage';
+import {SecureStorage} from '@ionic-native/secure-storage/ngx';
 
 const STORE_NAME = 'loopgroep-groningen';
 const LOGIN_KEY = 'login';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class WachtwoordkluisService {
 
   private login: Credentials;

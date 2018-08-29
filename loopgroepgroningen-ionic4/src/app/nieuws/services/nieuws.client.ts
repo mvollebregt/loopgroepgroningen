@@ -14,7 +14,7 @@ export class NieuwsClient {
 
   getLaatsteNieuws(): Observable<{ nieuws: Nieuwsbericht[], meldingen: string[] }> {
     const login: Credentials = {username: 'u', password: 'p'};
-    return this.httpService.post<Session>('login', login).pipe(
+    return this.httpService.post<Session>('session', login).pipe(
       tap(console.log),
       switchMap(() => this.httpService.get<{ nieuws: Nieuwsbericht[], meldingen: string[] }>('laatsteNieuws')),
       tap(console.log)
