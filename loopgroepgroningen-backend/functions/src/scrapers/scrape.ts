@@ -14,14 +14,6 @@ export function scrapeList<T>(selector: string, mapper: (element: Element, volgn
   return scrape(selector, mapAll(mapper));
 }
 
-export function scrapeCombined<A, B, T>(scraperA: Scraper<A>, scraperB: Scraper<B>, combine: (a: A, b: B) => T): Scraper<T> {
-  return body => {
-    const a = scraperA(body);
-    const b = scraperB(body);
-    return combine(a, b);
-  }
-}
-
 function mapAll<T>(mapper: (element: Element, volgnummer: number) => T): (elements: Element[]) => T[] {
   return elements => {
     const result = [];
