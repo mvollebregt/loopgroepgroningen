@@ -1,0 +1,13 @@
+import {Scraper} from '../../scrapers/scrape';
+import {HandlerFunction} from './handler-function';
+
+export interface EndpointDefinition<I, O> {
+  targetUrl: string;
+  scraper: Scraper<O>;
+  inputMapper?: (input: I) => any;
+  formSelector?: string;
+  methods?: {
+    get?: HandlerFunction<O> | boolean;
+    post?: HandlerFunction<O> | boolean;
+  }
+}

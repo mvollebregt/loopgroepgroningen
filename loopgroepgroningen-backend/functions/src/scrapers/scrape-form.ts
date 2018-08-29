@@ -1,5 +1,5 @@
 import {Element} from 'jsdom';
-import {scrape, Scraper} from '../scrapers/scrape';
+import {scrape, Scraper} from './scrape';
 
 export function scrapeForm(formSelector: string): Scraper<{ action: string, inputs: any }> {
   return scrape(formSelector, elements => {

@@ -1,16 +1,14 @@
 import {Request} from 'express';
 import {Element, JSDOM} from 'jsdom';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
+import * as moment from 'moment';
 
-const baseUrl = 'http://www.loopgroepgroningen.nl';
-
-export function urlFor(relativeUrl: string): string {
-  return relativeUrl.startsWith(baseUrl) ? relativeUrl :
-    relativeUrl.startsWith('/') ? baseUrl + relativeUrl :
-      `${baseUrl}/${relativeUrl}`;
+export function prepareRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
+  moment.locale('nl');
+  copyCookiesFromRequest(originalRequest, cookieJar);
 }
 
-export function copyCookiesFromRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
+function copyCookiesFromRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
   const cookieHeader = originalRequest.headers['cookie'];
   if (cookieHeader) {
     const cookies = Array.isArray(cookieHeader) ? cookieHeader : cookieHeader.split(';');

@@ -1,6 +1,5 @@
 export interface Session {
 
-  succes: boolean;
-  meldingen: string[];
+  // TODO: naam, gebruikersnaam...
 
 }

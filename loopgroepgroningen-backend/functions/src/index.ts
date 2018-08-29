@@ -1,35 +1,37 @@
 import * as functions from 'firebase-functions';
-import {get, post} from './http/http';
 import {Bericht, Credentials, Nieuwsbericht, Session} from './api';
-import {scrapeLoginResponse} from './scrapers/scrape-login-response';
 import {scrapeBerichten} from './scrapers/scrape-berichten';
 import {Evenementdetail} from './api/evenementdetail';
 import {scrapeEvenementdetail} from './scrapers/scrape-evenementdetail';
 import {scrapeNieuwsberichten} from './scrapers/scrape-nieuwsberichten';
-import {scrapeCombined} from './scrapers/scrape';
-import {scrapeMeldingen} from './scrapers/scrape-meldingen';
+import {scrapeSession} from './scrapers/scrape-session';
+import {endpoint} from './http/endpoint';
 
-export const login = functions.https.onRequest(
-  // TODO: als je login aanroept als je al ingelogd bent dan log je uit!
-  post<Credentials, Session>(
-    'index.php/loopgroep-groningen-ledeninfo',
-    '#login-form',
-    scrapeLoginResponse())
+export const session = functions.https.onRequest(
+  endpoint<Credentials, Session>({
+    targetUrl: 'index.php/component/users/profile',
+    formSelector: '.login form',
+    scraper: scrapeSession()
+  })
 );
 
 export const laatsteNieuws = functions.https.onRequest(
-  get<{ nieuws: Nieuwsbericht[], meldingen: string[] }>(
-    'index.php/loopgroep-groningen-ledeninfo/laatste-nieuws',
-    scrapeCombined(scrapeNieuwsberichten(), scrapeMeldingen(), (nieuws, meldingen) => ({nieuws, meldingen})))
+  endpoint<void, Nieuwsbericht[]>({
+    targetUrl: 'index.php/loopgroep-groningen-ledeninfo/laatste-nieuws',
+    scraper: scrapeNieuwsberichten()
+  })
 );
 
 export const prikbord = functions.https.onRequest(
-  get<Bericht[]>('index.php/prikbord', scrapeBerichten())
+  endpoint<void, Bericht[]>({
+    targetUrl: 'index.php/prikbord',
+    scraper: scrapeBerichten()
+  })
 );
 
 export const evenementdetail = functions.https.onRequest(
-  // TODO: url parameter!
-  get<Evenementdetail>(
-    'index.php/loopgroep-groningen-agenda/event/64-lgg-bbq',
-    scrapeEvenementdetail())
+  endpoint<void, Evenementdetail>({
+    targetUrl: 'index.php/loopgroep-groningen-agenda/event/64-lgg-bbq',
+    scraper: scrapeEvenementdetail()
+  })
 );
