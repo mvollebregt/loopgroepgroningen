@@ -1,24 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../shared/backend/services/http.service';
-import {Credentials, Nieuwsbericht, Session} from '../../api';
-import {switchMap, tap} from 'rxjs/operators';
+import {Nieuwsbericht} from '../../api';
 
 @Injectable({providedIn: 'root'})
 export class NieuwsClient {
 
-  constructor(private httpService: HttpService
-              // private loginService: LoginService
-  ) {
+  constructor(private httpService: HttpService) {
   }
 
   getLaatsteNieuws(): Observable<Nieuwsbericht[]> {
-    const login: Credentials = {username: 'u', password: 'p'};
-    return this.httpService.post<Session>('session', login).pipe(
-      tap(console.log),
-      switchMap(() => this.httpService.get<{ nieuws: Nieuwsbericht[], meldingen: string[] }>('laatsteNieuws')),
-      tap(console.log)
-    );
+    return this.httpService.get<Nieuwsbericht[]>('laatsteNieuws');
   }
-
 }

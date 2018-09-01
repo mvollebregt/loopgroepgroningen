@@ -15,7 +15,7 @@ export class WachtwoordkluisService {
   constructor(private secureStorage: SecureStorage, private platform: Platform) {
   }
 
-  haalLoginOp(): Observable<Credentials> {
+  haalCredentialsOp(): Observable<Credentials> {
     if (this.platform.is('cordova')) {
       return from(
         this.secureStorage.create(STORE_NAME).then(
@@ -29,7 +29,7 @@ export class WachtwoordkluisService {
     }
   }
 
-  slaLoginOp(login: Credentials) {
+  slaCredentialsOp(login: Credentials) {
     if (this.platform.is('cordova')) {
       this.secureStorage.create(STORE_NAME).then(
         storage => storage.set(LOGIN_KEY, JSON.stringify(login)));
