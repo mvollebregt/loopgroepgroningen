@@ -1,5 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Content} from '@ionic/angular';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {finalize, takeUntil} from 'rxjs/operators';
 import {PrikbordService} from '../services/prikbord.service';
@@ -18,7 +17,7 @@ export class PrikbordPageComponent implements OnInit, OnDestroy {
   aanHetVersturen = false;
   itemsGeladen = false;
 
-  @ViewChild(Content) private content: Content;
+  // @ViewChild(Content) private content: Content;
 
   constructor(
     // private instellingenService: InstellingenService,
@@ -36,11 +35,11 @@ export class PrikbordPageComponent implements OnInit, OnDestroy {
     ).subscribe((items: Bericht[]) => {
       this.items = items;
       setTimeout(() => {
-        try {
-          this.content.getScrollElement().scrollToBottom(this.itemsGeladen ? 300 : 0);
-        } catch {
-          // om onduidelijke redenen geeft de regel hierboven soms een fout. dat los ik dan maar zo op.
-        }
+        // try {
+        //   this.content.getScrollElement().scrollToBottom(this.itemsGeladen ? 300 : 0);
+        // } catch {
+        //   // om onduidelijke redenen geeft de regel hierboven soms een fout. dat los ik dan maar zo op.
+        // }
         this.itemsGeladen = true;
       });
     });

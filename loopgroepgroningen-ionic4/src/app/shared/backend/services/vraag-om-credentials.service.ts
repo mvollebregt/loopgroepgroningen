@@ -33,7 +33,7 @@ export class VraagOmCredentialsService {
         {text: 'Inloggen', handler: login => credentialsListener.next(login)}
       ]
     });
-    alert.onDidDismiss(() => credentialsListener.complete());
+    alert.onDidDismiss().then(() => credentialsListener.complete());
     await alert.present();
   }
 
