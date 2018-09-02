@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {Credentials} from '../../../api';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class VraagOmCredentialsService {
@@ -12,10 +13,10 @@ export class VraagOmCredentialsService {
 
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
   // De observable geeft een Credentials-object terug als de gebruiker op de inloggen-knop drukt.
-  // De observable geeft null terug als de gebruiker op Annuleren drukt.
-  vraagOmCredentials(credentials: Credentials, melding: string): Observable<Credentials> {
+  // De observable geeft geen waarde terug (maar termineert wel) als de gebruiker op Annuleren drukt.
+  vraagOmCredentials(credentials: Credentials, err: HttpErrorResponse): Observable<Credentials> {
     const credentialsListener = new ReplaySubject<Credentials>();
-    this.presentAlert(credentials, melding, credentialsListener);
+    this.presentAlert(credentials, VraagOmCredentialsService.foutweergave(err), credentialsListener);
     return credentialsListener;
   }
 
@@ -28,24 +29,15 @@ export class VraagOmCredentialsService {
         {name: 'password', placeholder: 'Wachtwoord', type: 'password', value: credentials ? credentials.password : ''}
       ],
       buttons: [
-        {
-          text: 'Annuleren', handler: () => {
-            alert.dismiss();
-            credentialsListener.next(null);
-            credentialsListener.complete();
-          }
-        },
-        {
-          text: 'Inloggen', handler: login => {
-            credentialsListener.next(login);
-            credentialsListener.complete();
-          }
-        }
+        {text: 'Annuleren', cssClass: 'secondary'},
+        {text: 'Inloggen', handler: login => credentialsListener.next(login)}
       ]
     });
-    // TODO: als je de alert wegklikt door buiten de alert te klikken wordt de credentialsListener nooit gecomplete!
-    // (en word je de tweede keer niet meer gevraagd om je wachtwoord)
+    alert.onDidDismiss(() => credentialsListener.complete());
     await alert.present();
   }
 
+  private static foutweergave(err: HttpErrorResponse) {
+    return `<span class="error">${err.error.meldingen.join('<br>')}</span>`;
+  }
 }

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Credentials, Session} from '../../../api';
-import {EMPTY, throwError} from 'rxjs';
+import {throwError} from 'rxjs';
 import {catchError, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs/index';
 import {WachtwoordkluisService} from './wachtwoordkluis.service';
 import {VraagOmCredentialsService} from './vraag-om-credentials.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {UrlResolverService} from './url-resolver.service';
 
 @Injectable({providedIn: 'root'})
@@ -21,33 +21,28 @@ export class UnauthorizedHandlerService {
   unauthorizedHandlerFor<T>(retryFunction: () => Observable<T>) {
     return this.catchUnauthorized(err =>
       this.verkrijgLogin(err).pipe(
-        // TODO: retryFunction vervangen door 'caught' argument (tweede argument van error handler?)
         switchMap(() => retryFunction())
       ))
   }
 
-  private verkrijgLogin<T>(err: any): Observable<Session> {
+  private verkrijgLogin<T>(err: HttpErrorResponse): Observable<Session> {
     return this.wachtwoordkluis.haalCredentialsOp().pipe(
       switchMap(opgeslagenCredentials => {
         const probeerLogin = opgeslagenCredentials ? this.login(opgeslagenCredentials) : throwError(err);
         return probeerLogin.pipe(
-          this.catchUnauthorized(err => this.vraagOmCredentials<T>(opgeslagenCredentials, err.message)))
+          this.catchUnauthorized(err => this.vraagOmCredentials<T>(opgeslagenCredentials, err)))
       })
     );
   }
 
-  private vraagOmCredentials<T>(oudeCredentials: Credentials, melding: string): Observable<Session> {
-    return this.vraagOmCredentialsService.vraagOmCredentials(oudeCredentials, melding).pipe(
+  private vraagOmCredentials<T>(oudeCredentials: Credentials, err: HttpErrorResponse): Observable<Session> {
+    return this.vraagOmCredentialsService.vraagOmCredentials(oudeCredentials, err).pipe(
       switchMap(credentials => {
-        if (!credentials) {
-          return EMPTY;
-        } else {
           return this.login(credentials).pipe(
-            this.catchUnauthorized(err => this.vraagOmCredentials<T>(credentials, err.message)),
-            // TODO: als je drie keer het wachtwoord intypt wordt het uiteindelijk ook drie keer opgeslagen!
-            tap(() => console.log('login opslaan!')),
-            tap(() => this.wachtwoordkluis.slaCredentialsOp(credentials)))
-        }
+            // tap wordt alleen uitgevoerd bij een succesvolle login en niet wanneer de Observable in een 401-fout komt
+            tap(() => this.wachtwoordkluis.slaCredentialsOp(credentials)),
+            this.catchUnauthorized(err => this.vraagOmCredentials<T>(credentials, err))
+          )
       })
     )
   }
