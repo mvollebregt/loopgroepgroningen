@@ -58,8 +58,7 @@ describe('AppComponent', () => {
       menuItem.getAttribute('ng-reflect-router-link')
     ]);
     expect(menuItemsInfo).toEqual([
-      ['Home', '/home'],
-      ['List', '/list'],
+      ['Nieuws', '/nieuws'],
       ['Prikbord', '/prikbord']
     ]);
   });

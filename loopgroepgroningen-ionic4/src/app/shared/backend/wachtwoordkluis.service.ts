@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Platform} from '@ionic/angular';
-import {from, Observable, of} from 'rxjs'
-import {Credentials} from '../../../api';
+import {from, Observable, of} from 'rxjs';
+import {Credentials} from '../../api';
 import {SecureStorage} from '@ionic-native/secure-storage/ngx';
 
 const STORE_NAME = 'loopgroep-groningen';

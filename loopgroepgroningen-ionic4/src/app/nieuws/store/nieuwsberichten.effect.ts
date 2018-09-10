@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect} from '@ngrx/effects';
+import {Actions, Effect, ofType} from '@ngrx/effects';
 import {catchError, exhaustMap, map} from 'rxjs/operators';
 import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenFail, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
 import {NieuwsClient} from '../services/nieuws.client';
@@ -15,8 +15,8 @@ export class NieuwsberichtenEffects {
 
   @Effect()
   loadNieuwsberichten = this.actions
-    .ofType(LOAD_NIEUWSBERICHTEN)
     .pipe(
+      ofType(LOAD_NIEUWSBERICHTEN),
       exhaustMap(() =>
         this.nieuwsClient.getLaatsteNieuws().pipe(
           map(nieuws => new LoadNieuwsberichtenSuccess(nieuws)),

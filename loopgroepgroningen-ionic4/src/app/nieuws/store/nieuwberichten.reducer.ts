@@ -9,7 +9,7 @@ import {Nieuwsbericht} from '../../api';
 export interface NieuwsberichtState {
   loaded: boolean;
   loading: boolean;
-  error: boolean,
+  error: boolean;
   nieuwsberichten: Nieuwsbericht[];
 }
 

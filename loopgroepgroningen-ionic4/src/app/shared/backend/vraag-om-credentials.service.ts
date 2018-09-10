@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
-import {Credentials} from '../../../api';
+import {Credentials} from '../../api';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
@@ -9,6 +9,10 @@ export class VraagOmCredentialsService {
 
 
   constructor(private alertController: AlertController) {
+  }
+
+  private static foutweergave(err: HttpErrorResponse) {
+    return `<span class="error">${err.error.meldingen.join('<br>')}</span>`;
   }
 
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.
@@ -35,9 +39,5 @@ export class VraagOmCredentialsService {
     });
     alert.onDidDismiss().then(() => credentialsListener.complete());
     await alert.present();
-  }
-
-  private static foutweergave(err: HttpErrorResponse) {
-    return `<span class="error">${err.error.meldingen.join('<br>')}</span>`;
   }
 }

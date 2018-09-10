@@ -56,8 +56,13 @@ body {
   user-select: text;
 }
 
+// alerts
 .error {
   color: red;
+}
+
+.alert-input.sc-ion-alert-ios {
+  background-color: white;
 }
 
 //ion-list-header {
