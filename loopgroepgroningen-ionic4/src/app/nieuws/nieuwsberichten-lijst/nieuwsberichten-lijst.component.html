@@ -1,4 +1,4 @@
-<lg-sectioned-list [secties]="secties">
+<lg-sectioned-list [data]="nieuwsberichten" [sectieTitel]="getSectieTitel.bind(this)">
   <ng-template let-nieuwsbericht>
     <ion-thumbnail item-start>
       <img src="{{nieuwsbericht.thumbnail}}">
