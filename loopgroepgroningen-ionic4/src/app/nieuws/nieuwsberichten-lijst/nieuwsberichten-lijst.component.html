@@ -1,12 +1,5 @@
-<ion-list>
-
-  <ion-list-header>
-    {{ nieuwsberichten[0]?.datum | lgDate: 'MMMM YYYY'}}
-  </ion-list-header>
-
-  <ion-item
-    *ngFor="let nieuwsbericht of nieuwsberichten"
-    (click)="onTap(nieuwsbericht)">
+<lg-sectioned-list [secties]="secties">
+  <ng-template let-nieuwsbericht>
     <ion-thumbnail item-start>
       <img src="{{nieuwsbericht.thumbnail}}">
     </ion-thumbnail>
@@ -15,7 +8,5 @@
       <div>{{nieuwsbericht.titel}}</div>
       <p>{{nieuwsbericht.samenvatting}}</p>
     </ion-label>
-  </ion-item>
-
-</ion-list>
-
+  </ng-template>
+</lg-sectioned-list>

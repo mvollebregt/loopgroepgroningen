@@ -1,0 +1,10 @@
+ion-list-header {
+  background-color: var(--ion-background-color);
+  color: black;
+  margin-bottom: 0;
+}
+
+:host ::ng-deep h2 {
+  font-size: 14px;
+  font-weight: bold;
+}

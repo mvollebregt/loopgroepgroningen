@@ -10,6 +10,7 @@ import {NieuwsoverzichtPageComponent} from './nieuwsoverzicht-page/nieuwsoverzic
 import {SharedModule} from '../shared/shared/shared.module';
 import {RichContentModule} from '../shared/rich-content/rich-content.module';
 import {NieuwsRoutingModule} from './nieuws-routing.module';
+import {ListModule} from '../shared/list/list.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {NieuwsRoutingModule} from './nieuws-routing.module';
     NieuwsoverzichtPageComponent
   ],
   imports: [
+    ListModule,
     NieuwsRoutingModule,
     StoreModule.forFeature('nieuws', nieuwsReducers),
     EffectsModule.forFeature([NieuwsberichtenEffects]),

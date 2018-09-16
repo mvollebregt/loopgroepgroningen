@@ -1,0 +1,14 @@
+<ion-list>
+
+  <ng-container *ngFor="let sectie of secties">
+    <ion-list-header>
+      {{sectie.titel}}
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of sectie.inhoud">
+      <ng-container *ngTemplateOutlet="passedInTemplate; context: {$implicit: item}"></ng-container>
+    </ion-item>
+  </ng-container>
+
+</ion-list>
+
