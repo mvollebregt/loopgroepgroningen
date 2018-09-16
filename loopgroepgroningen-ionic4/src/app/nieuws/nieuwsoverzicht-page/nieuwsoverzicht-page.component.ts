@@ -33,6 +33,10 @@ export class NieuwsoverzichtPageComponent implements OnInit {
     this.store.dispatch(new LoadNieuwsberichten());
   }
 
+  onPull(t: string) {
+    console.log(t);
+  }
+
   gaNaarNieuwsbericht(nieuwsbericht: Nieuwsbericht) {
     // this.navCtrl.push('NieuwsberichtPage', {volgnummer: nieuwsbericht.volgnummer});
   }

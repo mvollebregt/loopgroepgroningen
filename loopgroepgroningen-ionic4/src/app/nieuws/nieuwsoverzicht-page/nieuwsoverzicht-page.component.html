@@ -15,7 +15,7 @@
 
 <!--<lg-spinner *ngIf="spinning | async"></lg-spinner>-->
 
-<ion-content>
+<ion-content lgPullToRefresh (pullBottom)="onPull('bottom')" (pullTop)="onPull('top')">
 
   <lg-nieuwsberichten-lijst
     [nieuwsberichten]="nieuwsberichten | async"

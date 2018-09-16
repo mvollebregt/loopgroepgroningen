@@ -21,7 +21,6 @@ export class SectionedListComponent<T> implements OnChanges {
 
   ngOnChanges() {
     this.secties = this.opknipperService.maakSecties(this.data, this.sectieTitel);
-    console.log(this.secties);
   }
 
 }
