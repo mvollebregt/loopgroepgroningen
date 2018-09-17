@@ -27,7 +27,7 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
-    const serverResponse = await doGet(endpoint.targetUrl, endpoint.restricted, cookieJar);
+    const serverResponse = await doGet(endpoint.targetUrl, originalRequest.query, endpoint.restricted, cookieJar);
     return endpoint.scraper(serverResponse);
   }
 }
@@ -35,7 +35,7 @@ function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
 function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
 
-    const inputPage = await doGet(endpoint.targetUrl, endpoint.restricted, cookieJar);
+    const inputPage = await doGet(endpoint.targetUrl, {}, endpoint.restricted, cookieJar);
     const initialForm = scrapeForm(endpoint.formSelector)(inputPage);
     if (!initialForm) {
       if (endpoint.formNotAvailableHandler) {
@@ -56,8 +56,8 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
 }
 
 
-async function doGet(relativeUrl: string, checkIngelogd: boolean, cookieJar: SingleUseCookieJar): Promise<string> {
-  const serverResponse = await WebRequest.get(urlFor(relativeUrl), {jar: cookieJar});
+async function doGet(relativeUrl: string, query: any, checkIngelogd: boolean, cookieJar: SingleUseCookieJar): Promise<string> {
+  const serverResponse = await WebRequest.get(urlFor(relativeUrl, query), {jar: cookieJar});
   handleMessages(serverResponse, checkIngelogd);
   return serverResponse.content;
 }
