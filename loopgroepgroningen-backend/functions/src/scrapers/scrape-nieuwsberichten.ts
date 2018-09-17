@@ -6,9 +6,11 @@ import {urlFor} from '../http/url-for';
 
 export const scrapeNieuwsberichten =
   scrapeList<Nieuwsbericht>(
-    '*[itemprop=blogPost] .loopgroepgroningen-post', (element, volgnummer) => {
+    '*[itemprop=blogPost] .loopgroepgroningen-post', element => {
 
-      const titel = element.querySelector('.loopgroepgroningen-postheader').textContent.trim();
+      const header = element.querySelector('.loopgroepgroningen-postheader');
+      const href = header.querySelector('a')['href'];
+      const titel = header.textContent.trim();
       const datumNode = element.querySelector('strong');
       const datum = datumNode && moment(datumNode.textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
       let content = extractRichContent(element.querySelector('.loopgroepgroningen-article'));
@@ -17,7 +19,7 @@ export const scrapeNieuwsberichten =
       const samenvatting = 'TODO: samenvatting'; // TODO samenvatting(content, 50);
       const thumbnail = urlFor(element.querySelector('img').getAttribute('src'));
       return {
-        volgnummer,
+        href,
         titel,
         samenvatting,
         content,

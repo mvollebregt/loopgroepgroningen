@@ -10,15 +10,15 @@ export function scrape<T>(selector: string, mapper: (elements: Element[]) => T):
   }
 }
 
-export function scrapeList<T>(selector: string, mapper: (element: Element, volgnummer: number) => T): Scraper<T[]> {
+export function scrapeList<T>(selector: string, mapper: (element: Element) => T): Scraper<T[]> {
   return scrape(selector, mapAll(mapper));
 }
 
-function mapAll<T>(mapper: (element: Element, volgnummer: number) => T): (elements: Element[]) => T[] {
+function mapAll<T>(mapper: (element: Element) => T): (elements: Element[]) => T[] {
   return elements => {
     const result = [];
     for (let i = 0; i < elements.length; i++) {
-      result.push(mapper(elements[i], i));
+      result.push(mapper(elements[i]));
     }
     return result;
   };
