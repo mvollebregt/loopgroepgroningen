@@ -1,23 +1,21 @@
 import {
-  LOAD_NIEUWSBERICHTEN,
+  LOAD_MORE_NIEUWSBERICHTEN,
+  LOAD_MORE_NIEUWSBERICHTEN_SUCCESS,
   LOAD_NIEUWSBERICHTEN_FAIL,
-  LOAD_NIEUWSBERICHTEN_SUCCESS,
   NieuwsberichtenAction
 } from './nieuwsberichten.action';
 import {Nieuwsbericht} from '../../api';
 
 export interface NieuwsberichtState {
-  loaded: boolean;
-  loading: boolean;
-  error: boolean;
   nieuwsberichten: Nieuwsbericht[];
+  loadingMore: boolean;
+  reachedEndOfList: boolean;
 }
 
 const initialState: NieuwsberichtState = {
-  loaded: false,
-  loading: false,
-  error: false,
   nieuwsberichten: [],
+  loadingMore: false,
+  reachedEndOfList: false
 };
 
 export function nieuwsberichtenReducer(
@@ -25,29 +23,26 @@ export function nieuwsberichtenReducer(
   action: NieuwsberichtenAction
 ): NieuwsberichtState {
   switch (action.type) {
-    case LOAD_NIEUWSBERICHTEN: {
+    case LOAD_MORE_NIEUWSBERICHTEN: {
       return {
         ...state,
-        loaded: false,
-        loading: true,
+        loadingMore: true
       };
     }
 
-    case LOAD_NIEUWSBERICHTEN_SUCCESS: {
+    case LOAD_MORE_NIEUWSBERICHTEN_SUCCESS: {
       return {
         ...state,
-        loaded: true,
-        loading: false,
-        nieuwsberichten: action.payload,
-      };
+        nieuwsberichten: [...state.nieuwsberichten, ...action.payload],
+        loadingMore: false,
+        reachedEndOfList: action.payload.length === 0
+      }
     }
 
     case LOAD_NIEUWSBERICHTEN_FAIL: {
       return {
         ...state,
-        loaded: false,
-        loading: false,
-        error: true
+        loadingMore: false
       };
     }
   }
@@ -55,7 +50,6 @@ export function nieuwsberichtenReducer(
 }
 
 export const _getNieuwsberichten = (state: NieuwsberichtState) => state.nieuwsberichten;
-export const _getNieuwsberichtenLoaded = (state: NieuwsberichtState) => state.loaded;
-export const _getNieuwsberichtenLoading = (state: NieuwsberichtState) => state.loading;
-export const _getNieuwsberichtenError = (state: NieuwsberichtState) => state.error;
+export const _getLoadingMore = (state: NieuwsberichtState) => state.loadingMore;
+export const _getReachedEndOfList = (state: NieuwsberichtState) => state.reachedEndOfList;
 

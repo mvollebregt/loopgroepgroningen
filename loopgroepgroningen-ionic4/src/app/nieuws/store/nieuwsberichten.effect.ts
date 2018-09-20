@@ -1,25 +1,34 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {catchError, exhaustMap, map} from 'rxjs/operators';
-import {LOAD_NIEUWSBERICHTEN, LoadNieuwsberichtenFail, LoadNieuwsberichtenSuccess} from './nieuwsberichten.action';
+import {catchError, map, switchMap, withLatestFrom} from 'rxjs/operators';
+import {
+  LOAD_MORE_NIEUWSBERICHTEN,
+  LoadMoreNieuwsberichtenSuccess,
+  LoadNieuwsberichtenFail
+} from './nieuwsberichten.action';
 import {NieuwsClient} from '../services/nieuws.client';
 import {of} from 'rxjs';
+import {getNieuwsberichtenState, NieuwsState} from './nieuws.reducers';
+import {select, Store} from '@ngrx/store';
 
 @Injectable()
 export class NieuwsberichtenEffects {
   constructor(
     private actions: Actions,
-    private nieuwsClient: NieuwsClient
+    private nieuwsClient: NieuwsClient,
+    private store: Store<NieuwsState>
   ) {
   }
 
   @Effect()
-  loadNieuwsberichten = this.actions
+  loadMoreNieuwsberichten = this.actions
     .pipe(
-      ofType(LOAD_NIEUWSBERICHTEN),
-      exhaustMap(() =>
-        this.nieuwsClient.getLaatsteNieuws().pipe(
-          map(nieuws => new LoadNieuwsberichtenSuccess(nieuws)),
+      ofType(LOAD_MORE_NIEUWSBERICHTEN),
+      withLatestFrom(this.store.pipe(select(getNieuwsberichtenState))),
+      // filter(store => !store.loadingMore),
+      switchMap(([_, store]) =>
+        this.nieuwsClient.getLaatsteNieuws(store.nieuwsberichten.length).pipe(
+          map(nieuws => new LoadMoreNieuwsberichtenSuccess(nieuws)),
           catchError(error => {
             console.log(error);
             return of(new LoadNieuwsberichtenFail(error));

@@ -1,8 +1,7 @@
 import {
+  _getLoadingMore,
   _getNieuwsberichten,
-  _getNieuwsberichtenError,
-  _getNieuwsberichtenLoaded,
-  _getNieuwsberichtenLoading,
+  _getReachedEndOfList,
   nieuwsberichtenReducer,
   NieuwsberichtState
 } from './nieuwberichten.reducer';
@@ -15,9 +14,9 @@ export interface NieuwsState {
 export const nieuwsReducers = {nieuwsberichten: nieuwsberichtenReducer};
 
 const getNieuwsState = createFeatureSelector<NieuwsState>('nieuws');
-const getNieuwsberichtenState = createSelector(getNieuwsState, (state: NieuwsState) => state.nieuwsberichten);
+export const getNieuwsberichtenState = createSelector(getNieuwsState, (state: NieuwsState) => state.nieuwsberichten);
 
 export const getNieuwsberichten = createSelector(getNieuwsberichtenState, _getNieuwsberichten);
-export const getNieuwsberichtenLoaded = createSelector(getNieuwsberichtenState, _getNieuwsberichtenLoaded);
-export const getNieuwsberichtenLoading = createSelector(getNieuwsberichtenState, _getNieuwsberichtenLoading);
-export const getNieuwsberichtenError = createSelector(getNieuwsberichtenState, _getNieuwsberichtenError);
+export const getLoadingMore = createSelector(getNieuwsberichtenState, _getLoadingMore);
+export const getReachedEndOfList = createSelector(getNieuwsberichtenState, _getReachedEndOfList);
+

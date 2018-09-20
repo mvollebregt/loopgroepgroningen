@@ -1,7 +1,7 @@
 <lg-sectioned-list [data]="nieuwsberichten" [sectieTitel]="getSectieTitel.bind(this)">
   <ng-template let-nieuwsbericht>
     <ion-thumbnail item-start>
-      <img src="{{nieuwsbericht.thumbnail}}">
+      <img *ngIf="nieuwsbericht.thumbnail" src="{{nieuwsbericht.thumbnail}}">
     </ion-thumbnail>
     <ion-label>
       <h2>{{nieuwsbericht.datum | lgDate : "D MMMM YYYY"}}</h2>

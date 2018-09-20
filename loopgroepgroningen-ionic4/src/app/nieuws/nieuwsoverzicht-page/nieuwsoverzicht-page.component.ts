@@ -2,8 +2,10 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
-import {getNieuwsberichten, NieuwsState} from '../store/nieuws.reducers';
-import {LoadNieuwsberichten} from '../store/nieuwsberichten.action';
+import {getLoadingMore, getNieuwsberichten, getReachedEndOfList, NieuwsState} from '../store/nieuws.reducers';
+import {LoadMoreNieuwsberichten} from '../store/nieuwsberichten.action';
+import {filter, tap} from 'rxjs/operators';
+import {InfiniteScroll} from '@ionic/angular';
 
 @Component({
   selector: 'lg-nieuwsoverzicht-page',
@@ -15,6 +17,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   nieuwsberichten: Observable<Nieuwsbericht[]>;
   spinning: Observable<boolean>;
   error: Observable<boolean>;
+  reachedEndOfList: Observable<boolean>;
 
   constructor(
     private store: Store<NieuwsState>,
@@ -22,19 +25,32 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nieuwsberichten = this.store.pipe(select(getNieuwsberichten));
-    // this.spinning = combineLatest(
-    //   this.nieuwsberichten,
-    //   this.store.pipe(select(getNieuwsberichtenLoading))
-    // ).pipe(
-    //   map(([berichten, loading]) => !berichten.length && loading)
-    // );
-    // this.error = this.store.pipe(select(getNieuwsberichtenError));
-    this.store.dispatch(new LoadNieuwsberichten());
+    this.nieuwsberichten = this.store.pipe(
+      select(getNieuwsberichten),
+      tap(nieuwsberichten => {
+        if (nieuwsberichten.length < 15) { // TODO: check reachedEndOfList
+          this.loadMore();
+        }
+      })
+    );
+    this.reachedEndOfList = this.store.pipe(
+      select(getReachedEndOfList)
+    );
   }
 
   onPull(t: string) {
-    console.log(t);
+    this.loadMore();
+  }
+
+  loadMore(infiniteScroll?: InfiniteScroll) {
+    this.store.dispatch(new LoadMoreNieuwsberichten());
+    if (infiniteScroll) {
+      // TODO: dit naar OnInit en unsubscriben?
+      this.store.pipe(
+        select(getLoadingMore),
+        filter(loadingMore => !loadingMore),
+      ).subscribe(() => infiniteScroll.complete());
+    }
   }
 
   gaNaarNieuwsbericht(nieuwsbericht: Nieuwsbericht) {

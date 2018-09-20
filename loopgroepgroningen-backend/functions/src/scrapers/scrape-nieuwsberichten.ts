@@ -17,7 +17,8 @@ export const scrapeNieuwsberichten =
       // als het bericht een datum heeft staat die in de eerste paragraaf, die laten we dan weg
       content = datum ? content.slice(1) : content;
       const samenvatting = 'TODO: samenvatting'; // TODO samenvatting(content, 50);
-      const thumbnail = urlFor(element.querySelector('img').getAttribute('src'));
+      const img = element.querySelector('img');
+      const thumbnail = img && urlFor(img.getAttribute('src'));
       return {
         href,
         titel,
