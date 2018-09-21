@@ -11,12 +11,18 @@ export class SectionedListComponent<T> implements OnChanges {
 
   @Input() data: T[];
   @Input() sectieTitel: (item: T) => string;
+  @Input() getId: (item: T) => any;
 
   @ContentChild(TemplateRef) passedInTemplate: TemplateRef<any>;
 
   secties: Sectie<T>[];
 
   constructor(private opknipperService: OpknipperService) {
+  }
+
+  trackByFn(index: number, item: T) {
+    // TODO: domeinobjecten standaard 'id'-property geven zodat we this.getId niet nodig hebben?
+    return this.getId && this.getId(item);
   }
 
   ngOnChanges() {

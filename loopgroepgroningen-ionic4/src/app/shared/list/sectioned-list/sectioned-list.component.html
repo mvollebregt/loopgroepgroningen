@@ -1,6 +1,6 @@
 <ion-list>
 
-  <ng-container *ngFor="let sectie of secties">
+  <ng-container *ngFor="let sectie of secties; trackBy: trackByFn">
     <ion-list-header>
       {{sectie.titel}}
     </ion-list-header>

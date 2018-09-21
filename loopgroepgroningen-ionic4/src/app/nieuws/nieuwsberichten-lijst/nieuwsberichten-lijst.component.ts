@@ -19,6 +19,10 @@ export class NieuwsberichtenLijstComponent {
     return this.datePipe.transform(nieuwsbericht.datum, 'MMMM YYYY');
   }
 
+  getId(nieuwsbericht: Nieuwsbericht) {
+    return nieuwsbericht.href;
+  }
+
   onTap(nieuwsbericht: Nieuwsbericht) {
     this.nieuwsberichtTapped.emit(nieuwsbericht);
   }
