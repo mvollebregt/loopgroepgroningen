@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {combineLatest, Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
 import {getLoadingMore, getNieuwsberichten, getReachedEndOfList, NieuwsState} from '../store/nieuws.reducers';
 import {LoadMoreNieuwsberichten} from '../store/nieuwsberichten.action';
-import {filter, tap} from 'rxjs/operators';
+import {filter} from 'rxjs/operators';
 import {InfiniteScroll} from '@ionic/angular';
 
 @Component({
@@ -26,16 +26,23 @@ export class NieuwsoverzichtPageComponent implements OnInit {
 
   ngOnInit() {
     this.nieuwsberichten = this.store.pipe(
-      select(getNieuwsberichten),
-      tap(nieuwsberichten => {
-        if (nieuwsberichten.length < 15) { // TODO: check reachedEndOfList
-          this.loadMore();
-        }
-      })
+      select(getNieuwsberichten)
     );
     this.reachedEndOfList = this.store.pipe(
       select(getReachedEndOfList)
     );
+    this.loadInitialItems();
+  }
+
+  private loadInitialItems() {
+    combineLatest(
+      this.store.pipe(select(getNieuwsberichten)),
+      this.store.pipe(select(getReachedEndOfList))
+    ).pipe(
+      filter(([nieuwsberichten, reachedEndOfList]) => nieuwsberichten.length < 15 && !reachedEndOfList)
+    ).subscribe(() =>
+      setTimeout(() => this.loadMore())
+    )
   }
 
   onPull(t: string) {

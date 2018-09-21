@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {catchError, map, switchMap, withLatestFrom} from 'rxjs/operators';
+import {catchError, exhaustMap, map, withLatestFrom} from 'rxjs/operators';
 import {
   LOAD_MORE_NIEUWSBERICHTEN,
   LoadMoreNieuwsberichtenSuccess,
@@ -25,8 +25,7 @@ export class NieuwsberichtenEffects {
     .pipe(
       ofType(LOAD_MORE_NIEUWSBERICHTEN),
       withLatestFrom(this.store.pipe(select(getNieuwsberichtenState))),
-      // filter(store => !store.loadingMore),
-      switchMap(([_, store]) =>
+      exhaustMap(([_, store]) =>
         this.nieuwsClient.getLaatsteNieuws(store.nieuwsberichten.length).pipe(
           map(nieuws => new LoadMoreNieuwsberichtenSuccess(nieuws)),
           catchError(error => {
