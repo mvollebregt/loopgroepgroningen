@@ -63,7 +63,6 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   }
 
   gaNaarNieuwsbericht(nieuwsbericht: Nieuwsbericht) {
-    const indexOfId = nieuwsbericht.href.lastIndexOf('/');
-    this.router.navigate(['nieuws', nieuwsbericht.href.substring(indexOfId)]);
+    this.router.navigate(['nieuws', nieuwsbericht.id]);
   }
 }

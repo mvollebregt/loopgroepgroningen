@@ -6,6 +6,7 @@ import {urlFor} from './url-for';
 import {scrapeMeldingen} from '../scrapers/scrape-meldingen';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 import {scrapeIngelogd} from '../scrapers/scrape-ingelogd';
+import {getIdFromUrl} from './get-id-from-url';
 
 export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, O>, method: string): HandlerFunction<O> {
   switch (method.toLowerCase()) {
@@ -27,15 +28,20 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
-    const serverResponse = await doGet(endpoint.targetUrl, originalRequest.query, endpoint.restricted, cookieJar);
-    return endpoint.scraper(serverResponse);
+    const serverResponse = await doGet(endpoint.targetUrl, originalRequest.url, originalRequest.query, endpoint.restricted, cookieJar);
+    let result = endpoint.scraper(serverResponse);
+    if (originalRequest.url) {
+      result['id'] = getIdFromUrl(originalRequest.url);
+    }
+    return result;
   }
 }
 
 function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
 
-    const inputPage = await doGet(endpoint.targetUrl, {}, endpoint.restricted, cookieJar);
+    const pathParams = originalRequest.url;
+    const inputPage = await doGet(endpoint.targetUrl, pathParams, {}, endpoint.restricted, cookieJar);
     const initialForm = scrapeForm(endpoint.formSelector)(inputPage);
     if (!initialForm) {
       if (endpoint.formNotAvailableHandler) {
@@ -45,7 +51,7 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
       }
     }
 
-    const postUrl = urlFor(initialForm.action || endpoint.targetUrl);
+    const postUrl = urlFor(initialForm.action || endpoint.targetUrl, pathParams);
     const inputMapper = endpoint.inputMapper || (x => x);
     const form = Object.assign(initialForm.inputs, inputMapper(originalRequest.body));
 
@@ -56,8 +62,8 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
 }
 
 
-async function doGet(relativeUrl: string, query: any, checkIngelogd: boolean, cookieJar: SingleUseCookieJar): Promise<string> {
-  const serverResponse = await WebRequest.get(urlFor(relativeUrl, query), {jar: cookieJar});
+async function doGet(relativeUrl: string, pathParams: string, query: any, checkIngelogd: boolean, cookieJar: SingleUseCookieJar): Promise<string> {
+  const serverResponse = await WebRequest.get(urlFor(relativeUrl, pathParams, query), {jar: cookieJar});
   handleMessages(serverResponse, checkIngelogd);
   return serverResponse.content;
 }

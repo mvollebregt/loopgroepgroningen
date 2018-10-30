@@ -20,7 +20,7 @@ export class NieuwsberichtenLijstComponent {
   }
 
   getId(nieuwsbericht: Nieuwsbericht) {
-    return nieuwsbericht.href;
+    return nieuwsbericht.id;
   }
 
   onItemClicked(nieuwsbericht: Nieuwsbericht) {

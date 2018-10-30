@@ -24,7 +24,7 @@ export class NieuwsberichtPageComponent implements OnInit {
     this.nieuwsbericht = this.store.pipe(
       select(getNieuwsberichten),
       map(nieuwsberichten => nieuwsberichten.find(
-        nieuwsbericht => nieuwsbericht.href.endsWith(id)))
+        nieuwsbericht => nieuwsbericht.id === id))
     );
   }
 

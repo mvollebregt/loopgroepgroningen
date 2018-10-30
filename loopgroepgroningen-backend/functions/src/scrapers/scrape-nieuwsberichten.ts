@@ -3,13 +3,14 @@ import {Nieuwsbericht} from '../api';
 import * as moment from 'moment';
 import {extractRichContent} from './rich-content/extract-rich-content';
 import {urlFor} from '../http/url-for';
+import {getIdFromUrl} from '../http/get-id-from-url';
 
 export const scrapeNieuwsberichten =
   scrapeList<Nieuwsbericht>(
     '*[itemprop=blogPost] .loopgroepgroningen-post', element => {
 
       const header = element.querySelector('.loopgroepgroningen-postheader');
-      const href = header.querySelector('a')['href'];
+      const id = getIdFromUrl(header.querySelector('a')['href']);
       const titel = header.textContent.trim();
       const datumNode = element.querySelector('strong');
       const datum = datumNode && moment(datumNode.textContent.trim(), "DD/MM/YYYY").format('YYYY-MM-DD');
@@ -20,7 +21,7 @@ export const scrapeNieuwsberichten =
       const img = element.querySelector('img');
       const thumbnail = img && urlFor(img.getAttribute('src'));
       return {
-        href,
+        id,
         titel,
         samenvatting,
         content,

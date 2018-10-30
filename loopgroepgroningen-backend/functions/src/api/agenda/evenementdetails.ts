@@ -1,11 +1,8 @@
 import {Paragraaf} from '../rich-content';
 import {Bericht} from '../shared';
 
-export interface Evenementdetail {
+export interface Evenementdetails {
 
-  start: string;
-  einde: string;
-  naam: string;
   categorie: string;
   omschrijving: Paragraaf[];
   deelname: boolean;

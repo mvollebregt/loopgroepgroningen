@@ -2,7 +2,7 @@ import {Paragraaf} from '../rich-content';
 
 export interface Nieuwsbericht {
 
-  href: string;
+  id: string;
   titel: string;
   datum?: string;
   content: Paragraaf[];
