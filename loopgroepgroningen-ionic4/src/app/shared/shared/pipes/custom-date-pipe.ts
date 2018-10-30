@@ -8,10 +8,6 @@ import * as moment from 'moment';
 export class CustomDatePipe implements PipeTransform {
 
   transform(date: string, format: string) {
-    return CustomDatePipe.transform(date, format);
-  }
-
-  static transform(date: string, format: string) {
     if (!date) {
       return date;
     } else {
@@ -20,5 +16,4 @@ export class CustomDatePipe implements PipeTransform {
       return formattedDate.replace(/\./g, '');
     }
   }
-
 }

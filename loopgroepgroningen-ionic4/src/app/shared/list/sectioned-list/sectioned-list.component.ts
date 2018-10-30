@@ -13,8 +13,7 @@ import {Sectie} from '../../../api';
 
 @Component({
   selector: 'lg-sectioned-list',
-  templateUrl: './sectioned-list.component.html',
-  styleUrls: ['./sectioned-list.component.scss']
+  templateUrl: './sectioned-list.component.html'
 })
 export class SectionedListComponent<T> implements OnChanges {
 

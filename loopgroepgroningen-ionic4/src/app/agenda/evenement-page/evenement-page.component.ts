@@ -3,7 +3,6 @@ import * as moment from 'moment';
 import {Evenement} from '../../api';
 import {AgendaClient} from '../services/agenda.client';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'lg-evenement-page',
@@ -11,7 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class EvenementPage implements OnInit {
 
-  evenement: Observable<Evenement>;
+  evenement: Evenement;
   datumweergave: string[];
   reactie: string;
   aanHetAanmelden = false;
@@ -26,7 +25,10 @@ export class EvenementPage implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.evenement = this.agendaClient.getEvenement(id);
+    this.agendaClient.getEvenement(id).subscribe(evenement => {
+      this.evenement = evenement;
+      this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
+    });
   }
 
   // toggleDeelname() {

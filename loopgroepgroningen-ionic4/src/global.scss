@@ -65,6 +65,25 @@ body {
   background-color: white;
 }
 
+// list
+ion-list {
+
+  ion-list-header {
+    background-color: var(--ion-background-color);
+    color: black;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &.list-ios, &.list-md {
+    margin-bottom: 0;
+  }
+}
+
 //ion-list-header {
 //  background-color: transparent;
 //}

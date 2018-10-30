@@ -28,7 +28,7 @@
     <!--[(ngModel)]="reactie">-->
     <!--</ion-textarea>-->
 
-    <button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (tap)="verstuurBericht()">
+    <button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">
       <ion-icon name="send"></ion-icon>
     </button>
 

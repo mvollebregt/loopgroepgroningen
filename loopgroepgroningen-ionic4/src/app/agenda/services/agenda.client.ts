@@ -14,7 +14,7 @@ export class AgendaClient {
   }
 
   getEvenement(id: string): Observable<Evenement> {
-    return this.httpService.get<Evenement>('${evenement}/${id}');
+    return this.httpService.get<Evenement>(`evenement/${id}`);
   }
 
 }
