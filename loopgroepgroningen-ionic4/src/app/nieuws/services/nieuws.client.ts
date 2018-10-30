@@ -13,6 +13,4 @@ export class NieuwsClient {
     const params = {start};
     return this.httpService.get<Nieuwsbericht[]>('laatsteNieuws', params);
   }
-
-  x
 }

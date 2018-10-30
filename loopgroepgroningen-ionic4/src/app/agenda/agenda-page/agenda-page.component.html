@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agenda</ion-title>
+  </ion-toolbar>
+
+  <!--<div *ngIf="evenementen && !evenementen.length" class="info-message">-->
+  <!--Er staan geen evenementen op de agenda.-->
+  <!--</div>-->
+
+</ion-header>
+
+<!--<lg-spinner *ngIf="spinning"></lg-spinner>-->
+
+<ion-content>
+
+  <lg-sectioned-list
+    [data]="evenementen | async"
+    [sectieTitel]="titel"
+    (itemClicked)="onItemClicked($event)"
+  >
+
+    <ng-template let-evenement>
+      <h2 slot="start">{{korteWeergave(evenement.start)}}</h2>
+      <ion-label>
+        {{evenement.naam}}
+      </ion-label>
+    </ng-template>
+  </lg-sectioned-list>
+
+</ion-content>

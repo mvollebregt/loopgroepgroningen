@@ -14,7 +14,7 @@ export class OpknipperService {
   maakSecties<T>(items: T[], getSectieTitel: (item: T) => string): Sectie<T>[] {
     const secties = [];
     let remainingItems = items;
-    while (remainingItems.length > 0) {
+    while (remainingItems && remainingItems.length > 0) {
       const sectietitel = this.findFirstSectietitel(remainingItems, getSectieTitel);
       const nextIndex = this.indexForSectietitelAndersDan(sectietitel, remainingItems, getSectieTitel);
       secties.push({titel: sectietitel, inhoud: remainingItems.slice(0, nextIndex)});

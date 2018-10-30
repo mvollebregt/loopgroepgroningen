@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: './prikbord/prikbord.module#PrikbordModule'
   },
   {
+    path: 'agenda',
+    loadChildren: './agenda/agenda.module#AgendaModule'
+  },
+  {
     path: 'trainingsschema',
     loadChildren: './trainingsschema/trainingsschema.module#TrainingsschemaModule'
   }

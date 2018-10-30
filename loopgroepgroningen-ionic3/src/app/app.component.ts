@@ -61,7 +61,7 @@ export class MyApp {
       this.pages.push({title: 'Laatste nieuws', component: 'NieuwsoverzichtPage', icon: 'paper'});
     }
     this.pages.push({title: 'Prikbord', component: 'PrikbordPage', icon: 'chatboxes'});
-    this.pages.push({title: 'Agenda', component: 'AgendaPage', icon: 'calendar'});
+    this.pages.push({title: 'Agenda', component: 'AgendaPageComponent', icon: 'calendar'});
     if (ingelogd) {
       this.pages.push({title: 'Trainingsschema', component: 'TrainingsschemaPage', icon: 'grid'});
     } else {

@@ -20,6 +20,11 @@ export class AppComponent {
       title: 'Prikbord',
       url: '/prikbord',
       icon: 'chatboxes'
+    },
+    {
+      title: 'Agenda',
+      url: '/agenda',
+      icon: 'calendar'
     }, {
       title: 'Trainingsschema',
       url: '/trainingsschema',
