@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Sectie} from './sectie';
+import {Sectie} from '../../api';
 
 @Injectable({
   providedIn: 'root'

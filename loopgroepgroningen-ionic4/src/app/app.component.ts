@@ -9,6 +9,7 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
   public appPages = [
     {
       title: 'Nieuws',
@@ -19,6 +20,10 @@ export class AppComponent {
       title: 'Prikbord',
       url: '/prikbord',
       icon: 'chatboxes'
+    }, {
+      title: 'Trainingsschema',
+      url: '/trainingsschema',
+      icon: 'grid'
     }
   ];
 

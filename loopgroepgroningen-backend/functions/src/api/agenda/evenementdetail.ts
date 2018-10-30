@@ -1,5 +1,5 @@
-import {Paragraaf} from './rich-content';
-import {Bericht} from './bericht';
+import {Paragraaf} from '../rich-content';
+import {Bericht} from '../shared';
 
 export interface Evenementdetail {
 

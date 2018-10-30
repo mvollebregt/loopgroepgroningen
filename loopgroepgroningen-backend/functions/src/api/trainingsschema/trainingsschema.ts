@@ -1,9 +1,10 @@
 import {Training} from './training';
+import {Sectie} from '../shared';
 
 export interface Trainingsschema {
 
-  A: Training[];
-  B: Training[];
-  C: Training[];
+  A: Sectie<Training>[];
+  B: Sectie<Training>[];
+  C: Sectie<Training>[];
 
 }

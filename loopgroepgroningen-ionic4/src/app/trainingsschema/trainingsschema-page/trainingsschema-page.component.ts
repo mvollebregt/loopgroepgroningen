@@ -1,43 +1,31 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
-import {Trainingsschema} from './trainingsschema.domain';
-import {InstellingenService} from '../../core/instellingen/instellingen.service';
-import {Training} from './training';
+import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import {TrainingsschemaService} from './trainingsschema.service';
-import {Subject} from 'rxjs/Subject';
+import {Subject} from 'rxjs';
 import {finalize, takeUntil} from 'rxjs/operators';
+import {Training, Trainingsschema} from '../../api';
+import {TrainingsschemaClient} from '../services/trainingsschema.client';
 
-@IonicPage()
 @Component({
-  selector: 'page-trainingsschema',
-  templateUrl: 'trainingsschema.html',
+  selector: 'lg-trainingsschema-page',
+  templateUrl: 'trainingsschema-page.component.html',
 })
-export class TrainingsschemaPage {
+export class TrainingsschemaPageComponent implements OnInit {
 
   destroy = new Subject<boolean>();
   trainingsschema: Trainingsschema;
   groep: String;
   spinning = true;
 
-  constructor(private trainingsschemaService: TrainingsschemaService,
-              private instellingenService: InstellingenService,
-              private navCtrl: NavController) {
+  constructor(private trainingsschemaClient: TrainingsschemaClient) {
   }
 
-  ionViewWillEnter() {
-
-    this.trainingsschemaService.haalTrainingsschemaOp().pipe(
+  ngOnInit() {
+    this.trainingsschemaClient.haalTrainingsschemaOp().pipe(
       takeUntil(this.destroy),
       finalize(() => this.spinning = false)
     ).subscribe(trainingsschema => this.trainingsschema = trainingsschema);
 
-
-    this.instellingenService.getInstellingen().pipe(
-      takeUntil(this.destroy)
-    ).subscribe(instellingen => {
-        this.groep = (instellingen && instellingen.groep) || 'A';
-    });
+    this.groep = 'C'; // TODO: uit store lezen
   }
 
   ionViewWillLeave() {
@@ -49,10 +37,6 @@ export class TrainingsschemaPage {
   }
 
   kiesGroep(keuze: string) {
-    this.instellingenService.setInstellingen({groep: keuze});
-  }
-
-  gaNaarEvenement() {
-    this.navCtrl.push('EvenementPage');
+    // this.instellingenService.setInstellingen({groep: keuze});
   }
 }

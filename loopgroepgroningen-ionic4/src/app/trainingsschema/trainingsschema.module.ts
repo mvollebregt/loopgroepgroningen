@@ -1,12 +1,16 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {TrainingsschemaPageComponent} from './trainingsschema-page/trainingsschema-page.component';
+import {SharedModule} from '../shared/shared/shared.module';
+import {TrainingsschemaRoutingModule} from './trainingsschema-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule
+  declarations: [
+    TrainingsschemaPageComponent,
   ],
-  declarations: [TrainingsschemaPageComponent]
+  imports: [
+    TrainingsschemaRoutingModule,
+    SharedModule
+  ],
 })
 export class TrainingsschemaModule {
 }

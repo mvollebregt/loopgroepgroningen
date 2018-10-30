@@ -41,7 +41,7 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
       if (endpoint.formNotAvailableHandler) {
         return endpoint.formNotAvailableHandler(inputPage);
       } else {
-        throw {status: 500, meldingen: 'Formulier niet beschikbaar'};
+        throw {status: 500, meldingen: ['Formulier niet beschikbaar']};
       }
     }
 

@@ -1,14 +1,16 @@
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Trainingsschema</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Trainingsschema
+    </ion-title>
+  </ion-toolbar>
 
   <ion-toolbar>
-    <ion-segment [ngModel]="groep">
+    <ion-segment>
       <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (tap)="kiesGroep(keuze)">
         {{ keuze }}
       </ion-segment-button>
@@ -21,7 +23,7 @@
 
 </ion-header>
 
-<lg-spinner *ngIf="spinning"></lg-spinner>
+<!--<lg-spinner *ngIf="spinning"></lg-spinner>-->
 
 <ion-content>
 

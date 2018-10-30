@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'prikbord',
     loadChildren: './prikbord/prikbord.module#PrikbordModule'
+  },
+  {
+    path: 'trainingsschema',
+    loadChildren: './trainingsschema/trainingsschema.module#TrainingsschemaModule'
   }
 ];
 

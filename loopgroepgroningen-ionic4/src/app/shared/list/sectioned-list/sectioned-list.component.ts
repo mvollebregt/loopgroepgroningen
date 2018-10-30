@@ -1,6 +1,6 @@
-import {Component, ContentChild, Input, OnChanges, TemplateRef} from '@angular/core';
-import {Sectie} from '../sectie';
+import {Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef} from '@angular/core';
 import {OpknipperService} from '../opknipper.service';
+import {Sectie} from '../../../api';
 
 @Component({
   selector: 'lg-sectioned-list',
@@ -11,11 +11,10 @@ export class SectionedListComponent<T> implements OnChanges {
 
   @Input() data: T[];
   @Input() sectieTitel: (item: T) => string;
+  @Input() secties: Sectie<T>[];
   @Input() getId: (item: T) => any;
 
   @ContentChild(TemplateRef) passedInTemplate: TemplateRef<any>;
-
-  secties: Sectie<T>[];
 
   constructor(private opknipperService: OpknipperService) {
   }
@@ -25,8 +24,9 @@ export class SectionedListComponent<T> implements OnChanges {
     return this.getId && this.getId(item);
   }
 
-  ngOnChanges() {
-    this.secties = this.opknipperService.maakSecties(this.data, this.sectieTitel);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.data || changes.sectieTitel) {
+      this.secties = this.opknipperService.maakSecties(this.data, this.sectieTitel);
+    }
   }
-
 }

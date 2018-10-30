@@ -1,6 +1,5 @@
 import {scrape, Scraper} from './scrape';
-import {Evenementdetail} from '../api/evenementdetail';
-import {Bericht} from '../api';
+import {Bericht, Evenementdetail} from '../api';
 import * as moment from 'moment';
 import {extractRichContent} from './rich-content/extract-rich-content';
 

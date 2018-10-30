@@ -6,6 +6,7 @@ import {EndpointDefinition} from './model/endpoint-definition';
 import {prepareRequest} from './prepare-request';
 import {prepareResponse} from './prepare-response';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
+import {handleError} from './handle-error';
 
 export function endpoint<I, O>(
   endpoint: EndpointDefinition<I, O>
@@ -25,14 +26,7 @@ export function endpoint<I, O>(
         prepareResponse(eventualResponse, originalRequest, cookieJar);
         eventualResponse.status(200).send(responseObject);
 
-      }).catch(error => {
-        const status = error.status || (error.meldingen ? 400 : 500);
-        if (status === 500) {
-          console.error(error);
-        }
-        prepareResponse(eventualResponse, originalRequest, cookieJar);
-        eventualResponse.status(status).send(error);
-      });
+      }).catch(handleError(eventualResponse, originalRequest, cookieJar));
     }
   }
 }
