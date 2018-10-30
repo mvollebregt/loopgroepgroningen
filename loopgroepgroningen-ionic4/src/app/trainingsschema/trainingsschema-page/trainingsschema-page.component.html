@@ -11,7 +11,7 @@
 
   <ion-toolbar>
     <ion-segment>
-      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (tap)="kiesGroep(keuze)">
+      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (click)="kiesGroep(keuze)">
         {{ keuze }}
       </ion-segment-button>
     </ion-segment>
@@ -27,29 +27,15 @@
 
 <ion-content>
 
-  <ion-list>
-
-    <ng-template ngFor let-sectie [ngForOf]="trainingsschema && groep && trainingsschema[groep]">
-
-      <ion-list-header>
-        {{sectie.titel}}
-      </ion-list-header>
-
-      <!--<button ion-item (tap)="gaNaarEvenement()">-->
-      <!--<ion-icon name="trophy" item-start></ion-icon>-->
-      <!--<h2>Zaterdag 16 dec</h2>-->
-      <!--Peize  Ameland Adventurerun-->
-      <!--</button>-->
-
-      <ion-item *ngFor="let training of sectie.inhoud">
-        <ion-icon item-start></ion-icon>
+  <lg-sectioned-list *ngIf="trainingsschema" [secties]="trainingsschema[groep]" [getId]="getId">
+    <ng-template let-training>
+      <ion-icon slot="start"></ion-icon>
+      <ion-label>
         <h2>{{kop(training)}}</h2>
         <div class="multi-line">{{training.omschrijving}}</div>
         <p>{{training.locatie}}</p>
-      </ion-item>
-
+      </ion-label>
     </ng-template>
-
-  </ion-list>
+  </lg-sectioned-list>
 
 </ion-content>

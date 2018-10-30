@@ -1,6 +1,6 @@
 <lg-sectioned-list [data]="nieuwsberichten" [getId]="getId" [sectieTitel]="getSectieTitel.bind(this)">
   <ng-template let-nieuwsbericht>
-    <ion-thumbnail item-start>
+    <ion-thumbnail slot="start">
       <img *ngIf="nieuwsbericht.thumbnail" src="{{nieuwsbericht.thumbnail}}">
     </ion-thumbnail>
     <ion-label>

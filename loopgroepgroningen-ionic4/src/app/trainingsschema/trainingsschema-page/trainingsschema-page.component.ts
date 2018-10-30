@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {Subject} from 'rxjs';
 import {finalize, takeUntil} from 'rxjs/operators';
@@ -8,8 +8,9 @@ import {TrainingsschemaClient} from '../services/trainingsschema.client';
 @Component({
   selector: 'lg-trainingsschema-page',
   templateUrl: 'trainingsschema-page.component.html',
+  styleUrls: ['trainingsschema-page.component.scss']
 })
-export class TrainingsschemaPageComponent implements OnInit {
+export class TrainingsschemaPageComponent implements OnInit, OnDestroy {
 
   destroy = new Subject<boolean>();
   trainingsschema: Trainingsschema;
@@ -28,7 +29,11 @@ export class TrainingsschemaPageComponent implements OnInit {
     this.groep = 'C'; // TODO: uit store lezen
   }
 
-  ionViewWillLeave() {
+  getId(training: Training) {
+    return training.datum;
+  }
+
+  ngOnDestroy() {
     this.destroy.next(true);
   }
 
