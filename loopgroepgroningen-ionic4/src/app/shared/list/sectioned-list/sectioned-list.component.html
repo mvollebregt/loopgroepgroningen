@@ -5,10 +5,9 @@
       {{sectie.titel}}
     </ion-list-header>
 
-    <ion-item *ngFor="let item of sectie.inhoud">
+    <ion-item *ngFor="let item of sectie.inhoud" (click)="onClick(item)">
       <ng-container *ngTemplateOutlet="passedInTemplate; context: {$implicit: item}"></ng-container>
     </ion-item>
   </ng-container>
 
 </ion-list>
-

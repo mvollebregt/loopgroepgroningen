@@ -6,6 +6,7 @@ import {getLoadingMore, getNieuwsberichten, getReachedEndOfList, NieuwsState} fr
 import {LoadMoreNieuwsberichten} from '../store/nieuwsberichten.action';
 import {filter} from 'rxjs/operators';
 import {InfiniteScroll} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'lg-nieuwsoverzicht-page',
@@ -20,6 +21,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   reachedEndOfList: Observable<boolean>;
 
   constructor(
+    private router: Router,
     private store: Store<NieuwsState>,
     /*private navCtrl: NavController*/) {
   }
@@ -61,6 +63,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   }
 
   gaNaarNieuwsbericht(nieuwsbericht: Nieuwsbericht) {
-    // this.navCtrl.push('NieuwsberichtPage', {volgnummer: nieuwsbericht.volgnummer});
+    const indexOfId = nieuwsbericht.href.lastIndexOf('/');
+    this.router.navigate(['nieuws', nieuwsbericht.href.substring(indexOfId)]);
   }
 }

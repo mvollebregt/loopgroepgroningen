@@ -1,4 +1,8 @@
-<lg-sectioned-list [data]="nieuwsberichten" [getId]="getId" [sectieTitel]="getSectieTitel.bind(this)">
+<lg-sectioned-list
+  [data]="nieuwsberichten"
+  [getId]="getId"
+  [sectieTitel]="getSectieTitel.bind(this)"
+  (itemClicked)="onItemClicked($event)">
   <ng-template let-nieuwsbericht>
     <ion-thumbnail slot="start">
       <img *ngIf="nieuwsbericht.thumbnail" src="{{nieuwsbericht.thumbnail}}">

@@ -1,4 +1,13 @@
-import {Component, ContentChild, Input, OnChanges, SimpleChanges, TemplateRef} from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef
+} from '@angular/core';
 import {OpknipperService} from '../opknipper.service';
 import {Sectie} from '../../../api';
 
@@ -14,6 +23,8 @@ export class SectionedListComponent<T> implements OnChanges {
   @Input() secties: Sectie<T>[];
   @Input() getId: (item: T) => any;
 
+  @Output() itemClicked = new EventEmitter<T>();
+
   @ContentChild(TemplateRef) passedInTemplate: TemplateRef<any>;
 
   constructor(private opknipperService: OpknipperService) {
@@ -28,5 +39,9 @@ export class SectionedListComponent<T> implements OnChanges {
     if (changes.data || changes.sectieTitel) {
       this.secties = this.opknipperService.maakSecties(this.data, this.sectieTitel);
     }
+  }
+
+  onClick(item: T) {
+    this.itemClicked.emit(item);
   }
 }

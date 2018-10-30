@@ -7,8 +7,7 @@ import {TrainingsschemaClient} from '../services/trainingsschema.client';
 
 @Component({
   selector: 'lg-trainingsschema-page',
-  templateUrl: 'trainingsschema-page.component.html',
-  styleUrls: ['trainingsschema-page.component.scss']
+  templateUrl: 'trainingsschema-page.component.html'
 })
 export class TrainingsschemaPageComponent implements OnInit, OnDestroy {
 

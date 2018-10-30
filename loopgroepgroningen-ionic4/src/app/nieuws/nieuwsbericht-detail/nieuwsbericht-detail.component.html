@@ -1,12 +1,13 @@
-<ion-list>
+<lg-sectioned-list
+  [data]="[nieuwsbericht]"
+  [sectieTitel]="titel.bind(this)"
+>
 
-  <ion-list-header>
-    {{nieuwsbericht?.datum | date : "D MMMM YYYY"}}
-  </ion-list-header>
+  <ng-template let-nieuwsbericht>
+    <ion-label>
+      <h2>{{nieuwsbericht?.titel}}</h2>
+      <lg-rich-content [paragrafen]="nieuwsbericht?.content"></lg-rich-content>
+    </ion-label>
+  </ng-template>
 
-  <ion-item>
-    <h2>{{nieuwsbericht?.titel}}</h2>
-    <lg-rich-content [paragrafen]="nieuwsbericht?.content"></lg-rich-content>
-  </ion-item>
-
-</ion-list>
+</lg-sectioned-list>

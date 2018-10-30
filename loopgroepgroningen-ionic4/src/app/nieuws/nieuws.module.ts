@@ -11,11 +11,13 @@ import {SharedModule} from '../shared/shared/shared.module';
 import {RichContentModule} from '../shared/rich-content/rich-content.module';
 import {NieuwsRoutingModule} from './nieuws-routing.module';
 import {ListModule} from '../shared/list/list.module';
+import {NieuwsberichtPageComponent} from './nieuwsbericht-page/nieuwsbericht-page.component';
 
 @NgModule({
   declarations: [
     NieuwsberichtDetailComponent,
     NieuwsberichtenLijstComponent,
+    NieuwsberichtPageComponent,
     NieuwsoverzichtPageComponent
   ],
   imports: [

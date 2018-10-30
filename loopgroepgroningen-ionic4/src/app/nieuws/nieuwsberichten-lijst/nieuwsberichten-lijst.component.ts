@@ -10,7 +10,7 @@ import {CustomDatePipe} from '../../shared/shared/pipes/custom-date-pipe';
 export class NieuwsberichtenLijstComponent {
 
   @Input() nieuwsberichten: Nieuwsbericht[];
-  @Output() nieuwsberichtTapped = new EventEmitter<Nieuwsbericht>();
+  @Output() itemClicked = new EventEmitter<Nieuwsbericht>();
 
   constructor(private datePipe: CustomDatePipe) {
   }
@@ -23,7 +23,7 @@ export class NieuwsberichtenLijstComponent {
     return nieuwsbericht.href;
   }
 
-  onTap(nieuwsbericht: Nieuwsbericht) {
-    this.nieuwsberichtTapped.emit(nieuwsbericht);
+  onItemClicked(nieuwsbericht: Nieuwsbericht) {
+    this.itemClicked.emit(nieuwsbericht);
   }
 }
