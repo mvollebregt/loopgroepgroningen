@@ -2,19 +2,25 @@ import {Request, Response} from 'express';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 
 export function prepareResponse(eventualResponse: Response, originalRequest: Request, cookieJar: SingleUseCookieJar): void {
-  copyCookiesToResponse(eventualResponse, cookieJar);
+  copyCookiesToResponse(eventualResponse, cookieJar, originalRequest.protocol === 'http');
   setCorsHeaders(eventualResponse, originalRequest);
 }
 
-function copyCookiesToResponse(eventualResponse: Response, cookieJar: SingleUseCookieJar): void {
+function copyCookiesToResponse(eventualResponse: Response, cookieJar: SingleUseCookieJar, insecure: boolean): void {
   const originalCookies: string[] = cookieJar.getResponseCookies();
-  // TODO: localhost is nu nog hard coded value
-  const rewrittenCookies = originalCookies.map(cookie =>
-    cookie
-      .replace('www.loopgroepgroningen.nl', 'localhost')
-      .replace('domain=.', 'domain=localhost')
-  );
+  const rewrittenCookies = originalCookies.map(rewriteCookie(insecure));
   eventualResponse.append('set-cookie', rewrittenCookies);
+}
+
+function rewriteCookie(insecure: boolean) {
+  return (cookie: string) => {
+    // TODO: localhost is nu nog hard coded value
+    const rewrittenCookie = cookie
+      .replace('www.loopgroepgroningen.nl', 'localhost')
+      .replace('domain=.', 'domain=localhost');
+    // op localhost draaien we op http en niet op https, vandaar dat we 'secure' op localhost uit de cookie strippen
+    return insecure ? cookie.replace(/secure; /gi, '') : cookie;
+  }
 }
 
 function setCorsHeaders(eventualResponse: Response, originalRequest: Request): void {

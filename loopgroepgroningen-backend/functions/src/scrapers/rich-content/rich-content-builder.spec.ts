@@ -22,7 +22,7 @@
 //       new Paragraaf([
 //         new Alinea([
 //           new PlainText('ga naar '),
-//           new Link('http://www.loopgroepgroningen.nl', 'www.loopgroepgroningen.nl'),
+//           new Link('https://www.loopgroepgroningen.nl', 'www.loopgroepgroningen.nl'),
 //           new PlainText('.')
 //         ])
 //       ])

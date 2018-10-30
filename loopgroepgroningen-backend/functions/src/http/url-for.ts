@@ -1,4 +1,4 @@
-const baseUrl = 'http://www.loopgroepgroningen.nl';
+const baseUrl = 'https://www.loopgroepgroningen.nl';
 
 export function urlFor(relativeUrl: string, queryParams: any = {}): string {
   const path = relativeUrl.startsWith(baseUrl) ? relativeUrl :

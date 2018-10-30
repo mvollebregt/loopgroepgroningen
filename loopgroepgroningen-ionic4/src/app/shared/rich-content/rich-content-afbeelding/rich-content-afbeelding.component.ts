@@ -10,6 +10,6 @@ export class RichContentAfbeeldingComponent {
 
   @Input() content: Afbeelding;
 
-  readonly backendUrl = 'http://www.loopgroepgroningen.nl';
+  readonly backendUrl = 'https://www.loopgroepgroningen.nl';
 
 }

@@ -1,6 +1,6 @@
 {
   "/index.php": {
-    "target": "http://www.loopgroepgroningen.nl",
+    "target": "https://www.loopgroepgroningen.nl",
     "changeOrigin": true
   },
   "/mvollebregt": {
