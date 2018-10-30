@@ -10,7 +10,7 @@ import {of} from 'rxjs/observable/of';
 @Injectable()
 export class HttpService {
 
-  static readonly backendUrl = 'http://www.loopgroepgroningen.nl';
+  static readonly backendUrl = 'https://www.loopgroepgroningen.nl';
 
   private readonly baseUrl: string;
   private readonly parser = new DOMParser();

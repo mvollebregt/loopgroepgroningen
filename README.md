@@ -9,7 +9,7 @@ $ ionic serve --lab
 
 ```bash
 $ ionic cordova run ios -lc
-$ ionic cordova build ios --prod (--release)
+$ ionic cordova build ios --prod (--release) -- --buildFlag="-UseModernBuildSystem=0"
 ```
 
 Build openen in xcode en draaien.
@@ -31,7 +31,7 @@ $ cd ../..
 
 ### Sign Android app:
 
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk michel
 
 ### Zipalign:
 

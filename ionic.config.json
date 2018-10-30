@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/index.php",
-      "proxyUrl": "http://www.loopgroepgroningen.nl/index.php",
+      "proxyUrl": "https://www.loopgroepgroningen.nl/index.php",
       "cookieRewrite": "localhost"
     },
     {
