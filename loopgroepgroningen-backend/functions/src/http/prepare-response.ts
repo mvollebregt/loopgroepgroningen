@@ -2,25 +2,18 @@ import {Request, Response} from 'express';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 
 export function prepareResponse(eventualResponse: Response, originalRequest: Request, cookieJar: SingleUseCookieJar): void {
-  copyCookiesToResponse(eventualResponse, cookieJar, originalRequest.protocol === 'http');
+  copyCookiesToResponse(eventualResponse, cookieJar);
   setCorsHeaders(eventualResponse, originalRequest);
 }
 
-function copyCookiesToResponse(eventualResponse: Response, cookieJar: SingleUseCookieJar, insecure: boolean): void {
+function copyCookiesToResponse(eventualResponse: Response, cookieJar: SingleUseCookieJar): void {
   const originalCookies: string[] = cookieJar.getResponseCookies();
-  const rewrittenCookies = originalCookies.map(rewriteCookie(insecure));
-  eventualResponse.append('set-cookie', rewrittenCookies);
+  eventualResponse.header('Access-Control-Expose-Headers', 'Set-Vegetable');
+  eventualResponse.append('Set-Vegetable', originalCookies.map(transformToVegetable));
 }
 
-function rewriteCookie(insecure: boolean) {
-  return (cookie: string) => {
-    // TODO: localhost is nu nog hard coded value
-    const rewrittenCookie = cookie
-      .replace('www.loopgroepgroningen.nl', 'localhost')
-      .replace('domain=.', 'domain=localhost');
-    // op localhost draaien we op http en niet op https, vandaar dat we 'secure' op localhost uit de cookie strippen
-    return insecure ? rewrittenCookie.replace(/secure; /gi, '') : rewrittenCookie;
-  }
+function transformToVegetable(cookie: string): string {
+  return cookie.substring(0, cookie.indexOf(';'));
 }
 
 function setCorsHeaders(eventualResponse: Response, originalRequest: Request): void {
@@ -30,6 +23,6 @@ function setCorsHeaders(eventualResponse: Response, originalRequest: Request): v
     eventualResponse.header('Access-Control-Allow-Credentials', 'true');
     eventualResponse.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
     eventualResponse.header('Access-Control-Max-Age', '1000');
-    eventualResponse.header('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token , Authorization');
+    eventualResponse.header('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token , Authorization, Vegetable');
   }
 }

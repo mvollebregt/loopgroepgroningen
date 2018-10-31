@@ -31,7 +31,7 @@ function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
     const serverResponse = await doGet(endpoint.targetUrl, originalRequest.url, originalRequest.query, endpoint.restricted, cookieJar);
     const result = endpoint.scraper(serverResponse);
     if (originalRequest.url) {
-      result['id'] = getIdFromUrl(originalRequest.url);
+      result['id'] = getIdFromUrl(originalRequest.url) || undefined;
     }
     return result;
   }

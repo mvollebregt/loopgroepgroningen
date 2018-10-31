@@ -30,11 +30,8 @@ export class WachtwoordkluisService {
     const keys = await storage.keys();
     if (keys.indexOf(LOGIN_KEY) > -1) {
       const value = await storage.get(LOGIN_KEY);
-      console.log('login key found!');
-      console.log(value);
       return JSON.parse(value);
     } else {
-      console.log('no login found!');
       return null;
     }
   }

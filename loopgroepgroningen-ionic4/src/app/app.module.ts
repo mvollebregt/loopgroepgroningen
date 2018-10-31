@@ -8,13 +8,14 @@ import {IonicStorageModule} from '@ionic/storage';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import * as moment from 'moment';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {MetaReducer, StoreModule} from '@ngrx/store';
 import {storeFreeze} from 'ngrx-store-freeze';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {NativeModule} from './native.module';
+import {VegetableJarService} from './shared/backend/vegetable-jar.service';
 
 moment.locale('nl');
 
@@ -37,7 +38,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   providers: [
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    {provide: HTTP_INTERCEPTORS, useClass: VegetableJarService, multi: true},
   ],
   bootstrap: [AppComponent]
 })

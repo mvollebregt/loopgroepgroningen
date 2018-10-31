@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import {Bericht, Credentials, Evenement, Nieuwsbericht, Session} from './api';
+import {Bericht, Credentials, Evenement, Nieuwsbericht, Session, Trainingsschema} from './api';
 import {scrapeBerichten} from './scrapers/scrape-berichten';
 import {scrapeNieuwsberichten} from './scrapers/scrape-nieuwsberichten';
 import {endpoint} from './http/endpoint';
@@ -39,5 +39,11 @@ export const evenement = functions.https.onRequest(
   })
 );
 
-export const trainingsschema = functions.https.onRequest(fetchTrainingsschema);
+export const trainingsschema = functions.https.onRequest(
+  endpoint<void, Trainingsschema>({
+    methods: {
+      get: fetchTrainingsschema
+    }
+  })
+);
 

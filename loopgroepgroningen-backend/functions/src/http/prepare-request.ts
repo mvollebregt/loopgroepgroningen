@@ -4,13 +4,13 @@ import * as moment from 'moment';
 
 export function prepareRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
   moment.locale('nl');
-  copyCookiesFromRequest(originalRequest, cookieJar);
+  copyVegetablesFromRequest(originalRequest, cookieJar);
 }
 
-function copyCookiesFromRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
-  const cookieHeader = originalRequest.headers['cookie'];
-  if (cookieHeader) {
-    const cookies = Array.isArray(cookieHeader) ? cookieHeader : cookieHeader.split(';');
-    cookies.forEach(cookie => cookieJar.setCookie(cookie));
+function copyVegetablesFromRequest(originalRequest: Request, cookieJar: SingleUseCookieJar): void {
+  const vegetableHeader = originalRequest.headers['vegetable'];
+  if (vegetableHeader) {
+    const vegetables = Array.isArray(vegetableHeader) ? vegetableHeader : vegetableHeader.split(',');
+    vegetables.forEach(vegetable => cookieJar.setCookie(vegetable));
   }
 }
