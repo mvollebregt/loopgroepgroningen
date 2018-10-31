@@ -1,4 +1,3 @@
-import {Element} from 'jsdom';
 import {scrape, Scraper} from './scrape';
 
 export function scrapeForm(formSelector: string): Scraper<{ action: string, inputs: any }> {

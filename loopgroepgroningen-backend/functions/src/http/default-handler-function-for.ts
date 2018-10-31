@@ -29,7 +29,7 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
     const serverResponse = await doGet(endpoint.targetUrl, originalRequest.url, originalRequest.query, endpoint.restricted, cookieJar);
-    let result = endpoint.scraper(serverResponse);
+    const result = endpoint.scraper(serverResponse);
     if (originalRequest.url) {
       result['id'] = getIdFromUrl(originalRequest.url);
     }

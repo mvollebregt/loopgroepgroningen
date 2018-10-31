@@ -1,5 +1,4 @@
 import {Request} from 'express';
-import {Element, JSDOM} from 'jsdom';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 import * as moment from 'moment';
 

@@ -13,7 +13,7 @@ export class TrainingsschemaPageComponent implements OnInit, OnDestroy {
 
   destroy = new Subject<boolean>();
   trainingsschema: Trainingsschema;
-  groep: String;
+  groep: string;
   spinning = true;
 
   constructor(private trainingsschemaClient: TrainingsschemaClient) {

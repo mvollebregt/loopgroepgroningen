@@ -15,13 +15,13 @@ export const scrapeEvenement: Scraper<Evenement> = scrape('#jem', elements => {
 
 
   const deelnemerElementen = elt.querySelectorAll('.register li .username');
-  let deelnemers: string[] = [];
+  const deelnemers: string[] = [];
   for (let i = 0; i < deelnemerElementen.length; i++) {
     deelnemers.push(deelnemerElementen.item(i).textContent.trim());
   }
 
   const reactieElementen = elt.querySelectorAll('.comment-box');
-  let reacties: Bericht[] = [];
+  const reacties: Bericht[] = [];
   for (let i = reactieElementen.length - 1; i >= 0; i--) {
     const element = reactieElementen.item(i);
     reacties.push({

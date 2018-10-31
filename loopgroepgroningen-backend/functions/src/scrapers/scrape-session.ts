@@ -1,4 +1,3 @@
-import {Element} from 'jsdom';
 import {scrape, Scraper} from './scrape';
 import {Session} from '../api';
 

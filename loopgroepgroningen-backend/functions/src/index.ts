@@ -3,7 +3,7 @@ import {Bericht, Credentials, Evenement, Nieuwsbericht, Session} from './api';
 import {scrapeBerichten} from './scrapers/scrape-berichten';
 import {scrapeNieuwsberichten} from './scrapers/scrape-nieuwsberichten';
 import {endpoint} from './http/endpoint';
-import {fetchTrainingsschema} from './trainingsschema/trainingsschema';
+import {fetchTrainingsschema} from './trainingsschema/fetch-trainingsschema';
 import {sessionEndpoint} from './session-endpoint';
 import {scrapeAgenda} from './scrapers/scrape-agenda';
 import {scrapeEvenement} from './scrapers/scrape-evenement';

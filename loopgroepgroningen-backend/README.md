@@ -1,5 +1,5 @@
 
-To start firebase functions locally, run: 
+To start firebase functions locally, run: readm
 
 ```
 cd functions

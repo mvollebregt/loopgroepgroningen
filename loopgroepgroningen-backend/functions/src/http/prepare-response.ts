@@ -19,7 +19,7 @@ function rewriteCookie(insecure: boolean) {
       .replace('www.loopgroepgroningen.nl', 'localhost')
       .replace('domain=.', 'domain=localhost');
     // op localhost draaien we op http en niet op https, vandaar dat we 'secure' op localhost uit de cookie strippen
-    return insecure ? cookie.replace(/secure; /gi, '') : cookie;
+    return insecure ? rewrittenCookie.replace(/secure; /gi, '') : rewrittenCookie;
   }
 }
 

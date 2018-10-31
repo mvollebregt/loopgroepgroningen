@@ -1,4 +1,3 @@
-import {Element} from 'jsdom';
 import * as moment from 'moment';
 import {Bericht} from '../api';
 import {scrapeList, Scraper} from './scrape';
