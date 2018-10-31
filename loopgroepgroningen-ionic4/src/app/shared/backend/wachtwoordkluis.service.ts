@@ -17,15 +17,25 @@ export class WachtwoordkluisService {
 
   haalCredentialsOp(): Observable<Credentials> {
     if (this.platform.is('cordova')) {
-      return from(
-        this.secureStorage.create(STORE_NAME).then(
-          storage => storage.get(LOGIN_KEY),
-        ).then(
-          login => JSON.parse(login),
-          () => null
-        ));
+      return from(this.haalCredentialsPromiseOp());
     } else {
       return of(this.login);
+    }
+  }
+
+  private async haalCredentialsPromiseOp(): Promise<Credentials> {
+    const storage = await this.secureStorage.create(STORE_NAME);
+    // Als we van een lege store een key opvragen crasht cordova. Dit is een workaround.
+    await storage.set('bogus', 'bogus');
+    const keys = await storage.keys();
+    if (keys.indexOf(LOGIN_KEY) > -1) {
+      const value = await storage.get(LOGIN_KEY);
+      console.log('login key found!');
+      console.log(value);
+      return JSON.parse(value);
+    } else {
+      console.log('no login found!');
+      return null;
     }
   }
 
