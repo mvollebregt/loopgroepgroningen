@@ -7,6 +7,7 @@ import {scrapeMeldingen} from '../scrapers/scrape-meldingen';
 import {SingleUseCookieJar} from './single-use-cookie-jar';
 import {scrapeIngelogd} from '../scrapers/scrape-ingelogd';
 import {getIdFromUrl} from './get-id-from-url';
+import {Request} from 'express';
 
 export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, O>, method: string): HandlerFunction<O> {
   switch (method.toLowerCase()) {
@@ -26,13 +27,17 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
   return null;
 }
 
+function addIdToResult(result: any, originalRequest: Request) {
+  if (originalRequest.url) {
+    result['id'] = getIdFromUrl(originalRequest.url) || undefined;
+  }
+}
+
 function get<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
   return async (originalRequest, cookieJar) => {
     const serverResponse = await doGet(endpoint.targetUrl, originalRequest.url, originalRequest.query, endpoint.restricted, cookieJar);
     const result = endpoint.scraper(serverResponse);
-    if (originalRequest.url) {
-      result['id'] = getIdFromUrl(originalRequest.url) || undefined;
-    }
+    addIdToResult(result, originalRequest);
     return result;
   }
 }
@@ -51,16 +56,16 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
       }
     }
 
-    const postUrl = urlFor(initialForm.action || endpoint.targetUrl, pathParams);
+    const postUrl = initialForm.action ? urlFor(initialForm.action) : urlFor(endpoint.targetUrl, pathParams);
     const inputMapper = endpoint.inputMapper || (x => x);
     const form = Object.assign(initialForm.inputs, inputMapper(originalRequest.body));
 
     const serverResponse = await doPost(postUrl, form, cookieJar);
-    return endpoint.scraper(serverResponse);
-
+    const result = endpoint.scraper(serverResponse);
+    addIdToResult(result, originalRequest);
+    return result;
   }
 }
-
 
 async function doGet(relativeUrl: string, pathParams: string, query: any, checkIngelogd: boolean, cookieJar: SingleUseCookieJar): Promise<string> {
   const serverResponse = await WebRequest.get(urlFor(relativeUrl, pathParams, query), {jar: cookieJar});

@@ -39,6 +39,15 @@ export const evenement = functions.https.onRequest(
   })
 );
 
+export const inschrijven = functions.https.onRequest(
+  endpoint<boolean, Evenement>({
+    targetUrl: 'index.php/loopgroep-groningen-agenda/event',
+    formSelector: '.register form',
+    inputMapper: ingeschreven => ({'reg_check': ingeschreven}),
+    scraper: scrapeEvenement
+  })
+);
+
 export const trainingsschema = functions.https.onRequest(
   endpoint<void, Trainingsschema>({
     methods: {

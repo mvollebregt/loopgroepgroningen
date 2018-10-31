@@ -12,7 +12,7 @@ export class VraagOmCredentialsService {
   }
 
   private static foutweergave(err: HttpErrorResponse) {
-    return `<span class="error">${err.error.meldingen.join('<br>')}</span>`;
+    return err.error.meldingen ? `<span class="error">${err.error.meldingen.join('<br>')}</span>` : '';
   }
 
   // Toont een login prompt die vraagt om gebruikers en wachtwoord.

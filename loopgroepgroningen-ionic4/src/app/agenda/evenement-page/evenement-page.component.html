@@ -36,7 +36,7 @@
       <ion-item *ngIf="evenement?.details.deelname !== null">
         <ion-label>Ik doe mee</ion-label>
         <ion-toggle [checked]="evenement?.details.deelname" [disabled]="aanHetAanmelden"
-                    (click)="toggleDeelname()"></ion-toggle>
+                    (ionChange)="toggleDeelname()"></ion-toggle>
       </ion-item>
 
       <ion-list-header *ngIf="evenement?.details.omschrijving?.length">

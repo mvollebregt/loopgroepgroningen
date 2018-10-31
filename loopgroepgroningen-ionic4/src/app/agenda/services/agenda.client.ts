@@ -17,4 +17,8 @@ export class AgendaClient {
     return this.httpService.get<Evenement>(`evenement/${id}`);
   }
 
+  schrijfIn(evenement: Evenement, ingeschreven: boolean) {
+    return this.httpService.post<Evenement>(`inschrijven/${evenement.id}`, ingeschreven);
+  }
+
 }

@@ -25,22 +25,19 @@ export class EvenementPage implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.agendaClient.getEvenement(id).subscribe(evenement => {
-      this.evenement = evenement;
-      this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
-    });
+    this.agendaClient.getEvenement(id).subscribe(evenement => this.toonEvenement(evenement));
   }
 
-  // toggleDeelname() {
-  //   if (this.evenement) {
-  //     this.aanHetAanmelden = true;
-  //     this.evenementdetailClient.schrijfIn(this.navParams.get('url'), !this.evenement.deelname)
-  //       .subscribe(evenement => {
-  //         this.aanHetAanmelden = false;
-  //         this.toonEvenement(evenement)
-  //       });
-  //   }
-  // }
+  toggleDeelname() {
+    if (this.evenement) {
+      this.aanHetAanmelden = true;
+      this.agendaClient.schrijfIn(this.evenement, !this.evenement.details.deelname)
+        .subscribe(evenement => {
+          this.aanHetAanmelden = false;
+          this.toonEvenement(evenement)
+        });
+    }
+  }
 
   // verstuurBericht() {
   //   this.aanHetVersturen = true;
@@ -52,10 +49,10 @@ export class EvenementPage implements OnInit {
   //     });
   // }
 
-  // private toonEvenement(evenement: Evenementdetail) {
-  //   this.evenement = evenement;
-  //   this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
-  // }
+  private toonEvenement(evenement: Evenement) {
+    this.evenement = evenement;
+    this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
+  }
 }
 
 function formatteerDatumtijd(start: string, einde: string): string[] {
