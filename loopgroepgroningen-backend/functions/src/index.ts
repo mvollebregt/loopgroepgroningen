@@ -48,6 +48,19 @@ export const inschrijven = functions.https.onRequest(
   })
 );
 
+export const reageren = functions.https.onRequest(
+  endpoint<string, void>({
+    targetUrl: 'index.php/loopgroep-groningen-agenda/event',
+    formSelector: '#comments-form',
+    inputMapper: reactie => ({
+      'comment': reactie,
+      'jtxf': 'JCommentsAddComment'
+    }),
+    postUrl: 'index.php/component/jcomments/',
+    scraper: body => null
+  })
+);
+
 export const trainingsschema = functions.https.onRequest(
   endpoint<void, Trainingsschema>({
     methods: {

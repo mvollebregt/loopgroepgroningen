@@ -21,4 +21,8 @@ export class AgendaClient {
     return this.httpService.post<Evenement>(`inschrijven/${evenement.id}`, ingeschreven);
   }
 
+  verstuurBericht(evenement: Evenement, bericht: string) {
+    return this.httpService.post<void>(`reageren/${evenement.id}`, bericht);
+  }
+
 }

@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import {Evenement} from '../../api';
 import {AgendaClient} from '../services/agenda.client';
 import {ActivatedRoute} from '@angular/router';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'lg-evenement-page',
@@ -39,15 +40,19 @@ export class EvenementPage implements OnInit {
     }
   }
 
-  // verstuurBericht() {
-  //   this.aanHetVersturen = true;
-  //   this.evenementdetailClient.verstuurBericht(this.navParams.get('url'), this.reactie).pipe(
-  //       finalize(() => this.aanHetVersturen = null)
-  //     ).subscribe((evenement : Evenementdetail) => {
-  //       this.toonEvenement(evenement);
-  //       this.reactie = '';
-  //     });
-  // }
+  onChanged(value: string) {
+    this.reactie = value;
+  }
+
+  verstuurBericht() {
+    this.aanHetVersturen = true;
+    this.agendaClient.verstuurBericht(this.evenement, this.reactie).pipe(
+      finalize(() => this.aanHetVersturen = null)
+    ).subscribe((evenement: Evenement) => {
+      this.toonEvenement(evenement);
+      this.reactie = '';
+    });
+  }
 
   private toonEvenement(evenement: Evenement) {
     this.evenement = evenement;

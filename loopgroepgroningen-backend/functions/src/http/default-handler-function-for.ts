@@ -28,7 +28,7 @@ export function defaultHandlerFunctionFor<I, O>(endpoint: EndpointDefinition<I, 
 }
 
 function addIdToResult(result: any, originalRequest: Request) {
-  if (originalRequest.url) {
+  if (result && originalRequest.url) {
     result['id'] = getIdFromUrl(originalRequest.url) || undefined;
   }
 }
@@ -56,11 +56,19 @@ function post<I, O>(endpoint: EndpointDefinition<I, O>): HandlerFunction<O> {
       }
     }
 
-    const postUrl = initialForm.action ? urlFor(initialForm.action) : urlFor(endpoint.targetUrl, pathParams);
+    const postUrl =
+      endpoint.postUrl ? urlFor(endpoint.postUrl)
+        : initialForm.action ? urlFor(initialForm.action)
+        : urlFor(endpoint.targetUrl, pathParams);
+
+    console.log(postUrl);
+
     const inputMapper = endpoint.inputMapper || (x => x);
     const form = Object.assign(initialForm.inputs, inputMapper(originalRequest.body));
+    console.log(form);
 
     const serverResponse = await doPost(postUrl, form, cookieJar);
+    console.log(serverResponse);
     const result = endpoint.scraper(serverResponse);
     addIdToResult(result, originalRequest);
     return result;
@@ -74,7 +82,8 @@ async function doGet(relativeUrl: string, pathParams: string, query: any, checkI
 }
 
 async function doPost(relativeUrl: string, form: any, cookieJar: SingleUseCookieJar): Promise<string> {
-  const serverResponse = await WebRequest.post(relativeUrl, {jar: cookieJar, form, followAllRedirects: true});
+  console.log(cookieJar);
+  const serverResponse = await WebRequest.post(relativeUrl, {jar: cookieJar, form, followAllRedirects: true,});
   handleMessages(serverResponse, true);
   return serverResponse.content;
 }

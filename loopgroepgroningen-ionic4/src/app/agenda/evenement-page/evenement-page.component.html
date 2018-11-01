@@ -62,15 +62,16 @@
 
     <lg-gesprek [berichten]="evenement?.details.reacties"></lg-gesprek>
 
-    <!--<div class="dialog no-margin-right">-->
+    <div class="dialog no-margin-right">
 
-    <!--<ion-textarea #textarea [(ngModel)]="reactie"-->
-    <!--placeholder="Typ hier je reactie.">-->
-    <!--</ion-textarea>-->
+      <ion-textarea #textarea [value]="reactie" (ionChange)="onChanged($event.detail.value)"
+                    placeholder="Typ hier je reactie.">
+      </ion-textarea>
 
-    <!--<button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (tap)="verstuurBericht()">-->
-    <!--<ion-icon name="send"></ion-icon>-->
-    <!--</button>-->
+      <button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </div>
 
   </div>
 
