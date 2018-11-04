@@ -1,29 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import {AgendaClient} from '../services/agenda.client';
 import {Evenement} from '../../api';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Router} from '@angular/router';
+import {select, Store} from '@ngrx/store';
+import {AgendaState, getAgendaEvenementen} from '../store/agenda.state';
+import {takeUntil} from 'rxjs/operators';
+import {LaadAgendaEvenementen} from '../store/agenda.action';
 
 @Component({
   selector: 'lg-agenda-page',
   templateUrl: 'agenda-page.component.html',
   styleUrls: ['agenda-page.component.scss']
 })
-export class AgendaPageComponent implements OnInit {
+export class AgendaPageComponent implements OnInit, OnDestroy {
 
   evenementen: Observable<Evenement[]>;
 
+  private destroyed = new Subject<void>();
+
   // spinning = true;
 
-  constructor(private agendaClient: AgendaClient, private router: Router) {
+  constructor(private router: Router, private agendaStore: Store<AgendaState>) {
   }
 
   ngOnInit() {
-    // this.ingelogd = this.instellingenService.getInstellingen().pipe(
-    //   map((instellingen: Instellingen) => instellingen.ingelogd)
-    // );
-    this.evenementen = this.agendaClient.getAgenda();
+    this.evenementen = this.agendaStore.pipe(
+      select(getAgendaEvenementen),
+      takeUntil(this.destroyed)
+    );
+    this.agendaStore.dispatch(new LaadAgendaEvenementen());
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
   titel(evenement: Evenement) {
