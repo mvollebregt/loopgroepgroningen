@@ -3,6 +3,10 @@ import {TrainingsschemaPageComponent} from './trainingsschema-page/trainingssche
 import {SharedModule} from '../shared/shared/shared.module';
 import {TrainingsschemaRoutingModule} from './trainingsschema-routing.module';
 import {ListModule} from '../shared/list/list.module';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {TrainingsschemaEffects} from './store/trainingsschema.effect';
+import {trainingsschemaReducer} from './store/trainingsschema.reducer';
 
 @NgModule({
   declarations: [
@@ -10,6 +14,8 @@ import {ListModule} from '../shared/list/list.module';
   ],
   imports: [
     TrainingsschemaRoutingModule,
+    StoreModule.forFeature('trainingsschema', trainingsschemaReducer),
+    EffectsModule.forFeature([TrainingsschemaEffects]),
     ListModule,
     SharedModule
   ],

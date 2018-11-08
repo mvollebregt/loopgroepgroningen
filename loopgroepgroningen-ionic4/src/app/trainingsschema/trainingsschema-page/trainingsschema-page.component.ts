@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {Subject} from 'rxjs';
-import {finalize, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {Training, Trainingsschema} from '../../api';
-import {TrainingsschemaClient} from '../services/trainingsschema.client';
+import {select, Store} from '@ngrx/store';
+import {getTrainingsschema} from '../store/trainingsschema.state';
+import {LaadTrainingsschema} from '../store/trainingsschema.action';
 
 @Component({
   selector: 'lg-trainingsschema-page',
@@ -16,15 +18,17 @@ export class TrainingsschemaPageComponent implements OnInit, OnDestroy {
   groep: string;
   spinning = true;
 
-  constructor(private trainingsschemaClient: TrainingsschemaClient) {
+  constructor(private trainingsschemaStore: Store<Trainingsschema>) {
   }
 
   ngOnInit() {
-    this.trainingsschemaClient.haalTrainingsschemaOp().pipe(
-      takeUntil(this.destroy),
-      finalize(() => this.spinning = false)
-    ).subscribe(trainingsschema => this.trainingsschema = trainingsschema);
-
+    this.trainingsschemaStore.pipe(
+      select(getTrainingsschema),
+      takeUntil(this.destroy)
+    ).subscribe(trainingsschema => {
+      this.trainingsschema = trainingsschema;
+    });
+    this.trainingsschemaStore.dispatch(new LaadTrainingsschema());
     this.groep = 'C'; // TODO: uit store lezen
   }
 
