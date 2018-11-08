@@ -1,14 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {Evenement} from '../../api';
-import {AgendaClient} from '../services/agenda.client';
 import {ActivatedRoute} from '@angular/router';
+import {AgendaState, getAgendaEvenement} from '../store/agenda.state';
+import {select, Store} from '@ngrx/store';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'lg-evenement-page',
   templateUrl: 'evenement-page.component.html',
 })
-export class EvenementPage implements OnInit {
+export class EvenementPage implements OnInit, OnDestroy {
 
   evenement: Evenement;
   datumweergave: string[];
@@ -17,25 +20,35 @@ export class EvenementPage implements OnInit {
   aanHetVersturen = false;
   spinning = true;
 
+  private destroyed = new Subject<void>();
+
   constructor(
-    private agendaClient: AgendaClient,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private agendaStore: Store<AgendaState>
   ) {
   }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.agendaClient.getEvenement(id).subscribe(evenement => this.toonEvenement(evenement));
+    this.agendaStore.pipe(
+      select(getAgendaEvenement(id)),
+      takeUntil(this.destroyed)
+    ).subscribe(evenement => this.toonEvenement(evenement));
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
   toggleDeelname() {
     if (this.evenement) {
       this.aanHetAanmelden = true;
-      this.agendaClient.schrijfIn(this.evenement, !this.evenement.details.deelname)
-        .subscribe(evenement => {
-          this.aanHetAanmelden = false;
-          this.toonEvenement(evenement)
-        });
+      // this.agendaClient.schrijfIn(this.evenement, !this.evenement.details.deelname)
+      //   .subscribe(evenement => {
+      //     this.aanHetAanmelden = false;
+      //     this.toonEvenement(evenement)
+      //   });
     }
   }
 
@@ -50,8 +63,10 @@ export class EvenementPage implements OnInit {
   // }
 
   private toonEvenement(evenement: Evenement) {
-    this.evenement = evenement;
-    this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
+    if (evenement) {
+      this.evenement = evenement;
+      this.datumweergave = formatteerDatumtijd(evenement.start, evenement.einde);
+    }
   }
 }
 

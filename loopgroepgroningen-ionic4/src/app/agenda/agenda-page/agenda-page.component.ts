@@ -5,8 +5,8 @@ import {Observable, Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {AgendaState, getAgendaEvenementen} from '../store/agenda.state';
-import {takeUntil} from 'rxjs/operators';
-import {LaadAgendaEvenementen} from '../store/agenda.action';
+import {takeUntil, tap} from 'rxjs/operators';
+import {LaadAgendaEvenementdetails, LaadAgendaEvenementen} from '../store/agenda.action';
 
 @Component({
   selector: 'lg-agenda-page',
@@ -27,12 +27,14 @@ export class AgendaPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.evenementen = this.agendaStore.pipe(
       select(getAgendaEvenementen),
+      tap(console.log),
       takeUntil(this.destroyed)
     );
     this.agendaStore.dispatch(new LaadAgendaEvenementen());
   }
 
   ngOnDestroy() {
+    console.log('destroy');
     this.destroyed.next();
     this.destroyed.complete();
   }
@@ -46,6 +48,7 @@ export class AgendaPageComponent implements OnInit, OnDestroy {
   }
 
   onItemClicked(evenement: Evenement) {
+    this.agendaStore.dispatch(new LaadAgendaEvenementdetails(evenement.id));
     this.router.navigate(['agenda', evenement.id]);
   }
 

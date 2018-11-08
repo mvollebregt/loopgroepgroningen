@@ -4,7 +4,10 @@ import {Evenement} from '../../api';
 export enum AgendaActionType {
   LaadEvenementen = '[Agenda] Laad Evenementen',
   LaadEvenementenSucces = '[Agenda] Laad Evenementen succes',
-  LaadEvenementenFout = '[Agenda] Laad Evenementen fout'
+  LaadEvenementenFout = '[Agenda] Laad Evenementen fout',
+  LaadEvenementdetails = '[Agenda] Laad Evenementdetails',
+  LaadEvenementdetailsSucces = '[Agenda] Laad Evenementdetails succes',
+  LaadEvenementdetailsFout = '[Agenda] Laad Evenementdetails fout'
 }
 
 export class LaadAgendaEvenementen implements Action {
@@ -25,7 +28,31 @@ export class LaadAgendaEvenementenFout implements Action {
   }
 }
 
+export class LaadAgendaEvenementdetails implements Action {
+  readonly type = AgendaActionType.LaadEvenementdetails;
+
+  constructor(public id: string) {
+  }
+}
+
+export class LaadAgendaEvenementdetailsSucces implements Action {
+  readonly type = AgendaActionType.LaadEvenementdetailsSucces;
+
+  constructor(public id: string, public evenement: Evenement) {
+  }
+}
+
+export class LaadAgendaEvenementdetailsFout implements Action {
+  readonly type = AgendaActionType.LaadEvenementdetailsFout;
+
+  constructor(public id: string, public fout: any) {
+  }
+}
+
 export type AgendaAction =
   | LaadAgendaEvenementen
   | LaadAgendaEvenementenSucces
-  | LaadAgendaEvenementenFout;
+  | LaadAgendaEvenementenFout
+  | LaadAgendaEvenementdetails
+  | LaadAgendaEvenementdetailsSucces
+  | LaadAgendaEvenementdetailsFout
