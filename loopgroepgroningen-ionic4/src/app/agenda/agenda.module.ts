@@ -11,12 +11,14 @@ import {EffectsModule} from '@ngrx/effects';
 import {agendaReducer} from './store/agenda.reducer';
 import {AgendaEffects} from './store/agenda.effect';
 import {AgendaViewComponent} from './agenda-view/agenda-view.component';
+import {EvenementViewComponent} from './evenement-view/evenement-view.component';
 
 @NgModule({
   declarations: [
     AgendaPageComponent,
     EvenementPage,
-    AgendaViewComponent
+    AgendaViewComponent,
+    EvenementViewComponent
   ],
   imports: [
     AgendaRoutingModule,

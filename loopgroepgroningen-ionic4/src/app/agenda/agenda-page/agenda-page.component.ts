@@ -1,10 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Evenement} from '../../api';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {AgendaState, getAgendaEvenementen} from '../store/agenda.state';
-import {takeUntil} from 'rxjs/operators';
 import {LaadAgendaEvenementdetails, LaadAgendaEvenementen} from '../store/agenda.action';
 
 @Component({
@@ -12,11 +11,9 @@ import {LaadAgendaEvenementdetails, LaadAgendaEvenementen} from '../store/agenda
   templateUrl: 'agenda-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AgendaPageComponent implements OnInit, OnDestroy {
+export class AgendaPageComponent implements OnInit {
 
   evenementen: Observable<Evenement[]>;
-
-  private destroyed = new Subject<void>();
 
   // spinning = true;
 
@@ -24,17 +21,10 @@ export class AgendaPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.evenementen = this.agendaStore.pipe(
-      select(getAgendaEvenementen),
-      takeUntil(this.destroyed)
-    );
+    this.evenementen = this.agendaStore.pipe(select(getAgendaEvenementen));
     this.agendaStore.dispatch(new LaadAgendaEvenementen());
   }
 
-  ngOnDestroy() {
-    this.destroyed.next();
-    this.destroyed.complete();
-  }
 
   onItemClicked(evenement: Evenement) {
     this.agendaStore.dispatch(new LaadAgendaEvenementdetails(evenement.id));

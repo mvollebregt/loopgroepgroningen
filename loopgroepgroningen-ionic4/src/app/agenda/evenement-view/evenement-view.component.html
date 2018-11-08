@@ -1,0 +1,47 @@
+<ion-list>
+
+  <ion-list-header>
+    {{evenement?.details?.categorie}}
+  </ion-list-header>
+
+  <ion-item *ngIf="datumweergave?.length < 2; else meerdaags">
+    {{datumweergave && datumweergave[0]}}
+  </ion-item>
+
+  <ng-template #meerdaags>
+    <ion-item>
+      Start: <span item-end>{{datumweergave[0]}}</span>
+    </ion-item>
+    <ion-item>
+      Einde: <span item-end>{{datumweergave[1]}}</span>
+    </ion-item>
+  </ng-template>
+
+  <ion-item *ngIf="evenement?.details?.deelname !== null">
+    <ion-label>Ik doe mee</ion-label>
+    <ion-toggle [checked]="evenement?.details.deelname" [disabled]="aanHetAanmelden"
+                (ionChange)="toggleDeelname()"></ion-toggle>
+  </ion-item>
+
+  <ion-list-header *ngIf="evenement?.details?.omschrijving?.length">
+    Omschrijving
+  </ion-list-header>
+
+  <ion-item *ngIf="evenement?.details?.omschrijving?.length">
+    <lg-rich-content [paragrafen]="evenement?.details?.omschrijving"></lg-rich-content>
+  </ion-item>
+
+  <ion-list-header *ngIf="evenement?.details?.deelnemers?.length">
+    Deelnemers
+  </ion-list-header>
+
+  <ion-item *ngFor="let deelnemer of evenement?.details?.deelnemers">
+    {{deelnemer}}
+  </ion-item>
+
+  <ion-list-header style="border-bottom:0" *ngIf="evenement?.details?.reacties?.length">
+    Reacties
+  </ion-list-header>
+</ion-list>
+
+<lg-gesprek [berichten]="evenement?.details?.reacties"></lg-gesprek>

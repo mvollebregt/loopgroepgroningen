@@ -1,0 +1,13 @@
+<lg-sectioned-list
+  [data]="evenementen"
+  [sectieTitel]="titel"
+  (itemClicked)="onItemClicked($event)"
+>
+
+  <ng-template let-evenement>
+    <h2 slot="start">{{korteWeergave(evenement.start)}}</h2>
+    <ion-label>
+      {{evenement.naam}}
+    </ion-label>
+  </ng-template>
+</lg-sectioned-list>
