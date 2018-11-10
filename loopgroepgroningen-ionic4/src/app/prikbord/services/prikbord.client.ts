@@ -11,10 +11,11 @@ export class PrikbordClient {
   ) {
   }
 
-  // haalt berichten op: de nieuwste eerst
-  haalBerichtenOp(): Observable<Bericht[]> {
-    return this.httpService.get<Bericht[]>('prikbord');
+  getBerichten(start = 0): Observable<Bericht[]> {
+    const params = {start};
+    return this.httpService.get<Bericht[]>('prikbord', params);
   }
+
 
   verstuurBericht(berichttekst: string): Observable<Bericht[]> {
     // return this.loginService

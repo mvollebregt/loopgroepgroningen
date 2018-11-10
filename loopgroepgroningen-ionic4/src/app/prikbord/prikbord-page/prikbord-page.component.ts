@@ -1,61 +1,36 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {finalize, takeUntil} from 'rxjs/operators';
-import {PrikbordService} from '../services/prikbord.service';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 import {Bericht} from '../../api';
+import {select, Store} from '@ngrx/store';
+import {getPrikbordBerichten, PrikbordState} from '../store/prikbord.state';
+import {LaadOuderePrikbordBerichten} from '../store/prikbord.action';
 
 @Component({
     selector: 'lg-prikbord-page',
     templateUrl: './prikbord-page.component.html'
 })
-export class PrikbordPageComponent implements OnInit, OnDestroy {
+export class PrikbordPageComponent implements OnInit {
 
-  destroy = new Subject<boolean>();
-  items: Bericht[];
-  ingelogd: Observable<boolean>;
-  reactie: string;
-  aanHetVersturen = false;
-  itemsGeladen = false;
+  berichten: Observable<Bericht[]>;
 
   // @ViewChild(Content) private content: Content;
 
   constructor(
     // private instellingenService: InstellingenService,
-    private prikbordService: PrikbordService) {
+    private prikbordStore: Store<PrikbordState>) {
   }
 
   ngOnInit() {
-
-    // this.ingelogd = this.instellingenService.getInstellingen().pipe(
-    //   map((instellingen: Instellingen) => instellingen.ingelogd || instellingen.demoModus)
-    // );
-
-    this.prikbordService.getBerichten().pipe(
-      takeUntil(this.destroy)
-    ).subscribe((items: Bericht[]) => {
-      this.items = items;
-      setTimeout(() => {
-        // try {
-        //   this.content.getScrollElement().scrollToBottom(this.itemsGeladen ? 300 : 0);
-        // } catch {
-        //   // om onduidelijke redenen geeft de regel hierboven soms een fout. dat los ik dan maar zo op.
-        // }
-        this.itemsGeladen = true;
-      });
-    });
-    this.prikbordService.synchroniseer();
+    this.berichten = this.prikbordStore.pipe(select(getPrikbordBerichten));
+    this.prikbordStore.dispatch(new LaadOuderePrikbordBerichten()); // TODO: alleen dispatchen als er nog niets is (of bij infinite scroll)
   }
 
-  ngOnDestroy() {
-    this.destroy.next(true);
-  }
-
-  verstuurBericht() {
-    this.aanHetVersturen = true;
-    this.prikbordService.verstuurBericht(this.reactie).pipe(
-      finalize(() => this.aanHetVersturen = null)
-    ).subscribe(() => {
-      this.reactie = '';
-    });
-  }
+  // verstuurBericht() {
+  //   this.aanHetVersturen = true;
+  //   this.prikbordService.verstuurBericht(this.reactie).pipe(
+  //     finalize(() => this.aanHetVersturen = null)
+  //   ).subscribe(() => {
+  //     this.reactie = '';
+  //   });
+  // }
 }

@@ -8,30 +8,30 @@
     </ion-title>
   </ion-toolbar>
 
-  <div *ngIf="items && !items.length" class="info-message">
-    Het prikbord kon niet worden geladen.
-  </div>
+  <!--<div *ngIf="" class="info-message">-->
+  <!--Het prikbord kon niet worden geladen.-->
+  <!--</div>-->
 </ion-header>
 
 <ion-content class="main-content-wrapper">
 
   <div class="main-content">
 
-    <lg-gesprek [berichten]="items"></lg-gesprek>
+    <lg-gesprek [berichten]="berichten | async"></lg-gesprek>
 
   </div>
 
-  <div *ngIf="ingelogd | async" class="dialog no-margin-right">
+  <!--<div *ngIf="ingelogd | async" class="dialog no-margin-right">-->
 
-    <!--<ion-textarea-->
-    <!--placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord."-->
-    <!--[(ngModel)]="reactie">-->
-    <!--</ion-textarea>-->
+  <!--&lt;!&ndash;<ion-textarea&ndash;&gt;-->
+  <!--&lt;!&ndash;placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord."&ndash;&gt;-->
+  <!--&lt;!&ndash;[(ngModel)]="reactie">&ndash;&gt;-->
+  <!--&lt;!&ndash;</ion-textarea>&ndash;&gt;-->
 
-    <button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">
-      <ion-icon name="send"></ion-icon>
-    </button>
+  <!--<button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">-->
+  <!--<ion-icon name="send"></ion-icon>-->
+  <!--</button>-->
 
-  </div>
+  <!--</div>-->
 
 </ion-content>
