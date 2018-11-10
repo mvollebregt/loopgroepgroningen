@@ -1,6 +1,7 @@
 import {AgendaAction, AgendaActionType} from './agenda.action';
 import {AgendaState, EvenementState} from './agenda.state';
 import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {Evenement} from '../../api';
 
 const initialAgendaState: AgendaState = {
   laadstatus: AanroepStatus.succes,
@@ -26,6 +27,18 @@ export function agendaReducer(
     return evenementen.set(id, evenement);
   }
 
+  function voegSamenMetBestaande(evenement: Evenement): [string, EvenementState] {
+    const bestaande = state.evenementStates && state.evenementStates.get(evenement.id);
+    return [evenement.id, {
+      ...initialEvenementState,
+      evenement: {
+        ...evenement,
+        naam: evenement.naam.endsWith('...') && bestaande ? bestaande.evenement.naam : evenement.naam,
+        details: bestaande ? bestaande.evenement.details : null
+      }
+    }];
+  }
+
   switch (action.type) {
     case AgendaActionType.LaadEvenementen:
       return {
@@ -37,11 +50,7 @@ export function agendaReducer(
       return {
         ...state,
         laadstatus: AanroepStatus.succes,
-        evenementStates: new Map(
-          action.evenementen.map(evenement => [evenement.id, {
-            ...initialEvenementState,
-            evenement
-          }] as [string, EvenementState]))
+        evenementStates: new Map(action.evenementen.map(voegSamenMetBestaande))
       };
 
     case AgendaActionType.LaadEvenementenFout:
