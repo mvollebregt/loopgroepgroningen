@@ -28,4 +28,4 @@ export class LaadTrainingsschemaFout implements Action {
 export type TrainingsschemaAction =
   | LaadTrainingsschema
   | LaadTrainingsschemaSucces
-  | LaadTrainingsschemaFout
+  | LaadTrainingsschemaFout;

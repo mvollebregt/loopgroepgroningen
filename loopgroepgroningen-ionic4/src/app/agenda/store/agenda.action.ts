@@ -55,4 +55,4 @@ export type AgendaAction =
   | LaadAgendaEvenementenFout
   | LaadAgendaEvenementdetails
   | LaadAgendaEvenementdetailsSucces
-  | LaadAgendaEvenementdetailsFout
+  | LaadAgendaEvenementdetailsFout;

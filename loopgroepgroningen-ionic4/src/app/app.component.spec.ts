@@ -59,7 +59,9 @@ describe('AppComponent', () => {
     ]);
     expect(menuItemsInfo).toEqual([
       ['Nieuws', '/nieuws'],
-      ['Prikbord', '/prikbord']
+      ['Prikbord', '/prikbord'],
+      ['Agenda', '/agenda'],
+      ['Trainingsschema', '/trainingsschema']
     ]);
   });
 });

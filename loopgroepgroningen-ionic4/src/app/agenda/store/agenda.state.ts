@@ -4,14 +4,14 @@ import {Evenement} from '../../api';
 
 export interface AgendaState {
   laadstatus: AanroepStatus;
-  evenementStates: Map<string, EvenementState>
+  evenementStates: Map<string, EvenementState>;
 }
 
 export interface EvenementState {
 
-  laadstatus: AanroepStatus,
+  laadstatus: AanroepStatus;
   evenement?: Evenement;
-  teVerzendenBericht: string
+  teVerzendenBericht: string;
   inschrijvingVerzendstatus: AanroepStatus;
   berichtVerzendstatus: AanroepStatus;
 
@@ -29,5 +29,5 @@ export const getAgendaEvenementen = agendaSelector(state =>
   state.evenementStates && Array.from(state.evenementStates.values()).map(evenementState => evenementState.evenement));
 
 export function getAgendaEvenement(id: string) {
-  return agendaSelector(state => state.evenementStates.get(id).evenement)
+  return agendaSelector(state => state.evenementStates.get(id).evenement);
 }

@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {HttpService} from '../../shared/backend/http.service';
 import {Trainingsschema} from '../../api';
 

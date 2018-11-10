@@ -36,7 +36,7 @@ export function nieuwsberichtenReducer(
         nieuwsberichten: [...state.nieuwsberichten, ...action.payload],
         loadingMore: false,
         reachedEndOfList: action.payload.length === 0
-      }
+      };
     }
 
     case LOAD_NIEUWSBERICHTEN_FAIL: {

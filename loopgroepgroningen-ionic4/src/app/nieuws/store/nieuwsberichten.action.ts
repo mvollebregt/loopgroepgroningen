@@ -2,7 +2,7 @@ import {Action} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
 
 // load nieuwsberichten
-export const LOAD_MORE_NIEUWSBERICHTEN = '[Nieuwsberichten] Load More Nieuwsberichten'
+export const LOAD_MORE_NIEUWSBERICHTEN = '[Nieuwsberichten] Load More Nieuwsberichten';
 export const LOAD_NIEUWSBERICHTEN_FAIL = '[Nieuwsberichten] Load Nieuwsberichten Failed';
 export const LOAD_MORE_NIEUWSBERICHTEN_SUCCESS = '[Nieuwsberichten] Load More Nieuwsberichten Success';
 export const LOAD_NIEUWSBERICHTEN_SUCCESS = '[Nieuwsberichten] Load Nieuwsberichten Success';

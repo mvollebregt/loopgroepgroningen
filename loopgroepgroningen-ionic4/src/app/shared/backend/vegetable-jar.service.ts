@@ -27,7 +27,7 @@ export class VegetableJarService implements HttpInterceptor {
           setVegetableHeader.split(',').forEach(vegetable => {
             const [key, value] = vegetable.split('=');
             this.vegetables[key.trim()] = value.trim();
-          })
+          });
         }
       }
     }));

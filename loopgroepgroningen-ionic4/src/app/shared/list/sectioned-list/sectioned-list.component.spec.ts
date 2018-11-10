@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {By} from '@angular/platform-browser';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {NO_ERRORS_SCHEMA, SimpleChange} from '@angular/core';
 import {SectionedListComponent} from './sectioned-list.component';
 import {OpknipperService} from '../opknipper.service';
 import createSpyObj = jasmine.createSpyObj;
@@ -39,8 +39,9 @@ describe('SectionedListComponent', () => {
 
   it('moet het juiste aantal secties tonen', () => {
     // als
-    opknipperService.maakSecties.and.returnValue([{titel: 'sectie 1', inhoud: []}, {titel: 'sectie 2', inhoud: []}]);
-    component.ngOnChanges();
+    const data = [{titel: 'sectie 1', inhoud: []}, {titel: 'sectie 2', inhoud: []}];
+    opknipperService.maakSecties.and.returnValue(data);
+    component.ngOnChanges({data: new SimpleChange(null, data, false)});
     fixture.detectChanges();
     // dan
     const gerenderdeSectieTitels = fixture.debugElement.queryAll(By.css('ion-list-header'));

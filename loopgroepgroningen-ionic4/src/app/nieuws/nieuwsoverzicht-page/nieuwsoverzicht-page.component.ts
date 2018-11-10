@@ -44,7 +44,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
       filter(([nieuwsberichten, reachedEndOfList]) => nieuwsberichten.length < 15 && !reachedEndOfList)
     ).subscribe(() =>
       setTimeout(() => this.loadMore())
-    )
+    );
   }
 
   onPull(t: string) {
