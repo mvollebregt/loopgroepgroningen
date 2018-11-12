@@ -6,7 +6,7 @@ import {select, Store} from '@ngrx/store';
 import {getTrainingsschema} from '../store/trainingsschema.state';
 import {LaadTrainingsschema} from '../store/trainingsschema.action';
 import {CoreState, getGroep} from '../../core/store/core.state';
-import {ZetSettingsGroep} from '../../core/store/settings/settings.action';
+import {ZetInstellingenGroep} from '../../core/store/instellingen/instellingen.action';
 
 @Component({
   selector: 'lg-trainingsschema-page',
@@ -40,6 +40,6 @@ export class TrainingsschemaPageComponent implements OnInit {
 
   kiesGroep(keuze: 'A' | 'B' | 'C') {
     // Zonder de timeout van 50ms update android eerst het trainingsschema en volgt daarna pas de klik-animatie
-    setTimeout(() => this.coreStore.dispatch(new ZetSettingsGroep(keuze)), 50);
+    setTimeout(() => this.coreStore.dispatch(new ZetInstellingenGroep(keuze)), 50);
   }
 }

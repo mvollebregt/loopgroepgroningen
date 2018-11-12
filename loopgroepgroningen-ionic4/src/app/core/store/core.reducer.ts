@@ -1,12 +1,13 @@
-import {settingsReducer} from './settings/settings.reducer';
+import {instellingenReducer} from './instellingen/instellingen.reducer';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {CoreState} from './core.state';
 
 export const coreReducers = {
-  settings: settingsReducer
+  instellingen: instellingenReducer
 };
 
 const getCoreState = createFeatureSelector<CoreState>('core');
 
-const getSettingsState = createSelector(getCoreState, state => state.settings);
-export const getNieuwsberichten = createSelector(getSettingsState, state => state.groep);
+const getInstellingenState = createSelector(getCoreState, state => state.instellingen);
+export const getNieuwsberichten = createSelector(getInstellingenState, state => state.groep);
+

@@ -1,15 +1,15 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {SettingsState} from './settings/settings.state';
+import {InstellingenState} from './instellingen/instellingen.state';
 
 export interface CoreState {
-  settings: SettingsState;
+  instellingen: InstellingenState;
 }
 
 const getCoreState = createFeatureSelector('core');
-const getSettingsState = createSelector(getCoreState, (state: CoreState) => state.settings);
+const getInstellingenState = createSelector(getCoreState, (state: CoreState) => state.instellingen);
 
-function settingsSelector<T>(projector: (state: SettingsState) => T) {
-  return createSelector(getSettingsState, projector);
+function instellingenSelector<T>(projector: (state: InstellingenState) => T) {
+  return createSelector(getInstellingenState, projector);
 }
 
-export const getGroep = settingsSelector(state => state.groep);
+export const getGroep = instellingenSelector(state => state.groep);
