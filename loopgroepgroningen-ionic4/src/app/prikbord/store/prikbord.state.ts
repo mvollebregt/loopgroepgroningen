@@ -10,7 +10,7 @@ export interface PrikbordState {
   verzendstatus: AanroepStatus;
 }
 
-const getPrikbordState = createFeatureSelector<PrikbordState>('prikbord');
+export const getPrikbordState = createFeatureSelector<PrikbordState>('prikbord');
 
 function prikbordSelector<T>(projector: (state: PrikbordState) => T) {
   return createSelector(getPrikbordState, projector);

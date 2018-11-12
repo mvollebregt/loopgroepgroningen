@@ -17,14 +17,14 @@ export class InstellingenEffects {
   constructor(
     private actions: Actions,
     private store: Store<CoreState>,
-    private instellingenSyncService: InstellingenOpslagService
+    private instellingenOpslagService: InstellingenOpslagService
   ) {
   }
 
   @Effect()
   herstelOpgeslagenState = this.actions.pipe(
     ofType(InstellingenActionType.HerstelOpgeslagenState),
-    exhaustMap(() => this.instellingenSyncService.getOpgeslagenInstellingen()),
+    exhaustMap(() => this.instellingenOpslagService.getOpgeslagenInstellingen()),
     map(instellingen => instellingen
       ? new HerstelInstellingenOpgeslagenStateSucces(instellingen)
       : new HerstelInstellingenOpgeslagenStateFout('Nog niets opgeslagen')),
@@ -35,7 +35,7 @@ export class InstellingenEffects {
   bewaarOpgeslagenState = this.actions.pipe(
     ofType(InstellingenActionType.ZetGroep),
     withLatestFrom(this.store.pipe(select(getInstellingenState))),
-    map(([_, state]) => this.instellingenSyncService.setOpgeslagenInstellingen(state))
+    map(([_, state]) => this.instellingenOpslagService.setOpgeslagenInstellingen(state))
   );
 
 }

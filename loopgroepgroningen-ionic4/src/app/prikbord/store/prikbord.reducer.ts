@@ -16,10 +16,29 @@ export function prikbordReducer(
 ): PrikbordState {
 
   switch (action.type) {
+    case PrikbordActionType.HerstelOpgeslagenStateSucces:
+      return {...state, ...action.prikbordState};
+    case PrikbordActionType.CheckNieuweBerichten:
     case PrikbordActionType.LaadOudereBerichten:
       return {
         ...state,
         laadstatus: AanroepStatus.bezig
+      };
+    case PrikbordActionType.CheckNieuweBerichtenSucces:
+      let berichten;
+      if (!state.berichten) {
+        berichten = action.berichten.reverse();
+      } else {
+        const checkDatum = state.berichten[state.berichten.length - 1].tijdstip;
+        const alBestaandeIndex = action.berichten.findIndex(bericht => bericht.tijdstip <= checkDatum);
+        // TODO: betere check op nieuwe berichten? (gaat nu mis bij meerdere berichten in één minuut!)
+        // TODO: als er meer dan 10 nieuw zijn dan moet er nog meer gecheckt worden!
+        berichten = [...state.berichten, ...action.berichten.slice(0, alBestaandeIndex).reverse()];
+      }
+      return {
+        ...state,
+        berichten,
+        laadstatus: AanroepStatus.succes
       };
     case PrikbordActionType.LaadOudereBerichtenSucces:
       return {
@@ -29,6 +48,7 @@ export function prikbordReducer(
         laadstatus: AanroepStatus.succes,
         meerBeschikbaar: action.berichten.length > 0
       };
+    case PrikbordActionType.CheckNieuweBerichtenFout:
     case PrikbordActionType.LaadOudereBerichtenFout:
       return {
         ...state,

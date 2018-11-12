@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {Bericht} from '../../api';
 import {select, Store} from '@ngrx/store';
 import {getPrikbordBerichten, PrikbordState} from '../store/prikbord.state';
-import {LaadOuderePrikbordBerichten} from '../store/prikbord.action';
+import {CheckNieuwePrikbordBerichten} from '../store/prikbord.action';
 
 @Component({
     selector: 'lg-prikbord-page',
@@ -22,7 +22,7 @@ export class PrikbordPageComponent implements OnInit {
 
   ngOnInit() {
     this.berichten = this.prikbordStore.pipe(select(getPrikbordBerichten));
-    this.prikbordStore.dispatch(new LaadOuderePrikbordBerichten()); // TODO: alleen dispatchen als er nog niets is (of bij infinite scroll)
+    this.prikbordStore.dispatch(new CheckNieuwePrikbordBerichten());
   }
 
   // verstuurBericht() {

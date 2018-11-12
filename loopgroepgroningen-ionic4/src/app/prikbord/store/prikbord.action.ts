@@ -1,7 +1,14 @@
 import {Action} from '@ngrx/store';
 import {Bericht} from '../../api';
+import {PrikbordState} from './prikbord.state';
 
 export enum PrikbordActionType {
+  HerstelOpgeslagenState = '[Prikbord] Herstel opgeslagen state',
+  HerstelOpgeslagenStateSucces = '[Prikbord] Herstel opgeslagen state succes',
+  HerstelOpgeslagenStateFout = '[Prikbord] Herstel opgeslagen state fout',
+  CheckNieuweBerichten = '[Prikbord] Check nieuwe berichten',
+  CheckNieuweBerichtenSucces = '[Prikbord] Check nieuwe berichten succes',
+  CheckNieuweBerichtenFout = '[Prikbord] Check nieuwe berichten fout',
   LaadOudereBerichten = '[Prikbord] Laad oudere berichten',
   LaadOudereBerichtenSucces = '[Prikbord] Laad oudere berichten succes',
   LaadOudereBerichtenFout = '[Prikbord] Laad oudere berichten fout',
@@ -10,6 +17,43 @@ export enum PrikbordActionType {
   VerstuurBerichtSucces = '[Prikbord] Verstuur bericht succes',
   VerstuurBerichtFout = '[Prikbord] Verstuur bericht fout'
 }
+
+export class HerstelPrikbordOpgeslagenState implements Action {
+  readonly type = PrikbordActionType.HerstelOpgeslagenState;
+}
+
+export class HerstelPrikbordOpgeslagenStateSucces implements Action {
+  readonly type = PrikbordActionType.HerstelOpgeslagenStateSucces;
+
+  constructor(public prikbordState: PrikbordState) {
+  }
+}
+
+export class HerstelPrikbordOpgeslagenStateFout implements Action {
+  readonly type = PrikbordActionType.HerstelOpgeslagenStateFout;
+
+  constructor(public fout: any) {
+  }
+}
+
+export class CheckNieuwePrikbordBerichten implements Action {
+  readonly type = PrikbordActionType.CheckNieuweBerichten;
+}
+
+export class CheckNieuwePrikbordBerichtenSucces implements Action {
+  readonly type = PrikbordActionType.CheckNieuweBerichtenSucces;
+
+  constructor(public berichten: Bericht[]) {
+  }
+}
+
+export class CheckNieuwePrikbordBerichtenFout implements Action {
+  readonly type = PrikbordActionType.CheckNieuweBerichtenFout;
+
+  constructor(public fout: any) {
+  }
+}
+
 
 export class LaadOuderePrikbordBerichten implements Action {
   readonly type = PrikbordActionType.LaadOudereBerichten;
@@ -53,6 +97,12 @@ export class VerstuurPrikbordBerichtFout implements Action {
 }
 
 export type PrikbordAction =
+  | HerstelPrikbordOpgeslagenState
+  | HerstelPrikbordOpgeslagenStateSucces
+  | HerstelPrikbordOpgeslagenStateFout
+  | CheckNieuwePrikbordBerichten
+  | CheckNieuwePrikbordBerichtenSucces
+  | CheckNieuwePrikbordBerichtenFout
   | LaadOuderePrikbordBerichten
   | LaadOuderePrikbordBerichtenSucces
   | LaadOuderePrikbordBerichtenFout

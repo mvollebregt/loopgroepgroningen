@@ -13,7 +13,7 @@ export function instellingenReducer(
   switch (action.type) {
 
     case InstellingenActionType.HerstelOpgeslagenStateSucces:
-      return action.instellingenState;
+      return {...state, ...action.instellingenState};
 
     case InstellingenActionType.ZetGroep:
       return {
