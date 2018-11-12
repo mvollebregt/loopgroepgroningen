@@ -24,7 +24,8 @@ export function prikbordReducer(
     case PrikbordActionType.LaadOudereBerichtenSucces:
       return {
         ...state,
-        berichten: [...action.berichten.reverse(), ...state.berichten || []], // TODO: checken op dubbel (als nieuwere berichten zijn binnengekomen)
+        berichten: [...action.berichten.reverse(), ...state.berichten || []],
+        // TODO: checken op dubbel (als nieuwere berichten zijn binnengekomen)
         laadstatus: AanroepStatus.succes,
         meerBeschikbaar: action.berichten.length > 0
       };
@@ -37,7 +38,7 @@ export function prikbordReducer(
       return {
         ...state,
         teVerzendenBericht: action.bericht
-      }
+      };
   }
 
   return state;

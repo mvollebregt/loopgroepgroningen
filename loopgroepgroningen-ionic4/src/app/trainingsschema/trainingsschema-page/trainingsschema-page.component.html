@@ -10,16 +10,18 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-segment>
-      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']" [value]="keuze" (click)="kiesGroep(keuze)">
+    <ion-segment [value]="groep | async">
+      <ion-segment-button *ngFor="let keuze of ['A', 'B', 'C']"
+                          [value]="keuze"
+                          (click)="kiesGroep(keuze)">
         {{ keuze }}
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
-  <div *ngIf="trainingsschema && groep && !trainingsschema[groep].length" class="info-message">
-    Er staan geen trainingen op het schema.
-  </div>
+  <!--<div *ngIf="trainingsschema && groep && !trainingsschema[groep].length" class="info-message">-->
+  <!--Er staan geen trainingen op het schema.-->
+  <!--</div>-->
 
 </ion-header>
 
@@ -27,7 +29,7 @@
 
 <ion-content>
 
-  <lg-sectioned-list *ngIf="trainingsschema" [secties]="trainingsschema[groep]" [getId]="getId">
+  <lg-sectioned-list *ngIf="trainingsschema | async as schema" [secties]="schema[groep | async]" [getId]="getId">
     <ng-template let-training>
       <ion-icon slot="start"></ion-icon>
       <ion-label>

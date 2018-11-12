@@ -5,7 +5,7 @@ import {createFeatureSelector, createSelector} from '@ngrx/store';
 export interface PrikbordState {
   laadstatus: AanroepStatus;
   berichten: Bericht[];
-  meerBeschikbaar: boolean,
+  meerBeschikbaar: boolean;
   teVerzendenBericht: string;
   verzendstatus: AanroepStatus;
 }

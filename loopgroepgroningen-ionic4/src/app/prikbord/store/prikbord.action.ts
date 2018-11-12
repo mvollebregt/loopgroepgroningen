@@ -59,4 +59,4 @@ export type PrikbordAction =
   | TypPrikbordBericht
   | VerstuurPrikbordBericht
   | VerstuurPrikbordBerichtSucces
-  | VerstuurPrikbordBerichtFout
+  | VerstuurPrikbordBerichtFout;
