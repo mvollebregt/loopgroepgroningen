@@ -6,7 +6,7 @@ export interface CoreState {
 }
 
 const getCoreState = createFeatureSelector('core');
-const getInstellingenState = createSelector(getCoreState, (state: CoreState) => state.instellingen);
+export const getInstellingenState = createSelector(getCoreState, (state: CoreState) => state.instellingen);
 
 function instellingenSelector<T>(projector: (state: InstellingenState) => T) {
   return createSelector(getInstellingenState, projector);

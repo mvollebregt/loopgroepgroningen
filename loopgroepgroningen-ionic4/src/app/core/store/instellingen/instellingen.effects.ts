@@ -1,0 +1,41 @@
+import {Injectable} from '@angular/core';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {catchError, exhaustMap, map, withLatestFrom} from 'rxjs/operators';
+import {
+  HerstelInstellingenOpgeslagenStateFout,
+  HerstelInstellingenOpgeslagenStateSucces,
+  InstellingenActionType
+} from './instellingen.action';
+import {InstellingenOpslagService} from '../../services/instellingen-opslag.service';
+import {of} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {CoreState, getInstellingenState} from '../core.state';
+
+@Injectable()
+export class InstellingenEffects {
+
+  constructor(
+    private actions: Actions,
+    private store: Store<CoreState>,
+    private instellingenSyncService: InstellingenOpslagService
+  ) {
+  }
+
+  @Effect()
+  herstelOpgeslagenState = this.actions.pipe(
+    ofType(InstellingenActionType.HerstelOpgeslagenState),
+    exhaustMap(() => this.instellingenSyncService.getOpgeslagenInstellingen()),
+    map(instellingen => instellingen
+      ? new HerstelInstellingenOpgeslagenStateSucces(instellingen)
+      : new HerstelInstellingenOpgeslagenStateFout('Nog niets opgeslagen')),
+    catchError(fout => of(new HerstelInstellingenOpgeslagenStateFout(fout)))
+  );
+
+  @Effect({dispatch: false})
+  bewaarOpgeslagenState = this.actions.pipe(
+    ofType(InstellingenActionType.ZetGroep),
+    withLatestFrom(this.store.pipe(select(getInstellingenState))),
+    map(([_, state]) => this.instellingenSyncService.setOpgeslagenInstellingen(state))
+  );
+
+}
