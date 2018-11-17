@@ -16,14 +16,18 @@ export function prikbordReducer(
 ): PrikbordState {
 
   switch (action.type) {
-    case PrikbordActionType.HerstelOpgeslagenStateSucces:
-      return {...state, ...action.prikbordState};
+
+    case PrikbordActionType.HerstelOpgeslagenState:
     case PrikbordActionType.CheckNieuweBerichten:
     case PrikbordActionType.LaadOudereBerichten:
       return {
         ...state,
         laadstatus: AanroepStatus.bezig
       };
+
+    case PrikbordActionType.HerstelOpgeslagenStateSucces:
+      return {...state, ...action.prikbordState, laadstatus: AanroepStatus.succes};
+
     case PrikbordActionType.CheckNieuweBerichtenSucces:
       let berichten;
       if (!state.berichten) {
@@ -40,6 +44,7 @@ export function prikbordReducer(
         berichten,
         laadstatus: AanroepStatus.succes
       };
+
     case PrikbordActionType.LaadOudereBerichtenSucces:
       return {
         ...state,
@@ -48,17 +53,21 @@ export function prikbordReducer(
         laadstatus: AanroepStatus.succes,
         meerBeschikbaar: action.berichten.length > 0
       };
+
+    case PrikbordActionType.TypBericht:
+      return {
+        ...state,
+        teVerzendenBericht: action.bericht
+      };
+
+    case PrikbordActionType.HerstelOpgeslagenStateFout:
     case PrikbordActionType.CheckNieuweBerichtenFout:
     case PrikbordActionType.LaadOudereBerichtenFout:
       return {
         ...state,
         laadstatus: AanroepStatus.fout(action.fout)
       };
-    case PrikbordActionType.TypBericht:
-      return {
-        ...state,
-        teVerzendenBericht: action.bericht
-      };
+
   }
 
   return state;

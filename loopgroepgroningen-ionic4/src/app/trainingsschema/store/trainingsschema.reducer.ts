@@ -13,11 +13,13 @@ export function trainingsschemaReducer(
 ): TrainingsschemaState {
 
   switch (action.type) {
+
+    case TrainingsschemaActionType.HerstelOpgeslagenState:
     case TrainingsschemaActionType.LaadTrainingsschema:
-      return {
-        ...state,
-        laadstatus: AanroepStatus.bezig
-      };
+      return {...state, laadstatus: AanroepStatus.bezig};
+
+    case TrainingsschemaActionType.HerstelOpgeslagenStateSucces:
+      return {...state, ...action.trainingsschemaState, laadstatus: AanroepStatus.succes};
 
     case TrainingsschemaActionType.LaadTrainingsschemaSucces:
       return {
@@ -26,11 +28,9 @@ export function trainingsschemaReducer(
         trainingsschema: action.trainingsschema
       };
 
+    case TrainingsschemaActionType.HerstelOpgeslagenStateFout:
     case TrainingsschemaActionType.LaadTrainingsschemaFout:
-      return {
-        ...state,
-        laadstatus: AanroepStatus.fout(action.fout)
-      };
+      return {...state, laadstatus: AanroepStatus.fout(action.fout)};
   }
 
   return state;

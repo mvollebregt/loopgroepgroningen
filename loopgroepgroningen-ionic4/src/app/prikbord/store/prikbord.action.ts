@@ -54,7 +54,6 @@ export class CheckNieuwePrikbordBerichtenFout implements Action {
   }
 }
 
-
 export class LaadOuderePrikbordBerichten implements Action {
   readonly type = PrikbordActionType.LaadOudereBerichten;
 }
