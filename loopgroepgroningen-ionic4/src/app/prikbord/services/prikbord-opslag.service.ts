@@ -14,7 +14,7 @@ export class PrikbordOpslagService {
   constructor(private storage: Storage) {
   }
 
-  getOpgeslagenPrikbord(): Observable<PrikbordState> {
+  getOpgeslagenPrikbord(): Observable<Partial<PrikbordState>> {
     return from(this.storage.get(PrikbordOpslagService.key)).pipe(
       filter(prikbord => !Array.isArray(prikbord))
     );

@@ -1,4 +1,4 @@
-import {StoreModule} from '@ngrx/store';
+import {Store, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {NieuwsberichtenLijstComponent} from './nieuwsberichten-lijst/nieuwsberichten-lijst.component';
 import {NgModule} from '@angular/core';
@@ -12,6 +12,8 @@ import {ListModule} from '../shared/list/list.module';
 import {NieuwsberichtPageComponent} from './nieuwsbericht-page/nieuwsbericht-page.component';
 import {nieuwsReducer} from './store/nieuws.reducer';
 import {NieuwsEffects} from './store/nieuws.effects';
+import {NieuwsState} from './store/nieuws.state';
+import {HerstelNieuwsOpgeslagenState} from './store/nieuws.action';
 
 @NgModule({
   declarations: [
@@ -30,4 +32,10 @@ import {NieuwsEffects} from './store/nieuws.effects';
     SharedModule
   ]
 })
-export class NieuwsModule {}
+export class NieuwsModule {
+
+  constructor(store: Store<NieuwsState>) {
+    store.dispatch(new HerstelNieuwsOpgeslagenState());
+  }
+
+}

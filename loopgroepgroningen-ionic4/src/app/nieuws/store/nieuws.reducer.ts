@@ -13,12 +13,17 @@ export function nieuwsReducer(
   action: NieuwsAction
 ): NieuwsState {
   switch (action.type) {
+
+    case NieuwsActionType.HerstelOpgeslagenState:
     case NieuwsActionType.LaadOudereBerichten: {
       return {
         ...state,
         laadstatus: AanroepStatus.bezig
       };
     }
+
+    case NieuwsActionType.HerstelOpgeslagenStateSucces:
+      return {...state, ...action.nieuwsState, laadstatus: AanroepStatus.succes};
 
     case NieuwsActionType.LaadOudereBerichtenSucces: {
       return {
@@ -29,7 +34,8 @@ export function nieuwsReducer(
       };
     }
 
-    case NieuwsActionType.LaadOudereBerichtenFout: {
+    case NieuwsActionType.LaadOudereBerichtenFout:
+    case NieuwsActionType.HerstelOpgeslagenStateFout: {
       return {
         ...state,
         laadstatus: AanroepStatus.fout(action.fout)
@@ -38,5 +44,3 @@ export function nieuwsReducer(
   }
   return state;
 }
-
-

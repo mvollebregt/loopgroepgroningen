@@ -25,7 +25,7 @@ export class HerstelPrikbordOpgeslagenState implements Action {
 export class HerstelPrikbordOpgeslagenStateSucces implements Action {
   readonly type = PrikbordActionType.HerstelOpgeslagenStateSucces;
 
-  constructor(public prikbordState: PrikbordState) {
+  constructor(public prikbordState: Partial<PrikbordState>) {
   }
 }
 

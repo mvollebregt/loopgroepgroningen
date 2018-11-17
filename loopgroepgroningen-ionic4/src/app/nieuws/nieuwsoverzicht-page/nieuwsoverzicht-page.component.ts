@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {combineLatest, Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
-import {first, map, takeWhile} from 'rxjs/operators';
+import {exhaustMap, first, map, takeWhile} from 'rxjs/operators';
 import {InfiniteScroll} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {LaadOudereNieuwsBerichten} from '../store/nieuws.action';
@@ -18,7 +18,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
 
   nieuwsberichten: Observable<Nieuwsbericht[]>;
   meerBeschikbaar: Observable<boolean>;
-  spinning: Observable<boolean>;
+  bezig: Observable<boolean>;
   fout: Observable<boolean>;
 
   constructor(
@@ -29,14 +29,16 @@ export class NieuwsoverzichtPageComponent implements OnInit {
   ngOnInit() {
     this.nieuwsberichten = this.store.pipe(select(getNieuwsberichten));
     this.meerBeschikbaar = this.store.pipe(select(getMeerNieuwsBeschikbaar));
-    this.fout = this.store.pipe(
-      select(getNieuwsLaadStatus),
-      map(status => !!status.fouten && status.fouten.length > 0));
+    const laadstatus = this.store.pipe(select(getNieuwsLaadStatus));
+    this.bezig = laadstatus.pipe(map(status => status.bezig));
+    this.fout = laadstatus.pipe(map(status => !!status.fouten && status.fouten.length > 0));
     this.laadInitieleInhoud();
   }
 
   private laadInitieleInhoud() {
-    combineLatest(this.nieuwsberichten, this.meerBeschikbaar).pipe(
+    this.bezig.pipe(
+      first(bezig => !bezig),
+      exhaustMap(() => combineLatest(this.nieuwsberichten, this.meerBeschikbaar)),
       takeWhile(([nieuwsberichten, meerBeschikbaar]) => !nieuwsberichten || (nieuwsberichten.length < 15 && meerBeschikbaar))
     ).subscribe(() =>
       setTimeout(() => this.laadOudereNieuwsberichten())

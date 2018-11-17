@@ -8,7 +8,7 @@ export interface NieuwsState {
   meerBeschikbaar: boolean;
 }
 
-const getNieuwsState = createFeatureSelector<NieuwsState>('nieuws');
+export const getNieuwsState = createFeatureSelector<NieuwsState>('nieuws');
 
 function nieuwsSelector<T>(projector: (state: NieuwsState) => T) {
   return createSelector(getNieuwsState, projector);
