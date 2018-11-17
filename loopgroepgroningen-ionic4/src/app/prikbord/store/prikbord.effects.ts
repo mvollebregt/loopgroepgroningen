@@ -57,7 +57,7 @@ export class PrikbordEffects {
   );
 
   @Effect()
-  LaadOudereBerichten = this.actions.pipe(
+  laadOudereBerichten = this.actions.pipe(
     ofType(PrikbordActionType.LaadOudereBerichten),
     withLatestFrom(this.store.pipe(select(getPrikbordBerichten))),
     exhaustMap(([_, berichten]) => this.prikbordClient.getBerichten(berichten && berichten.length || undefined)),

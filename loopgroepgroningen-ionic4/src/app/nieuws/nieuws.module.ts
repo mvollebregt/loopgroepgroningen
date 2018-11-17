@@ -1,7 +1,5 @@
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {nieuwsReducers} from './store/nieuws.reducers';
-import {NieuwsberichtenEffects} from './store/nieuwsberichten.effect';
 import {NieuwsberichtenLijstComponent} from './nieuwsberichten-lijst/nieuwsberichten-lijst.component';
 import {NgModule} from '@angular/core';
 import {IonicModule} from '@ionic/angular';
@@ -12,6 +10,8 @@ import {RichContentModule} from '../shared/rich-content/rich-content.module';
 import {NieuwsRoutingModule} from './nieuws-routing.module';
 import {ListModule} from '../shared/list/list.module';
 import {NieuwsberichtPageComponent} from './nieuwsbericht-page/nieuwsbericht-page.component';
+import {nieuwsReducer} from './store/nieuws.reducer';
+import {NieuwsEffects} from './store/nieuws.effects';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,8 @@ import {NieuwsberichtPageComponent} from './nieuwsbericht-page/nieuwsbericht-pag
   imports: [
     ListModule,
     NieuwsRoutingModule,
-    StoreModule.forFeature('nieuws', nieuwsReducers),
-    EffectsModule.forFeature([NieuwsberichtenEffects]),
+    StoreModule.forFeature('nieuws', nieuwsReducer),
+    EffectsModule.forFeature([NieuwsEffects]),
     IonicModule,
     RichContentModule,
     SharedModule

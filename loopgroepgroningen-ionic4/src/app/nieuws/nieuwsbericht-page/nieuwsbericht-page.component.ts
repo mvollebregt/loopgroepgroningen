@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {Nieuwsbericht} from '../../api';
-import {getNieuwsberichten, NieuwsState} from '../store/nieuws.reducers';
+import {getNieuwsberichten, NieuwsState} from '../store/nieuws.state';
 
 @Component({
   selector: 'lg-nieuwsbericht',

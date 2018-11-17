@@ -1,0 +1,42 @@
+import {NieuwsState} from './nieuws.state';
+import {NieuwsAction, NieuwsActionType} from './nieuws.action';
+import {AanroepStatus} from '../../shared/backend/aanroep-status';
+
+const initialState: NieuwsState = {
+  laadstatus: AanroepStatus.succes,
+  berichten: null,
+  meerBeschikbaar: true
+};
+
+export function nieuwsReducer(
+  state = initialState,
+  action: NieuwsAction
+): NieuwsState {
+  switch (action.type) {
+    case NieuwsActionType.LaadOudereBerichten: {
+      return {
+        ...state,
+        laadstatus: AanroepStatus.bezig
+      };
+    }
+
+    case NieuwsActionType.LaadOudereBerichtenSucces: {
+      return {
+        ...state,
+        berichten: [...state.berichten || [], ...action.berichten],
+        laadstatus: AanroepStatus.succes,
+        meerBeschikbaar: action.berichten.length > 0
+      };
+    }
+
+    case NieuwsActionType.LaadOudereBerichtenFout: {
+      return {
+        ...state,
+        laadstatus: AanroepStatus.fout(action.fout)
+      };
+    }
+  }
+  return state;
+}
+
+

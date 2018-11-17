@@ -5,7 +5,7 @@ import {TrainingsschemaRoutingModule} from './trainingsschema-routing.module';
 import {ListModule} from '../shared/list/list.module';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {TrainingsschemaEffects} from './store/trainingsschema.effect';
+import {TrainingsschemaEffects} from './store/trainingsschema.effects';
 import {trainingsschemaReducer} from './store/trainingsschema.reducer';
 
 @NgModule({

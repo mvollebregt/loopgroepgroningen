@@ -8,21 +8,19 @@
     </ion-title>
   </ion-toolbar>
 
-  <div *ngIf="error | async" class="info-message">
+  <div *ngIf="fout | async" class="info-message">
     Het laatste nieuws kon niet worden geladen.
   </div>
 </ion-header>
 
-<!--<lg-spinner *ngIf="spinning | async"></lg-spinner>-->
-
-<ion-content lgPullToRefresh (pullBottom)="onPull('bottom')" (pullTop)="onPull('top')">
+<ion-content>
 
   <lg-nieuwsberichten-lijst
     [nieuwsberichten]="nieuwsberichten | async"
     (itemClicked)="gaNaarNieuwsbericht($event)">
   </lg-nieuwsberichten-lijst>
 
-  <ion-infinite-scroll *ngIf="!(reachedEndOfList|async)" #scroll (ionInfinite)="loadMore(scroll)">
+  <ion-infinite-scroll *ngIf="meerBeschikbaar | async" #scroll (ionInfinite)="laadOudereNieuwsberichten(scroll)">
     <ion-infinite-scroll-content>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

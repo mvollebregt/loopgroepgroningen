@@ -2,11 +2,12 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {combineLatest, Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
-import {getLoadingMore, getNieuwsberichten, getReachedEndOfList, NieuwsState} from '../store/nieuws.reducers';
-import {LoadMoreNieuwsberichten} from '../store/nieuwsberichten.action';
-import {filter} from 'rxjs/operators';
+import {first, map, takeWhile} from 'rxjs/operators';
 import {InfiniteScroll} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {LaadOudereNieuwsBerichten} from '../store/nieuws.action';
+import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {getMeerNieuwsBeschikbaar, getNieuwsberichten, getNieuwsLaadStatus, NieuwsState} from '../store/nieuws.state';
 
 @Component({
   selector: 'lg-nieuwsoverzicht-page',
@@ -16,48 +17,38 @@ import {Router} from '@angular/router';
 export class NieuwsoverzichtPageComponent implements OnInit {
 
   nieuwsberichten: Observable<Nieuwsbericht[]>;
+  meerBeschikbaar: Observable<boolean>;
   spinning: Observable<boolean>;
-  error: Observable<boolean>;
-  reachedEndOfList: Observable<boolean>;
+  fout: Observable<boolean>;
 
   constructor(
     private router: Router,
-    private store: Store<NieuwsState>,
-    /*private navCtrl: NavController*/) {
+    private store: Store<NieuwsState>) {
   }
 
   ngOnInit() {
-    this.nieuwsberichten = this.store.pipe(
-      select(getNieuwsberichten)
-    );
-    this.reachedEndOfList = this.store.pipe(
-      select(getReachedEndOfList)
-    );
-    this.loadInitialItems();
+    this.nieuwsberichten = this.store.pipe(select(getNieuwsberichten));
+    this.meerBeschikbaar = this.store.pipe(select(getMeerNieuwsBeschikbaar));
+    this.fout = this.store.pipe(
+      select(getNieuwsLaadStatus),
+      map(status => !!status.fouten && status.fouten.length > 0));
+    this.laadInitieleInhoud();
   }
 
-  private loadInitialItems() {
-    combineLatest(
-      this.store.pipe(select(getNieuwsberichten)),
-      this.store.pipe(select(getReachedEndOfList))
-    ).pipe(
-      filter(([nieuwsberichten, reachedEndOfList]) => nieuwsberichten.length < 15 && !reachedEndOfList)
+  private laadInitieleInhoud() {
+    combineLatest(this.nieuwsberichten, this.meerBeschikbaar).pipe(
+      takeWhile(([nieuwsberichten, meerBeschikbaar]) => !nieuwsberichten || (nieuwsberichten.length < 15 && meerBeschikbaar))
     ).subscribe(() =>
-      setTimeout(() => this.loadMore())
+      setTimeout(() => this.laadOudereNieuwsberichten())
     );
   }
 
-  onPull(t: string) {
-    this.loadMore();
-  }
-
-  loadMore(infiniteScroll?: InfiniteScroll) {
-    this.store.dispatch(new LoadMoreNieuwsberichten());
+  laadOudereNieuwsberichten(infiniteScroll?: InfiniteScroll) {
+    this.store.dispatch(new LaadOudereNieuwsBerichten());
     if (infiniteScroll) {
-      // TODO: dit naar OnInit en unsubscriben?
       this.store.pipe(
-        select(getLoadingMore),
-        filter(loadingMore => !loadingMore),
+        select(getNieuwsLaadStatus),
+        first(laadstatus => laadstatus !== AanroepStatus.bezig),
       ).subscribe(() => infiniteScroll.complete());
     }
   }

@@ -9,7 +9,7 @@ import {BerichtenModule} from '../shared/berichten/berichten.module';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {agendaReducer} from './store/agenda.reducer';
-import {AgendaEffects} from './store/agenda.effect';
+import {AgendaEffects} from './store/agenda.effects';
 import {AgendaViewComponent} from './agenda-view/agenda-view.component';
 import {EvenementViewComponent} from './evenement-view/evenement-view.component';
 

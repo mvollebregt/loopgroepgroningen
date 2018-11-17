@@ -6,7 +6,7 @@ import {BerichtenModule} from '../shared/berichten/berichten.module';
 import {Store, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {prikbordReducer} from './store/prikbord.reducer';
-import {PrikbordEffects} from './store/prikbord.effect';
+import {PrikbordEffects} from './store/prikbord.effects';
 import {PrikbordState} from './store/prikbord.state';
 import {HerstelPrikbordOpgeslagenState} from './store/prikbord.action';
 
