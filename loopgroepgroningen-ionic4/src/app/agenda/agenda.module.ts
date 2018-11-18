@@ -6,12 +6,14 @@ import {SharedModule} from '../shared/shared/shared.module';
 import {AgendaRoutingModule} from './agenda-routing.module';
 import {RichContentModule} from '../shared/rich-content/rich-content.module';
 import {BerichtenModule} from '../shared/berichten/berichten.module';
-import {StoreModule} from '@ngrx/store';
+import {Store, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {agendaReducer} from './store/agenda.reducer';
 import {AgendaEffects} from './store/agenda.effects';
 import {AgendaViewComponent} from './agenda-view/agenda-view.component';
 import {EvenementViewComponent} from './evenement-view/evenement-view.component';
+import {HerstelAgendaOpgeslagenState} from './store/agenda.action';
+import {AgendaState} from './store/agenda.state';
 
 @NgModule({
   declarations: [
@@ -31,4 +33,9 @@ import {EvenementViewComponent} from './evenement-view/evenement-view.component'
   ]
 })
 export class AgendaModule {
+
+  constructor(store: Store<AgendaState>) {
+    store.dispatch(new HerstelAgendaOpgeslagenState());
+  }
+
 }

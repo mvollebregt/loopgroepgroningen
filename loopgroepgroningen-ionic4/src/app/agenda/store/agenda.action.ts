@@ -1,13 +1,35 @@
 import {Action} from '@ngrx/store';
 import {Evenement} from '../../api';
+import {AgendaState} from './agenda.state';
 
 export enum AgendaActionType {
+  HerstelOpgeslagenState = '[Agenda] Herstel opgeslagen state',
+  HerstelOpgeslagenStateSucces = '[Agenda] Herstel opgeslagen state succes',
+  HerstelOpgeslagenStateFout = '[Agenda] Herstel opgeslagen state fout',
   LaadEvenementen = '[Agenda] Laad Evenementen',
   LaadEvenementenSucces = '[Agenda] Laad Evenementen succes',
   LaadEvenementenFout = '[Agenda] Laad Evenementen fout',
   LaadEvenementdetails = '[Agenda] Laad Evenementdetails',
   LaadEvenementdetailsSucces = '[Agenda] Laad Evenementdetails succes',
   LaadEvenementdetailsFout = '[Agenda] Laad Evenementdetails fout'
+}
+
+export class HerstelAgendaOpgeslagenState implements Action {
+  readonly type = AgendaActionType.HerstelOpgeslagenState;
+}
+
+export class HerstelAgendaOpgeslagenStateSucces implements Action {
+  readonly type = AgendaActionType.HerstelOpgeslagenStateSucces;
+
+  constructor(public agendaState: Partial<AgendaState>) {
+  }
+}
+
+export class HerstelAgendaOpgeslagenStateFout implements Action {
+  readonly type = AgendaActionType.HerstelOpgeslagenStateFout;
+
+  constructor(public fout: any) {
+  }
 }
 
 export class LaadAgendaEvenementen implements Action {
@@ -50,6 +72,9 @@ export class LaadAgendaEvenementdetailsFout implements Action {
 }
 
 export type AgendaAction =
+  | HerstelAgendaOpgeslagenState
+  | HerstelAgendaOpgeslagenStateSucces
+  | HerstelAgendaOpgeslagenStateFout
   | LaadAgendaEvenementen
   | LaadAgendaEvenementenSucces
   | LaadAgendaEvenementenFout

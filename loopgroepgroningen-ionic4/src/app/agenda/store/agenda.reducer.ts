@@ -40,23 +40,12 @@ export function agendaReducer(
   }
 
   switch (action.type) {
+
+    case AgendaActionType.HerstelOpgeslagenState:
     case AgendaActionType.LaadEvenementen:
       return {
         ...state,
         laadstatus: AanroepStatus.bezig
-      };
-
-    case AgendaActionType.LaadEvenementenSucces:
-      return {
-        ...state,
-        laadstatus: AanroepStatus.succes,
-        evenementStates: new Map(action.evenementen.map(voegSamenMetBestaande))
-      };
-
-    case AgendaActionType.LaadEvenementenFout:
-      return {
-        ...state,
-        laadstatus: AanroepStatus.fout(action.fout)
       };
 
     case AgendaActionType.LaadEvenementdetails:
@@ -67,6 +56,17 @@ export function agendaReducer(
         })
       };
 
+
+    case AgendaActionType.HerstelOpgeslagenStateSucces:
+      return {...state, ...action.agendaState, laadstatus: AanroepStatus.succes};
+
+    case AgendaActionType.LaadEvenementenSucces:
+      return {
+        ...state,
+        laadstatus: AanroepStatus.succes,
+        evenementStates: new Map(action.evenementen.map(voegSamenMetBestaande))
+      };
+
     case AgendaActionType.LaadEvenementdetailsSucces:
       return {
         ...state,
@@ -75,6 +75,14 @@ export function agendaReducer(
           evenement: action.evenement
         })
       };
+
+    case AgendaActionType.HerstelOpgeslagenStateFout:
+    case AgendaActionType.LaadEvenementenFout:
+      return {
+        ...state,
+        laadstatus: AanroepStatus.fout(action.fout)
+      };
+
 
     case AgendaActionType.LaadEvenementdetailsFout:
       return {
