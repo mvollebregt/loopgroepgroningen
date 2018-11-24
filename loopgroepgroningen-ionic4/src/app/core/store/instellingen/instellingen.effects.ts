@@ -9,7 +9,8 @@ import {
 import {InstellingenOpslagService} from '../../services/instellingen-opslag.service';
 import {of} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {CoreState, getInstellingenState} from '../core.state';
+import {CoreState} from '../core.state';
+import {getInstellingenState} from './instellingen.state';
 
 @Injectable()
 export class InstellingenEffects {

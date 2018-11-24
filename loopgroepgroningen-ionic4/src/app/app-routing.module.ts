@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {WelkomGuard} from './core/welkom-guard';
 
 const routes: Routes = [
   {
@@ -9,19 +10,23 @@ const routes: Routes = [
   },
   {
     path: 'nieuws',
-    loadChildren: './nieuws/nieuws.module#NieuwsModule'
+    loadChildren: './nieuws/nieuws.module#NieuwsModule',
+    canActivate: [WelkomGuard]
   },
   {
     path: 'prikbord',
-    loadChildren: './prikbord/prikbord.module#PrikbordModule'
+    loadChildren: './prikbord/prikbord.module#PrikbordModule',
+    canActivate: [WelkomGuard]
   },
   {
     path: 'agenda',
-    loadChildren: './agenda/agenda.module#AgendaModule'
+    loadChildren: './agenda/agenda.module#AgendaModule',
+    canActivate: [WelkomGuard]
   },
   {
     path: 'trainingsschema',
-    loadChildren: './trainingsschema/trainingsschema.module#TrainingsschemaModule'
+    loadChildren: './trainingsschema/trainingsschema.module#TrainingsschemaModule',
+    canActivate: [WelkomGuard]
   },
   {
     path: 'welkom',

@@ -1,3 +1,4 @@
 import {InstellingenEffects} from './instellingen/instellingen.effects';
+import {AuthenticatieEffects} from './authenticatie/authenticatie.effects';
 
-export const coreEffects = [InstellingenEffects];
+export const coreEffects = [AuthenticatieEffects, InstellingenEffects];

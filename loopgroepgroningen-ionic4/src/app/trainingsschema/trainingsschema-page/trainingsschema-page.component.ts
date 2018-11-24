@@ -5,8 +5,9 @@ import {Training, Trainingsschema} from '../../api';
 import {select, Store} from '@ngrx/store';
 import {getTrainingsschema} from '../store/trainingsschema.state';
 import {LaadTrainingsschema} from '../store/trainingsschema.action';
-import {CoreState, getGroep} from '../../core/store/core.state';
+import {CoreState} from '../../core/store/core.state';
 import {ZetInstellingenGroep} from '../../core/store/instellingen/instellingen.action';
+import {getGroep} from '../../core/store/instellingen/instellingen.state';
 
 @Component({
   selector: 'lg-trainingsschema-page',

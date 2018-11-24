@@ -56,7 +56,7 @@ export class UnauthorizedHandlerService {
     });
   }
 
-  private login(credentials: Credentials): Observable<Session> {
+  login(credentials: Credentials): Observable<Session> {
     return this.http.post<Session>(this.urlResolver.urlFor('session'), credentials, {withCredentials: true});
   }
 }

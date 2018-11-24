@@ -5,6 +5,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {coreEffects} from './store/core.effects';
 import {CoreState} from './store/core.state';
 import {HerstelInstellingenOpgeslagenState} from './store/instellingen/instellingen.action';
+import {HerstelAuthenticatieOpgeslagenState} from './store/authenticatie/authenticatie.action';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {HerstelInstellingenOpgeslagenState} from './store/instellingen/instellin
 export class CoreModule {
 
   constructor(store: Store<CoreState>) {
+    store.dispatch(new HerstelAuthenticatieOpgeslagenState());
     store.dispatch(new HerstelInstellingenOpgeslagenState());
   }
 
