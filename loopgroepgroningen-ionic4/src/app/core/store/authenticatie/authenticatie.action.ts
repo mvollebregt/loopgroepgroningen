@@ -34,37 +34,38 @@ export class HerstelAuthenticatieOpgeslagenStateFout implements Action {
   }
 }
 
-export class VraagOmCredentials implements Action {
-  readonly type = AuthenticatieActionType.LogIn;
-
-  constructor(public credentials?: Credentials, public retryAction?: Action) {
-  }
-}
+// export class VraagOmCredentials implements Action {
+//   readonly type = AuthenticatieActionType.LogIn;
+//
+//   constructor(public credentials?: Credentials, public retryAction?: Action) {
+//   }
+// }
 
 export class LogIn implements Action {
   readonly type = AuthenticatieActionType.LogIn;
 
-  constructor(public credentials?: Credentials, public retryAction?: Action) {
+  constructor(public credentials: Credentials) {
   }
 }
 
 export class LogInSucces implements Action {
   readonly type = AuthenticatieActionType.LogInSucces;
 
-  constructor(public retryAction: Action) {
+  constructor() {
   }
 }
 
 export class LogInFout implements Action {
   readonly type = AuthenticatieActionType.LogInFout;
 
-  constructor(public retryAction: Action) {
+  constructor(public fout: Fout) {
   }
 }
 
-export class AnnuleerLogin implements Action {
-  readonly type = AuthenticatieActionType.AnnuleerLogin;
-}
+//
+// export class AnnuleerLogin implements Action {
+//   readonly type = AuthenticatieActionType.AnnuleerLogin;
+// }
 
 
 export type AuthenticatieAction =
@@ -74,4 +75,4 @@ export type AuthenticatieAction =
   | LogIn
   | LogInSucces
   | LogInFout
-  | AnnuleerLogin;
+// | AnnuleerLogin;

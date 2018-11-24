@@ -19,8 +19,35 @@ export function authenticatieReducer(
     case AuthenticatieActionType.HerstelOpgeslagenState:
       return {
         ...state,
-        ingelogd: true
+        inlogstatus: Aanroepstatus.bezig
       };
+
+    case AuthenticatieActionType.HerstelOpgeslagenStateSucces:
+      return {...state, ...action.authenticatieState, inlogstatus: Aanroepstatus.uitgevoerdMetSucces};
+
+    case AuthenticatieActionType.LogIn:
+      return {
+        ...state,
+        inlogstatus: Aanroepstatus.bezig,
+        credentials: action.credentials
+      };
+
+    case AuthenticatieActionType.LogInSucces:
+      return {
+        ...state,
+        inlogstatus: Aanroepstatus.uitgevoerdMetSucces,
+        ingelogd: true,
+// TODO: vegetables?
+      };
+
+    case AuthenticatieActionType.HerstelOpgeslagenStateFout:
+    case AuthenticatieActionType.LogInFout:
+      return {
+        ...state,
+        inlogstatus: Aanroepstatus.uitgevoerdMetFout(action.fout),
+        ingelogd: false
+      };
+
   }
   return state;
 }

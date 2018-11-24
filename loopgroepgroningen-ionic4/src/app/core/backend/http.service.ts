@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UrlResolverService} from './url-resolver.service';
-import {UnauthorizedHandlerService} from './unauthorized-handler.service';
+import {UnauthorizedHandlerService} from '../services/unauthorized-handler.service';
 
 @Injectable({providedIn: 'root'})
 export class HttpService {

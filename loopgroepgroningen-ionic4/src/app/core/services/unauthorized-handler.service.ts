@@ -1,19 +1,21 @@
 import {Injectable} from '@angular/core';
 import {Credentials, Session} from '../../api';
 import {Observable, throwError} from 'rxjs';
-import {catchError, switchMap, tap} from 'rxjs/operators';
-import {WachtwoordkluisService} from './wachtwoordkluis.service';
-import {VraagOmCredentialsService} from './vraag-om-credentials.service';
+import {catchError, switchMap} from 'rxjs/operators';
+import {VraagOmCredentialsService} from '../backend/vraag-om-credentials.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {UrlResolverService} from './url-resolver.service';
+import {UrlResolverService} from '../backend/url-resolver.service';
+import {CoreState} from '../store/core.state';
+import {select, Store} from '@ngrx/store';
+import {getAuthenticatieCredentials} from '../store/authenticatie/authenticatie.state';
 
 @Injectable({providedIn: 'root'})
 export class UnauthorizedHandlerService {
 
   constructor(
     private http: HttpClient,
+    private store: Store<CoreState>,
     private urlResolver: UrlResolverService,
-    private wachtwoordkluis: WachtwoordkluisService,
     private vraagOmCredentialsService: VraagOmCredentialsService) {
   }
 
@@ -25,7 +27,7 @@ export class UnauthorizedHandlerService {
   }
 
   private verkrijgLogin<T>(errorResponse: HttpErrorResponse): Observable<Session> {
-    return this.wachtwoordkluis.haalCredentialsOp().pipe(
+    return this.store.pipe(select(getAuthenticatieCredentials)).pipe(
       switchMap(opgeslagenCredentials => {
         const probeerLogin = opgeslagenCredentials ? this.login(opgeslagenCredentials) : throwError(errorResponse);
         return probeerLogin.pipe(
@@ -38,8 +40,6 @@ export class UnauthorizedHandlerService {
     return this.vraagOmCredentialsService.vraagOmCredentials(oudeCredentials, errorResponse).pipe(
       switchMap(credentials => {
           return this.login(credentials).pipe(
-            // tap wordt alleen uitgevoerd bij een succesvolle login en niet wanneer de Observable in een 401-fout komt
-            tap(() => this.wachtwoordkluis.slaCredentialsOp(credentials)),
             this.catchUnauthorized(err => this.vraagOmCredentials<T>(credentials, err))
           );
       })

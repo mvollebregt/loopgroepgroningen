@@ -6,9 +6,11 @@ import {coreEffects} from './store/core.effects';
 import {CoreState} from './store/core.state';
 import {HerstelInstellingenOpgeslagenState} from './store/instellingen/instellingen.action';
 import {HerstelAuthenticatieOpgeslagenState} from './store/authenticatie/authenticatie.action';
+import {SharedModule} from '../shared/shared/shared.module';
 
 @NgModule({
   imports: [
+    SharedModule,
     StoreModule.forFeature('core', coreReducers),
     EffectsModule.forFeature(coreEffects)
   ]

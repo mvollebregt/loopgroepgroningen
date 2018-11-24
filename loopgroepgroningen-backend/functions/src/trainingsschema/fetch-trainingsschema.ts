@@ -10,6 +10,6 @@ export async function fetchTrainingsschema(originalRequest: Request, cookieJar: 
   if (session.loggedIn) {
     return trainingsschema;
   } else {
-    throw {status: 401, meldingen: ['U dient eerst in te loggen']};
+    throw {status: 401, meldingen: ['Je moet eerst inloggen']};
   }
 }

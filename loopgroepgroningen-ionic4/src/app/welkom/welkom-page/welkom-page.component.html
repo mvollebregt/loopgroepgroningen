@@ -4,7 +4,7 @@
 
     <img src="assets/volledig-logo.png" class="welkom-logo">
 
-    <form (submit)="inloggen()" [formGroup]="loginForm">
+    <form (submit)="inloggen()" [formGroup]="loginForm" [connectForm]="credentials | async">>
       <div class="welkom-tekst">Welkom bij Loopgroep Groningen</div>
       <div class="welkom-fout" *ngFor="let melding of meldingen">{{melding}}</div>
 

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {CustomDatePipe} from './pipes/custom-date-pipe';
 import {PullToRefreshDirective} from './directives/pull-to-refresh-directive';
+import {ConnectFormDirective} from './directives/connect-form.directive';
 
 const modules = [
   CommonModule,
@@ -11,6 +12,7 @@ const modules = [
 
 const directives = [
   CustomDatePipe,
+  ConnectFormDirective,
   PullToRefreshDirective
 ];
 
