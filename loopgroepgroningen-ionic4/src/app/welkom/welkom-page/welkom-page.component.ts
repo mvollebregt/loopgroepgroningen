@@ -68,10 +68,13 @@ export class WelkomPageComponent implements OnInit {
   }
 
   private gaVerder() {
-    if (this.location.path().indexOf('welkom') > -1) {
+    const path = this.location.path();
+    const trimIndex = path.indexOf('?');
+    const route = trimIndex < 0 ? path : path.substring(0, trimIndex);
+    if (route.indexOf('welkom') > -1) {
       this.router.navigate(['prikbord'], {replaceUrl: true});
     } else {
-      this.router.navigate([this.location.path()], {skipLocationChange: true});
+      this.router.navigate([route], {skipLocationChange: true});
     }
   }
 
