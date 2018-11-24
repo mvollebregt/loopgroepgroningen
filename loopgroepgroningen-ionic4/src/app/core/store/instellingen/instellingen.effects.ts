@@ -25,11 +25,12 @@ export class InstellingenEffects {
   @Effect()
   herstelOpgeslagenState = this.actions.pipe(
     ofType(InstellingenActionType.HerstelOpgeslagenState),
-    exhaustMap(() => this.instellingenOpslagService.getOpgeslagenInstellingen()),
-    map(instellingen => instellingen
-      ? new HerstelInstellingenOpgeslagenStateSucces(instellingen)
-      : new HerstelInstellingenOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
-    catchError(fout => of(new HerstelInstellingenOpgeslagenStateFout(fout)))
+    exhaustMap(() => this.instellingenOpslagService.getOpgeslagenInstellingen().pipe(
+      map(instellingen => instellingen
+        ? new HerstelInstellingenOpgeslagenStateSucces(instellingen)
+        : new HerstelInstellingenOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+      catchError(fout => of(new HerstelInstellingenOpgeslagenStateFout(fout)))
+    ))
   );
 
   @Effect({dispatch: false})

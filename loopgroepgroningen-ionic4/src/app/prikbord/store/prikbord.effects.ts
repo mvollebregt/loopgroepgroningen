@@ -30,11 +30,12 @@ export class PrikbordEffects {
   @Effect()
   herstelOpgeslagenState = this.actions.pipe(
     ofType(PrikbordActionType.HerstelOpgeslagenState),
-    exhaustMap(() => this.prikbordOpslagService.getOpgeslagenPrikbord()),
-    map(prikbord => prikbord
-      ? new HerstelPrikbordOpgeslagenStateSucces(prikbord)
-      : new HerstelPrikbordOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
-    catchError(fout => of(new HerstelPrikbordOpgeslagenStateFout(fout)))
+    exhaustMap(() => this.prikbordOpslagService.getOpgeslagenPrikbord().pipe(
+      map(prikbord => prikbord
+        ? new HerstelPrikbordOpgeslagenStateSucces(prikbord)
+        : new HerstelPrikbordOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+      catchError(fout => of(new HerstelPrikbordOpgeslagenStateFout(fout)))
+    ))
   );
 
   @Effect({dispatch: false})
@@ -51,18 +52,20 @@ export class PrikbordEffects {
   @Effect()
   checkNieuweBerichten = this.actions.pipe(
     ofType(PrikbordActionType.CheckNieuweBerichten),
-    exhaustMap(() => this.prikbordClient.getBerichten()),
-    map(resultaat => new CheckNieuwePrikbordBerichtenSucces(resultaat)),
-    catchError(fout => of(new CheckNieuwePrikbordBerichtenFout(fout)))
+    exhaustMap(() => this.prikbordClient.getBerichten().pipe(
+      map(resultaat => new CheckNieuwePrikbordBerichtenSucces(resultaat)),
+      catchError(fout => of(new CheckNieuwePrikbordBerichtenFout(fout)))
+    ))
   );
 
   @Effect()
   laadOudereBerichten = this.actions.pipe(
     ofType(PrikbordActionType.LaadOudereBerichten),
     withLatestFrom(this.store.pipe(select(getPrikbordBerichten))),
-    exhaustMap(([_, berichten]) => this.prikbordClient.getBerichten(berichten && berichten.length || undefined)),
-    map(resultaat => new LaadOuderePrikbordBerichtenSucces(resultaat)),
-    catchError(fout => of(new LaadOuderePrikbordBerichtenFout(fout)))
+    exhaustMap(([_, berichten]) => this.prikbordClient.getBerichten(berichten && berichten.length || undefined).pipe(
+      map(resultaat => new LaadOuderePrikbordBerichtenSucces(resultaat)),
+      catchError(fout => of(new LaadOuderePrikbordBerichtenFout(fout)))
+    ))
   );
 
 }

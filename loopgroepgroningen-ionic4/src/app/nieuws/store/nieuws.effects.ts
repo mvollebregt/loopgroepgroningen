@@ -28,11 +28,12 @@ export class NieuwsEffects {
   @Effect()
   herstelOpgeslagenState = this.actions.pipe(
     ofType(NieuwsActionType.HerstelOpgeslagenState),
-    exhaustMap(() => this.nieuwsOpslagService.getOpgeslagenNieuws()),
-    map(nieuws => nieuws
-      ? new HerstelNieuwsOpgeslagenStateSucces(nieuws)
-      : new HerstelNieuwsOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
-    catchError(fout => of(new HerstelNieuwsOpgeslagenStateFout(fout)))
+    exhaustMap(() => this.nieuwsOpslagService.getOpgeslagenNieuws().pipe(
+      map(nieuws => nieuws
+        ? new HerstelNieuwsOpgeslagenStateSucces(nieuws)
+        : new HerstelNieuwsOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+      catchError(fout => of(new HerstelNieuwsOpgeslagenStateFout(fout)))
+    ))
   );
 
   @Effect({dispatch: false})
@@ -47,9 +48,10 @@ export class NieuwsEffects {
     .pipe(
       ofType(NieuwsActionType.LaadOudereBerichten),
       withLatestFrom(this.store.pipe(select(getNieuwsberichten))),
-      exhaustMap(([_, nieuwsberichten]) => this.nieuwsClient.getLaatsteNieuws(nieuwsberichten ? nieuwsberichten.length : 0)),
-      map(nieuws => new LaadOudereNieuwsBerichtenSucces(nieuws)),
-      catchError(fout => of(new LaadOudereNieuwsBerichtenFout(fout)))
+      exhaustMap(([_, nieuwsberichten]) => this.nieuwsClient.getLaatsteNieuws(nieuwsberichten ? nieuwsberichten.length : 0).pipe(
+        map(nieuws => new LaadOudereNieuwsBerichtenSucces(nieuws)),
+        catchError(fout => of(new LaadOudereNieuwsBerichtenFout(fout)))
+      ))
     );
 
 }

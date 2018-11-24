@@ -31,11 +31,12 @@ export class AgendaEffects {
   @Effect()
   herstelOpgeslagenState = this.actions.pipe(
     ofType(AgendaActionType.HerstelOpgeslagenState),
-    exhaustMap(() => this.agendaOpslagService.getOpgeslagenAgenda()),
-    map(agenda => agenda
-      ? new HerstelAgendaOpgeslagenStateSucces(agenda)
-      : new HerstelAgendaOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
-    catchError(fout => of(new HerstelAgendaOpgeslagenStateFout(fout)))
+    exhaustMap(() => this.agendaOpslagService.getOpgeslagenAgenda().pipe(
+      map(agenda => agenda
+        ? new HerstelAgendaOpgeslagenStateSucces(agenda)
+        : new HerstelAgendaOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+      catchError(fout => of(new HerstelAgendaOpgeslagenStateFout(fout)))
+    ))
   );
 
   @Effect({dispatch: false})
@@ -52,9 +53,10 @@ export class AgendaEffects {
   @Effect()
   laadEvenementen = this.actions.pipe(
     ofType(AgendaActionType.LaadEvenementen),
-    exhaustMap(() => this.agendaClient.getAgenda()),
-    map(evenementen => new LaadAgendaEvenementenSucces(evenementen)),
-    catchError(fout => of(new LaadAgendaEvenementenFout(fout)))
+    exhaustMap(() => this.agendaClient.getAgenda().pipe(
+      map(evenementen => new LaadAgendaEvenementenSucces(evenementen)),
+      catchError(fout => of(new LaadAgendaEvenementenFout(fout)))
+    ))
   );
 
   @Effect()
@@ -62,7 +64,8 @@ export class AgendaEffects {
     ofType(AgendaActionType.LaadEvenementdetails),
     exhaustMap((action: LaadAgendaEvenementdetails) => this.agendaClient.getEvenement(action.id).pipe(
       map(evenement => new LaadAgendaEvenementdetailsSucces(action.id, evenement)),
-      catchError(fout => of(new LaadAgendaEvenementdetailsFout(action.id, fout)))))
+      catchError(fout => of(new LaadAgendaEvenementdetailsFout(action.id, fout)))
+    ))
   );
 
 }

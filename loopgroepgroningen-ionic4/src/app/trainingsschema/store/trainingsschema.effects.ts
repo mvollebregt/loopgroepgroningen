@@ -28,11 +28,12 @@ export class TrainingsschemaEffects {
   @Effect()
   herstelOpgeslagenState = this.actions.pipe(
     ofType(TrainingsschemaActionType.HerstelOpgeslagenState),
-    exhaustMap(() => this.trainingsschemaOpslagService.getOpgeslagenTrainingsschema()),
-    map(trainingsschema => trainingsschema
-      ? new HerstelTrainingsschemaOpgeslagenStateSucces(trainingsschema)
-      : new HerstelTrainingsschemaOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
-    catchError(fout => of(new HerstelTrainingsschemaOpgeslagenStateFout(fout)))
+    exhaustMap(() => this.trainingsschemaOpslagService.getOpgeslagenTrainingsschema().pipe(
+      map(trainingsschema => trainingsschema
+        ? new HerstelTrainingsschemaOpgeslagenStateSucces(trainingsschema)
+        : new HerstelTrainingsschemaOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+      catchError(fout => of(new HerstelTrainingsschemaOpgeslagenStateFout(fout)))
+    ))
   );
 
   @Effect({dispatch: false})
@@ -45,8 +46,9 @@ export class TrainingsschemaEffects {
   @Effect()
   laadTrainingsschema = this.actions.pipe(
     ofType(TrainingsschemaActionType.LaadTrainingsschema),
-    exhaustMap(() => this.trainingsschemaClient.haalTrainingsschemaOp()),
-    map(evenementen => new LaadTrainingsschemaSucces(evenementen)),
-    catchError(fout => of(new LaadTrainingsschemaFout(fout)))
+    exhaustMap(() => this.trainingsschemaClient.haalTrainingsschemaOp().pipe(
+      map(evenementen => new LaadTrainingsschemaSucces(evenementen)),
+      catchError(fout => of(new LaadTrainingsschemaFout(fout)))
+    ))
   );
 }
