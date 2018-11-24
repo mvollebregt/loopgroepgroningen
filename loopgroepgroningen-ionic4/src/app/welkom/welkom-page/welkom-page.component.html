@@ -4,15 +4,21 @@
 
     <img src="assets/volledig-logo.png" class="welkom-logo">
 
-    <form (submit)="inloggen()">
+    <form (submit)="inloggen()" [formGroup]="loginForm">
       <div class="welkom-tekst">Welkom bij Loopgroep Groningen</div>
       <div class="welkom-fout" *ngFor="let melding of meldingen">{{melding}}</div>
-      <ion-input type="text" placeholder="Gebruikersnaam" name="gebruikersnaam"></ion-input>
-      <ion-input type="password" placeholder="Wachtwoord" name="wachtwoord"></ion-input>
+
+      <ion-input type="text"
+                 placeholder="Gebruikersnaam"
+                 formControlName="username"></ion-input>
+
+      <ion-input type="password"
+                 placeholder="Wachtwoord"
+                 formControlName="password"></ion-input>
 
       <ion-buttons>
-        <input type="button" ion-button outline (tap)="annuleren()" value="Annuleren">
-        <input type="submit" ion-button value="Inloggen" [disabled]="aanHetInloggen">
+        <input type="button" (click)="annuleren()" value="Annuleren">
+        <input type="submit" value="Inloggen" [disabled]="aanHetInloggen">
       </ion-buttons>
     </form>
 
