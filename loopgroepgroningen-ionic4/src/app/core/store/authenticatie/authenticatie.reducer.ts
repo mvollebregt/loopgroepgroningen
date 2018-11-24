@@ -1,11 +1,12 @@
 import {AuthenticatieState} from './authenticatie.state';
 import {AuthenticatieAction, AuthenticatieActionType} from './authenticatie.action';
-import {Aanroepstatus} from '../../backend/models/aanroepstatus';
 
 const initialAuthenticatieState: AuthenticatieState = {
-  inlogstatus: Aanroepstatus.nogNietGestart,
-  ingelogd: null,
+  geinitialiseerd: false,
+  bezig: false,
+  fout: null,
   credentials: null,
+  session: null,
   vegetables: null
 };
 
@@ -19,33 +20,47 @@ export function authenticatieReducer(
     case AuthenticatieActionType.HerstelOpgeslagenState:
       return {
         ...state,
-        inlogstatus: Aanroepstatus.bezig
+        bezig: true
       };
 
     case AuthenticatieActionType.HerstelOpgeslagenStateSucces:
-      return {...state, ...action.authenticatieState, inlogstatus: Aanroepstatus.uitgevoerdMetSucces};
+      return {
+        ...state,
+        ...action.authenticatieState,
+        geinitialiseerd: true,
+        bezig: false
+      };
+
+    case AuthenticatieActionType.HerstelOpgeslagenStateFout:
+      return {
+        ...state,
+        geinitialiseerd: true,
+        bezig: false
+      };
+
 
     case AuthenticatieActionType.LogIn:
       return {
         ...state,
-        inlogstatus: Aanroepstatus.bezig,
+        bezig: true,
         credentials: action.credentials
       };
 
     case AuthenticatieActionType.LogInSucces:
       return {
         ...state,
-        inlogstatus: Aanroepstatus.uitgevoerdMetSucces,
-        ingelogd: true,
+        bezig: false,
+        fout: null,
+        session: action.session,
+        vegetables: null
 // TODO: vegetables?
       };
 
-    case AuthenticatieActionType.HerstelOpgeslagenStateFout:
     case AuthenticatieActionType.LogInFout:
       return {
         ...state,
-        inlogstatus: Aanroepstatus.uitgevoerdMetFout(action.fout),
-        ingelogd: false
+        bezig: false,
+        fout: action.fout,
       };
 
   }

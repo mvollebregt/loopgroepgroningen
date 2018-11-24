@@ -7,15 +7,16 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {Credentials} from '../../api';
 import {
-  getAuthenticatieAanroepfase,
+  getAuthenticatieBezig,
   getAuthenticatieCredentials,
-  getAuthenticatieIngelogd,
-  getAuthenticatieMelding
+  getAuthenticatieFout,
+  getAuthenticatieSession
 } from '../../core/store/authenticatie/authenticatie.state';
-import {filter, map, take, tap} from 'rxjs/operators';
+import {filter, take, tap} from 'rxjs/operators';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {Aanroepfase} from '../../core/backend/models/aanroepfase';
+import {anonymousUserCredentials} from '../../core/backend/models/anonymous-user-credentials';
+import {Fout} from '../../core/backend/models/fout';
 
 @Component({
   selector: 'lg-welkom-page',
@@ -26,8 +27,8 @@ export class WelkomPageComponent implements OnInit {
 
   loginForm: FormGroup;
   credentials: Observable<Credentials>;
-  aanHetInloggen: Observable<boolean>;
-  melding: Observable<string>;
+  bezig: Observable<boolean>;
+  fout: Observable<Fout>;
 
   constructor(private alertController: AlertController,
               private location: Location,
@@ -39,16 +40,16 @@ export class WelkomPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({username: [''], password: ['']});
-    this.credentials = this.store.pipe(select(getAuthenticatieCredentials));
-    this.aanHetInloggen = this.store.pipe(select(getAuthenticatieAanroepfase), map(fase => fase === Aanroepfase.bezig));
-    this.melding = this.store.pipe(select(getAuthenticatieMelding));
+    this.credentials = this.store.pipe(select(getAuthenticatieCredentials), filter(credentials => credentials && credentials.username !== 'anonymous'));
+    this.bezig = this.store.pipe(select(getAuthenticatieBezig));
+    this.fout = this.store.pipe(select(getAuthenticatieFout));
     this.gaVerderNaSuccesvolleInlog();
   }
 
   private gaVerderNaSuccesvolleInlog() {
     this.store.pipe(
-      select(getAuthenticatieIngelogd),
-      filter(ingelogd => !!ingelogd),
+      select(getAuthenticatieSession),
+      filter(session => !!session),
       take(1),
       tap(() => this.gaVerder())
     ).subscribe();
@@ -67,7 +68,7 @@ export class WelkomPageComponent implements OnInit {
   }
 
   annuleren() {
-    // this.store.dispatch(new LogIn());
+    this.store.dispatch(new LogIn(anonymousUserCredentials));
     this.toonAnnuleerLoginAlert();
   }
 

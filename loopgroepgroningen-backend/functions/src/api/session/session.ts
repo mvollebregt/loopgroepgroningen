@@ -1,5 +1,6 @@
+import {Module} from './module';
+
 export interface Session {
-
-  loggedIn: boolean;
-
+  toegestaneModules?: Module[];
+  alleenLezen?: boolean;
 }

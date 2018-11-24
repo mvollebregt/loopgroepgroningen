@@ -1,6 +1,6 @@
 import {Action} from '@ngrx/store';
 import {AuthenticatieState} from './authenticatie.state';
-import {Credentials} from '../../../api';
+import {Credentials, Session} from '../../../api';
 import {Fout} from '../../backend/models/fout';
 
 export enum AuthenticatieActionType {
@@ -30,7 +30,7 @@ export class HerstelAuthenticatieOpgeslagenStateSucces implements Action {
 export class HerstelAuthenticatieOpgeslagenStateFout implements Action {
   readonly type = AuthenticatieActionType.HerstelOpgeslagenStateFout;
 
-  constructor(public fout: Fout) {
+  constructor() {
   }
 }
 
@@ -51,7 +51,7 @@ export class LogIn implements Action {
 export class LogInSucces implements Action {
   readonly type = AuthenticatieActionType.LogInSucces;
 
-  constructor() {
+  constructor(public session: Session) {
   }
 }
 
@@ -74,5 +74,5 @@ export type AuthenticatieAction =
   | HerstelAuthenticatieOpgeslagenStateFout
   | LogIn
   | LogInSucces
-  | LogInFout
+  | LogInFout;
 // | AnnuleerLogin;

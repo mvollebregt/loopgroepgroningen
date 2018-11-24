@@ -12,7 +12,7 @@ export namespace Aanroepstatus {
   export const uitgevoerdMetSucces: Aanroepstatus = {fase: Aanroepfase.uitgevoerd};
 
   export function uitgevoerdMetFout(meldingOfFout: string | Fout): Aanroepstatus {
-    const fout = typeof meldingOfFout === 'string' ? {melding: meldingOfFout} : meldingOfFout;
+    const fout = typeof meldingOfFout === 'string' ? {error: [meldingOfFout]} : meldingOfFout;
     return {fase: Aanroepfase.uitgevoerd, fout};
   }
 }

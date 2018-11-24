@@ -39,8 +39,8 @@ export class AuthenticatieEffects {
     exhaustMap(() => this.authenticatieOpslagService.getOpgeslagenAuthenticatie().pipe(
       map(authenticatie => authenticatie
         ? new HerstelAuthenticatieOpgeslagenStateSucces(authenticatie)
-        : new HerstelAuthenticatieOpgeslagenStateFout(null)),
-      catchError(fout => of(new HerstelAuthenticatieOpgeslagenStateFout(fout)))
+        : new HerstelAuthenticatieOpgeslagenStateFout()),
+      catchError(() => of(new HerstelAuthenticatieOpgeslagenStateFout()))
     ))
   );
 
@@ -61,8 +61,8 @@ export class AuthenticatieEffects {
   logIn = this.actions.pipe(
     ofType(AuthenticatieActionType.LogIn),
     switchMap((action: LogIn) => this.unauthorizedHandlerService.login(action.credentials).pipe(
-      map(session => session.loggedIn ? new LogInSucces() : new LogInFout({melding: 'Je moet eerst inloggen'})),
-      catchError(fout => of(new LogInFout({status: fout.status, melding: fout.error.meldingen[0]})))
+      map(session => new LogInSucces(session)),
+      catchError(fout => of(new LogInFout(fout)))
     ))
   );
 

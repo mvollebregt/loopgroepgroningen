@@ -1,4 +1,4 @@
 export interface Fout {
   status?: number;
-  melding: string;
+  error: string[];
 }

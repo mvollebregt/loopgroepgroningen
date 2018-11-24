@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Credentials, Session} from '../../api';
-import {Observable, throwError} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {catchError, switchMap} from 'rxjs/operators';
 import {VraagOmCredentialsService} from '../backend/vraag-om-credentials.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
@@ -8,6 +8,8 @@ import {UrlResolverService} from '../backend/url-resolver.service';
 import {CoreState} from '../store/core.state';
 import {select, Store} from '@ngrx/store';
 import {getAuthenticatieCredentials} from '../store/authenticatie/authenticatie.state';
+import {anonymousUserCredentials} from '../backend/models/anonymous-user-credentials';
+import {anonymousUserSession} from '../backend/models/anonymous-user-session';
 
 @Injectable({providedIn: 'root'})
 export class UnauthorizedHandlerService {
@@ -57,6 +59,10 @@ export class UnauthorizedHandlerService {
   }
 
   login(credentials: Credentials): Observable<Session> {
-    return this.http.post<Session>(this.urlResolver.urlFor('session'), credentials, {withCredentials: true});
+    if (credentials.username === anonymousUserCredentials.username && credentials.password === anonymousUserCredentials.password) {
+      return of(anonymousUserSession);
+    } else {
+      return this.http.post<Session>(this.urlResolver.urlFor('session'), credentials, {withCredentials: true});
+    }
   }
 }

@@ -7,7 +7,7 @@ import {Trainingsschema} from '../api/trainingsschema';
 
 export async function fetchTrainingsschema(originalRequest: Request, cookieJar: SingleUseCookieJar): Promise<Trainingsschema> {
   const session = await defaultHandlerFunctionFor(sessionEndpoint, 'get')(originalRequest, cookieJar);
-  if (session.loggedIn) {
+  if (session) {
     return trainingsschema;
   } else {
     throw {status: 401, meldingen: ['Je moet eerst inloggen']};

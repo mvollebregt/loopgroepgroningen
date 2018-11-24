@@ -9,7 +9,6 @@ export function handleError(eventualResponse: Response, originalRequest: Request
       console.error(error);
     }
     prepareResponse(eventualResponse, originalRequest, cookieJar);
-    eventualResponse.status(status).send(error);
+    eventualResponse.status(status).send(error.meldingen);
   }
 }
-

@@ -34,7 +34,7 @@ export class AgendaEffects {
     exhaustMap(() => this.agendaOpslagService.getOpgeslagenAgenda().pipe(
       map(agenda => agenda
         ? new HerstelAgendaOpgeslagenStateSucces(agenda)
-        : new HerstelAgendaOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+        : new HerstelAgendaOpgeslagenStateFout({error: ['Nog niets opgeslagen']})),
       catchError(fout => of(new HerstelAgendaOpgeslagenStateFout(fout)))
     ))
   );

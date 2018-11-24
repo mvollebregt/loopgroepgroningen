@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, NavigationEnd, Router, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {getAuthenticatieIngelogd} from './store/authenticatie/authenticatie.state';
-import {filter, first, take, tap} from 'rxjs/operators';
+import {filter, first, map, take} from 'rxjs/operators';
 import {CoreState} from './store/core.state';
 import {Location} from '@angular/common';
+import {getAuthenticatieState} from './store/authenticatie/authenticatie.state';
+import {Module} from '../../../../loopgroepgroningen-backend/functions/src/api/session';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,24 @@ export class WelkomGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, routerState: RouterStateSnapshot): Observable<boolean> {
+    const module = route.routeConfig.path as Module;
     return this.store.pipe(
-      select(getAuthenticatieIngelogd),
-      first(ingelogd => ingelogd !== null),
-      tap(ingelogd => {
-        if (!ingelogd) {
+      select(getAuthenticatieState),
+      first(state => state.geinitialiseerd),
+      map(state => state.session),
+      map(session => {
+        if (!session) {
+          // geen sessie -> ga naar inlogscherm
           this.router.navigate(['welkom'], {skipLocationChange: true});
           this.overschrijfUrl(routerState.url);
+          return false;
+        } else if (session.toegestaneModules && session.toegestaneModules.indexOf(module) < 0) {
+          // geen toegang tot module -> ga naar prikbord
+          this.router.navigate(['prikbord']);
+          return false;
+        } else {
+          // alles ok -> ga door
+          return true;
         }
       })
     );

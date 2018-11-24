@@ -39,7 +39,6 @@ export class AuthenticatieOpslagService {
 
   private getOpTeSlaan(authenticatie: AuthenticatieState): Partial<AuthenticatieState> {
     return {
-      ingelogd: authenticatie.ingelogd,
       credentials: authenticatie.credentials,
       vegetables: authenticatie.vegetables
     };
