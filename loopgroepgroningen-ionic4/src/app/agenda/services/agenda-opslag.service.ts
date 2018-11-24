@@ -27,7 +27,7 @@ export class AgendaOpslagService {
       evenementenMap.set(sleutel, {
         evenement: evenementState.evenement,
         teVerzendenBericht: evenementState.teVerzendenBericht
-      } as EvenementState)
+      } as EvenementState);
     });
     return {
       evenementStates: evenementenMap

@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'trainingsschema',
     loadChildren: './trainingsschema/trainingsschema.module#TrainingsschemaModule'
+  },
+  {
+    path: 'welkom',
+    loadChildren: './welkom/welkom.module#WelkomModule'
   }
 ];
 
