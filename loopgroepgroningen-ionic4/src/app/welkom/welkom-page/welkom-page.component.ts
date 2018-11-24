@@ -7,12 +7,15 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {Credentials} from '../../api';
 import {
+  getAuthenticatieAanroepfase,
   getAuthenticatieCredentials,
-  getAuthenticatieIngelogd
+  getAuthenticatieIngelogd,
+  getAuthenticatieMelding
 } from '../../core/store/authenticatie/authenticatie.state';
-import {filter, take, tap} from 'rxjs/operators';
+import {filter, map, take, tap} from 'rxjs/operators';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
+import {Aanroepfase} from '../../core/backend/models/aanroepfase';
 
 @Component({
   selector: 'lg-welkom-page',
@@ -22,10 +25,9 @@ import {Router} from '@angular/router';
 export class WelkomPageComponent implements OnInit {
 
   loginForm: FormGroup;
-  meldingen: string[];
-  aanHetInloggen = false;
-
   credentials: Observable<Credentials>;
+  aanHetInloggen: Observable<boolean>;
+  melding: Observable<string>;
 
   constructor(private alertController: AlertController,
               private location: Location,
@@ -38,6 +40,8 @@ export class WelkomPageComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({username: [''], password: ['']});
     this.credentials = this.store.pipe(select(getAuthenticatieCredentials));
+    this.aanHetInloggen = this.store.pipe(select(getAuthenticatieAanroepfase), map(fase => fase === Aanroepfase.bezig));
+    this.melding = this.store.pipe(select(getAuthenticatieMelding));
     this.gaVerderNaSuccesvolleInlog();
   }
 
@@ -63,7 +67,7 @@ export class WelkomPageComponent implements OnInit {
   }
 
   annuleren() {
-    // this.store.dispatch(new AnnuleerLogin());
+    // this.store.dispatch(new LogIn());
     this.toonAnnuleerLoginAlert();
   }
 

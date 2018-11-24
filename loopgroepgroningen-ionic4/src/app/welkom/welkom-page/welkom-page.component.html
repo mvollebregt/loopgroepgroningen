@@ -4,9 +4,9 @@
 
     <img src="assets/volledig-logo.png" class="welkom-logo">
 
-    <form (submit)="inloggen()" [formGroup]="loginForm" [connectForm]="credentials | async">>
+    <form (ngSubmit)="inloggen()" [formGroup]="loginForm" [connectForm]="credentials | async">
       <div class="welkom-tekst">Welkom bij Loopgroep Groningen</div>
-      <div class="welkom-fout" *ngFor="let melding of meldingen">{{melding}}</div>
+      <div class="welkom-fout" *ngIf="(melding | async) as melding">{{melding}}</div>
 
       <ion-input type="text"
                  placeholder="Gebruikersnaam"
@@ -18,7 +18,7 @@
 
       <ion-buttons>
         <input type="button" (click)="annuleren()" value="Annuleren">
-        <input type="submit" value="Inloggen" [disabled]="aanHetInloggen">
+        <input type="submit" value="Inloggen" [disabled]="aanHetInloggen | async">
       </ion-buttons>
     </form>
 

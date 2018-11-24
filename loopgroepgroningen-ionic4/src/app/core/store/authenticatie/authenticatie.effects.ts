@@ -39,7 +39,7 @@ export class AuthenticatieEffects {
     exhaustMap(() => this.authenticatieOpslagService.getOpgeslagenAuthenticatie().pipe(
       map(authenticatie => authenticatie
         ? new HerstelAuthenticatieOpgeslagenStateSucces(authenticatie)
-        : new HerstelAuthenticatieOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
+        : new HerstelAuthenticatieOpgeslagenStateFout(null)),
       catchError(fout => of(new HerstelAuthenticatieOpgeslagenStateFout(fout)))
     ))
   );
