@@ -6,8 +6,9 @@ import {exhaustMap, first, map, takeWhile} from 'rxjs/operators';
 import {InfiniteScroll} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {LaadOudereNieuwsBerichten} from '../store/nieuws.action';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {getMeerNieuwsBeschikbaar, getNieuwsberichten, getNieuwsLaadStatus, NieuwsState} from '../store/nieuws.state';
+import {Aanroepfase} from '../../core/backend/models/aanroepfase';
 
 @Component({
   selector: 'lg-nieuwsoverzicht-page',
@@ -30,8 +31,8 @@ export class NieuwsoverzichtPageComponent implements OnInit {
     this.nieuwsberichten = this.store.pipe(select(getNieuwsberichten));
     this.meerBeschikbaar = this.store.pipe(select(getMeerNieuwsBeschikbaar));
     const laadstatus = this.store.pipe(select(getNieuwsLaadStatus));
-    this.bezig = laadstatus.pipe(map(status => status.bezig));
-    this.fout = laadstatus.pipe(map(status => !!status.fouten && status.fouten.length > 0));
+    this.bezig = laadstatus.pipe(map(status => status.fase === Aanroepfase.bezig));
+    this.fout = laadstatus.pipe(map(status => !!status.fout));
     this.laadInitieleInhoud();
   }
 
@@ -50,7 +51,7 @@ export class NieuwsoverzichtPageComponent implements OnInit {
     if (infiniteScroll) {
       this.store.pipe(
         select(getNieuwsLaadStatus),
-        first(laadstatus => laadstatus !== AanroepStatus.bezig),
+        first(laadstatus => laadstatus !== Aanroepstatus.bezig),
       ).subscribe(() => infiniteScroll.complete());
     }
   }

@@ -1,9 +1,9 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {Trainingsschema} from '../../api';
 
 export interface TrainingsschemaState {
-  laadstatus: AanroepStatus;
+  laadstatus: Aanroepstatus;
   trainingsschema: Trainingsschema;
 }
 

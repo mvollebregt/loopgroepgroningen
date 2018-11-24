@@ -1,19 +1,19 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {Evenement} from '../../api';
 
 export interface AgendaState {
-  laadstatus: AanroepStatus;
+  laadstatus: Aanroepstatus;
   evenementStates: Map<string, EvenementState>;
 }
 
 export interface EvenementState {
 
-  laadstatus: AanroepStatus;
+  laadstatus: Aanroepstatus;
   evenement?: Evenement;
   teVerzendenBericht: string;
-  inschrijvingVerzendstatus: AanroepStatus;
-  berichtVerzendstatus: AanroepStatus;
+  inschrijvingVerzendstatus: Aanroepstatus;
+  berichtVerzendstatus: Aanroepstatus;
 
 }
 

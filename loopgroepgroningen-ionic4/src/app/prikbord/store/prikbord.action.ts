@@ -1,6 +1,7 @@
 import {Action} from '@ngrx/store';
 import {Bericht} from '../../api';
 import {PrikbordState} from './prikbord.state';
+import {Fout} from '../../core/backend/models/fout';
 
 export enum PrikbordActionType {
   HerstelOpgeslagenState = '[Prikbord] Herstel opgeslagen state',
@@ -32,7 +33,7 @@ export class HerstelPrikbordOpgeslagenStateSucces implements Action {
 export class HerstelPrikbordOpgeslagenStateFout implements Action {
   readonly type = PrikbordActionType.HerstelOpgeslagenStateFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -50,7 +51,7 @@ export class CheckNieuwePrikbordBerichtenSucces implements Action {
 export class CheckNieuwePrikbordBerichtenFout implements Action {
   readonly type = PrikbordActionType.CheckNieuweBerichtenFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -68,7 +69,7 @@ export class LaadOuderePrikbordBerichtenSucces implements Action {
 export class LaadOuderePrikbordBerichtenFout implements Action {
   readonly type = PrikbordActionType.LaadOudereBerichtenFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -90,7 +91,7 @@ export class VerstuurPrikbordBerichtSucces implements Action {
 export class VerstuurPrikbordBerichtFout implements Action {
   readonly type = PrikbordActionType.VerstuurBerichtFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
 
   }
 }

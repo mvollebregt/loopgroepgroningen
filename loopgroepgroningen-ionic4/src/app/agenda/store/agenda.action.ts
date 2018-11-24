@@ -1,6 +1,7 @@
 import {Action} from '@ngrx/store';
 import {Evenement} from '../../api';
 import {AgendaState} from './agenda.state';
+import {Fout} from '../../core/backend/models/fout';
 
 export enum AgendaActionType {
   HerstelOpgeslagenState = '[Agenda] Herstel opgeslagen state',
@@ -28,7 +29,7 @@ export class HerstelAgendaOpgeslagenStateSucces implements Action {
 export class HerstelAgendaOpgeslagenStateFout implements Action {
   readonly type = AgendaActionType.HerstelOpgeslagenStateFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -46,7 +47,7 @@ export class LaadAgendaEvenementenSucces implements Action {
 export class LaadAgendaEvenementenFout implements Action {
   readonly type = AgendaActionType.LaadEvenementenFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -67,7 +68,7 @@ export class LaadAgendaEvenementdetailsSucces implements Action {
 export class LaadAgendaEvenementdetailsFout implements Action {
   readonly type = AgendaActionType.LaadEvenementdetailsFout;
 
-  constructor(public id: string, public fout: any) {
+  constructor(public id: string, public fout: Fout) {
   }
 }
 

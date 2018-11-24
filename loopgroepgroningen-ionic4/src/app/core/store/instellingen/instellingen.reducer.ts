@@ -1,7 +1,9 @@
 import {InstellingenState} from './instellingen.state';
 import {InstellingenAction, InstellingenActionType} from './instellingen.action';
+import {Aanroepstatus} from '../../backend/models/aanroepstatus';
 
 const initialInstellingenState: InstellingenState = {
+  laadstatus: Aanroepstatus.nogNietGestart,
   groep: 'A'
 };
 

@@ -1,6 +1,7 @@
 import {Action} from '@ngrx/store';
 import {NieuwsState} from './nieuws.state';
 import {Nieuwsbericht} from '../../../../../loopgroepgroningen-backend/functions/src/api/laatste-nieuws';
+import {Fout} from '../../core/backend/models/fout';
 
 export enum NieuwsActionType {
   HerstelOpgeslagenState = '[Nieuws] Herstel opgeslagen state',
@@ -25,7 +26,7 @@ export class HerstelNieuwsOpgeslagenStateSucces implements Action {
 export class HerstelNieuwsOpgeslagenStateFout implements Action {
   readonly type = NieuwsActionType.HerstelOpgeslagenStateFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -43,7 +44,7 @@ export class LaadOudereNieuwsBerichtenSucces implements Action {
 export class LaadOudereNieuwsBerichtenFout implements Action {
   readonly type = NieuwsActionType.LaadOudereBerichtenFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 

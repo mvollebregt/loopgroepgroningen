@@ -31,7 +31,7 @@ export class TrainingsschemaEffects {
     exhaustMap(() => this.trainingsschemaOpslagService.getOpgeslagenTrainingsschema()),
     map(trainingsschema => trainingsschema
       ? new HerstelTrainingsschemaOpgeslagenStateSucces(trainingsschema)
-      : new HerstelTrainingsschemaOpgeslagenStateFout('Nog niets opgeslagen')),
+      : new HerstelTrainingsschemaOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
     catchError(fout => of(new HerstelTrainingsschemaOpgeslagenStateFout(fout)))
   );
 

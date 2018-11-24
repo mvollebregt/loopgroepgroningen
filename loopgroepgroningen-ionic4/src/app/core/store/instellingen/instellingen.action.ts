@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
 import {InstellingenState} from './instellingen.state';
+import {Fout} from '../../backend/models/fout';
 
 export enum InstellingenActionType {
   HerstelOpgeslagenState = '[Instellingen] Herstel opgeslagen state',
@@ -22,7 +23,7 @@ export class HerstelInstellingenOpgeslagenStateSucces implements Action {
 export class HerstelInstellingenOpgeslagenStateFout implements Action {
   readonly type = InstellingenActionType.HerstelOpgeslagenStateFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 

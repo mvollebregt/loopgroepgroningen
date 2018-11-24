@@ -1,9 +1,9 @@
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {TrainingsschemaState} from './trainingsschema.state';
 import {TrainingsschemaAction, TrainingsschemaActionType} from './trainingsschema.action';
 
 const initialTrainingsschemaState: TrainingsschemaState = {
-  laadstatus: AanroepStatus.succes,
+  laadstatus: Aanroepstatus.nogNietGestart,
   trainingsschema: null,
 };
 
@@ -16,21 +16,21 @@ export function trainingsschemaReducer(
 
     case TrainingsschemaActionType.HerstelOpgeslagenState:
     case TrainingsschemaActionType.LaadTrainingsschema:
-      return {...state, laadstatus: AanroepStatus.bezig};
+      return {...state, laadstatus: Aanroepstatus.bezig};
 
     case TrainingsschemaActionType.HerstelOpgeslagenStateSucces:
-      return {...state, ...action.trainingsschemaState, laadstatus: AanroepStatus.succes};
+      return {...state, ...action.trainingsschemaState, laadstatus: Aanroepstatus.uitgevoerdMetSucces};
 
     case TrainingsschemaActionType.LaadTrainingsschemaSucces:
       return {
         ...state,
-        laadstatus: AanroepStatus.succes,
+        laadstatus: Aanroepstatus.uitgevoerdMetSucces,
         trainingsschema: action.trainingsschema
       };
 
     case TrainingsschemaActionType.HerstelOpgeslagenStateFout:
     case TrainingsschemaActionType.LaadTrainingsschemaFout:
-      return {...state, laadstatus: AanroepStatus.fout(action.fout)};
+      return {...state, laadstatus: Aanroepstatus.uitgevoerdMetFout(action.fout)};
   }
 
   return state;

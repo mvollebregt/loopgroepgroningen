@@ -1,9 +1,9 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 
 export interface NieuwsState {
-  laadstatus: AanroepStatus;
+  laadstatus: Aanroepstatus;
   berichten: Nieuwsbericht[];
   meerBeschikbaar: boolean;
 }

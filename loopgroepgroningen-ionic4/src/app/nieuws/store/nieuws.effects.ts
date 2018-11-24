@@ -31,7 +31,7 @@ export class NieuwsEffects {
     exhaustMap(() => this.nieuwsOpslagService.getOpgeslagenNieuws()),
     map(nieuws => nieuws
       ? new HerstelNieuwsOpgeslagenStateSucces(nieuws)
-      : new HerstelNieuwsOpgeslagenStateFout('Nog niets opgeslagen')),
+      : new HerstelNieuwsOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
     catchError(fout => of(new HerstelNieuwsOpgeslagenStateFout(fout)))
   );
 

@@ -1,13 +1,13 @@
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {Bericht} from '../../api';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface PrikbordState {
-  laadstatus: AanroepStatus;
+  laadstatus: Aanroepstatus;
   berichten: Bericht[];
   meerBeschikbaar: boolean;
   teVerzendenBericht: string;
-  verzendstatus: AanroepStatus;
+  verzendstatus: Aanroepstatus;
 }
 
 export const getPrikbordState = createFeatureSelector<PrikbordState>('prikbord');

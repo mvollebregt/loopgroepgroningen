@@ -1,13 +1,13 @@
 import {PrikbordState} from './prikbord.state';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {PrikbordAction, PrikbordActionType} from './prikbord.action';
 
 const initialPrikbordState: PrikbordState = {
-  laadstatus: AanroepStatus.succes,
+  laadstatus: Aanroepstatus.nogNietGestart,
   berichten: null,
   meerBeschikbaar: true,
   teVerzendenBericht: '',
-  verzendstatus: AanroepStatus.succes
+  verzendstatus: Aanroepstatus.nogNietGestart
 };
 
 export function prikbordReducer(
@@ -22,11 +22,11 @@ export function prikbordReducer(
     case PrikbordActionType.LaadOudereBerichten:
       return {
         ...state,
-        laadstatus: AanroepStatus.bezig
+        laadstatus: Aanroepstatus.bezig
       };
 
     case PrikbordActionType.HerstelOpgeslagenStateSucces:
-      return {...state, ...action.prikbordState, laadstatus: AanroepStatus.succes};
+      return {...state, ...action.prikbordState, laadstatus: Aanroepstatus.uitgevoerdMetSucces};
 
     case PrikbordActionType.CheckNieuweBerichtenSucces:
       let berichten;
@@ -42,7 +42,7 @@ export function prikbordReducer(
       return {
         ...state,
         berichten,
-        laadstatus: AanroepStatus.succes
+        laadstatus: Aanroepstatus.uitgevoerdMetSucces
       };
 
     case PrikbordActionType.LaadOudereBerichtenSucces:
@@ -50,7 +50,7 @@ export function prikbordReducer(
         ...state,
         berichten: [...action.berichten.reverse(), ...state.berichten || []],
         // TODO: checken op dubbel (als nieuwere berichten zijn binnengekomen)
-        laadstatus: AanroepStatus.succes,
+        laadstatus: Aanroepstatus.uitgevoerdMetSucces,
         meerBeschikbaar: action.berichten.length > 0
       };
 
@@ -65,7 +65,7 @@ export function prikbordReducer(
     case PrikbordActionType.LaadOudereBerichtenFout:
       return {
         ...state,
-        laadstatus: AanroepStatus.fout(action.fout)
+        laadstatus: Aanroepstatus.uitgevoerdMetFout(action.fout)
       };
 
   }

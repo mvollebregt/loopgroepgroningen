@@ -27,7 +27,7 @@ export class InstellingenEffects {
     exhaustMap(() => this.instellingenOpslagService.getOpgeslagenInstellingen()),
     map(instellingen => instellingen
       ? new HerstelInstellingenOpgeslagenStateSucces(instellingen)
-      : new HerstelInstellingenOpgeslagenStateFout('Nog niets opgeslagen')),
+      : new HerstelInstellingenOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
     catchError(fout => of(new HerstelInstellingenOpgeslagenStateFout(fout)))
   );
 

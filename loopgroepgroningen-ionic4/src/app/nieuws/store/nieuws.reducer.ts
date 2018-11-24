@@ -1,9 +1,9 @@
 import {NieuwsState} from './nieuws.state';
 import {NieuwsAction, NieuwsActionType} from './nieuws.action';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 
 const initialState: NieuwsState = {
-  laadstatus: AanroepStatus.succes,
+  laadstatus: Aanroepstatus.nogNietGestart,
   berichten: null,
   meerBeschikbaar: true
 };
@@ -16,16 +16,16 @@ export function nieuwsReducer(
 
     case NieuwsActionType.HerstelOpgeslagenState:
     case NieuwsActionType.LaadOudereBerichten:
-      return {...state, laadstatus: AanroepStatus.bezig};
+      return {...state, laadstatus: Aanroepstatus.bezig};
 
     case NieuwsActionType.HerstelOpgeslagenStateSucces:
-      return {...state, ...action.nieuwsState, laadstatus: AanroepStatus.succes};
+      return {...state, ...action.nieuwsState, laadstatus: Aanroepstatus.uitgevoerdMetSucces};
 
     case NieuwsActionType.LaadOudereBerichtenSucces: {
       return {
         ...state,
         berichten: [...state.berichten || [], ...action.berichten],
-        laadstatus: AanroepStatus.succes,
+        laadstatus: Aanroepstatus.uitgevoerdMetSucces,
         meerBeschikbaar: action.berichten.length > 0
       };
     }
@@ -34,7 +34,7 @@ export function nieuwsReducer(
     case NieuwsActionType.LaadOudereBerichtenFout: {
       return {
         ...state,
-        laadstatus: AanroepStatus.fout(action.fout)
+        laadstatus: Aanroepstatus.uitgevoerdMetFout(action.fout)
       };
     }
   }

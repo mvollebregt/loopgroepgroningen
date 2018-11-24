@@ -1,19 +1,19 @@
 import {AgendaAction, AgendaActionType} from './agenda.action';
 import {AgendaState, EvenementState} from './agenda.state';
-import {AanroepStatus} from '../../core/backend/aanroep-status';
+import {Aanroepstatus} from '../../core/backend/models/aanroepstatus';
 import {Evenement} from '../../api';
 
 const initialAgendaState: AgendaState = {
-  laadstatus: AanroepStatus.succes,
+  laadstatus: Aanroepstatus.nogNietGestart,
   evenementStates: null,
 };
 
 const initialEvenementState: EvenementState = {
-  laadstatus: AanroepStatus.succes,
+  laadstatus: Aanroepstatus.nogNietGestart,
   evenement: null,
   teVerzendenBericht: '',
-  inschrijvingVerzendstatus: AanroepStatus.succes,
-  berichtVerzendstatus: AanroepStatus.succes
+  inschrijvingVerzendstatus: Aanroepstatus.nogNietGestart,
+  berichtVerzendstatus: Aanroepstatus.nogNietGestart
 };
 
 export function agendaReducer(
@@ -45,25 +45,25 @@ export function agendaReducer(
     case AgendaActionType.LaadEvenementen:
       return {
         ...state,
-        laadstatus: AanroepStatus.bezig
+        laadstatus: Aanroepstatus.bezig
       };
 
     case AgendaActionType.LaadEvenementdetails:
       return {
         ...state,
         evenementStates: metEvenementstate(action.id, {
-          laadstatus: AanroepStatus.bezig
+          laadstatus: Aanroepstatus.bezig
         })
       };
 
 
     case AgendaActionType.HerstelOpgeslagenStateSucces:
-      return {...state, ...action.agendaState, laadstatus: AanroepStatus.succes};
+      return {...state, ...action.agendaState, laadstatus: Aanroepstatus.uitgevoerdMetSucces};
 
     case AgendaActionType.LaadEvenementenSucces:
       return {
         ...state,
-        laadstatus: AanroepStatus.succes,
+        laadstatus: Aanroepstatus.uitgevoerdMetSucces,
         evenementStates: new Map(action.evenementen.map(voegSamenMetBestaande))
       };
 
@@ -71,7 +71,7 @@ export function agendaReducer(
       return {
         ...state,
         evenementStates: metEvenementstate(action.id, {
-          laadstatus: AanroepStatus.succes,
+          laadstatus: Aanroepstatus.uitgevoerdMetSucces,
           evenement: action.evenement
         })
       };
@@ -80,7 +80,7 @@ export function agendaReducer(
     case AgendaActionType.LaadEvenementenFout:
       return {
         ...state,
-        laadstatus: AanroepStatus.fout(action.fout)
+        laadstatus: Aanroepstatus.uitgevoerdMetFout(action.fout)
       };
 
 
@@ -88,7 +88,7 @@ export function agendaReducer(
       return {
         ...state,
         evenementStates: metEvenementstate(action.id, {
-          laadstatus: AanroepStatus.fout(action.fout)
+          laadstatus: Aanroepstatus.uitgevoerdMetFout(action.fout)
         })
       };
   }

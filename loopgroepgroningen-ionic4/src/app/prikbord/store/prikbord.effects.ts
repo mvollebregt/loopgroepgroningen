@@ -33,7 +33,7 @@ export class PrikbordEffects {
     exhaustMap(() => this.prikbordOpslagService.getOpgeslagenPrikbord()),
     map(prikbord => prikbord
       ? new HerstelPrikbordOpgeslagenStateSucces(prikbord)
-      : new HerstelPrikbordOpgeslagenStateFout('Nog niets opgeslagen')),
+      : new HerstelPrikbordOpgeslagenStateFout({melding: 'Nog niets opgeslagen'})),
     catchError(fout => of(new HerstelPrikbordOpgeslagenStateFout(fout)))
   );
 

@@ -1,6 +1,7 @@
 import {Action} from '@ngrx/store';
 import {Trainingsschema} from '../../api';
 import {TrainingsschemaState} from './trainingsschema.state';
+import {Fout} from '../../core/backend/models/fout';
 
 export enum TrainingsschemaActionType {
   HerstelOpgeslagenState = '[Trainingsschema] Herstel opgeslagen state',
@@ -25,7 +26,7 @@ export class HerstelTrainingsschemaOpgeslagenStateSucces implements Action {
 export class HerstelTrainingsschemaOpgeslagenStateFout implements Action {
   readonly type = TrainingsschemaActionType.HerstelOpgeslagenStateFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
@@ -43,7 +44,7 @@ export class LaadTrainingsschemaSucces implements Action {
 export class LaadTrainingsschemaFout implements Action {
   readonly type = TrainingsschemaActionType.LaadTrainingsschemaFout;
 
-  constructor(public fout: any) {
+  constructor(public fout: Fout) {
   }
 }
 
