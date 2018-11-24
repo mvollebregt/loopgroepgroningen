@@ -13,25 +13,27 @@
   <!--</div>-->
 </ion-header>
 
-<ion-content class="main-content-wrapper">
+<ion-content>
 
-  <div class="main-content">
+  <div class="main-content-wrapper">
+    <div class="main-content">
 
-    <lg-gesprek [berichten]="berichten | async"></lg-gesprek>
+      <lg-gesprek [berichten]="berichten | async"></lg-gesprek>
 
+    </div>
+
+    <!--<div *ngIf="ingelogd | async" class="dialog no-margin-right">-->
+
+    <!--&lt;!&ndash;<ion-textarea&ndash;&gt;-->
+    <!--&lt;!&ndash;placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord."&ndash;&gt;-->
+    <!--&lt;!&ndash;[(ngModel)]="reactie">&ndash;&gt;-->
+    <!--&lt;!&ndash;</ion-textarea>&ndash;&gt;-->
+
+    <!--<button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">-->
+    <!--<ion-icon name="send"></ion-icon>-->
+    <!--</button>-->
+
+    <!--</div>-->
   </div>
-
-  <!--<div *ngIf="ingelogd | async" class="dialog no-margin-right">-->
-
-  <!--&lt;!&ndash;<ion-textarea&ndash;&gt;-->
-  <!--&lt;!&ndash;placeholder="Typ hier je bericht. Berichten zijn ook voor niet-leden zichtbaar op www.loopgroepgroningen.nl/prikbord."&ndash;&gt;-->
-  <!--&lt;!&ndash;[(ngModel)]="reactie">&ndash;&gt;-->
-  <!--&lt;!&ndash;</ion-textarea>&ndash;&gt;-->
-
-  <!--<button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (click)="verstuurBericht()">-->
-  <!--<ion-icon name="send"></ion-icon>-->
-  <!--</button>-->
-
-  <!--</div>-->
 
 </ion-content>

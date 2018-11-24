@@ -10,22 +10,24 @@
 
 <!--<lg-spinner *ngIf="spinning"></lg-spinner>-->
 
-<ion-content class="main-content-wrapper">
+<ion-content>
 
-  <div class="main-content">
+  <div class="main-content-wrapper">
+    <div class="main-content">
 
-    <lg-evenement-view [evenement]="evenement | async"></lg-evenement-view>
+      <lg-evenement-view [evenement]="evenement | async"></lg-evenement-view>
 
-    <!--<div class="dialog no-margin-right">-->
+      <!--<div class="dialog no-margin-right">-->
 
-    <!--<ion-textarea #textarea [(ngModel)]="reactie"-->
-    <!--placeholder="Typ hier je reactie.">-->
-    <!--</ion-textarea>-->
+      <!--<ion-textarea #textarea [(ngModel)]="reactie"-->
+      <!--placeholder="Typ hier je reactie.">-->
+      <!--</ion-textarea>-->
 
-    <!--<button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (tap)="verstuurBericht()">-->
-    <!--<ion-icon name="send"></ion-icon>-->
-    <!--</button>-->
+      <!--<button ion-button round class="icon-button" [disabled]="aanHetVersturen || !reactie" (tap)="verstuurBericht()">-->
+      <!--<ion-icon name="send"></ion-icon>-->
+      <!--</button>-->
 
+    </div>
   </div>
 
 </ion-content>

@@ -18,17 +18,20 @@
 $hairlines-width: .55px;
 
 // In de standaard styling van Ionic voor ios is de ruimte voor de statusbar vergeten
-.ios ion-header {
-  padding-top: 20px;
-  background-color: var(--ion-toolbar-background-color);
-}
+//.ios ion-header {
+//  padding-top: 20px;
+//  background-color: var(--ion-toolbar-background-color);
+//}
 
 // Het menu krijgt dezelfde kleur als de toolbar
-ion-menu {
-  ion-content, ion-item {
-    background: var(--ion-toolbar-background-color);
-  }
+//ion-menu {
+//  ion-item {
+button {
+  background: var(--ion-toolbar-background-color);
 }
+
+//  }
+//}
 
 //ion-info-message {
 //  background: var(--ion-toolbar-background-color);
@@ -39,6 +42,8 @@ ion-menu {
 
 .main-content-wrapper {
   background: var(--ion-toolbar-background-color);
+  width: 100%;
+  height: 100%;
 }
 
 .main-content {
