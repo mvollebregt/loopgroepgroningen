@@ -9,11 +9,11 @@
       <ion-content>
         <div class="main-content-wrapper">
           <ion-list>
-            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of toegestanePaginas | async">
+              <ion-item [routerDirection]="'root'" [routerLink]="['/' + p.path]">
+                <ion-icon slot="start" [name]="p.icoon"></ion-icon>
                 <ion-label color="blue">
-                  {{p.title}}
+                  {{p.naam}}
                 </ion-label>
               </ion-item>
             </ion-menu-toggle>

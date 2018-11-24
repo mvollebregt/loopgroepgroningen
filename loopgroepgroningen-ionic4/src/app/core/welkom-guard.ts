@@ -33,7 +33,8 @@ export class WelkomGuard implements CanActivate {
           return false;
         } else if (session.toegestaneModules && session.toegestaneModules.indexOf(module) < 0) {
           // geen toegang tot module -> ga naar prikbord
-          this.router.navigate(['prikbord']);
+          this.router.navigate(['prikbord'], {skipLocationChange: true});
+          this.overschrijfUrl('/prikbord');
           return false;
         } else {
           // alles ok -> ga door

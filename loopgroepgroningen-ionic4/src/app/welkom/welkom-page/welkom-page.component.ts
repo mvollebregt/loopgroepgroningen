@@ -40,10 +40,22 @@ export class WelkomPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({username: [''], password: ['']});
-    this.credentials = this.store.pipe(select(getAuthenticatieCredentials), filter(credentials => credentials && credentials.username !== 'anonymous'));
+    this.credentials = this.store.pipe(
+      select(getAuthenticatieCredentials),
+      filter(credentials => credentials && credentials.username !== 'anonymous'));
     this.bezig = this.store.pipe(select(getAuthenticatieBezig));
     this.fout = this.store.pipe(select(getAuthenticatieFout));
+  }
+
+  inloggen() {
+    this.store.dispatch(new LogIn(this.loginForm.value));
     this.gaVerderNaSuccesvolleInlog();
+  }
+
+  annuleren() {
+    this.store.dispatch(new LogIn(anonymousUserCredentials));
+    this.gaVerderNaSuccesvolleInlog();
+    this.toonAnnuleerLoginAlert();
   }
 
   private gaVerderNaSuccesvolleInlog() {
@@ -57,19 +69,10 @@ export class WelkomPageComponent implements OnInit {
 
   private gaVerder() {
     if (this.location.path().indexOf('welkom') > -1) {
-      this.router.navigate(['prikbord'], {skipLocationChange: true, replaceUrl: true});
+      this.router.navigate(['prikbord'], {replaceUrl: true});
     } else {
       this.router.navigate([this.location.path()], {skipLocationChange: true});
     }
-  }
-
-  inloggen() {
-    this.store.dispatch(new LogIn(this.loginForm.value));
-  }
-
-  annuleren() {
-    this.store.dispatch(new LogIn(anonymousUserCredentials));
-    this.toonAnnuleerLoginAlert();
   }
 
   private async toonAnnuleerLoginAlert() {

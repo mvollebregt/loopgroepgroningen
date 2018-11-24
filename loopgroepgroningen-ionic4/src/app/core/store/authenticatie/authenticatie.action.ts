@@ -10,7 +10,6 @@ export enum AuthenticatieActionType {
   LogIn = '[Authenticatie] Log in',
   LogInSucces = '[Authenticatie] Log in succes',
   LogInFout = '[Authenticatie] Log in fout',
-  AnnuleerLogin = '[Authenticatie] Annuleer login',
   VraagOmCredentials = '[Authenticatie] Vraag om credentials',
   VraagOmCredentialsSucces = '[Authenticatie] Vraag om credentials succes',
   VraagOmCredentialsFout = '[Authenticatie] Vraag om credentials fout'
@@ -62,12 +61,6 @@ export class LogInFout implements Action {
   }
 }
 
-//
-// export class AnnuleerLogin implements Action {
-//   readonly type = AuthenticatieActionType.AnnuleerLogin;
-// }
-
-
 export type AuthenticatieAction =
   | HerstelAuthenticatieOpgeslagenState
   | HerstelAuthenticatieOpgeslagenStateSucces
@@ -75,4 +68,3 @@ export type AuthenticatieAction =
   | LogIn
   | LogInSucces
   | LogInFout;
-// | AnnuleerLogin;
