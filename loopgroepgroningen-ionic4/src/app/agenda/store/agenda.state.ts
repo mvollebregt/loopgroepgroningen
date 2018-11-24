@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 import {Evenement} from '../../api';
 
 export interface AgendaState {

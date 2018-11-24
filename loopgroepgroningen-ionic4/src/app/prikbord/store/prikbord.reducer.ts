@@ -1,5 +1,5 @@
 import {PrikbordState} from './prikbord.state';
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 import {PrikbordAction, PrikbordActionType} from './prikbord.action';
 
 const initialPrikbordState: PrikbordState = {

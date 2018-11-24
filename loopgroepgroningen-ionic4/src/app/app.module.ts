@@ -15,7 +15,7 @@ import {storeFreeze} from 'ngrx-store-freeze';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {NativeModule} from './native.module';
-import {VegetableJarService} from './shared/backend/vegetable-jar.service';
+import {VegetableJarService} from './core/backend/vegetable-jar.service';
 import {CoreModule} from './core/core.module';
 
 moment.locale('nl');

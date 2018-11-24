@@ -1,6 +1,6 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {Nieuwsbericht} from '../../api';
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 
 export interface NieuwsState {
   laadstatus: AanroepStatus;

@@ -39,7 +39,7 @@ export class WelkomPageComponent implements OnInit {
   private async toonAnnuleerLoginAlert() {
     const alert = await this.alertController.create({
       header: 'Niet ingelogd',
-      message: `Omdat je niet bent ingelogd, kun je alleen het prikbord en de agenda bekijken. Voor volledige toegang 
+      message: `Omdat je niet bent ingelogd, kun je alleen het prikbord en de agenda bekijken. Voor volledige toegang
       ga je naar 'Inloggen' in het menu.`,
       buttons: ['OK']
     });

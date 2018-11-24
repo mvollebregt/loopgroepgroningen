@@ -1,4 +1,4 @@
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 import {TrainingsschemaState} from './trainingsschema.state';
 import {TrainingsschemaAction, TrainingsschemaActionType} from './trainingsschema.action';
 

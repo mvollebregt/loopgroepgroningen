@@ -1,6 +1,6 @@
 import {NieuwsState} from './nieuws.state';
 import {NieuwsAction, NieuwsActionType} from './nieuws.action';
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 
 const initialState: NieuwsState = {
   laadstatus: AanroepStatus.succes,

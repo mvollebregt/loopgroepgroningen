@@ -6,7 +6,7 @@ import {exhaustMap, first, map, takeWhile} from 'rxjs/operators';
 import {InfiniteScroll} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {LaadOudereNieuwsBerichten} from '../store/nieuws.action';
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 import {getMeerNieuwsBeschikbaar, getNieuwsberichten, getNieuwsLaadStatus, NieuwsState} from '../store/nieuws.state';
 
 @Component({

@@ -1,4 +1,4 @@
-import {AanroepStatus} from '../../shared/backend/aanroep-status';
+import {AanroepStatus} from '../../core/backend/aanroep-status';
 import {Bericht} from '../../api';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 
