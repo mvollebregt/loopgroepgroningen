@@ -1,190 +1,43 @@
 {
   "A": [
-    { "titel": "Week 44", "inhoud": [
-      { "datum": "2018-10-31", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen", "locatie": "Kardingegebied"},
-      { "datum": "2018-11-03", "omschrijving": "Duurloop 50 min 75%, diverse opdrachten 3 x 10'", "locatie": "Oosterpark"},
-      { "titel": "eigen 3e training", "datum": "2018-11-05", "omschrijving": "Duurloop 50 min 75%"}]},
+    { "titel": "Week 1", "inhoud": [
+      { "datum": "2019-01-02", "omschrijving": "4 x 6 min 80%, 2 min rust 70%", "locatie": "Zilvermeer"},
+      { "datum": "2019-01-05", "omschrijving": "6 x 4 min 85%, 1 min 70%", "locatie": "rondje voetbalveld"},
+      { "titel": "eigen 3e training", "datum": "2019-01-07", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week 45", "inhoud": [
-      { "datum": "2018-11-07", "omschrijving": "3 x 8 min 80%, 2 min rust 70%", "locatie": "Noordijkerweg"},
-      { "datum": "2018-11-10", "omschrijving": "10 min korte zijde / 10 min lange zijde", "locatie": "Walfridusbrug"},
-      { "titel": "eigen 3e training", "datum": "2018-11-12", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 46", "inhoud": [
-      { "datum": "2018-11-14", "omschrijving": "4 x 6 min 80%, 2 min rust 70%", "locatie": "Zilvermeer"},
-      { "datum": "2018-11-17", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen", "locatie": "Koningslaagte"},
-      { "titel": "eigen 3e training", "datum": "2018-11-19", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 47", "inhoud": [
-      { "datum": "2018-11-21", "omschrijving": "15 min 75%, 3 x (5 x 100 meter 95% 100 meter dribbel), 1 min rust, 15 min 75%", "locatie": "Tot aan 500m punt 4 mijl startpunt"},
-      { "datum": "2018-11-24", "omschrijving": "Kilometertest 1e 80-85% 2e 90% 3e 3 km 90% 4 85% 5e 75%", "locatie": "2e gedeelte 4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-11-26", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 48", "inhoud": [
-      { "datum": "2018-11-28", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen", "locatie": "Driebond"},
-      { "datum": "2018-12-01", "omschrijving": "Sinterklaas", "locatie": "Kardingebult"},
-      { "titel": "eigen 3e training", "datum": "2018-12-03", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 49", "inhoud": [
-      { "datum": "2018-12-05", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen / Fartlek gezamenlijk ", "locatie": "Door de stad"},
-      { "datum": "2018-12-08", "omschrijving": "start 4 mijl parcours 500 meter 90%, 300 meter 70%", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-12-10", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 50", "inhoud": [
-      { "datum": "2018-12-12", "omschrijving": "2 x 15 min 80%, 3 min rust 70%", "locatie": "Zilvermeer/voetbalveld"},
-      { "datum": "2018-12-15", "omschrijving": "5 km", "locatie": "Trainer bepaalt"},
-      { "titel": "eigen 3e training", "datum": "2018-12-17", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 51", "inhoud": [
-      { "datum": "2018-12-19", "omschrijving": "Pyramyde, 2-4-6-4-2 90%, 2 min rust 75%", "locatie": "Driehoekje"},
-      { "datum": "2018-12-22", "omschrijving": "Peize (max 15KM)", "locatie": "Peize"},
-      { "titel": "eigen 3e training", "datum": "2018-12-24", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 52", "inhoud": [
-      { "datum": "2018-12-26", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen", "locatie": "Noordijkerweg"},
-      { "datum": "2018-12-29", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
-      { "titel": "eigen 3e training", "datum": "2018-12-31", "omschrijving": "Duurloop 50 min 75%"}]}
+    { "titel": "Week 2", "inhoud": [
+      { "datum": "2019-01-09", "omschrijving": "3 x brug op en af van Goningerweg tot Bedumerweg. 85% op, 70% af.", "locatie": "Noordzeebrug"},
+      { "datum": "2019-01-12", "omschrijving": "3 x 10 min 85%, 4 min rust 70%", "locatie": "Richting Paddepoelsterbrug"},
+      { "titel": "eigen 3e training", "datum": "2019-01-14", "omschrijving": "Duurloop 50 min 75%"}]}
   ],
 
   "B": [
-    { "titel": "Week 44", "inhoud": [
-      { "datum": "2018-10-31", "omschrijving": "Duurloop 65 min 75%, hete kolen, ballon + trots lopen", "locatie": "Kardingegebied"},
-      { "datum": "2018-11-03", "omschrijving": "Duurloop 65 min 75%, diverse opdrachten 3 x 10'", "locatie": "Oosterpark"},
-      { "titel": "eigen 3e training", "datum": "2018-11-05", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 80%"}]},
+    { "titel": "Week 1", "inhoud": [
+      { "datum": "2019-01-02", "omschrijving": "6 x 6 min 80%, 2 min rust 70%", "locatie": "Zilvermeer"},
+      { "datum": "2019-01-05", "omschrijving": "8 x 4 min 85%, 1 min 70%", "locatie": "4 mijl parcours geheel"},
+      { "titel": "eigen 3e training", "datum": "2019-01-07", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 45", "inhoud": [
-      { "datum": "2018-11-07", "omschrijving": "4 x 8 min 80%, 2 min rust 70%", "locatie": "Noordijkerweg"},
-      { "datum": "2018-11-10", "omschrijving": "15 min korte zijde / 15 min lange zijde", "locatie": "Walfridusbrug"},
-      { "titel": "eigen 3e training", "datum": "2018-11-12", "omschrijving": "Duurloop 75 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 46", "inhoud": [
-      { "datum": "2018-11-14", "omschrijving": "6 x 6 min 80%, 2 min rust 70%", "locatie": "Zilvermeer"},
-      { "datum": "2018-11-17", "omschrijving": "Duurloop 65 min 75%, hete kolen, ballon + trots lopen", "locatie": "Koningslaagte"},
-      { "titel": "eigen 3e training", "datum": "2018-11-19", "omschrijving": "Duurloop 75 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 47", "inhoud": [
-      { "datum": "2018-11-21", "omschrijving": "15 min 75%, 1 x (5 x 100 meter 95% 100 meter dribbel) / 2 x km 85% (naar 500m en terug), 3 min rust), 15 min 75%", "locatie": "Tot aan 500m punt 4 mijl startpunt"},
-      { "datum": "2018-11-24", "omschrijving": "Kilometertest 1e 80-85% 2e 90% 3e 3 km 90% 4 85% 5e 75%", "locatie": "2e gedeelte 4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-11-26", "omschrijving": "Duurloop 65 min 75%"}]},
-
-
-
-    { "titel": "Week 48", "inhoud": [
-      { "datum": "2018-11-28", "omschrijving": "Duurloop 65 min 75%, hete kolen, ballon + trots lopen", "locatie": "Driebond"},
-      { "datum": "2018-12-01", "omschrijving": "Sinterklaas", "locatie": "Kardingebult"},
-      { "titel": "eigen 3e training", "datum": "2018-12-03", "omschrijving": "Duurloop 80 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 49", "inhoud": [
-      { "datum": "2018-12-05", "omschrijving": "", "locatie": "Door de stad"},
-      { "datum": "2018-12-08", "omschrijving": "start 4 mijl parcours 500 meter 90%, 300 meter 70%", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-12-10", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 50", "inhoud": [
-      { "datum": "2018-12-12", "omschrijving": "3 x 15 min 80%, 3 min rust 70%", "locatie": "Zilvermeer/voetbalveld"},
-      { "datum": "2018-12-15", "omschrijving": "10 km", "locatie": "Trainer bepaalt"},
-      { "titel": "eigen 3e training", "datum": "2018-12-17", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 51", "inhoud": [
-      { "datum": "2018-12-19", "omschrijving": "Pyramyde, 2-4-6-6-4-2 90%, 2 min rust 75%", "locatie": "Driehoekje"},
-      { "datum": "2018-12-22", "omschrijving": "Peize (max 15KM)", "locatie": "Peize"},
-      { "titel": "eigen 3e training", "datum": "2018-12-24", "omschrijving": "Duurloop 50 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 52", "inhoud": [
-      { "datum": "2018-12-26", "omschrijving": "Duurloop 65 min 75%, hete kolen, ballon + trots lopen", "locatie": "Noordijkerweg"},
-      { "datum": "2018-12-29", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
-      { "titel": "eigen 3e training", "datum": "2018-12-31", "omschrijving": "Duurloop 50 min 75% "}]}
+    { "titel": "Week 2", "inhoud": [
+      { "datum": "2019-01-09", "omschrijving": "4 x brug op en af van Goningerweg tot Bedumerweg. 85% op, 70% af.", "locatie": "Noordzeebrug"},
+      { "datum": "2019-01-12", "omschrijving": "3 x 12 min 85%, 4 min rust 70%", "locatie": "Richting Paddepoelsterbrug"},
+      { "titel": "eigen 3e training", "datum": "2019-01-14", "omschrijving": "Duurloop 75 min 75%, laatste 10 min 85%"}]}
   ],
 
   "C": [
-    { "titel": "Week 44", "inhoud": [
-      { "datum": "2018-10-31", "omschrijving": "Duurloop 75 min 75%, hete kolen, ballon + trots lopen", "locatie": "Kardingegebied"},
-      { "datum": "2018-11-03", "omschrijving": "Duurloop 75 min 75%, diverse opdrachten 3 x 10'", "locatie": "Oosterpark"},
-      { "titel": "eigen 3e training", "datum": "2018-11-05", "omschrijving": "Duurloop 80 min 75%, laatste 10 min 80%"}]},
+    { "titel": "Week 1", "inhoud": [
+      { "datum": "2019-01-02", "omschrijving": "8 x 6 min 80%, 2 min rust 70%", "locatie": "Zilvermeer"},
+      { "datum": "2019-01-05", "omschrijving": "10 x 4 min 85%, 1 min 70%", "locatie": "4 mijl parcours met Beijumerbos"},
+      { "titel": "eigen 3e training", "datum": "2019-01-07", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 45", "inhoud": [
-      { "datum": "2018-11-07", "omschrijving": "5 x 8 min 80%, 2 min rust 70%", "locatie": "Noordijkerweg"},
-      { "datum": "2018-11-10", "omschrijving": "20 min korte zijde / 20 min lange zijde", "locatie": "Walfridusbrug"},
-      { "titel": "eigen 3e training", "datum": "2018-11-12", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 46", "inhoud": [
-      { "datum": "2018-11-14", "omschrijving": "8 x 6 min 80%, 2 min rust 70%", "locatie": "Zilvermeer"},
-      { "datum": "2018-11-17", "omschrijving": "Duurloop 75 min 75%, hete kolen, ballon + trots lopen", "locatie": "Koningslaagte"},
-      { "titel": "eigen 3e training", "datum": "2018-11-19", "omschrijving": "Duurloop 100 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 47", "inhoud": [
-      { "datum": "2018-11-21", "omschrijving": "15 min 75%, 2 sessies (1 x (5 x 100 meter 95% 100 meter dribbel) / 2 x km 85% (naar 500m en terug), 3 min rust), 15 min 75%", "locatie": "Tot aan 500m punt 4 mijl startpunt"},
-      { "datum": "2018-11-24", "omschrijving": "Kilometertest 1e 80-85% 2e 90% 3e 3 km 90% 4 85% 5e 75%", "locatie": "2e gedeelte 4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-11-26", "omschrijving": "Duurloop 75 min 75%"}]},
-
-
-
-    { "titel": "Week 48", "inhoud": [
-      { "datum": "2018-11-28", "omschrijving": "Duurloop 75 min 75%, hete kolen, ballon + trots lopen", "locatie": "Driebond"},
-      { "datum": "2018-12-01", "omschrijving": "Sinterklaas", "locatie": "Kardingebult"},
-      { "titel": "eigen 3e training", "datum": "2018-12-03", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 49", "inhoud": [
-      { "datum": "2018-12-05", "omschrijving": "", "locatie": "Door de stad"},
-      { "datum": "2018-12-08", "omschrijving": "start 4 mijl parcours 500 meter 90%, 300 meter 70%", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2018-12-10", "omschrijving": "Duurloop 100 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 50", "inhoud": [
-      { "datum": "2018-12-12", "omschrijving": "4 x 15 min 80%, 3 min rust 70%", "locatie": "Zilvermeer/voetbalveld"},
-      { "datum": "2018-12-15", "omschrijving": "15 km", "locatie": "Trainer bepaalt"},
-      { "titel": "eigen 3e training", "datum": "2018-12-17", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 51", "inhoud": [
-      { "datum": "2018-12-19", "omschrijving": "Pyramyde, 2-4-6-8-6-4-2 90%, 2 min rust 75%", "locatie": "Driehoekje"},
-      { "datum": "2018-12-22", "omschrijving": "Peize (max 15KM)", "locatie": "Peize"},
-      { "titel": "eigen 3e training", "datum": "2018-12-24", "omschrijving": "Duurloop 60 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 52", "inhoud": [
-      { "datum": "2018-12-26", "omschrijving": "Duurloop 75 min 75%, hete kolen, ballon + trots lopen", "locatie": "Noordijkerweg"},
-      { "datum": "2018-12-29", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
-      { "titel": "eigen 3e training", "datum": "2018-12-31", "omschrijving": "Duurloop 60 min 75%"}]}
+    { "titel": "Week 2", "inhoud": [
+      { "datum": "2019-01-09", "omschrijving": "5 x brug op en af van Goningerweg tot Bedumerweg. 85% op, 70% af.", "locatie": "Noordzeebrug"},
+      { "datum": "2019-01-12", "omschrijving": "3 x 15 min 85%, 4 min rust 70%", "locatie": "Richting Paddepoelsterbrug"},
+      { "titel": "eigen 3e training", "datum": "2019-01-14", "omschrijving": "Duurloop 100 min 75%, laatste 10 min 85%"}]}
   ]
 }
