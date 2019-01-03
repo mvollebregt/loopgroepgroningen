@@ -1,0 +1,49 @@
+.dialog {
+  height: auto;
+  background-color: var(--ion-toolbar-background-color);
+  display: flex;
+  align-items: center;
+}
+
+ion-textarea {
+  margin: 12px; // md 10 ipv 12?
+}
+
+ion-button {
+  --padding-start: 5px;
+  --padding-end: 5px;
+}
+
+//button {
+//  padding: 5px 5px;
+//}
+
+//.ios .dialog {
+//  margin: 12px;
+//}
+//
+//.md .dialog {
+//  margin: 10px;
+//}
+//
+//.wp .dialog {
+//  margin: 8px;
+//}
+//
+//.no-margin-right,
+//.dialog.no-margin-right {
+//  margin-right: 0;
+//}
+
+//ion-button ion-icon {
+//  padding: 0;
+//  height: 40px;
+//  width: 40px;
+//}
+
+ion-button {
+  //margin-left: 6px;
+  margin-right: 6px;
+  height: 40px;
+  width: 40px;
+}
