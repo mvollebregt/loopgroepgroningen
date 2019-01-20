@@ -37,8 +37,7 @@
 
     { "titel": "Week 10", "inhoud": [
       { "datum": "2019-03-06", "omschrijving": "Gezamenlijke duurloop", "locatie": "Kardingegebied"},
-      { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""},
-      { "titel": "eigen 3e training", "datum": "2019-03-11", "omschrijving": ""}]}
+      { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""}]}
   ],
   "B": [
     { "titel": "Week 3", "inhoud": [
@@ -63,7 +62,7 @@
 
     { "titel": "Week 7", "inhoud": [
       { "datum": "2019-02-13", "omschrijving": "11 x 2 min 95% - 2 min rust", "locatie": "Verlicht deel Driehoekje (400m)"},
-      { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": ""},
+      { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
       { "titel": "eigen 3e training", "datum": "2019-02-18", "omschrijving": "Duurloop 60 min 75%"}]},
 
     { "titel": "Week 8", "inhoud": [
@@ -78,8 +77,7 @@
 
     { "titel": "Week 10", "inhoud": [
       { "datum": "2019-03-06", "omschrijving": "Gezamenlijke duurloop", "locatie": "Kardingegebied"},
-      { "datum": "2019-03-09", "omschrijving": "", "locatie": ""},
-      { "titel": "eigen 3e training", "datum": "2019-03-11", "omschrijving": ""}]}
+      { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""}]}
     ],
 
   "C": [
@@ -105,7 +103,7 @@
 
       { "titel": "Week 7", "inhoud": [
         { "datum": "2019-02-13", "omschrijving": "14 x 2 min 95% - 2 min rust", "locatie": "Verlicht deel Driehoekje (400m)"},
-        { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": ""},
+        { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
         { "titel": "eigen 3e training", "datum": "2019-02-18", "omschrijving": "Duurloop 70 min 75%"}]},
 
       { "titel": "Week 8", "inhoud": [
@@ -120,7 +118,6 @@
 
       { "titel": "Week 10", "inhoud": [
         { "datum": "2019-03-06", "omschrijving": "Gezamenlijke duurloop", "locatie": "Kardingegebied"},
-        { "datum": "2019-03-09", "omschrijving": "", "locatie": ""},
-        { "titel": "eigen 3e training", "datum": "2019-03-11", "omschrijving": ""}]}
+        { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""}]}
     ]
 }
