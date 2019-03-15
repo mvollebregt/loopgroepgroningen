@@ -1,123 +1,291 @@
 {
   "A": [
-    { "titel": "Week 3", "inhoud": [
-      { "datum": "2019-01-16", "omschrijving": "6 x omhoog 90%, rust naar beneden", "locatie": "Fietspad naast Kardinge"},
-      { "datum": "2019-01-19", "omschrijving": "6 x 2 min 90% 2 min 75%, 10 min 75%", "locatie": "Molukkenplantsoen"},
-      { "titel": "eigen 3e training", "datum": "2019-01-21", "omschrijving": "Duurloop 50 min 75%"}]},
+    { "titel": "Week 11", "inhoud": [
+      { "datum": "2019-03-13", "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 50 minuten", "locatie": "Kardingegebied"},
+      { "datum": "2019-03-16", "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 50 minuten in koppels", "locatie": "Zuidwolde, binnendoor Hornbach"},
+      { "titel": "eigen 3e training", "datum": "2019-03-18", "omschrijving": "Duurloop, 45 minuten"}]},
 
-    { "titel": "Week 4", "inhoud": [
-      { "datum": "2019-01-23", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen", "locatie": "Route Kardinge, Dierenweide, Drielanden, Noorddijkerweg, Koerspad. 8km"},
-      { "datum": "2019-01-26", "omschrijving": "50 minuten vaartspel", "locatie": "Kardingegebied"},
-      { "titel": "eigen 3e training", "datum": "2019-01-28", "omschrijving": "Duurloop 55 min 75%"}]},
 
-    { "titel": "Week 5", "inhoud": [
-      { "datum": "2019-01-30", "omschrijving": "Piramide, 2-4-6-4-2 90%, 2 min rust 75%", "locatie": "Driehoekje"},
-      { "datum": "2019-02-02", "omschrijving": "4 x 6 min 85% - 4 min 70%", "locatie": "4 mijl tot Noorddijkerweg (tegengestelde richting)"},
-      { "titel": "eigen 3e training", "datum": "2019-02-04", "omschrijving": "Duurloop 60 min 75%"}]},
 
-    { "titel": "Week 6", "inhoud": [
-      { "datum": "2019-02-06", "omschrijving": " 3 x brug op en af van Goningerweg tot Bedumerweg. 85% op, 70% af.", "locatie": "Noordzeebrug"},
-      { "datum": "2019-02-09", "omschrijving": "start 4 mijl parcours 500 meter 90%, 300 meter 70%  Let op: populierenlaan ---> 4 mijl = 660 meter", "locatie": "4 mijl tot Noorddijkerweg"},
-      { "titel": "eigen 3e training", "datum": "2019-02-11", "omschrijving": "Duurloop 60 min 75%"}]},
+    { "titel": "Week 12", "inhoud": [
+      { "datum": "2019-03-20", "omschrijving": "Fartlek, 50 minuten", "locatie": "Driebond"},
+      { "datum": "2019-03-23", "omschrijving": "2 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-03-25", "omschrijving": "Duurloop, 50 minuten"}]},
 
-    { "titel": "Week 7", "inhoud": [
-      { "datum": "2019-02-13", "omschrijving": "8 x 2 min 95% - 2 min rust", "locatie": "Verlicht deel Driehoekje (400m)"},
-      { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
-      { "titel": "eigen 3e training", "datum": "2019-02-18", "omschrijving": "Duurloop 50 min 75%"}]},
 
-    { "titel": "Week 8", "inhoud": [
-      { "datum": "2019-02-20", "omschrijving": "Duurloop 50 min 75%, hete kolen, ballon + trots lopen", "locatie": "Richting Zuidwolde"},
-      { "datum": "2019-02-23", "omschrijving": "Duurloop 50 min 75%, diverse opdrachten 3 x 10'", "locatie": "Oosterpark"},
-      { "titel": "eigen 3e training", "datum": "2019-02-25", "omschrijving": "Duurloop 55 min 75%"}]},
 
-    { "titel": "Week 9", "inhoud": [
-      { "datum": "2019-02-27", "omschrijving": "3 x 1km constant HvH tempo - 3 min dribbelpauze", "locatie": "start 4 mijl - 500m - start 4 mijl"},
-      { "datum": "2019-03-02", "omschrijving": "90% gehele parcours (leegloop)", "locatie": "4 mijl tot Noorddijkerweg"},
-      { "titel": "eigen 3e training", "datum": "2019-03-04", "omschrijving": "Duurloop 50 min 75%"}]},
+    { "titel": "Week 13", "inhoud": [
+      { "datum": "2019-03-27", "omschrijving": "3 x 8 minuten, 3 rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-03-30", "omschrijving": "3 x 10 minuten 5 min rust", "locatie": "Vier mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-01", "omschrijving": "Duurloop, 55 minuten"}]},
 
-    { "titel": "Week 10", "inhoud": [
-      { "datum": "2019-03-06", "omschrijving": "Gezamenlijke duurloop", "locatie": "Kardingegebied"},
-      { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""}]}
+
+
+    { "titel": "Week 14", "inhoud": [
+      { "datum": "2019-04-03", "omschrijving": "2 x (10 x 30sec-15sec) 3 min rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-04-06", "omschrijving": "3 x 500m tempo heen, 500m rust terug", "locatie": "Start 4 mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-08", "omschrijving": "Duurloop, 50 minuten"}]},
+
+
+
+    { "titel": "Week 15", "inhoud": [
+      { "datum": "2019-04-10", "omschrijving": "Fartlek 50 minuten", "locatie": "Kardingeterrein"},
+      { "datum": "2019-04-13", "omschrijving": "techniek filmen + duurloopje", "locatie": "Oosterpark"},
+      { "titel": "eigen 3e training", "datum": "2019-04-15", "omschrijving": "Duurloop, 50 minuten. Laatste 5 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 16", "inhoud": [
+      { "datum": "2019-04-17", "omschrijving": "1 x 30 min, stevig tempo", "locatie": "4 mijl, Noorddijkerweg"},
+      { "datum": "2019-04-20", "omschrijving": "Bos(paashaas)training, vanuit Blankenhoeve", "locatie": "Noordlaren"},
+      { "titel": "eigen 3e training", "datum": "2019-04-22", "omschrijving": "Duurloop, 55 minuten"}]},
+
+
+
+    { "titel": "Week 17", "inhoud": [
+      { "datum": "2019-04-24", "omschrijving": "3 x 8 minuten, 3 rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-04-27", "omschrijving": "3 x 10 minuten 5 min rust", "locatie": "Vier mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-29", "omschrijving": "Duurloop, 55 minuten. Laatste 5 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 18", "inhoud": [
+      { "datum": "2019-05-01", "omschrijving": "3 x 1km (600 tempo, 400 rust) rechtsom ", "locatie": "Driehoekje"},
+      { "datum": "2019-05-04", "omschrijving": "3 x waarbij omhoog intensief, buitenlangs", "locatie": "Kardingebult"},
+      { "titel": "eigen 3e training", "datum": "2019-05-06", "omschrijving": "Duurloop, 50 minuten"}]},
+
+
+
+    { "titel": "Week 19", "inhoud": [
+      { "datum": "2019-05-08", "omschrijving": "Duurloop 50  minuten", "locatie": "Noorddijkerweg"},
+      { "datum": "2019-05-11", "omschrijving": "Duurloop 50  minuten", "locatie": "Beijummerbos"},
+      { "titel": "eigen 3e training", "datum": "2019-05-13", "omschrijving": "Duurloop, 55 minuten. Laatste 5 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 20", "inhoud": [
+      { "datum": "2019-05-15", "omschrijving": "2 x 8 min, 3 rust, veel aandacht techniek verharde gedeelte", "locatie": "Koeienweide ZM"},
+      { "datum": "2019-05-18", "omschrijving": "Walk for Life (vrijdag)", "locatie": ""},
+      { "titel": "eigen 3e training", "datum": "2019-05-20", "omschrijving": "Duurloop, 55 minuten. Laatste 5 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 21", "inhoud": [
+      { "datum": "2019-05-22", "omschrijving": "5 x 6 minuten, 2 rust", "locatie": "Noorddijkerweg, Lewenborg"},
+      { "datum": "2019-05-25", "omschrijving": "3 x 10 minuten, 2 rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-05-27", "omschrijving": "Duurloop, 60 minuten"}]},
+
+
+
+    { "titel": "Week 22", "inhoud": [
+      { "datum": "2019-05-29", "omschrijving": "800m, 200m rust. Noorddijkerweg is rust", "locatie": "4 mijl "},
+      { "datum": "2019-06-01", "omschrijving": "3 x volledig traject, omhoog op tempo, afdalen rust", "locatie": "Viaduct Noordzeebrug"},
+      { "titel": "eigen 3e training", "datum": "2019-06-03", "omschrijving": "Duurloop, 60 minuten"}]},
+
+
+
+    { "titel": "Week 23", "inhoud": [
+      { "datum": "2019-06-05", "omschrijving": "8 km duurloop", "locatie": "Zuidwolde, binnendoor Hornbach"},
+      { "datum": "2019-06-08", "omschrijving": "Bootcamp", "locatie": "Kardinge"},
+      { "titel": "eigen 3e training", "datum": "2019-06-10", "omschrijving": "Duurloop, 40 minuten"}]},
+
+
+
+    { "titel": "Week 24", "inhoud": [
+      { "datum": "2019-06-12", "omschrijving": "Duurloop 40  minuten", "locatie": "Inzicht trainer"},
+      { "datum": "2019-06-15", "omschrijving": "Leijenloop (5,2-12-21)", "locatie": ""}]}
   ],
   "B": [
-    { "titel": "Week 3", "inhoud": [
-      { "datum": "2019-01-16", "omschrijving": "8 x omhoog 90%, rust naar beneden", "locatie": "Fietspad naast Kardinge"},
-      { "datum": "2019-01-19", "omschrijving": "9 x 2 min 90% 2 min 75%, 10 min 75%", "locatie": "Molukkenplantsoen"},
-      { "titel": "eigen 3e training", "datum": "2019-01-21", "omschrijving": "Duurloop 60 min 75%, laatste 10 min 85%"}]},
+    { "titel": "Week 11", "inhoud": [
+      { "datum": "2019-03-13", "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 60 minuten", "locatie": "Kardingegebied"},
+      { "datum": "2019-03-16", "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 60 minuten in koppels", "locatie": "Zuidwolde, binnendoor Beijum"},
+      { "titel": "eigen 3e training", "datum": "2019-03-18", "omschrijving": "Duurloop, 50 minuten"}]},
 
-    { "titel": "Week 4", "inhoud": [
-      { "datum": "2019-01-23", "omschrijving": "Duurloop 65 min 75%, hete kolen, ballon + trots lopen", "locatie": "Route Kardinge, Alfa college, Ruisscherwaard (Roeierspad!), Noorddijkerwerg, Koerspad. 11km"},
-      { "datum": "2019-01-26", "omschrijving": "60 minuten vaartspel", "locatie": "Kardingegebied"},
-      { "titel": "eigen 3e training", "datum": "2019-01-28", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
 
-    { "titel": "Week 5", "inhoud": [
-      { "datum": "2019-01-30", "omschrijving": "Piramide, 2-4-6-6-4-2 90%, 2 min rust 75%", "locatie": "Kardingerplas"},
-      { "datum": "2019-02-02", "omschrijving": "6 x 6 min 85% - 4 min 70%", "locatie": "Rondje Lageweg"},
-      { "titel": "eigen 3e training", "datum": "2019-02-04", "omschrijving": "Duurloop 75 min 75%, laatste 10 min 85%"}]},
 
-    { "titel": "Week 6", "inhoud": [
-      { "datum": "2019-02-06", "omschrijving": " 4 x brug op en af van Goningerweg tot Bedumerweg. 85% op, 70% af.", "locatie": "Noordzeebrug"},
-      { "datum": "2019-02-09", "omschrijving": "start 4 mijl parcours 500 meter 90%, 300 meter 70%", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-02-11", "omschrijving": "Duurloop 80 min 75%, laatste 10 min 85%"}]},
+    { "titel": "Week 12", "inhoud": [
+      { "datum": "2019-03-20", "omschrijving": "Fartlek, 60 minuten", "locatie": "Driebond"},
+      { "datum": "2019-03-23", "omschrijving": "3 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-03-25", "omschrijving": "Duurloop, 70 minuten"}]},
 
-    { "titel": "Week 7", "inhoud": [
-      { "datum": "2019-02-13", "omschrijving": "11 x 2 min 95% - 2 min rust", "locatie": "Verlicht deel Driehoekje (400m)"},
-      { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
-      { "titel": "eigen 3e training", "datum": "2019-02-18", "omschrijving": "Duurloop 60 min 75%"}]},
 
-    { "titel": "Week 8", "inhoud": [
-      { "datum": "2019-02-20", "omschrijving": "Duurloop 65 min 75%, hete kolen, ballon + trots lopen", "locatie": "Richting Zuidwolde"},
-      { "datum": "2019-02-23", "omschrijving": "Duurloop 65 min 75%, diverse opdrachten 3 x 10'", "locatie": "Oosterpark"},
-      { "titel": "eigen 3e training", "datum": "2019-02-25", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
 
-    { "titel": "Week 9", "inhoud": [
-      { "datum": "2019-02-27", "omschrijving": "4 x 1km constant HvH tempo - 3 min dribbelpauze", "locatie": "start 4 mijl - 500m - start 4 mijl"},
-      { "datum": "2019-03-02", "omschrijving": "90% gehele parcours (leegloop)", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-03-04", "omschrijving": "Duurloop 55 min 75% "}]},
+    { "titel": "Week 13", "inhoud": [
+      { "datum": "2019-03-27", "omschrijving": "4 x 8 minuten, 3 rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-03-30", "omschrijving": "4 x 10 minuten 5 min rust", "locatie": "Vier mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-01", "omschrijving": "Duurloop, 75 minuten"}]},
 
-    { "titel": "Week 10", "inhoud": [
-      { "datum": "2019-03-06", "omschrijving": "Gezamenlijke duurloop", "locatie": "Kardingegebied"},
-      { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""}]}
-    ],
+
+
+    { "titel": "Week 14", "inhoud": [
+      { "datum": "2019-04-03", "omschrijving": "3 x (10 x 30sec-15sec) 3 min rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-04-06", "omschrijving": "5 x 500m tempo heen, 500m rust terug", "locatie": "Start 4 mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-08", "omschrijving": "Duurloop, 70 minuten"}]},
+
+
+
+    { "titel": "Week 15", "inhoud": [
+      { "datum": "2019-04-10", "omschrijving": "Fartlek 65 minuten", "locatie": "Kardingeterrein"},
+      { "datum": "2019-04-13", "omschrijving": "techniek filmen + duurloopje", "locatie": "Oosterpark"},
+      { "titel": "eigen 3e training", "datum": "2019-04-15", "omschrijving": "Duurloop, 75 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 16", "inhoud": [
+      { "datum": "2019-04-17", "omschrijving": "1 x 40 min, stevig tempo", "locatie": "4 mijl"},
+      { "datum": "2019-04-20", "omschrijving": "Bos(paashaas)training, vanuit Blankenhoeve", "locatie": "Noordlaren"},
+      { "titel": "eigen 3e training", "datum": "2019-04-22", "omschrijving": "Duurloop, 75 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 17", "inhoud": [
+      { "datum": "2019-04-24", "omschrijving": "4 x 8 minuten, 3 rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-04-27", "omschrijving": "4 x 10 minuten 5 min rust", "locatie": "Vier mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-29", "omschrijving": "Duurloop, 80 minuten. Laatste 5 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 18", "inhoud": [
+      { "datum": "2019-05-01", "omschrijving": "5 x 1km (600 tempo, 400 rust) rechtsom", "locatie": "Driehoekje"},
+      { "datum": "2019-05-04", "omschrijving": "5 x waarbij omhoog intensief", "locatie": "Kardingebult"},
+      { "titel": "eigen 3e training", "datum": "2019-05-06", "omschrijving": "Duurloop, 65 minuten"}]},
+
+
+
+    { "titel": "Week 19", "inhoud": [
+      { "datum": "2019-05-08", "omschrijving": "Duurloop 60 minuten", "locatie": "Noorddijkerweg"},
+      { "datum": "2019-05-11", "omschrijving": "Duurloop 60 minuten", "locatie": "Beijummerbos"},
+      { "titel": "eigen 3e training", "datum": "2019-05-13", "omschrijving": "Duurloop, 70 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 20", "inhoud": [
+      { "datum": "2019-05-15", "omschrijving": "3 x 8 min, 3 rust, veel aandacht techniek verharde gedeelte", "locatie": "Koeienweide ZM"},
+      { "datum": "2019-05-18", "omschrijving": "Walk for Life (vrijdag)", "locatie": ""},
+      { "titel": "eigen 3e training", "datum": "2019-05-20", "omschrijving": "Duurloop, 75 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 21", "inhoud": [
+      { "datum": "2019-05-22", "omschrijving": "7 x 6 minuten, 2 rust", "locatie": "Driebond"},
+      { "datum": "2019-05-25", "omschrijving": "2 x 20 min, 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-05-27", "omschrijving": "Duurloop, 80 minuten"}]},
+
+
+
+    { "titel": "Week 22", "inhoud": [
+      { "datum": "2019-05-29", "omschrijving": "800m, 200m rust, geheel 4 mijl, laatste 400 wedstrijdtempo", "locatie": "4 mijl "},
+      { "datum": "2019-06-01", "omschrijving": "4 x volledig traject, omhoog op tempo, afdalen rust", "locatie": "Viaduct Noordzeebrug"},
+      { "titel": "eigen 3e training", "datum": "2019-06-03", "omschrijving": "Duurloop, max 90 minuten"}]},
+
+
+
+    { "titel": "Week 23", "inhoud": [
+      { "datum": "2019-06-05", "omschrijving": "12 km duurloop", "locatie": "Zuidwolde, binnendoor Beijum"},
+      { "datum": "2019-06-08", "omschrijving": "Bootcamp", "locatie": "Kardinge"},
+      { "titel": "eigen 3e training", "datum": "2019-06-10", "omschrijving": "Duurloop, 50 minuten"}]},
+
+
+
+    { "titel": "Week 24", "inhoud": [
+      { "datum": "2019-06-12", "omschrijving": "Duurloop 50 minuten", "locatie": "Inzicht trainer"},
+      { "datum": "2019-06-15", "omschrijving": "Leijenloop (5,2-12-21)", "locatie": ""}]}
+  ],
 
   "C": [
-      { "titel": "Week 3", "inhoud": [
-        { "datum": "2019-01-16", "omschrijving": "10 x omhoog 90%, rust naar beneden", "locatie": "Fietspad naast Kardinge"},
-        { "datum": "2019-01-19", "omschrijving": "12 x 2 min 90% 2 min 75%, 10 min 75%", "locatie": "Molukkenplantsoen"},
-        { "titel": "eigen 3e training", "datum": "2019-01-21", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
+    { "titel": "Week 11", "inhoud": [
+      { "datum": "2019-03-13", "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 70 minuten", "locatie": "Kardingegebied"},
+      { "datum": "2019-03-16", "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 70minuten in  koppels", "locatie": "Zuidwolde"},
+      { "titel": "eigen 3e training", "datum": "2019-03-18", "omschrijving": "Duurloop, 60 minuten"}]},
 
-      { "titel": "Week 4", "inhoud": [
-        { "datum": "2019-01-23", "omschrijving": "Duurloop 75 min 75%, hete kolen, ballon + trots lopen", "locatie": "Kardinge, Alfa college, Ruisscherwaard (Roeierspad!), Noorddijkerwerg, Zuidwolde. 14km"},
-        { "datum": "2019-01-26", "omschrijving": "70 minuten vaartspel", "locatie": "Kardingegebied"},
-        { "titel": "eigen 3e training", "datum": "2019-01-28", "omschrijving": "Duurloop 85 min 75%, laatste 10 min 85%"}]},
 
-      { "titel": "Week 5", "inhoud": [
-        { "datum": "2019-01-30", "omschrijving": "Piramide, 2-4-6-8-6-4-2 90%, 2 min rust 75%", "locatie": "Kardingerplas - Voetbalvelden"},
-        { "datum": "2019-02-02", "omschrijving": "8 x 6 min 85% - 4 min 70%", "locatie": "Rondje Thesinge"},
-        { "titel": "eigen 3e training", "datum": "2019-02-04", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
 
-      { "titel": "Week 6", "inhoud": [
-        { "datum": "2019-02-06", "omschrijving": " 5 x brug op en af van Goningerweg tot Bedumerweg. 85% op, 70% af.", "locatie": "Noordzeebrug"},
-        { "datum": "2019-02-09", "omschrijving": "start 4 mijl parcours 500 meter 90%, 300 meter 70%", "locatie": "4 mijl parcours"},
-        { "titel": "eigen 3e training", "datum": "2019-02-11", "omschrijving": "Duurloop 95 min 75%, laatste 10 min 85%"}]},
+    { "titel": "Week 12", "inhoud": [
+      { "datum": "2019-03-20", "omschrijving": "Fartlek, 70 minuten", "locatie": "Driebond"},
+      { "datum": "2019-03-23", "omschrijving": "4 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-03-25", "omschrijving": "Duurloop, 80 minuten"}]},
 
-      { "titel": "Week 7", "inhoud": [
-        { "datum": "2019-02-13", "omschrijving": "14 x 2 min 95% - 2 min rust", "locatie": "Verlicht deel Driehoekje (400m)"},
-        { "datum": "2019-02-16", "omschrijving": "3 sessies van 10 minuten bij viaduct Onnen", "locatie": "Onnen"},
-        { "titel": "eigen 3e training", "datum": "2019-02-18", "omschrijving": "Duurloop 70 min 75%"}]},
 
-      { "titel": "Week 8", "inhoud": [
-        { "datum": "2019-02-20", "omschrijving": "Duurloop 75 min 75%, hete kolen, ballon + trots lopen", "locatie": "Richting Zuidwolde"},
-        { "datum": "2019-02-23", "omschrijving": "Duurloop 75 min 75%, diverse opdrachten 3 x 10'", "locatie": "Oosterpark"},
-        { "titel": "eigen 3e training", "datum": "2019-02-25", "omschrijving": "Duurloop 105 min 75%, laatste 10 min 85%"}]},
 
-      { "titel": "Week 9", "inhoud": [
-        { "datum": "2019-02-27", "omschrijving": "5 x 1km constant HvH tempo - 3 min dribbelpauze", "locatie": "start 4 mijl - 500m - start 4 mijl"},
-        { "datum": "2019-03-02", "omschrijving": "90% gehele parcours (leegloop)", "locatie": "4 mijl parcours"},
-        { "titel": "eigen 3e training", "datum": "2019-03-04", "omschrijving": "Duurloop 60 min 75%"}]},
+    { "titel": "Week 13", "inhoud": [
+      { "datum": "2019-03-27", "omschrijving": "5 x 8 minuten, 3 rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-03-30", "omschrijving": "5 x 10 minuten 5 min rust", "locatie": "Vier mijl, thesinge, bevr bos"},
+      { "titel": "eigen 3e training", "datum": "2019-04-01", "omschrijving": "Duurloop, 90 minuten"}]},
 
-      { "titel": "Week 10", "inhoud": [
-        { "datum": "2019-03-06", "omschrijving": "Gezamenlijke duurloop", "locatie": "Kardingegebied"},
-        { "datum": "2019-03-09", "omschrijving": "Halve van Haren", "locatie": ""}]}
-    ]
+
+
+    { "titel": "Week 14", "inhoud": [
+      { "datum": "2019-04-03", "omschrijving": "4 x (10 x 30sec-15sec) 3 min rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-04-06", "omschrijving": "7 x 500m tempo heen, 500m rust terug", "locatie": "Start 4 mijl"},
+      { "titel": "eigen 3e training", "datum": "2019-04-08", "omschrijving": "Duurloop, 80 minuten"}]},
+
+
+
+    { "titel": "Week 15", "inhoud": [
+      { "datum": "2019-04-10", "omschrijving": "Fartlek 75 minuten", "locatie": "Kardingeterrein"},
+      { "datum": "2019-04-13", "omschrijving": "techniek filmen + duurloopje", "locatie": "Oosterpark"},
+      { "titel": "eigen 3e training", "datum": "2019-04-15", "omschrijving": "Duurloop, 90 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 16", "inhoud": [
+      { "datum": "2019-04-17", "omschrijving": "1 x 50 min, stevig tempo", "locatie": "4 mijl"},
+      { "datum": "2019-04-20", "omschrijving": "Bos(paashaas)training, vanuit Blankenhoeve", "locatie": "Noordlaren"},
+      { "titel": "eigen 3e training", "datum": "2019-04-22", "omschrijving": "Duurloop, 95 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 17", "inhoud": [
+      { "datum": "2019-04-24", "omschrijving": "5 x 8 minuten, 3 rust", "locatie": "Zilvermeer"},
+      { "datum": "2019-04-27", "omschrijving": "5 x 10 minuten 5 min rust", "locatie": "Vier mijl, thesinge, bevr bos"},
+      { "titel": "eigen 3e training", "datum": "2019-04-29", "omschrijving": "Duurloop, 100 minuten. Laatste 5 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 18", "inhoud": [
+      { "datum": "2019-05-01", "omschrijving": "7 x 1km (600 tempo, 400 rust) rechtsom", "locatie": "Driehoekje"},
+      { "datum": "2019-05-04", "omschrijving": "7 x waarbij omhoog intensief", "locatie": "Kardingebult"},
+      { "titel": "eigen 3e training", "datum": "2019-05-06", "omschrijving": "Duurloop, 75 minuten"}]},
+
+
+
+    { "titel": "Week 19", "inhoud": [
+      { "datum": "2019-05-08", "omschrijving": "Duurloop 70 minuten", "locatie": "Noorddijkerweg"},
+      { "datum": "2019-05-11", "omschrijving": "Duurloop 75 minuten", "locatie": "4 mijl-Thesinge"},
+      { "titel": "eigen 3e training", "datum": "2019-05-13", "omschrijving": "Duurloop, 85 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 20", "inhoud": [
+      { "datum": "2019-05-15", "omschrijving": "4 x 8 min, 3 rust, veel aandacht techniek verharde gedeelte", "locatie": "Koeienweide ZM"},
+      { "datum": "2019-05-18", "omschrijving": "Walk for Life (vrijdag)", "locatie": ""},
+      { "titel": "eigen 3e training", "datum": "2019-05-20", "omschrijving": "Duurloop, 90 minuten. Laatste 10 min licht versnellen"}]},
+
+
+
+    { "titel": "Week 21", "inhoud": [
+      { "datum": "2019-05-22", "omschrijving": "9 x 6 minuten, 2 rust", "locatie": "Driebond"},
+      { "datum": "2019-05-25", "omschrijving": "2 x 25 min, 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-05-27", "omschrijving": "Duurloop, 105 minuten"}]},
+
+
+
+    { "titel": "Week 22", "inhoud": [
+      { "datum": "2019-05-29", "omschrijving": "800m, 200m rust, geheel 4 mijl, laatste 400 wedstrijdtempo", "locatie": "4 mijl "},
+      { "datum": "2019-06-01", "omschrijving": "5 x volledig traject, omhoog op tempo, afdalen rust", "locatie": "Viaduct Noordzeebrug"},
+      { "titel": "eigen 3e training", "datum": "2019-06-03", "omschrijving": "Duurloop, max 120 minuten"}]},
+
+
+
+    { "titel": "Week 23", "inhoud": [
+      { "datum": "2019-06-05", "omschrijving": "15 km duurloop", "locatie": "Zuidwolde"},
+      { "datum": "2019-06-08", "omschrijving": "Bootcamp", "locatie": "Kardinge"},
+      { "titel": "eigen 3e training", "datum": "2019-06-10", "omschrijving": "Duurloop, 60 minuten"}]},
+
+
+
+    { "titel": "Week 24", "inhoud": [
+      { "datum": "2019-06-12", "omschrijving": "Duurloop 60 minuten", "locatie": "Inzicht trainer"},
+      { "datum": "2019-06-15", "omschrijving": "Leijenloop (5,2-12-21)", "locatie": ""}]}
+  ]
 }
