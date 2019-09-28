@@ -1,249 +1,105 @@
 {
   "A": [
-    { "titel": "Week 27", "inhoud": [
-      { "datum": "2019-07-03", "omschrijving": "6x3 min 1 rust", "locatie": "4 mijl, noorddijkerweg"},
-      { "datum": "2019-07-06", "omschrijving": "10 min heuvel, 10 min trappen, 10 min rondje binnen  vijver", "locatie": "Noorderplantsoen"},
-      { "titel": "eigen 3e training", "datum": "2019-07-08", "omschrijving": "Duurloop, 45 minuten"}]},
+    { "titel": "Week 39", "inhoud": [
+      { "datum": "2019-09-25", "omschrijving": "Duurloop 50 min , hete kolen, ballon + trots lopen", "locatie": "Kardinge"},
+      { "datum": "2019-09-28", "omschrijving": "6 x 2 min tempo 2 min rust", "locatie": "Oosterparkvijver"},
+      { "titel": "eigen 3e training", "datum": "2019-09-30", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week 28", "inhoud": [
-      { "datum": "2019-07-10", "omschrijving": "duurloop 40 min incluis inlopen", "locatie": "Zuidwolde"},
-      { "datum": "2019-07-13", "omschrijving": "duurloop 40 min incluis inlopen (touwtje, kolen, balonnen)", "locatie": "4 mijl"},
-      { "titel": "eigen 3e training", "datum": "2019-07-15", "omschrijving": "Duurloop, 50 minuten"}]},
+    { "titel": "Week 40", "inhoud": [
+      { "datum": "2019-10-02", "omschrijving": "6 x omhoog tempo, rust naar beneden", "locatie": "Fietspad naast Kardinge"},
+      { "datum": "2019-10-05", "omschrijving": "2 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-10-07", "omschrijving": "Duurloop 55 min 75%"}]},
 
 
 
-    { "titel": "Week 29", "inhoud": [
-      { "datum": "2019-07-17", "omschrijving": "2 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
-      { "datum": "2019-07-20", "omschrijving": "Fartlek 40 min incluis inlopen", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2019-07-22", "omschrijving": "Duurloop, 55 minuten"}]},
+    { "titel": "Week 41", "inhoud": [
+      { "datum": "2019-10-09", "omschrijving": "Piramide, 2-4-6-4-2 tempo, 2 min rust rust", "locatie": "Driehoekje"},
+      { "datum": "2019-10-12", "omschrijving": "4 x 6 min tempo - 4 min rust", "locatie": "richting Zuidwolde"},
+      { "titel": "eigen 3e training", "datum": "2019-10-14", "omschrijving": "Duurloop 60 min 75%"}]},
 
 
 
-    { "titel": "Week 30", "inhoud": [
-      { "datum": "2019-07-24", "omschrijving": "1 x 30 min, stevig tempo", "locatie": "4 mijl, noorddijkerweg"},
-      { "datum": "2019-07-27", "omschrijving": "2 x 12 minuten 3 min rust  korte warming up!", "locatie": "Driebond"},
-      { "titel": "eigen 3e training", "datum": "2019-07-29", "omschrijving": "Duurloop, 50 minuten"}]},
+    { "titel": "Week 42", "inhoud": [
+      { "datum": "2019-10-16", "omschrijving": " 3 x brug op en af van Goningerweg tot Bedumerweg. rust op, rust af.", "locatie": "Noordzeebrug"},
+      { "datum": "2019-10-19", "omschrijving": "start 4 mijl parcours 500 meter tempo, 300 meter rust  Let op: populierenlaan ---> 4 mijl = 660 meter", "locatie": "4 mijl tot Noorddijkerweg"},
+      { "titel": "eigen 3e training", "datum": "2019-10-21", "omschrijving": "Duurloop 60 min 75%"}]},
 
 
 
-    { "titel": "Week 31", "inhoud": [
-      { "datum": "2019-07-31", "omschrijving": "2 x (10 x 30sec-15sec) 3 min rust", "locatie": "Zilvermeer"},
-      { "datum": "2019-08-03", "omschrijving": "500m rust 500m versneld", "locatie": "4 mijl"},
-      { "titel": "eigen 3e training", "datum": "2019-08-05", "omschrijving": "Duurloop, 60 minuten"}]},
-
-
-
-    { "titel": "Week 32", "inhoud": [
-      { "datum": "2019-08-07", "omschrijving": "duurloop 40 min incluis inlopen (touwtje, kolen, balonnen)", "locatie": "Noordijkerweg"},
-      { "datum": "2019-08-10", "omschrijving": "duurloop 40 min incluis inlopen", "locatie": "Zuidwolde"},
-      { "titel": "eigen 3e training", "datum": "2019-08-12", "omschrijving": "Duurloop, 50 minuten. Laatste 5 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 33", "inhoud": [
-      { "datum": "2019-08-14", "omschrijving": "1 x korte zijde, 1 x lange zijde", "locatie": "Walfridus"},
-      { "datum": "2019-08-17", "omschrijving": "Bos-crosstraining Gieten"},
-      { "titel": "eigen 3e training", "datum": "2019-08-19", "omschrijving": "Duurloop, 55 minuten. Laatste 5 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 34", "inhoud": [
-      { "datum": "2019-08-21", "omschrijving": "2 x 15 min 5 rust", "locatie": "Driebond"},
-      { "datum": "2019-08-24", "omschrijving": "duurloop 40 min", "locatie": "Richting Thesinge"},
-      { "titel": "eigen 3e training", "datum": "2019-08-26", "omschrijving": "Duurloop, 55 minuten"}]},
-
-
-
-    { "titel": "Week 35", "inhoud": [
-      { "datum": "2019-08-28", "omschrijving": " 2 x(3 rondjes vijfer, 460m per rondje) 1 ronde rust (rechts houden en omgekeerd terug)", "locatie": "Oosterpark"},
-      { "datum": "2019-08-31", "omschrijving": "Rondje Hoornseplas (2km) + strand", "locatie": "Hoornse Plas"},
-      { "titel": "eigen 3e training", "datum": "2019-09-02", "omschrijving": "Duurloop, 55 minuten. Laatste 5 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 36", "inhoud": [
-      { "datum": "2019-09-04", "omschrijving": "duurloop 40 min, na elke 10 min 2 min versnellen", "locatie": "4 mijl"},
-      { "datum": "2019-09-07", "omschrijving": "Dobbelstenenspel + facultatief duurloopje", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2019-09-09", "omschrijving": "Duurloop, 60 minuten"}]},
-
-
-
-    { "titel": "Week 37", "inhoud": [
-      { "datum": "2019-09-11", "omschrijving": "3 x 8 min, 3 min rust", "locatie": "Zuidwolde"},
-      { "datum": "2019-09-14", "omschrijving": "duurloop 40 min, 2 x 5 min versneld", "locatie": "Richting Thesinge"},
-      { "titel": "eigen 3e training", "datum": "2019-09-16", "omschrijving": "Duurloop, 40 minuten"}]},
-
-
-
-    { "titel": "Week 38", "inhoud": [
-      { "datum": "2019-09-18", "omschrijving": "3 x Fitmijl", "locatie": "Kantine"},
-      { "datum": "2019-09-21", "omschrijving": "XRUN"}]}
+    { "titel": "Week 43", "inhoud": [
+      { "datum": "2019-10-23", "omschrijving": "Duurloop 50 min", "locatie": "Kardinge"},
+      { "datum": "2019-10-26", "omschrijving": "Dwingelderveldloop 7,5km", "locatie": "Dwingeloo"},
+      { "titel": "eigen 3e training", "datum": "2019-10-28", "omschrijving": "Duurloop 50 min 75%"}]}
   ],
   "B": [
-    { "titel": "Week 27", "inhoud": [
-      { "datum": "2019-07-03", "omschrijving": "9x3 min 1 rust", "locatie": "4 mijl"},
-      { "datum": "2019-07-06", "omschrijving": "10 min heuvel, 10 min trappen, 10 min rondje binnen  vijver", "locatie": "Noorderplantsoen"},
-      { "titel": "eigen 3e training", "datum": "2019-07-08", "omschrijving": "Duurloop, 50 minuten"}]},
+    { "titel": "Week 39", "inhoud": [
+      { "datum": "2019-09-25", "omschrijving": "Duurloop 65 min , hete kolen, ballon + trots lopen", "locatie": "Kardinge"},
+      { "datum": "2019-09-28", "omschrijving": "9 x 2 min tempo 2 min rust", "locatie": "Oosterparkvijver"},
+      { "titel": "eigen 3e training", "datum": "2019-09-30", "omschrijving": "Duurloop 60 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 28", "inhoud": [
-      { "datum": "2019-07-10", "omschrijving": "duurloop 50 min", "locatie": "Zuidwolde"},
-      { "datum": "2019-07-13", "omschrijving": "duurloop 50 min (touwtje, kolen, balonnen)", "locatie": "4 mijl"},
-      { "titel": "eigen 3e training", "datum": "2019-07-15", "omschrijving": "Duurloop, 70 minuten"}]},
+    { "titel": "Week 40", "inhoud": [
+      { "datum": "2019-10-02", "omschrijving": "8 x omhoog tempo, rust naar beneden", "locatie": "Fietspad naast Kardinge"},
+      { "datum": "2019-10-05", "omschrijving": "3 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-10-07", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 29", "inhoud": [
-      { "datum": "2019-07-17", "omschrijving": "3 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
-      { "datum": "2019-07-20", "omschrijving": "Fartlek 50 min ", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2019-07-22", "omschrijving": "Duurloop, 75 minuten"}]},
+    { "titel": "Week 41", "inhoud": [
+      { "datum": "2019-10-09", "omschrijving": "Piramide, 2-4-6-6-4-2 tempo, 2 min rust rust", "locatie": "Kardingerplas"},
+      { "datum": "2019-10-12", "omschrijving": "6 x 6 min tempo - 4 min rust", "locatie": "richting Zuidwolde"},
+      { "titel": "eigen 3e training", "datum": "2019-10-14", "omschrijving": "Duurloop 75 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 30", "inhoud": [
-      { "datum": "2019-07-24", "omschrijving": "1 x 50 min, stevig tempo", "locatie": "4 mijl"},
-      { "datum": "2019-07-27", "omschrijving": "4 x 12 minuten 3 min rust, korte warming up!", "locatie": "Driebond"},
-      { "titel": "eigen 3e training", "datum": "2019-07-29", "omschrijving": "Duurloop, 70 minuten"}]},
+    { "titel": "Week 42", "inhoud": [
+      { "datum": "2019-10-16", "omschrijving": " 4 x brug op en af van Goningerweg tot Bedumerweg. rust op, rust af.", "locatie": "Noordzeebrug"},
+      { "datum": "2019-10-19", "omschrijving": "start 4 mijl parcours 500 meter tempo, 300 meter rust", "locatie": "4 mijl parcours"},
+      { "titel": "eigen 3e training", "datum": "2019-10-21", "omschrijving": "Duurloop 80 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 31", "inhoud": [
-      { "datum": "2019-07-31", "omschrijving": "3 x (10 x 30sec-15sec) 3 min rust", "locatie": "Zilvermeer"},
-      { "datum": "2019-08-03", "omschrijving": "500m rust 500m versneld", "locatie": "4 mijl"},
-      { "titel": "eigen 3e training", "datum": "2019-08-05", "omschrijving": "Duurloop, 80 minuten"}]},
-
-
-
-    { "titel": "Week 32", "inhoud": [
-      { "datum": "2019-08-07", "omschrijving": "duurloop 50 min (touwtje, kolen, balonnen)", "locatie": "Noordijkerweg"},
-      { "datum": "2019-08-10", "omschrijving": "duurloop 50 min", "locatie": "Zuidwolde"},
-      { "titel": "eigen 3e training", "datum": "2019-08-12", "omschrijving": "Duurloop, 75 minuten. Laatste 10 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 33", "inhoud": [
-      { "datum": "2019-08-14", "omschrijving": "2 x korte zijde, 2 x lange zijde", "locatie": "Walfridus"},
-      { "datum": "2019-08-17", "omschrijving": "Bos-crosstraining Gieten"},
-      { "titel": "eigen 3e training", "datum": "2019-08-19", "omschrijving": "Duurloop, 70 minuten. Laatste 10 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 34", "inhoud": [
-      { "datum": "2019-08-21", "omschrijving": "3 x 15 min 5 rust", "locatie": "Driebond"},
-      { "datum": "2019-08-24", "omschrijving": "duurloop 60 min", "locatie": "Richting Thesinge"},
-      { "titel": "eigen 3e training", "datum": "2019-08-26", "omschrijving": "Duurloop, 75 minuten. Laatste 10 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 35", "inhoud": [
-      { "datum": "2019-08-28", "omschrijving": " 4 x(3 rondjes vijfer, 460m per rondje) 1 ronde rust (rechts houden en omgekeerd terug)", "locatie": "Oosterpark"},
-      { "datum": "2019-08-31", "omschrijving": "Rondje Hoornseplas (2km) + strand", "locatie": "Hoornse Plas"},
-      { "titel": "eigen 3e training", "datum": "2019-09-02", "omschrijving": "Duurloop, 80 minuten. Laatste 5 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 36", "inhoud": [
-      { "datum": "2019-09-04", "omschrijving": "duurloop 50 min, na elke 10 min 2 min versnellen", "locatie": "4 mijl"},
-      { "datum": "2019-09-07", "omschrijving": "Dobbelstenenspel + facultatief duurloopje", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2019-09-09", "omschrijving": "Duurloop, max 90 minuten"}]},
-
-
-
-    { "titel": "Week 37", "inhoud": [
-      { "datum": "2019-09-11", "omschrijving": "5 x 8 min, 3 min rust", "locatie": "Zuidwolde"},
-      { "datum": "2019-09-14", "omschrijving": "duurloop 60 min, 2 x 10 min versneld", "locatie": "Richting Thesinge"},
-      { "titel": "eigen 3e training", "datum": "2019-09-16", "omschrijving": "Duurloop, 50 minuten"}]},
-
-
-
-    { "titel": "Week 38", "inhoud": [
-      { "datum": "2019-09-18", "omschrijving": "4 x Fitmijl", "locatie": "Kantine"},
-      { "datum": "2019-09-21", "omschrijving": "XRUN"}]}
+    { "titel": "Week 43", "inhoud": [
+      { "datum": "2019-10-23", "omschrijving": "Duurloop 65 min", "locatie": "Kardinge"},
+      { "datum": "2019-10-26", "omschrijving": "Dwingelderveldloop 15km", "locatie": "Dwingeloo"},
+      { "titel": "eigen 3e training", "datum": "2019-10-28", "omschrijving": "Duurloop 60 min 75%"}]}
   ],
 
   "C": [
-    { "titel": "Week 27", "inhoud": [
-      { "datum": "2019-07-03", "omschrijving": "12x3 min 1 rust", "locatie": "4 mijl"},
-      { "datum": "2019-07-06", "omschrijving": "10 min heuvel, 10 min trappen, 10 min rondje binnen  vijver", "locatie": "Noorderplantsoen"},
-      { "titel": "eigen 3e training", "datum": "2019-07-08", "omschrijving": "Duurloop, 60 minuten"}]},
+    { "titel": "Week 39", "inhoud": [
+      { "datum": "2019-09-25", "omschrijving": "Duurloop 75 min , hete kolen, ballon + trots lopen", "locatie": "Kardinge"},
+      { "datum": "2019-09-28", "omschrijving": "12 x 2 min tempo 2 min rust", "locatie": "Oosterparkvijver"},
+      { "titel": "eigen 3e training", "datum": "2019-09-30", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 28", "inhoud": [
-      { "datum": "2019-07-10", "omschrijving": "duurloop 60 min", "locatie": "Zuidwolde"},
-      { "datum": "2019-07-13", "omschrijving": "duurloop 60 min (touwtje, kolen, balonnen)", "locatie": "4 mijl"},
-      { "titel": "eigen 3e training", "datum": "2019-07-15", "omschrijving": "Duurloop, 80 minuten"}]},
+    { "titel": "Week 40", "inhoud": [
+      { "datum": "2019-10-02", "omschrijving": "10 x omhoog tempo, rust naar beneden", "locatie": "Fietspad naast Kardinge"},
+      { "datum": "2019-10-05", "omschrijving": "4 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
+      { "titel": "eigen 3e training", "datum": "2019-10-07", "omschrijving": "Duurloop 85 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 29", "inhoud": [
-      { "datum": "2019-07-17", "omschrijving": "4 x 15 minuten 5 min rust", "locatie": "Koningslaagte"},
-      { "datum": "2019-07-20", "omschrijving": "Fartlek 60 min ", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2019-07-22", "omschrijving": "Duurloop, 90 minuten"}]},
+    { "titel": "Week 41", "inhoud": [
+      { "datum": "2019-10-09", "omschrijving": "Piramide, 2-4-6-8-6-4-2 tempo, 2 min rust rust", "locatie": "Kardingerplas - Voetbalvelden"},
+      { "datum": "2019-10-12", "omschrijving": "8 x 6 min tempo - 4 min rust", "locatie": "richting Zuidwolde"},
+      { "titel": "eigen 3e training", "datum": "2019-10-14", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 30", "inhoud": [
-      { "datum": "2019-07-24", "omschrijving": "1 x 60 min, stevig tempo", "locatie": "4 mijl"},
-      { "datum": "2019-07-27", "omschrijving": "6 x 12 minuten 3 min rust  korte warming up!", "locatie": "Driebond"},
-      { "titel": "eigen 3e training", "datum": "2019-07-29", "omschrijving": "Duurloop, 80 minuten"}]},
+    { "titel": "Week 42", "inhoud": [
+      { "datum": "2019-10-16", "omschrijving": " 5 x brug op en af van Goningerweg tot Bedumerweg. rust op, rust af.", "locatie": "Noordzeebrug"},
+      { "datum": "2019-10-19", "omschrijving": "start 4 mijl parcours 500 meter tempo, 300 meter rust. Toetje?", "locatie": "4 mijl parcours"},
+      { "titel": "eigen 3e training", "datum": "2019-10-21", "omschrijving": "Duurloop 95 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week 31", "inhoud": [
-      { "datum": "2019-07-31", "omschrijving": "4 x (10 x 30sec-15sec) 3 min rust", "locatie": "Zilvermeer"},
-      { "datum": "2019-08-03", "omschrijving": "500m rust 500m  versneld", "locatie": "4 mijl"},
-      { "titel": "eigen 3e training", "datum": "2019-08-05", "omschrijving": "Duurloop, 105 minuten"}]},
-
-
-
-    { "titel": "Week 32", "inhoud": [
-      { "datum": "2019-08-07", "omschrijving": "duurloop 60 min (touwtje, kolen, balonnen)", "locatie": "Noordijkerweg"},
-      { "datum": "2019-08-10", "omschrijving": "duurloop 60 min", "locatie": "Zuidwolde"},
-      { "titel": "eigen 3e training", "datum": "2019-08-12", "omschrijving": "Duurloop, 90 minuten. Laatste 10 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 33", "inhoud": [
-      { "datum": "2019-08-14", "omschrijving": "3 x korte zijde, 3 x lange zijde", "locatie": "Walfridus"},
-      { "datum": "2019-08-17", "omschrijving": "Bos-crosstraining Gieten"},
-      { "titel": "eigen 3e training", "datum": "2019-08-19", "omschrijving": "Duurloop, 85 minuten. Laatste 10 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 34", "inhoud": [
-      { "datum": "2019-08-21", "omschrijving": "4 x 15 min 5 rust", "locatie": "Driebond"},
-      { "datum": "2019-08-24", "omschrijving": "duurloop 80 min", "locatie": "Richting Thesinge"},
-      { "titel": "eigen 3e training", "datum": "2019-08-26", "omschrijving": "Duurloop, 95 minuten. Laatste 10 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 35", "inhoud": [
-      { "datum": "2019-08-28", "omschrijving": " 6 x(3 rondjes vijfer, 460m per rondje) 1 ronde rust (rechts houden en omgekeerd terug)", "locatie": "Oosterpark"},
-      { "datum": "2019-08-31", "omschrijving": "Rondje Hoornseplas (2km) + strand", "locatie": "Hoornse Plas"},
-      { "titel": "eigen 3e training", "datum": "2019-09-02", "omschrijving": "Duurloop, 100 minuten. Laatste 5 min licht versnellen"}]},
-
-
-
-    { "titel": "Week 36", "inhoud": [
-      { "datum": "2019-09-04", "omschrijving": "duurloop 60 min, na elke 10 min 2 min versnellen", "locatie": "4 mijl"},
-      { "datum": "2019-09-07", "omschrijving": "Dobbelstenenspel + facultatief duurloopje", "locatie": "Kardinge"},
-      { "titel": "eigen 3e training", "datum": "2019-09-09", "omschrijving": "Duurloop, max 120 minuten"}]},
-
-
-
-    { "titel": "Week 37", "inhoud": [
-      { "datum": "2019-09-11", "omschrijving": "7 x 8 min, 3 min rust", "locatie": "Zuidwolde"},
-      { "datum": "2019-09-14", "omschrijving": "duurloop 80 min, 2 x 15 min versneld", "locatie": "Richting Thesinge"},
-      { "titel": "eigen 3e training", "datum": "2019-09-16", "omschrijving": "Duurloop, 60 minuten"}]},
-
-
-
-    { "titel": "Week 38", "inhoud": [
-      { "datum": "2019-09-18", "omschrijving": "5 x Fitmijl", "locatie": "Kantine"},
-      { "datum": "2019-09-21", "omschrijving": "XRUN"}]}
+    { "titel": "Week 43", "inhoud": [
+      { "datum": "2019-10-23", "omschrijving": "Duurloop 75 min", "locatie": "Kardinge"},
+      { "datum": "2019-10-26", "omschrijving": "Dwingelderveldloop halve marathon", "locatie": "Dwingeloo"},
+      { "titel": "eigen 3e training", "datum": "2019-10-28", "omschrijving": "Duurloop 70 min 75%"}]}
   ]
 }
