@@ -21,42 +21,42 @@
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 47", "inhoud": [
       { "datum": "2019-11-20", "omschrijving": "Duurloop 50 min (na elke 10 min 1 min versnellen), hete kolen, ballon + trots lopen", "locatie": "Zuidwolde"},
       { "datum": "2019-11-23", "omschrijving": "Bostraining", "locatie": "Nader te bepalen"},
       { "titel": "eigen 3e training", "datum": "2019-11-25", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 48", "inhoud": [
       { "datum": "2019-11-27", "omschrijving": "4 x 6, 2 min rust", "locatie": "Driebond"},
       { "datum": "2019-11-30", "omschrijving": "Sinterklaas?", "locatie": "Nader te bepalen"},
       { "titel": "eigen 3e training", "datum": "2019-12-02", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 49", "inhoud": [
       { "datum": "2019-12-04", "omschrijving": "4 x 5 min tempo - 3 min rust", "locatie": "Voetbalvelden"},
       { "datum": "2019-12-07", "omschrijving": "Dobbelstenenspel bij start 4 mijl parcours, heen tempo, terug rust (groepsvorm)", "locatie": "4 mijl parcours"},
       { "titel": "eigen 3e training", "datum": "2019-12-09", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 50", "inhoud": [
       { "datum": "2019-12-11", "omschrijving": "2-4-6-4-2 (rust 2 min)", "locatie": "Driehoekje"},
       { "datum": "2019-12-14", "omschrijving": "Fartlek 45 minuten", "locatie": "Kardingeterrein"},
       { "titel": "eigen 3e training", "datum": "2019-12-16", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
-      { "datum": "1900-01-00", "omschrijving": "Duurloop 45 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
-      { "datum": "1900-01-00", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
-      { "titel": "eigen 3e training", "datum": "1900-01-02", "omschrijving": "Duurloop 50 min 75%"}]},
+    { "titel": "Week 51", "inhoud": [
+      { "datum": "2019-12-18", "omschrijving": "Duurloop 45 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
+      { "datum": "2019-12-21", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
+      { "titel": "eigen 3e training", "datum": "2019-12-23", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 52", "inhoud": [
       { "datum": "2019-12-25", "omschrijving": "Tempoduurloop 40 min", "locatie": "Door de stad"},
       { "datum": "2019-12-28", "omschrijving": "400 m rust, 400 snel", "locatie": "4 mijl parcours"},
       { "titel": "eigen 3e training", "datum": "2019-12-30", "omschrijving": "Duurloop 50 min 75%"}]}
@@ -83,42 +83,42 @@
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 47", "inhoud": [
       { "datum": "2019-11-20", "omschrijving": "Duurloop 65 min (na elke 10 min 1 min versnellen), hete kolen, ballon + trots lopen", "locatie": "Zuidwolde"},
       { "datum": "2019-11-23", "omschrijving": "Bostraining", "locatie": "Nader te bepalen"},
       { "titel": "eigen 3e training", "datum": "2019-11-25", "omschrijving": "Duurloop 50 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 48", "inhoud": [
       { "datum": "2019-11-27", "omschrijving": "6 x 6, 2 min rust", "locatie": "Driebond"},
       { "datum": "2019-11-30", "omschrijving": "Sinterklaas?", "locatie": "Nader te bepalen"},
       { "titel": "eigen 3e training", "datum": "2019-12-02", "omschrijving": "Duurloop 65 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 49", "inhoud": [
       { "datum": "2019-12-04", "omschrijving": "6 x 5 min tempo - 3 min rust", "locatie": "Voetbalvelden"},
       { "datum": "2019-12-07", "omschrijving": "Dobbelstenenspel bij start 4 mijl parcours, heen tempo, terug rust (groepsvorm)", "locatie": "4 mijl parcours"},
       { "titel": "eigen 3e training", "datum": "2019-12-09", "omschrijving": "Duurloop 65 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 50", "inhoud": [
       { "datum": "2019-12-11", "omschrijving": "2-4-6-6-4-2 (rust 2 min)", "locatie": "Kardingerplas"},
       { "datum": "2019-12-14", "omschrijving": "Fartlek 60 minuten", "locatie": "Kardingeterrein"},
       { "titel": "eigen 3e training", "datum": "2019-12-16", "omschrijving": "Duurloop 70 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
-      { "datum": "1900-01-00", "omschrijving": "Duurloop 60 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
-      { "datum": "1900-01-00", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
-      { "titel": "eigen 3e training", "datum": "1900-01-02", "omschrijving": "Duurloop 110 min 75%, laatste 10 min 85%"}]},
+    { "titel": "Week 51", "inhoud": [
+      { "datum": "2019-12-18", "omschrijving": "Duurloop 60 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
+      { "datum": "2019-12-21", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
+      { "titel": "eigen 3e training", "datum": "2019-12-23", "omschrijving": "Duurloop 110 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 52", "inhoud": [
       { "datum": "2019-12-25", "omschrijving": "Tempoduurloop 50 min", "locatie": "Door de stad"},
       { "datum": "2019-12-28", "omschrijving": "400 m rust, 400 snel", "locatie": "4 mijl parcours"},
       { "titel": "eigen 3e training", "datum": "2019-12-30", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]}
@@ -146,42 +146,42 @@
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 47", "inhoud": [
       { "datum": "2019-11-20", "omschrijving": "Duurloop 75 min (na elke 10 min 1 min versnellen), hete kolen, ballon + trots lopen", "locatie": "Zuidwolde"},
       { "datum": "2019-11-23", "omschrijving": "Bostraining", "locatie": "Nader te bepalen"},
       { "titel": "eigen 3e training", "datum": "2019-11-25", "omschrijving": "Duurloop 60 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 48", "inhoud": [
       { "datum": "2019-11-27", "omschrijving": "8 x 6, 2 min rust", "locatie": "Driebond"},
       { "datum": "2019-11-30", "omschrijving": "Sinterklaas?", "locatie": "Nader te bepalen"},
       { "titel": "eigen 3e training", "datum": "2019-12-02", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 49", "inhoud": [
       { "datum": "2019-12-04", "omschrijving": "8 x 5 min tempo - 3 min rust", "locatie": "Voetbalvelden"},
       { "datum": "2019-12-07", "omschrijving": "Dobbelstenenspel bij start 4 mijl parcours, heen tempo, terug rust (groepsvorm)", "locatie": "4 mijl parcours"},
       { "titel": "eigen 3e training", "datum": "2019-12-09", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 50", "inhoud": [
       { "datum": "2019-12-11", "omschrijving": "2-4-6-8-6-4-2 (rust 2 min)", "locatie": "Kardingerplas - Voetbalvelden"},
       { "datum": "2019-12-14", "omschrijving": "Fartlek 75 minuten", "locatie": "Kardingeterrein"},
       { "titel": "eigen 3e training", "datum": "2019-12-16", "omschrijving": "Duurloop 90 min 75%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
-      { "datum": "1900-01-00", "omschrijving": "Duurloop 75 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
-      { "datum": "1900-01-00", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
-      { "titel": "eigen 3e training", "datum": "1900-01-02", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]},
+    { "titel": "Week 51", "inhoud": [
+      { "datum": "2019-12-18", "omschrijving": "Duurloop 75 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
+      { "datum": "2019-12-21", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
+      { "titel": "eigen 3e training", "datum": "2019-12-23", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]},
 
 
 
-    { "titel": "Week ", "inhoud": [
+    { "titel": "Week 52", "inhoud": [
       { "datum": "2019-12-25", "omschrijving": "Tempoduurloop 60 min", "locatie": "Door de stad"},
       { "datum": "2019-12-28", "omschrijving": "400 m rust, 400 snel", "locatie": "4 mijl parcours"},
       { "titel": "eigen 3e training", "datum": "2019-12-30", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]}
