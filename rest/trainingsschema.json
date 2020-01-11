@@ -1,189 +1,449 @@
 {
   "A": [
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-10-30", "omschrijving": "6 x 4, 2 min rust", "locatie": "Zilvermeer"},
-      { "datum": "2019-11-02", "omschrijving": "4 x 800 m vanf start 4 mijl parcours, 2 min rust", "locatie": "Start 4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-11-04", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-11-06", "omschrijving": "3 x 10, 3 min rust", "locatie": "Zuidwolde brug"},
-      { "datum": "2019-11-09", "omschrijving": "Duurloop 50 min", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-11-11", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-11-13", "omschrijving": "2 x (10 x 15 sec rustig 30 sec snel) 5 min duur tussen sessie", "locatie": "Zilvermeer, let op! ALV"},
-      { "datum": "2019-11-16", "omschrijving": "6 x 2 min tempo 2 min rust", "locatie": "Oosterparkvijver"},
-      { "titel": "eigen 3e training", "datum": "2019-11-18", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 47", "inhoud": [
-      { "datum": "2019-11-20", "omschrijving": "Duurloop 50 min (na elke 10 min 1 min versnellen), hete kolen, ballon + trots lopen", "locatie": "Zuidwolde"},
-      { "datum": "2019-11-23", "omschrijving": "Bostraining", "locatie": "Nader te bepalen"},
-      { "titel": "eigen 3e training", "datum": "2019-11-25", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 48", "inhoud": [
-      { "datum": "2019-11-27", "omschrijving": "4 x 6, 2 min rust", "locatie": "Driebond"},
-      { "datum": "2019-11-30", "omschrijving": "Sinterklaas?", "locatie": "Nader te bepalen"},
-      { "titel": "eigen 3e training", "datum": "2019-12-02", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 49", "inhoud": [
-      { "datum": "2019-12-04", "omschrijving": "4 x 5 min tempo - 3 min rust", "locatie": "Voetbalvelden"},
-      { "datum": "2019-12-07", "omschrijving": "Dobbelstenenspel bij start 4 mijl parcours, heen tempo, terug rust (groepsvorm)", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-12-09", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 50", "inhoud": [
-      { "datum": "2019-12-11", "omschrijving": "2-4-6-4-2 (rust 2 min)", "locatie": "Driehoekje"},
-      { "datum": "2019-12-14", "omschrijving": "Fartlek 45 minuten", "locatie": "Kardingeterrein"},
-      { "titel": "eigen 3e training", "datum": "2019-12-16", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 51", "inhoud": [
-      { "datum": "2019-12-18", "omschrijving": "Duurloop 45 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
-      { "datum": "2019-12-21", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
-      { "titel": "eigen 3e training", "datum": "2019-12-23", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 52", "inhoud": [
-      { "datum": "2019-12-25", "omschrijving": "Tempoduurloop 40 min", "locatie": "Door de stad"},
-      { "datum": "2019-12-28", "omschrijving": "400 m rust, 400 snel", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-12-30", "omschrijving": "Duurloop 50 min 75%"}]}
+    {
+      "titel": "Week 3 - herstel",
+      "inhoud": [
+        {
+          "datum": "2020-01-15",
+          "omschrijving": "Duurloop 40 min, 75%",
+          "locatie": "Kardinge"
+        },
+        {
+          "datum": "2020-01-18",
+          "omschrijving": "Duurloop 45 min, 75%",
+          "locatie": "4 mijl parcours"
+        },
+        {
+          "datum": "2020-01-20",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 4 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-01-22",
+          "omschrijving": "3 x 10 minuten 5 min rust",
+          "locatie": "Voetbalveld"
+        },
+        {
+          "datum": "2020-01-25",
+          "omschrijving": "3 x 8 minuten, 3 rust",
+          "locatie": "Zuidwolde"
+        },
+        {
+          "datum": "2020-01-27",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 5 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-01-29",
+          "omschrijving": "2 x 15 minuten 5 min rust",
+          "locatie": "Richting Noorddijkerweg"
+        },
+        {
+          "datum": "2020-02-01",
+          "omschrijving": "Fartlek, 50 minuten",
+          "locatie": "Kardingegebied"
+        },
+        {
+          "datum": "2020-02-03",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 6 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-02-05",
+          "omschrijving": "5-(2)-3-2-1-2-3-2-5",
+          "locatie": "Zilvermeer"
+        },
+        {
+          "datum": "2020-02-08",
+          "omschrijving": "12 min koppel (1 snel/1 rustig) achter elkaar",
+          "locatie": "Oosterpark"
+        },
+        {
+          "datum": "2020-02-10",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 7 - herstel",
+      "inhoud": [
+        {
+          "datum": "2020-02-12",
+          "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 50 min",
+          "locatie": "Driebond"
+        },
+        {
+          "datum": "2020-02-15",
+          "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 50. koppels",
+          "locatie": "4 mijl"
+        },
+        {
+          "datum": "2020-02-17",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 8 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-02-19",
+          "omschrijving": "4 x 6 minuten, 2 rust",
+          "locatie": "Zuidwolde"
+        },
+        {
+          "datum": "2020-02-22",
+          "omschrijving": "Viaducttraining Glimmen/Onnen",
+          "locatie": "Glimmen"
+        },
+        {
+          "datum": "2020-02-24",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 9 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-02-26",
+          "omschrijving": "2 x 20 minuten 5 min rust",
+          "locatie": "Zilvermeer/Voetbalveld"
+        },
+        {
+          "datum": "2020-02-29",
+          "omschrijving": "2 x 10 minuten 5 min rust",
+          "locatie": "4 mijl "
+        },
+        {
+          "datum": "2020-03-02",
+          "omschrijving": "Duurloop 50 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 10 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-03-04",
+          "omschrijving": "Tempoloop 3 km",
+          "locatie": "Voetbalveld"
+        },
+        {
+          "datum": "2020-03-07",
+          "omschrijving": "Haren"
+        }
+      ]
+    }
   ],
   "B": [
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-10-30", "omschrijving": "8 x 4, 2 min rust", "locatie": "Zilvermeer"},
-      { "datum": "2019-11-02", "omschrijving": "6 x 800 m vanf start 4 mijl parcours, 2 min rust", "locatie": "Start 4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-11-04", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-11-06", "omschrijving": "4 x 10, 3 min rust", "locatie": "Zuidwolde"},
-      { "datum": "2019-11-09", "omschrijving": "Duurloop 60 min", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-11-11", "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-11-13", "omschrijving": "3 x (10 x 15 sec rustig 30 sec snel) 5 min duur tussen sessie", "locatie": "Zilvermeer, let op! ALV"},
-      { "datum": "2019-11-16", "omschrijving": "9 x 2 min tempo 2 min rust", "locatie": "Oosterparkvijver"},
-      { "titel": "eigen 3e training", "datum": "2019-11-18", "omschrijving": "Duurloop 50 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 47", "inhoud": [
-      { "datum": "2019-11-20", "omschrijving": "Duurloop 65 min (na elke 10 min 1 min versnellen), hete kolen, ballon + trots lopen", "locatie": "Zuidwolde"},
-      { "datum": "2019-11-23", "omschrijving": "Bostraining", "locatie": "Nader te bepalen"},
-      { "titel": "eigen 3e training", "datum": "2019-11-25", "omschrijving": "Duurloop 50 min 75%"}]},
-
-
-
-    { "titel": "Week 48", "inhoud": [
-      { "datum": "2019-11-27", "omschrijving": "6 x 6, 2 min rust", "locatie": "Driebond"},
-      { "datum": "2019-11-30", "omschrijving": "Sinterklaas?", "locatie": "Nader te bepalen"},
-      { "titel": "eigen 3e training", "datum": "2019-12-02", "omschrijving": "Duurloop 65 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 49", "inhoud": [
-      { "datum": "2019-12-04", "omschrijving": "6 x 5 min tempo - 3 min rust", "locatie": "Voetbalvelden"},
-      { "datum": "2019-12-07", "omschrijving": "Dobbelstenenspel bij start 4 mijl parcours, heen tempo, terug rust (groepsvorm)", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-12-09", "omschrijving": "Duurloop 65 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 50", "inhoud": [
-      { "datum": "2019-12-11", "omschrijving": "2-4-6-6-4-2 (rust 2 min)", "locatie": "Kardingerplas"},
-      { "datum": "2019-12-14", "omschrijving": "Fartlek 60 minuten", "locatie": "Kardingeterrein"},
-      { "titel": "eigen 3e training", "datum": "2019-12-16", "omschrijving": "Duurloop 70 min 75%"}]},
-
-
-
-    { "titel": "Week 51", "inhoud": [
-      { "datum": "2019-12-18", "omschrijving": "Duurloop 60 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
-      { "datum": "2019-12-21", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
-      { "titel": "eigen 3e training", "datum": "2019-12-23", "omschrijving": "Duurloop 110 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 52", "inhoud": [
-      { "datum": "2019-12-25", "omschrijving": "Tempoduurloop 50 min", "locatie": "Door de stad"},
-      { "datum": "2019-12-28", "omschrijving": "400 m rust, 400 snel", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-12-30", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]}
+    {
+      "titel": "Week 3 - herstel",
+      "inhoud": [
+        {
+          "datum": "2020-01-15",
+          "omschrijving": "Duurloop 50 min, 75%",
+          "locatie": "Kardinge"
+        },
+        {
+          "datum": "2020-01-18",
+          "omschrijving": "Duurloop 60 min, 75%",
+          "locatie": "4 mijl parcours"
+        },
+        {
+          "datum": "2020-01-20",
+          "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 4 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-01-22",
+          "omschrijving": "4 x 10 minuten 5 min rust",
+          "locatie": "Voetbalveld"
+        },
+        {
+          "datum": "2020-01-25",
+          "omschrijving": "4 x 8 minuten, 3 rust",
+          "locatie": "Zuidwolde"
+        },
+        {
+          "datum": "2020-01-27",
+          "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 5 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-01-29",
+          "omschrijving": "3 x 15 minuten 5 min rust",
+          "locatie": "Richting Noorddijkerweg"
+        },
+        {
+          "datum": "2020-02-01",
+          "omschrijving": "Fartlek, 70 minuten",
+          "locatie": "Kardingegebied"
+        },
+        {
+          "datum": "2020-02-03",
+          "omschrijving": "Duurloop 50 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 6 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-02-05",
+          "omschrijving": "6-2-4-2-2--2-4-2-6",
+          "locatie": "Zilvermeer"
+        },
+        {
+          "datum": "2020-02-08",
+          "omschrijving": "12 min koppel (1 snel/1 rustig) tegengesteld",
+          "locatie": "Oosterpark"
+        },
+        {
+          "datum": "2020-02-10",
+          "omschrijving": "Duurloop 50 min 75% \r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 7 - herstel",
+      "inhoud": [
+        {
+          "datum": "2020-02-12",
+          "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 60 min",
+          "locatie": "Driebond"
+        },
+        {
+          "datum": "2020-02-15",
+          "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 70  koppels",
+          "locatie": "4 mijl"
+        },
+        {
+          "datum": "2020-02-17",
+          "omschrijving": "Duurloop 65 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 8 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-02-19",
+          "omschrijving": "7 x 6 minuten, 2 rust",
+          "locatie": "Zuidwolde"
+        },
+        {
+          "datum": "2020-02-22",
+          "omschrijving": "en videoopnamen",
+          "locatie": "Glimmen"
+        },
+        {
+          "datum": "2020-02-24",
+          "omschrijving": "Duurloop 65 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 9 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-02-26",
+          "omschrijving": "3 x 20 minuten 5 min rust",
+          "locatie": "Zilvermeer/Voetbalveld"
+        },
+        {
+          "datum": "2020-02-29",
+          "omschrijving": "3 x 10 minuten 5 min rust",
+          "locatie": "4 mijl "
+        },
+        {
+          "datum": "2020-03-02",
+          "omschrijving": "Duurloop 70 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 10 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-03-04",
+          "omschrijving": "Tempoloop 5 km",
+          "locatie": "Voetbalveld"
+        },
+        {
+          "datum": "2020-03-07",
+          "omschrijving": "Haren"
+        }
+      ]
+    }
   ],
-
   "C": [
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-10-30", "omschrijving": "10 x 4, 2 min rust", "locatie": "Zilvermeer"},
-      { "datum": "2019-11-02", "omschrijving": "8 x 800 m vanf start 4 mijl parcours, 2 min rust", "locatie": "Start 4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-11-04", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-11-06", "omschrijving": "5 x 10, 3 min rust", "locatie": "Zuidwolde"},
-      { "datum": "2019-11-09", "omschrijving": "Duurloop 75 min, voor marathonlopers verlengen naar max 2 uur", "locatie": "Richting Thesinge, via stadsweg terug"},
-      { "titel": "eigen 3e training", "datum": "2019-11-11", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week ", "inhoud": [
-      { "datum": "2019-11-13", "omschrijving": "4 x (10 x 15 sec rustig 30 sec snel) 5 min duur tussen sessie", "locatie": "Zilvermeer, let op! ALV"},
-      { "datum": "2019-11-16", "omschrijving": "12 x 2 min tempo 2 min rust", "locatie": "Oosterparkvijver"},
-      { "titel": "eigen 3e training", "datum": "2019-11-18", "omschrijving": "Duurloop 60 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 47", "inhoud": [
-      { "datum": "2019-11-20", "omschrijving": "Duurloop 75 min (na elke 10 min 1 min versnellen), hete kolen, ballon + trots lopen", "locatie": "Zuidwolde"},
-      { "datum": "2019-11-23", "omschrijving": "Bostraining", "locatie": "Nader te bepalen"},
-      { "titel": "eigen 3e training", "datum": "2019-11-25", "omschrijving": "Duurloop 60 min 75%"}]},
-
-
-
-    { "titel": "Week 48", "inhoud": [
-      { "datum": "2019-11-27", "omschrijving": "8 x 6, 2 min rust", "locatie": "Driebond"},
-      { "datum": "2019-11-30", "omschrijving": "Sinterklaas?", "locatie": "Nader te bepalen"},
-      { "titel": "eigen 3e training", "datum": "2019-12-02", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 49", "inhoud": [
-      { "datum": "2019-12-04", "omschrijving": "8 x 5 min tempo - 3 min rust", "locatie": "Voetbalvelden"},
-      { "datum": "2019-12-07", "omschrijving": "Dobbelstenenspel bij start 4 mijl parcours, heen tempo, terug rust (groepsvorm)", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-12-09", "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 50", "inhoud": [
-      { "datum": "2019-12-11", "omschrijving": "2-4-6-8-6-4-2 (rust 2 min)", "locatie": "Kardingerplas - Voetbalvelden"},
-      { "datum": "2019-12-14", "omschrijving": "Fartlek 75 minuten", "locatie": "Kardingeterrein"},
-      { "titel": "eigen 3e training", "datum": "2019-12-16", "omschrijving": "Duurloop 90 min 75%"}]},
-
-
-
-    { "titel": "Week 51", "inhoud": [
-      { "datum": "2019-12-18", "omschrijving": "Duurloop 75 min", "locatie": "Richting Zuidwolde-Bedum, draaien halverwege de training"},
-      { "datum": "2019-12-21", "omschrijving": "Peize", "locatie": "Peize, 10:30"},
-      { "titel": "eigen 3e training", "datum": "2019-12-23", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]},
-
-
-
-    { "titel": "Week 52", "inhoud": [
-      { "datum": "2019-12-25", "omschrijving": "Tempoduurloop 60 min", "locatie": "Door de stad"},
-      { "datum": "2019-12-28", "omschrijving": "400 m rust, 400 snel", "locatie": "4 mijl parcours"},
-      { "titel": "eigen 3e training", "datum": "2019-12-30", "omschrijving": "Duurloop 120 min 75%, laatste 10 min 85%"}]}
+    {
+      "titel": "Week 3 - herstel",
+      "inhoud": [
+        {
+          "datum": "2020-01-15",
+          "omschrijving": "Duurloop 60 min, 75%",
+          "locatie": "Kardinge"
+        },
+        {
+          "datum": "2020-01-18",
+          "omschrijving": "Duurloop 70 min, 75%",
+          "locatie": "4 mijl parcours"
+        },
+        {
+          "datum": "2020-01-20",
+          "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 4 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-01-22",
+          "omschrijving": "5 x 10 minuten 5 min rust",
+          "locatie": "Voetbalveld"
+        },
+        {
+          "datum": "2020-01-25",
+          "omschrijving": "5 x 8 minuten, 3 rust",
+          "locatie": "Zuidwolde"
+        },
+        {
+          "datum": "2020-01-27",
+          "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 5 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-01-29",
+          "omschrijving": "4 x 15 minuten 5 min rust",
+          "locatie": "Richting Noorddijkerweg"
+        },
+        {
+          "datum": "2020-02-01",
+          "omschrijving": "Fartlek, 90 minuten",
+          "locatie": "Kardingegebied"
+        },
+        {
+          "datum": "2020-02-03",
+          "omschrijving": "Duurloop 60 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 6 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-02-05",
+          "omschrijving": "6-2-4-2--2-2-2-2-4-2-6",
+          "locatie": "Zilvermeer"
+        },
+        {
+          "datum": "2020-02-08",
+          "omschrijving": "2 ronden estafette (koppel)",
+          "locatie": "Oosterpark"
+        },
+        {
+          "datum": "2020-02-10",
+          "omschrijving": "Duurloop 60 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 7 - herstel",
+      "inhoud": [
+        {
+          "datum": "2020-02-12",
+          "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 70 min",
+          "locatie": "Driebond"
+        },
+        {
+          "datum": "2020-02-15",
+          "omschrijving": "Duurloopje techniek (ballon, touw, kolen), 90  koppels",
+          "locatie": "4 mijl"
+        },
+        {
+          "datum": "2020-02-17",
+          "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 8 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-02-19",
+          "omschrijving": "9 x 6 minuten, 2 rust",
+          "locatie": "Zuidwolde"
+        },
+        {
+          "datum": "2020-02-22",
+          "omschrijving": "en videoopnamen",
+          "locatie": "Glimmen"
+        },
+        {
+          "datum": "2020-02-24",
+          "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 9 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-02-26",
+          "omschrijving": "4 x 20 minuten 5 min rust",
+          "locatie": "Zilvermeer/Voetbalveld"
+        },
+        {
+          "datum": "2020-02-29",
+          "omschrijving": "4 x 10 minuten 5 min rust",
+          "locatie": "4 mijl "
+        },
+        {
+          "datum": "2020-03-02",
+          "omschrijving": "Duurloop 90 min 75%\r"
+        }
+      ]
+    },
+    {
+      "titel": "Week 10 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-03-04",
+          "omschrijving": "Tempoloop 7 km",
+          "locatie": "Voetbalveld"
+        },
+        {
+          "datum": "2020-03-07",
+          "omschrijving": "Haren"
+        }
+      ]
+    }
   ]
 }
