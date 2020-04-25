@@ -1,168 +1,330 @@
 {
   "A": [
     {
-      "titel": "Week 12 - omvang",
+      "titel": "Week 18 - omvang",
       "inhoud": [
         {
-          "datum": "2020-03-18",
-          "omschrijving": "4 x 7 min 3 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-22",
+          "omschrijving": "Piramide 2-4-6-4-2 minuten tempo, 2 minuten rust (sessie 80%, rust 70%)"
         },
         {
-          "datum": "2020-03-21",
-          "omschrijving": "7 x 4 min 3 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-25",
+          "omschrijving": "3 x 7 minuten tempo, 3 minuten rust (sessie 80%, rust 70%)"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-03-23",
-          "omschrijving": "Duurloop 50 min 75%\r"
+          "datum": "2020-04-27",
+          "omschrijving": "Duurloop 60 minuten 75%"
         }
       ]
     },
     {
-      "titel": "Week 13 - omvang",
+      "titel": "Week 19 - intensiteit",
       "inhoud": [
         {
-          "datum": "2020-03-25",
-          "omschrijving": "3 x 10 min 5 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-29",
+          "omschrijving": "2 x 15 sec sprint - 45 sec rust. 8 x 1 minuut tempo - 2 minuten rust"
         },
         {
-          "datum": "2020-03-28",
-          "omschrijving": "3 x 8 min, 3 rust (sessie 85%, rust 75%)"
+          "datum": "2020-05-02",
+          "omschrijving": "6 x 2 minuten tempo 2 minuten rust"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-03-30",
-          "omschrijving": "Duurloop 50 min 75%\r"
+          "datum": "2020-05-04",
+          "omschrijving": "Duurloop 60 minuten 75%, laatste 5 minuten 80%"
         }
       ]
     },
     {
-      "titel": "Week 14 - intensiteit",
+      "titel": "Week 20 - herstel",
       "inhoud": [
         {
-          "datum": "2020-04-01",
-          "omschrijving": "10 min inlopen, 8 x 2 min 2 min rust"
+          "datum": "2020-05-06",
+          "omschrijving": "Duurloop 45 minuten"
         },
         {
-          "datum": "2020-04-04",
-          "omschrijving": "10 min inlopen, 5 x 6 min 2 min rust"
+          "datum": "2020-05-09",
+          "omschrijving": "Duurloop met 3 x 2 minuten licht versnellen 50 minuten"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-04-06",
-          "omschrijving": "Duurloop 50 min 75%\r"
+          "datum": "2020-05-11",
+          "omschrijving": "Duurloop 45 minuten 75%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 21 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-05-13",
+          "omschrijving": "3 x 8 minuten tempo, 4 minuten rust. Ontdek een nieuw pad!"
+        },
+        {
+          "datum": "2020-05-16",
+          "omschrijving": "3 x 8 minuten tempo, 2 minuten rust"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-05-18",
+          "omschrijving": "Duurloop 55 minuten 75%, laatste 10 minuten 80%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 22 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-05-20",
+          "omschrijving": "2 x brug op en af - 85% op, 70% af. bv: de Noordzeebrug of Walfridusbrug of Driebondsbrug"
+        },
+        {
+          "datum": "2020-05-23",
+          "omschrijving": "4 x 6 minuten tempo - 3 minuten rust (sessie 80%, rust 70%)"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-05-25",
+          "omschrijving": "Duurloop 60 minuten 75%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 23 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-05-27",
+          "omschrijving": "2 x 30 sec tempo - 30 sec rust. 8 x 1 minuut tempo - 2 minuten rust"
+        },
+        {
+          "datum": "2020-05-30",
+          "omschrijving": "Tempoloop max 5 km"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-06-01",
+          "omschrijving": "Duurloop 60 minuten 75%, laatste 10 minuten 80%"
         }
       ]
     }
   ],
   "B": [
     {
-      "titel": "Week 12 - omvang",
+      "titel": "Week 18 - omvang",
       "inhoud": [
         {
-          "datum": "2020-03-18",
-          "omschrijving": "5 x 7 min 3 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-22",
+          "omschrijving": "Piramide 2-4-6-6-4-2 minuten tempo, 2 minuten rust (sessie 80%, rust 70%)"
         },
         {
-          "datum": "2020-03-21",
-          "omschrijving": "8 x 4 min 3 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-25",
+          "omschrijving": "4 x 7 minuten tempo, 3 minuten rust (sessie 80%, rust 70%)"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-03-23",
-          "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%\r"
+          "datum": "2020-04-27",
+          "omschrijving": "Duurloop 70 minuten 75%"
         }
       ]
     },
     {
-      "titel": "Week 13 - omvang",
+      "titel": "Week 19 - intensiteit",
       "inhoud": [
         {
-          "datum": "2020-03-25",
-          "omschrijving": "4 x 10 min 5 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-29",
+          "omschrijving": "3 x 15 sec sprint - 45 sec rust. 10 x 1 minuut tempo - 2 minuten rust"
         },
         {
-          "datum": "2020-03-28",
-          "omschrijving": "4 x 8 min, 3 rust (sessie 85%, rust 75%)"
+          "datum": "2020-05-02",
+          "omschrijving": "8 x 2 minuten tempo 2 minuten rust"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-03-30",
-          "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%\r"
+          "datum": "2020-05-04",
+          "omschrijving": "Duurloop 70 minuten 75%, laatste 10 minuten 80%"
         }
       ]
     },
     {
-      "titel": "Week 14 - intensiteit",
+      "titel": "Week 20 - herstel",
       "inhoud": [
         {
-          "datum": "2020-04-01",
-          "omschrijving": "10 min inlopen, 10 x 2 min 2 min rust"
+          "datum": "2020-05-06",
+          "omschrijving": "Duurloop 55 minuten"
         },
         {
-          "datum": "2020-04-04",
-          "omschrijving": "10 min inlopen, 7 x 6 min 2 min rust"
+          "datum": "2020-05-09",
+          "omschrijving": "Duurloop met 3 x 2 minuten licht versnellen 60 minuten"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-04-06",
-          "omschrijving": "Duurloop 60 min 75%, laatste 10 min 85%\r"
+          "datum": "2020-05-11",
+          "omschrijving": "Duurloop 55 minuten 75%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 21 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-05-13",
+          "omschrijving": "3 x 10 minuten tempo, 4 minuten rust. Ontdek een nieuw pad!"
+        },
+        {
+          "datum": "2020-05-16",
+          "omschrijving": "4 x 8 minuten tempo, 2 minuten rust"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-05-18",
+          "omschrijving": "Duurloop 65 minuten 75%, laatste 15 minuten 80%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 22 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-05-20",
+          "omschrijving": "3 x brug op en af - 85% op, 70% af. bv: de Noordzeebrug of Walfridusbrug of Driebondsbrug"
+        },
+        {
+          "datum": "2020-05-23",
+          "omschrijving": "5 x 6 minuten tempo - 3 minuten rust (sessie 80%, rust 70%)"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-05-25",
+          "omschrijving": "Duurloop 70 minuten 75%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 23 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-05-27",
+          "omschrijving": "3 x 30 sec tempo - 30 sec rust. 10 x 1 minuut tempo - 2 minuten rust"
+        },
+        {
+          "datum": "2020-05-30",
+          "omschrijving": "Tempoloop max 4 mijl (6,44 km)"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-06-01",
+          "omschrijving": "Duurloop 70 minuten 75%, laatste 15 minuten 80%"
         }
       ]
     }
   ],
   "C": [
     {
-      "titel": "Week 12 - omvang",
+      "titel": "Week 18 - omvang",
       "inhoud": [
         {
-          "datum": "2020-03-18",
-          "omschrijving": "6 x 7 min 3 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-22",
+          "omschrijving": "Piramide 2-4-6-8-6-4-2 minuten tempo, 2 minuten rust (sessie 80%, rust 70%)"
         },
         {
-          "datum": "2020-03-21",
-          "omschrijving": "9 x 4 min 3 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-25",
+          "omschrijving": "5 x 7 minuten tempo, 3 minuten rust (sessie 80%, rust 70%)"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-03-23",
-          "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%\r"
+          "datum": "2020-04-27",
+          "omschrijving": "Duurloop 80 minuten 75%"
         }
       ]
     },
     {
-      "titel": "Week 13 - omvang",
+      "titel": "Week 19 - intensiteit",
       "inhoud": [
         {
-          "datum": "2020-03-25",
-          "omschrijving": "5 x 10 min 5 min rust (sessie 85%, rust 75%)"
+          "datum": "2020-04-29",
+          "omschrijving": "4 x 15 sec sprint - 45 sec rust. 12 x 1 minuut tempo - 2 minuten rust"
         },
         {
-          "datum": "2020-03-28",
-          "omschrijving": "5 x 8 min, 3 rust (sessie 85%, rust 75%)"
+          "datum": "2020-05-02",
+          "omschrijving": "10 x 2 minuten tempo 2 minuten rust"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-03-30",
-          "omschrijving": "Duurloop 90 min 75%, laatste 10 min 85%\r"
+          "datum": "2020-05-04",
+          "omschrijving": "Duurloop 80 minuten 75%, laatste 15 minuten 80%"
         }
       ]
     },
     {
-      "titel": "Week 14 - intensiteit",
+      "titel": "Week 20 - herstel",
       "inhoud": [
         {
-          "datum": "2020-04-01",
-          "omschrijving": "10 min inlopen, 12 x 2 min 2 min rust"
+          "datum": "2020-05-06",
+          "omschrijving": "Duurloop 65 minuten"
         },
         {
-          "datum": "2020-04-04",
-          "omschrijving": "10 min inlopen, 8 x 6 min 2 min rust"
+          "datum": "2020-05-09",
+          "omschrijving": "Duurloop met 3 x 2 minuten licht versnellen 70 minuten"
         },
         {
           "titel": "eigen 3e training",
-          "datum": "2020-04-06",
-          "omschrijving": "Duurloop 70 min 75%, laatste 10 min 85%\r"
+          "datum": "2020-05-11",
+          "omschrijving": "Duurloop 65 minuten 75%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 21 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-05-13",
+          "omschrijving": "3 x 12 minuten tempo, 4 minuten rust. Ontdek een nieuw pad!"
+        },
+        {
+          "datum": "2020-05-16",
+          "omschrijving": "5 x 8 minuten tempo, 2 minuten rust"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-05-18",
+          "omschrijving": "Duurloop 75 minuten 75%, laatste 20 minuten 80%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 22 - omvang",
+      "inhoud": [
+        {
+          "datum": "2020-05-20",
+          "omschrijving": "3 x brug op en af - 85% op, 70% af. bv: de Noordzeebrug of Walfridusbrug of Driebondsbrug"
+        },
+        {
+          "datum": "2020-05-23",
+          "omschrijving": "6 x 6 minuten tempo - 3 minuten rust (sessie 80%, rust 70%)"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-05-25",
+          "omschrijving": "Duurloop 80 minuten 75%"
+        }
+      ]
+    },
+    {
+      "titel": "Week 23 - intensiteit",
+      "inhoud": [
+        {
+          "datum": "2020-05-27",
+          "omschrijving": "4 x 30 sec tempo - 30 sec rust. 12 x 1 minuut tempo - 2 minuten rust"
+        },
+        {
+          "datum": "2020-05-30",
+          "omschrijving": "Tempoloop max 10 km"
+        },
+        {
+          "titel": "eigen 3e training",
+          "datum": "2020-06-01",
+          "omschrijving": "Duurloop 80 minuten 75%, laatste 20 minuten 80%"
         }
       ]
     }
